@@ -1,0 +1,33 @@
+# /etc/conf.d/eleccoind: config file for /etc/init.d/eleccoind
+
+# Config file location
+#ELECCOIND_CONFIGFILE="/etc/eleccoin/eleccoin.conf"
+
+# What directory to write pidfile to?  (created and owned by $ELECCOIND_USER)
+#ELECCOIND_PIDDIR="/var/run/eleccoind"
+
+# What filename to give the pidfile
+#ELECCOIND_PIDFILE="${ELECCOIND_PIDDIR}/eleccoind.pid"
+
+# Where to write eleccoind data (be mindful that the blockchain is large)
+#ELECCOIND_DATADIR="/var/lib/eleccoind"
+
+# User and group to own eleccoind process
+#ELECCOIND_USER="eleccoin"
+#ELECCOIND_GROUP="eleccoin"
+
+# Path to eleccoind executable
+#ELECCOIND_BIN="/usr/bin/eleccoind"
+
+# Nice value to run eleccoind under
+#ELECCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+#ELECCOIND_OPTS=""
+
+# The timeout in seconds OpenRC will wait for eleccoind to terminate
+# after a SIGTERM has been raised.
+# Note that this will be mapped as argument to start-stop-daemon's
+# '--retry' option, which means you can specify a retry schedule
+# here. For more information see man 8 start-stop-daemon.
+ELECCOIND_SIGTERM_TIMEOUT=60

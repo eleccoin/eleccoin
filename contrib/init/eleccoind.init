@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+#
+#  eleccoind The eleccoin core server.
+#
+#
+# chkconfig: 345 80 20
+# description: eleccoind
+# processname: eleccoind
+#
+
+# Source function library.
+. /etc/init.d/functions
+
+# you can override defaults in /etc/sysconfig/eleccoind, see below
+if [ -f /etc/sysconfig/eleccoind ]; then
+        . /etc/sysconfig/eleccoind
+fi
+
+RETVAL=0
+
+prog=eleccoind
+# you can override the lockfile via ELECCOIND_LOCKFILE in /etc/sysconfig/eleccoind
+lockfile=${ELECCOIND_LOCKFILE-/var/lock/subsys/eleccoind}
+
+# eleccoind defaults to /usr/bin/eleccoind, override with ELECCOIND_BIN
+eleccoind=${ELECCOIND_BIN-/usr/bin/eleccoind}
+
+# eleccoind opts default to -disablewallet, override with ELECCOIND_OPTS
+eleccoind_opts=${ELECCOIND_OPTS--disablewallet}
+
+start() {
+    echo -n $"Starting $prog: "
+    daemon $DAEMONOPTS $eleccoind $eleccoind_opts
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && touch $lockfile
+    return $RETVAL
+}
+
+stop() {
+    echo -n $"Stopping $prog: "
+    killproc $prog
+    RETVAL=$?
+    echo
+    [ $RETVAL -eq 0 ] && rm -f $lockfile
+    return $RETVAL
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status $prog
+        ;;
+    restart)
+        stop
+        start
+        ;;
+    *)
+        echo "Usage: service $prog {start|stop|status|restart}"
+        exit 1
+        ;;
+esac

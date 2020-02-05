@@ -1,0 +1,92 @@
+#!/sbin/openrc-run
+
+# backward compatibility for existing gentoo layout 
+#
+if [ -d "/var/lib/eleccoin/.eleccoin" ]; then
+	ELECCOIND_DEFAULT_DATADIR="/var/lib/eleccoin/.eleccoin"
+else
+	ELECCOIND_DEFAULT_DATADIR="/var/lib/eleccoind"
+fi
+
+ELECCOIND_CONFIGFILE=${ELECCOIND_CONFIGFILE:-/etc/eleccoin/eleccoin.conf}
+ELECCOIND_PIDDIR=${ELECCOIND_PIDDIR:-/var/run/eleccoind}
+ELECCOIND_PIDFILE=${ELECCOIND_PIDFILE:-${ELECCOIND_PIDDIR}/eleccoind.pid}
+ELECCOIND_DATADIR=${ELECCOIND_DATADIR:-${ELECCOIND_DEFAULT_DATADIR}}
+ELECCOIND_USER=${ELECCOIND_USER:-${ELECCOIN_USER:-eleccoin}}
+ELECCOIND_GROUP=${ELECCOIND_GROUP:-eleccoin}
+ELECCOIND_BIN=${ELECCOIND_BIN:-/usr/bin/eleccoind}
+ELECCOIND_NICE=${ELECCOIND_NICE:-${NICELEVEL:-0}}
+ELECCOIND_OPTS="${ELECCOIND_OPTS:-${ELECCOIN_OPTS}}"
+
+name="Eleccoin Core Daemon"
+description="Eleccoin cryptocurrency P2P network daemon"
+
+command="/usr/bin/eleccoind"
+command_args="-pid=\"${ELECCOIND_PIDFILE}\" \
+		-conf=\"${ELECCOIND_CONFIGFILE}\" \
+		-datadir=\"${ELECCOIND_DATADIR}\" \
+		-daemon \
+		${ELECCOIND_OPTS}"
+
+required_files="${ELECCOIND_CONFIGFILE}"
+start_stop_daemon_args="-u ${ELECCOIND_USER} \
+			-N ${ELECCOIND_NICE} -w 2000"
+pidfile="${ELECCOIND_PIDFILE}"
+
+# The retry schedule to use when stopping the daemon. Could be either
+# a timeout in seconds or multiple signal/timeout pairs (like
+# "SIGKILL/180 SIGTERM/300")
+retry="${ELECCOIND_SIGTERM_TIMEOUT}"
+
+depend() {
+	need localmount net
+}
+
+# verify
+# 1) that the datadir exists and is writable (or create it)
+# 2) that a directory for the pid exists and is writable
+# 3) ownership and permissions on the config file
+start_pre() {
+	checkpath \
+	-d \
+	--mode 0750 \
+	--owner "${ELECCOIND_USER}:${ELECCOIND_GROUP}" \
+	"${ELECCOIND_DATADIR}"
+
+	checkpath \
+	-d \
+	--mode 0755 \
+	--owner "${ELECCOIND_USER}:${ELECCOIND_GROUP}" \
+	"${ELECCOIND_PIDDIR}"
+
+	checkpath -f \
+	-o ${ELECCOIND_USER}:${ELECCOIND_GROUP} \
+	-m 0660 \
+	${ELECCOIND_CONFIGFILE}
+
+	checkconfig || return 1
+}
+
+checkconfig()
+{
+	if ! grep -qs '^rpcpassword=' "${ELECCOIND_CONFIGFILE}" ; then
+		eerror ""
+		eerror "ERROR: You must set a secure rpcpassword to run eleccoind."
+		eerror "The setting must appear in ${ELECCOIND_CONFIGFILE}"
+		eerror ""
+		eerror "This password is security critical to securing wallets "
+		eerror "and must not be the same as the rpcuser setting."
+		eerror "You can generate a suitable random password using the following "
+		eerror "command from the shell:"
+		eerror ""
+		eerror "bash -c 'tr -dc a-zA-Z0-9 < /dev/urandom | head -c32 && echo'"
+		eerror ""
+		eerror "It is recommended that you also set alertnotify so you are "
+		eerror "notified of problems:"
+		eerror ""
+		eerror "ie: alertnotify=echo %%s | mail -s \"Eleccoin Alert\"" \
+			"admin@foo.com"
+		eerror ""
+		return 1
+	fi
+}
