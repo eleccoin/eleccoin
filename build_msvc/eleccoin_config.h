@@ -11,10 +11,10 @@
 #define CLIENT_VERSION_IS_RELEASE true
 
 /* Major version */
-#define CLIENT_VERSION_MAJOR 0
+#define CLIENT_VERSION_MAJOR 1
 
 /* Minor version */
-#define CLIENT_VERSION_MINOR 19
+#define CLIENT_VERSION_MINOR 0
 
 /* Build revision */
 #define CLIENT_VERSION_REVISION 0
@@ -346,7 +346,7 @@
 #define PACKAGE_NAME "Eleccoin Core"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Eleccoin Core 0.18.99"
+#define PACKAGE_STRING "Eleccoin Core 1.0.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "eleccoin"
