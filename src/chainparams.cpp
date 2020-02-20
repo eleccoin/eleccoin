@@ -86,7 +86,7 @@ public:
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
 
         // The best chain should have at least this much work.
-        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000000000268ad04");
+        consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000000000000025c8c8628");
 
         // By default assume that the signatures in ancestors of this block are valid.
         consensus.defaultAssumeValid = uint256S("0x00"); // 597379
@@ -119,6 +119,12 @@ public:
         vSeeds.emplace_back("seed2.eleccoin.org");
         vSeeds.emplace_back("seed3.eleccoin.org");
         vSeeds.emplace_back("seed4.eleccoin.org");
+        vSeeds.emplace_back("seed5.eleccoin.org");
+        vSeeds.emplace_back("seed6.eleccoin.org");
+        vSeeds.emplace_back("seed7.eleccoin.org");
+        vSeeds.emplace_back("seed8.eleccoin.org");
+        vSeeds.emplace_back("seed9.eleccoin.org");
+        vSeeds.emplace_back("seed10.eleccoin.org");
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,0);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,5);
@@ -137,14 +143,15 @@ public:
         checkpointData = {
             {
                 {   1111, uint256S("0x000000d18aea0a0b5a462a15e33366d9ea140dbb71a778fd5257cda286f59c75")},
+                {   3333, uint256S("0x00000006bd45618281aa234fdf69073d59567fbf533d8535799f7b592fbbe050")},
             }
         };
 
         chainTxData = ChainTxData{
-            // Data from RPC: getchaintxstats 4096 00000000000000000005f8920febd3925f8272a6a71237563d78c2edfdd09ddf
-            /* nTime    */ 1581215237,
-            /* nTxCount */ 1144,
-            /* dTxRate  */ 0.00373212922250599,
+            // Data from RPC: getchaintxstats 3333
+            /* nTime    */ 1582202381,
+            /* nTxCount */ 3397,
+            /* dTxRate  */ 0.003030186797591193,
         };
     }
 };
@@ -157,15 +164,15 @@ public:
     CTestNetParams() {
         strNetworkID = "test";
         consensus.nSubsidyHalvingInterval = 88000;
-        consensus.BIP16Exception = uint256S("0x00000b500b83db815b1b196fc044fb15470980a01a622bc37c4a803f675de78c");
+        consensus.BIP16Exception = uint256();
         consensus.BIP34Height = 0;
-        consensus.BIP34Hash = uint256S("0x00000b500b83db815b1b196fc044fb15470980a01a622bc37c4a803f675de78c");
+        consensus.BIP34Hash = uint256();
         consensus.BIP65Height = 0; // 00000000007f6655f22f98e72ed80d8b06dc761d5da09df0fa1dc4be4f861eb6
         consensus.BIP66Height = 0; // 000000002104c8c45e99a8853285a3b592602a3ccde2b832481da85e9e4ba182
         consensus.nDGWActivationHeight = 0;
-        consensus.CSVHeight = 770112; // 00000000025e930139bac5c6c31a403776da130831ab85be56578f3fa75369bb
-        consensus.SegwitHeight = 834624; // 00000000002b980fcd729daaa248fd9316a5200e9b367f4ff2c42453e84201ca
-        consensus.MinBIP9WarningHeight = 836640; // segwit activation height + miner confirmation window
+        consensus.CSVHeight = 0; // 00000000025e930139bac5c6c31a403776da130831ab85be56578f3fa75369bb
+        consensus.SegwitHeight = 0; // 00000000002b980fcd729daaa248fd9316a5200e9b367f4ff2c42453e84201ca
+        consensus.MinBIP9WarningHeight = 3360; // segwit activation height + miner confirmation window
         consensus.powLimit = uint256S("00000000ffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.nPowTargetTimespan = 24 * 60 * 60; // 1 day
         consensus.nPowTargetSpacing = 6 * 60; // 6 min
