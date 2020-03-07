@@ -1,7 +1,7 @@
 Eleccoin Core
 =====================================
 
-Fundation : unify@eleccoin.org
+Fundation : service@eleccoin.org
 Download : http://eleccoin.org
 
 What is Eleccoin?

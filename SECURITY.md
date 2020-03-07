@@ -3,11 +3,11 @@
 ## Supported Versions
 
 See our website for versions of Eleccoin Core that are currently supported with
-security updates: https://eleccoincore.org/en/lifecycle/#schedule
+security updates: https://eleccoin.org/en/lifecycle/#schedule
 
 ## Reporting a Vulnerability
 
-To report security issues send an email to security@eleccoincore.org (not for support).
+To report security issues send an email to service@eleccoin.org (not for support).
 
 The following keys may be used to communicate sensitive information to developers:
 

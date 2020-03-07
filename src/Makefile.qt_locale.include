@@ -1,1 +1,6 @@
-QT_TS =
+QT_TS = \
+  qt/locale/eleccoin_ja.ts \
+  qt/locale/eleccoin_zh-Hans.ts \
+  qt/locale/eleccoin_zh_CN.ts \
+  qt/locale/eleccoin_zh_HK.ts \
+  qt/locale/eleccoin_zh_TW.ts

@@ -10,7 +10,7 @@ RAPIDCHECK ?=
 NO_WALLET ?=
 NO_ZMQ ?=
 NO_UPNP ?=
-FALLBACK_DOWNLOAD_PATH ?= https://eleccoincore.org/depends-sources
+FALLBACK_DOWNLOAD_PATH ?= https://eleccoin.org/depends-sources
 
 BUILD = $(shell ./config.guess)
 HOST ?= $(BUILD)

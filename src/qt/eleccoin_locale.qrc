@@ -1,3 +1,9 @@
-<RCC>
-    <qresource prefix="/translations"/>
+<!DOCTYPE RCC><RCC version="1.0">
+    <qresource prefix="/translations">
+        <file alias="ja">locale/eleccoin_ja.qm</file>
+        <file alias="zh-Hans">locale/eleccoin_zh-Hans.qm</file>
+        <file alias="zh_CN">locale/eleccoin_zh_CN.qm</file>
+        <file alias="zh_HK">locale/eleccoin_zh_HK.qm</file>
+        <file alias="zh_TW">locale/eleccoin_zh_TW.qm</file>
+    </qresource>
 </RCC>
