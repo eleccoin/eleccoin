@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2019 The Eleccoin Core developers
+// Copyright (c) 2019-2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -37,6 +37,12 @@ TransactionError FillPSBT(const CWallet* pwallet, PartiallySignedTransaction& ps
         // Get the Sighash type
         if (sign && input.sighash_type > 0 && input.sighash_type != sighash_type) {
             return TransactionError::SIGHASH_MISMATCH;
+        }
+
+        if (input.witness_utxo.IsNull() && input.non_witness_utxo) {
+            if (txin.prevout.n >= input.non_witness_utxo->vout.size()) {
+                return TransactionError::MISSING_INPUTS;
+            }
         }
 
         complete &= SignPSBTInput(HidingSigningProvider(pwallet, !sign, !bip32derivs), psbtx, i, sighash_type);

@@ -47,12 +47,66 @@ imposed by Apple, which the Eleccoin Core project does not yet adhere too.
 1.1.0 change log
 ================
 
-- Add multi-language.
-- Fixed wrong contact information.
+### Wallet
+- Fix origfee return for bumpfee with feerate arg (instagibbs)
+- Fix `unique_ptr` usage in boost::signals2 (promag)
+- Fix issue with conflicted mempool tx in listsinceblock (adamjonas, mchrostowski)
+- Bug: IsUsedDestination shouldn't use key id as script id for ScriptHash (instagibbs)
+- IsUsedDestination should count any known single-key address (instagibbs)
+- Reset reused transactions cache (fjahr)
+
+### RPC and other APIs
+- cli: Fix fatal leveldb error when specifying -blockfilterindex=basic twice (brakmic)
+- require second argument only for scantxoutset start action (achow101)
+- zmq: Fix due to invalid argument and multiple notifiers (promag)
+- psbt: handle unspendable psbts (achow101)
+- psbt: check that various indexes and amounts are within bounds (achow101)
+
+### GUI
+- Add multi-language
+- Fix missing qRegisterMetaType for `size_t` (hebasto)
+- disable File-\>CreateWallet during startup (fanquake)
+- Fix comparison function signature (hebasto)
+- Fix unintialized WalletView::progressDialog (promag)
+
+### Tests and QA
+- Fixed wrong contact information
+- Appveyor improvement - text file for vcpkg package list (sipsorcery)
+- fix "eleccoind already running" warnings on macOS (fanquake)
+- add missing #include to fix compiler errors (kallewoof)
+
+### Platform support
+- Update msvc build for Visual Studio 2019 v16.4 (sipsorcery)
+- Updates to appveyor config for VS2019 and Qt5.9.8 + msvc project fixes (sipsorcery)
+- bug-fix macos: give free bytes to `F_PREALLOCATE` (kallewoof)
+
+### Miscellaneous
+- init: Stop indexes on shutdown after ChainStateFlushed callback (jimpo)
+- util: Add missing headers to util/fees.cpp (hebasto)
+- Unbreak build with Boost 1.72.0 (jbeich)
+- scripts: Fix symbol-check & security-check argument passing (fanquake)
+- Log to net category for exceptions in ProcessMessages (laanwj)
+- Update univalue subtree (MarcoFalke)
 
 Credits
 =======
 
 Thanks to everyone who directly contributed to this release:
 
-- -
+- Aaron Clauson
+- Adam Jonas
+- Andrew Chow
+- Fabian Jahr
+- fanquake
+- Gregory Sanders
+- Harris
+- Hennadii Stepanov
+- Jan Beich
+- Jim Posen
+- João Barbosa
+- Karl-Johan Alm
+- Luke Dashjr
+- MarcoFalke
+- Michael Chrostowski
+- Russell Yanofsky
+- Wladimir J. van der Laan

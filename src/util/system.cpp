@@ -1,5 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Eleccoin Core developers
+// Copyright (c) 2019-2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -64,6 +63,7 @@
 #endif
 
 #include <thread>
+#include <typeinfo>
 
 // Application startup time (used for uptime calculation)
 const int64_t nStartupTime = GetTime();
@@ -1087,17 +1087,19 @@ void AllocateFileRange(FILE *file, unsigned int offset, unsigned int length) {
     SetEndOfFile(hFile);
 #elif defined(MAC_OSX)
     // OSX specific version
+    // NOTE: Contrary to other OS versions, the OSX version assumes that
+    // NOTE: offset is the size of the file.
     fstore_t fst;
     fst.fst_flags = F_ALLOCATECONTIG;
     fst.fst_posmode = F_PEOFPOSMODE;
     fst.fst_offset = 0;
-    fst.fst_length = (off_t)offset + length;
+    fst.fst_length = length; // mac os fst_length takes the # of free bytes to allocate, not desired file size
     fst.fst_bytesalloc = 0;
     if (fcntl(fileno(file), F_PREALLOCATE, &fst) == -1) {
         fst.fst_flags = F_ALLOCATEALL;
         fcntl(fileno(file), F_PREALLOCATE, &fst);
     }
-    ftruncate(fileno(file), fst.fst_length);
+    ftruncate(fileno(file), static_cast<off_t>(offset) + length);
 #else
     #if defined(__linux__)
     // Version using posix_fallocate

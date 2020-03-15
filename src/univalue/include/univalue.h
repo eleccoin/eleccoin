@@ -1,5 +1,4 @@
-// Copyright 2014 BitPay Inc.
-// Copyright 2015 Eleccoin Core Developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -47,7 +46,6 @@ public:
         std::string s(val_);
         setStr(s);
     }
-    ~UniValue() {}
 
     void clear();
 

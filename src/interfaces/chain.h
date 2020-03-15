@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 The Eleccoin Core developers
+// Copyright (c) 2019-2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -43,7 +43,7 @@ class Wallet;
 //!   asynchronously
 //!   (https://github.com/eleccoin/eleccoin/pull/10973#issuecomment-380101269).
 //!
-//! * The initMessages() and loadWallet() methods which the wallet uses to send
+//! * The initMessage() and showProgress() methods which the wallet uses to send
 //!   notifications to the GUI should go away when GUI and wallet can directly
 //!   communicate with each other without going through the node
 //!   (https://github.com/eleccoin/eleccoin/pull/15288#discussion_r253321096).
@@ -207,9 +207,6 @@ public:
 
     //! Send init error.
     virtual void initError(const std::string& message) = 0;
-
-    //! Send wallet load notification to the GUI.
-    virtual void loadWallet(std::unique_ptr<Wallet> wallet) = 0;
 
     //! Send progress indicator.
     virtual void showProgress(const std::string& title, int progress, bool resume_possible) = 0;

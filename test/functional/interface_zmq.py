@@ -59,6 +59,10 @@ class ZMQTest (EleccoinTestFramework):
         # Note that the publishing order is not defined in the documentation and
         # is subject to change.
         import zmq
+
+        # Invalid zmq arguments don't take down the node.
+        self.restart_node(0, ["-zmqpubrawtx=foo", "-zmqpubhashtx=bar"])
+
         address = 'tcp://127.0.0.1:29832'
         socket = self.ctx.socket(zmq.SUB)
         socket.set(zmq.RCVTIMEO, 60000)

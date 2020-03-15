@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Eleccoin Core developers
+// Copyright (c) 2019-2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,7 @@
 #include <clientversion.h>
 #include <streams.h>
 
-#include <algorithm>
+#include <utility>
 
 
 RecentRequestsTableModel::RecentRequestsTableModel(WalletModel *parent) :
@@ -213,10 +213,10 @@ void RecentRequestsTableModel::updateDisplayUnit()
     updateAmountColumnTitle();
 }
 
-bool RecentRequestEntryLessThan::operator()(RecentRequestEntry &left, RecentRequestEntry &right) const
+bool RecentRequestEntryLessThan::operator()(const RecentRequestEntry &left, const RecentRequestEntry &right) const
 {
-    RecentRequestEntry *pLeft = &left;
-    RecentRequestEntry *pRight = &right;
+    const RecentRequestEntry *pLeft = &left;
+    const RecentRequestEntry *pRight = &right;
     if (order == Qt::DescendingOrder)
         std::swap(pLeft, pRight);
 

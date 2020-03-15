@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Eleccoin Core developers
+// Copyright (c) 2019-2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -68,7 +68,7 @@ private:
 
     TransactionView *transactionView;
 
-    QProgressDialog *progressDialog;
+    QProgressDialog *progressDialog{nullptr};
     const PlatformStyle *platformStyle;
 
 public Q_SLOTS:
