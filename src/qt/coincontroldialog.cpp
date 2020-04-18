@@ -369,16 +369,64 @@ void CoinControlDialog::viewItemChanged(QTreeWidgetItem* item, int column)
     {
         COutPoint outpt(uint256S(item->data(COLUMN_ADDRESS, TxHashRole).toString().toStdString()), item->data(COLUMN_ADDRESS, VOutRole).toUInt());
 
+        // For Multi-select.
+        bool treeMode = ui->radioTreeMode->isChecked();
+        int action = 0;
+
         if (item->checkState(COLUMN_CHECKBOX) == Qt::Unchecked)
+        {
+            if(item->isSelected() == true)
+            {
+                action = 1;
+            }
+
             coinControl()->UnSelect(outpt);
+        }
         else if (item->isDisabled()) // locked (this happens if "check all" through parent node)
+        {
             item->setCheckState(COLUMN_CHECKBOX, Qt::Unchecked);
+        }
         else
+        {
+            if(item->isSelected() == true)
+            {
+                action = 2;
+            }
+
             coinControl()->Select(outpt);
+        }
 
         // selection changed -> update labels
         if (ui->treeWidget->isEnabled()) // do not update on every click for (un)select all
+        {
+            if(!treeMode)
+            {
+              if(action == 1)
+              {
+                  for( int i = 0; i < ui->treeWidget->topLevelItemCount(); ++i )
+                  {
+                     QTreeWidgetItem *item = ui->treeWidget->topLevelItem( i );
+                     if(item->isSelected() == true)
+                     {
+                         item->setCheckState(COLUMN_CHECKBOX, Qt::Unchecked);
+                     }
+                  }
+              }
+              else if(action == 2)
+              {
+                  for( int i = 0; i < ui->treeWidget->topLevelItemCount(); ++i )
+                  {
+                     QTreeWidgetItem *item = ui->treeWidget->topLevelItem( i );
+                     if(item->isSelected() == true)
+                     {
+                         item->setCheckState(COLUMN_CHECKBOX, Qt::Checked);
+                     }
+                  }
+              }
+            }
+
             CoinControlDialog::updateLabels(model, this);
+        }
     }
 
     // TODO: Remove this temporary qt5 fix after Qt5.3 and Qt5.4 are no longer used.
@@ -727,4 +775,13 @@ void CoinControlDialog::updateView()
     // sort view
     sortView(sortColumn, sortOrder);
     ui->treeWidget->setEnabled(true);
+
+    if (treeMode)
+    {
+        ui->treeWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+    }
+    else
+    {
+        ui->treeWidget->setSelectionMode(QAbstractItemView::ExtendedSelection);
+    }
 }
