@@ -1183,6 +1183,12 @@ bool CWallet::AddToWallet(const CWalletTx& wtxIn, bool fFlushOnClose)
     if (!strCmd.empty())
     {
         boost::replace_all(strCmd, "%s", wtxIn.GetHash().GetHex());
+#ifndef WIN32
+        // Substituting the wallet name isn't currently supported on windows
+        // because windows shell escaping has not been implemented yet.
+        // A few ways it could be implemented in the future.
+        boost::replace_all(strCmd, "%w", ShellEscape(GetName()));
+#endif
         std::thread t(runCommand, strCmd);
         t.detach(); // thread runs free
     }
