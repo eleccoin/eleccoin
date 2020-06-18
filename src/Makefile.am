@@ -574,6 +574,8 @@ endif
 libeleccoin_cli_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
 libeleccoin_cli_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeleccoin_cli_a_SOURCES = \
+  compat/stdin.h \
+  compat/stdin.cpp \
   rpc/client.cpp \
   $(ELECCOIN_CORE_H)
 
