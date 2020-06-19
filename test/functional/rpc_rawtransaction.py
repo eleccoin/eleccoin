@@ -450,7 +450,7 @@ class RawTransactionsTest(EleccoinTestFramework):
         rawTx = self.nodes[2].createrawtransaction(inputs, outputs)
         rawTxSigned = self.nodes[2].signrawtransactionwithwallet(rawTx)
         assert_equal(rawTxSigned['complete'], True)
-        # Fee 10,000 electrons, ~100 b transaction, fee rate should land around 100 sat/byte = 0.00100000 ECC/kB
+        # Fee 10,000 electrons, ~100 b transaction, fee rate should land around 100 ele/byte = 0.00100000 ECC/kB
         # Thus, testmempoolaccept should reject
         testres = self.nodes[2].testmempoolaccept([rawTxSigned['hex']], 0.00001000)[0]
         assert_equal(testres['allowed'], False)
@@ -474,7 +474,7 @@ class RawTransactionsTest(EleccoinTestFramework):
         rawTx = self.nodes[2].createrawtransaction(inputs, outputs)
         rawTxSigned = self.nodes[2].signrawtransactionwithwallet(rawTx)
         assert_equal(rawTxSigned['complete'], True)
-        # Fee 2,000,000 electrons, ~100 b transaction, fee rate should land around 20,000 sat/byte = 0.20000000 ECC/kB
+        # Fee 2,000,000 electrons, ~100 b transaction, fee rate should land around 20,000 ele/byte = 0.20000000 ECC/kB
         # Thus, testmempoolaccept should reject
         testres = self.nodes[2].testmempoolaccept([rawTxSigned['hex']])[0]
         assert_equal(testres['allowed'], False)
