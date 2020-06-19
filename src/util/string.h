@@ -5,7 +5,11 @@
 #ifndef ELECCOIN_UTIL_STRING_H
 #define ELECCOIN_UTIL_STRING_H
 
+#include <attributes.h>
+
 #include <functional>
+
+#include <cstring>
 #include <string>
 #include <vector>
 
@@ -32,4 +36,11 @@ inline std::string Join(const std::vector<std::string>& list, const std::string&
     return Join(list, separator, [](const std::string& i) { return i; });
 }
 
+/**
+ * Check if a string does not contain any embedded NUL (\0) characters
+ */
+NODISCARD inline bool ValidAsCString(const std::string& str) noexcept
+{
+    return str.size() == strlen(str.c_str());
+}
 #endif // ELECCOIN_UTIL_STRENCODINGS_H
