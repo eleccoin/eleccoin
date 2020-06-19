@@ -7,6 +7,8 @@ src/eleccoind
 src/eleccoin-cli
 src/eleccoin-tx
 src/eleccoin-wallet
+src/test/fuzz
+!src/test/fuzz/*.*
 src/test/test_eleccoin
 src/test/test_eleccoin_fuzzy
 src/qt/test/test_eleccoin-qt
@@ -28,6 +30,7 @@ build-aux/m4/ltversion.m4
 build-aux/missing
 build-aux/compile
 build-aux/test-driver
+config.cache
 config.log
 config.status
 configure
@@ -52,12 +55,6 @@ src/qt/eleccoin-qt.creator
 src/qt/eleccoin-qt.creator.user
 src/qt/eleccoin-qt.files
 src/qt/eleccoin-qt.includes
-
-src/ecc.config
-src/ecc.creator
-src/ecc.creator.user
-src/ecc.files
-src/ecc.includes
 
 .deps
 .dirstamp
@@ -105,6 +102,7 @@ src/ecc.creator
 src/ecc.creator.user
 src/ecc.files
 src/ecc.includes
+src/ecc.c*
 
 # Unit-tests
 Makefile.test
@@ -116,6 +114,9 @@ qrc_*.cpp
 # Mac specific
 .DS_Store
 build
+
+# Previous releases
+releases
 
 #lcov
 *.gcno
