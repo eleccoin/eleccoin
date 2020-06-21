@@ -1,14 +1,12 @@
-// Copyright (c) 2015-2018 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ELECCOIN_CONSENSUS_MERKLE_H
 #define ELECCOIN_CONSENSUS_MERKLE_H
 
-#include <stdint.h>
 #include <vector>
 
-#include <primitives/transaction.h>
 #include <primitives/block.h>
 #include <uint256.h>
 

@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,6 +8,7 @@
 #include <qt/eleccoinunits.h>
 #include <qt/guiutil.h>
 #include <qt/optionsmodel.h>
+#include <qt/walletmodel.h>
 
 #include <QClipboard>
 #include <QPixmap>

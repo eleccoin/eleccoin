@@ -8,4 +8,3 @@ Description: Library for the Eleccoin consensus protocol.
 Version: @PACKAGE_VERSION@
 Libs: -L${libdir} -leleccoinconsensus
 Cflags: -I${includedir}
-Requires.private: libcrypto

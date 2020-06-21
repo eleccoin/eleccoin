@@ -1,15 +1,17 @@
-// Copyright (c) 2019-2020 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ELECCOIN_QT_RECENTREQUESTSTABLEMODEL_H
 #define ELECCOIN_QT_RECENTREQUESTSTABLEMODEL_H
 
-#include <qt/walletmodel.h>
+#include <qt/sendcoinsrecipient.h>
 
 #include <QAbstractTableModel>
 #include <QStringList>
 #include <QDateTime>
+
+class WalletModel;
 
 class RecentRequestEntry
 {
@@ -43,7 +45,7 @@ class RecentRequestEntryLessThan
 public:
     RecentRequestEntryLessThan(int nColumn, Qt::SortOrder fOrder):
         column(nColumn), order(fOrder) {}
-    bool operator()(const RecentRequestEntry &left, const RecentRequestEntry &right) const;
+    bool operator()(const RecentRequestEntry& left, const RecentRequestEntry& right) const;
 
 private:
     int column;

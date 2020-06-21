@@ -1,5 +1,5 @@
 #!/bin/sh
-# Copyright (c) 2012-2016 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 

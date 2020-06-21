@@ -14,19 +14,9 @@ Release Process
 * Update [bips.md](bips.md) to account for changes since the last release (don't forget to bump the version number on the first line).
 * Update version in `configure.ac` (don't forget to set `CLIENT_VERSION_RC` to `0`).
 * Write release notes (see "Write the release notes" below).
-* Update `src/chainparams.cpp` nMinimumChainWork with information from the getblockchaininfo rpc.
-* Update `src/chainparams.cpp` defaultAssumeValid with information from the getblockhash rpc.
-  - The selected value must not be orphaned so it may be useful to set the value two blocks back from the tip.
-  - Testnet should be set some tens of thousands back from the tip due to reorgs there.
-  - This update should be reviewed with a reindex-chainstate with assumevalid=0 to catch any defect
-     that causes rejection of blocks in the past history.
 
 ### Before every major release
 
-* Update hardcoded [seeds](/contrib/seeds/README.md), see [this pull request](https://github.com/eleccoin/eleccoin/pull/7415) for an example.
-* Update [`src/chainparams.cpp`](/src/chainparams.cpp) m_assumed_blockchain_size and m_assumed_chain_state_size with the current size plus some overhead (see [this](#how-to-calculate-m_assumed_blockchain_size-and-m_assumed_chain_state_size) for information on how to calculate them).
-* Update `src/chainparams.cpp` chainTxData with statistics about the transaction count and rate. Use the output of the RPC `getchaintxstats`, see
-  [this pull request](https://github.com/eleccoin/eleccoin/pull/17002) for an example. Reviewers can verify the results by running `getchaintxstats <window_block_count> <window_last_block_hash>` with the `window_block_count` and `window_last_block_hash` from your output.
 * On both the master branch and the new release branch:
   - update `CLIENT_VERSION_MINOR` in [`configure.ac`](../configure.ac)
   - update `CLIENT_VERSION_MINOR`, `PACKAGE_VERSION`, and `PACKAGE_STRING` in [`build_msvc/eleccoin_config.h`](/build_msvc/eleccoin_config.h)
@@ -36,6 +26,16 @@ Release Process
 
 #### Before branch-off
 
+* Update hardcoded [seeds](/contrib/seeds/README.md), see [this pull request](https://github.com/eleccoin/eleccoin/pull/7415) for an example.
+* Update [`src/chainparams.cpp`](/src/chainparams.cpp) m_assumed_blockchain_size and m_assumed_chain_state_size with the current size plus some overhead (see [this](#how-to-calculate-m_assumed_blockchain_size-and-m_assumed_chain_state_size) for information on how to calculate them).
+* Update `src/chainparams.cpp` chainTxData with statistics about the transaction count and rate. Use the output of the RPC `getchaintxstats`, see
+  [this pull request](https://github.com/eleccoin/eleccoin/pull/17002) for an example. Reviewers can verify the results by running `getchaintxstats <window_block_count> <window_last_block_hash>` with the `window_block_count` and `window_last_block_hash` from your output.
+* Update `src/chainparams.cpp` nMinimumChainWork with information from the getblockchaininfo rpc.
+* Update `src/chainparams.cpp` defaultAssumeValid with information from the getblockhash rpc.
+  - The selected value must not be orphaned so it may be useful to set the value two blocks back from the tip.
+  - Testnet should be set some tens of thousands back from the tip due to reorgs there.
+  - This update should be reviewed with a reindex-chainstate with assumevalid=0 to catch any defect
+     that causes rejection of blocks in the past history.
 - Clear the release notes and move them to the wiki (see "Write the release notes" below).
 
 #### After branch-off (on master)
@@ -44,7 +44,8 @@ Release Process
 
 #### After branch-off (on the major release branch)
 
-- Update the versions and the link to the release notes draft in `doc/release-notes.md`.
+- Update the versions.
+- Create a pinned meta-issue for testing the release candidate (see [this issue](https://github.com/eleccoin/eleccoin/issues/17079) for an example) and provide a link to it in the release announcements where useful.
 
 #### Before final release
 
@@ -74,7 +75,7 @@ For the period during which the notes are being edited on the wiki, the version 
 
 Write the release notes. `git shortlog` helps a lot, for example:
 
-    git shortlog --no-merges v(current version, e.g. 1.1.0)..v(new version, e.g. 1.0.2)
+    git shortlog --no-merges v(current version, e.g. 1.2.0)..v(new version, e.g. 1.2.1)
 
 (or ping @wumpus on IRC, he has specific tooling to generate the list of merged pulls
 and sort them into categories based on labels).
@@ -122,7 +123,7 @@ Ensure gitian-builder is up-to-date:
     echo 'f9a8cdb38b9c309326764ebc937cba1523a3a751a7ab05df3ecc99d18ae466c9 inputs/osslsigncode-1.7.1.tar.gz' | sha256sum -c
     popd
 
-Create the macOS SDK tarball, see the [macOS build instructions](build-osx.md#deterministic-macos-dmg-notes) for details, and copy it into the inputs directory.
+Create the macOS SDK tarball, see the [macdeploy instructions](/contrib/macdeploy/README.md#deterministic-macos-dmg-notes) for details, and copy it into the inputs directory.
 
 ### Optional: Seed the Gitian sources cache and offline git repositories
 
@@ -220,7 +221,7 @@ Codesigner only: Commit the detached codesign payloads:
     rm -rf *
     tar xf signature-osx.tar.gz
     tar xf signature-win.tar.gz
-    git add -a
+    git add -A
     git commit -m "point to ${VERSION}"
     git tag -s v${VERSION} HEAD
     git push the current branch and new tag
@@ -269,7 +270,6 @@ The list of files should be:
 ```
 eleccoin-${VERSION}-aarch64-linux-gnu.tar.gz
 eleccoin-${VERSION}-arm-linux-gnueabihf.tar.gz
-eleccoin-${VERSION}-i686-pc-linux-gnu.tar.gz
 eleccoin-${VERSION}-riscv64-linux-gnu.tar.gz
 eleccoin-${VERSION}-x86_64-linux-gnu.tar.gz
 eleccoin-${VERSION}-osx64.tar.gz
@@ -317,7 +317,7 @@ eleccoin.org (see below for eleccoin.org update instructions).
     instructions: https://github.com/eleccoin-dot-org/eleccoin.org/blob/master/docs/adding-events-release-notes-and-alerts.md#release-notes
 
   - After the pull request is merged, the website will automatically show the newest version within 15 minutes, as well
-    as update the OS download links. Ping @saivann/@harding (saivann/harding on Freenode) in case anything goes wrong
+    as update the OS download links.
 
 - Update other repositories and websites for new version
 
@@ -330,9 +330,12 @@ eleccoin.org (see below for eleccoin.org update instructions).
 
   - Update packaging repo
 
-      - Notify BlueMatt so that he can start building [the PPAs](https://launchpad.net/~eleccoin/+archive/ubuntu/eleccoin)
+      - Push the flatpak to flathub, e.g. https://github.com/flathub/org.eleccoincore.eleccoin-qt/pull/2
 
-      - Create a new branch for the major release "0.xx" (used to build the snap package)
+      - Push the latest version to master (if applicable), e.g. https://github.com/eleccoin-core/packaging/pull/32
+
+      - Create a new branch for the major release "0.xx" from master (used to build the snap package) and request the
+        track (if applicable), e.g. https://forum.snapcraft.io/t/track-request-for-eleccoin-core-snap/10112/7
 
       - Notify MarcoFalke so that he can start building the snap package
 
@@ -355,8 +358,6 @@ eleccoin.org (see below for eleccoin.org update instructions).
       - Archive the release notes for the new version to `doc/release-notes/` (branch `master` and branch of the release)
 
       - Create a [new GitHub release](https://github.com/eleccoin/eleccoin/releases/new) with a link to the archived release notes
-
-      - Create a pinned meta-issue for testing the release candidate (see [this issue](https://github.com/eleccoin/eleccoin/issues/15555) for an example) and provide a link to it in the release announcements where useful
 
 - Announce the release:
 

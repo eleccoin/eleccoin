@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -6,7 +6,6 @@
 #define ELECCOIN_SCRIPT_KEYORIGIN_H
 
 #include <serialize.h>
-#include <streams.h>
 #include <vector>
 
 struct KeyOriginInfo

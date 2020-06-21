@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,11 +7,21 @@
 
 #include <attributes.h>
 
-#include <functional>
-
 #include <cstring>
+#include <locale>
+#include <sstream>
 #include <string>
 #include <vector>
+
+NODISCARD inline std::string TrimString(const std::string& str, const std::string& pattern = " \f\n\r\t\v")
+{
+    std::string::size_type front = str.find_first_not_of(pattern);
+    if (front == std::string::npos) {
+        return std::string();
+    }
+    std::string::size_type end = str.find_last_not_of(pattern);
+    return str.substr(front, end - front + 1);
+}
 
 /**
  * Join a list of items
@@ -43,4 +53,17 @@ NODISCARD inline bool ValidAsCString(const std::string& str) noexcept
 {
     return str.size() == strlen(str.c_str());
 }
+
+/**
+ * Locale-independent version of std::to_string
+ */
+template <typename T>
+std::string ToString(const T& t)
+{
+    std::ostringstream oss;
+    oss.imbue(std::locale::classic());
+    oss << t;
+    return oss.str();
+}
+
 #endif // ELECCOIN_UTIL_STRENCODINGS_H

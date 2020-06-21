@@ -1,12 +1,11 @@
-// Copyright (c) 2017-2019 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <chainparams.h>
 #include <index/txindex.h>
 #include <script/standard.h>
-#include <test/setup_common.h>
-#include <util/system.h>
+#include <test/util/setup_common.h>
 #include <util/time.h>
 
 #include <boost/test/unit_test.hpp>
@@ -35,7 +34,7 @@ BOOST_FIXTURE_TEST_CASE(txindex_initial_sync, TestChain100Setup)
     int64_t time_start = GetTimeMillis();
     while (!txindex.BlockUntilSyncedToCurrentChain()) {
         BOOST_REQUIRE(time_start + timeout_ms > GetTimeMillis());
-        MilliSleep(100);
+        UninterruptibleSleep(std::chrono::milliseconds{100});
     }
 
     // Check that txindex excludes genesis block transactions.
@@ -71,6 +70,8 @@ BOOST_FIXTURE_TEST_CASE(txindex_initial_sync, TestChain100Setup)
     // shutdown sequence (c.f. Shutdown() in init.cpp)
     txindex.Stop();
 
+    // txindex job may be scheduled, so stop scheduler before destructing
+    m_node.scheduler->stop();
     threadGroup.interrupt_all();
     threadGroup.join_all();
 

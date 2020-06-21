@@ -1,5 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +7,6 @@
 
 #include <assert.h>
 #include <cstring>
-#include <stdexcept>
 #include <stdint.h>
 #include <string>
 #include <vector>
@@ -122,14 +120,14 @@ class uint256 : public base_blob<256> {
 public:
     uint256() {}
     explicit uint256(const std::vector<unsigned char>& vch) : base_blob<256>(vch) {}
-
+	
     int GetNibble(int index) const
     {
         index = 63 - index;
         if (index % 2 == 1)
             return(data[index / 2] >> 4);
         return(data[index / 2] & 0x0F);
-    }
+    }	
 };
 
 /* uint256 from const char *.
@@ -152,6 +150,8 @@ inline uint256 uint256S(const std::string& str)
     rv.SetHex(str);
     return rv;
 }
+
+uint256& UINT256_ONE();
 
 class uint512 : public base_blob<512> {
 public:

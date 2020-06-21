@@ -1,4 +1,4 @@
-// Copyright (c) 2015-2018 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,6 @@
 #ifndef ELECCOIN_TORCONTROL_H
 #define ELECCOIN_TORCONTROL_H
 
-#include <scheduler.h>
 
 extern const std::string DEFAULT_TOR_CONTROL;
 static const bool DEFAULT_LISTEN_ONION = true;

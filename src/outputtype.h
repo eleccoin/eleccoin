@@ -1,5 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2018 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,6 +9,7 @@
 #include <script/signingprovider.h>
 #include <script/standard.h>
 
+#include <array>
 #include <string>
 #include <vector>
 
@@ -26,6 +26,8 @@ enum class OutputType {
      */
     CHANGE_AUTO,
 };
+
+extern const std::array<OutputType, 3> OUTPUT_TYPES;
 
 NODISCARD bool ParseOutputType(const std::string& str, OutputType& output_type);
 const std::string& FormatOutputType(OutputType type);
@@ -47,4 +49,3 @@ std::vector<CTxDestination> GetAllDestinationsForKey(const CPubKey& key);
 CTxDestination AddAndGetDestinationForScript(FillableSigningProvider& keystore, const CScript& script, OutputType);
 
 #endif // ELECCOIN_OUTPUTTYPE_H
-

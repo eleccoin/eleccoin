@@ -1,13 +1,13 @@
-// Copyright (c) 2011-2018 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ELECCOIN_QT_WALLETMODELTRANSACTION_H
 #define ELECCOIN_QT_WALLETMODELTRANSACTION_H
 
-#include <qt/walletmodel.h>
+#include <primitives/transaction.h>
+#include <qt/sendcoinsrecipient.h>
 
-#include <memory>
 #include <amount.h>
 
 #include <QObject>

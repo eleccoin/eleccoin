@@ -1,18 +1,15 @@
-// Copyright (c) 2011-2019 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <bench/bench.h>
 #include <chainparams.h>
-#include <coins.h>
 #include <consensus/merkle.h>
 #include <consensus/validation.h>
 #include <pow.h>
 #include <txmempool.h>
 #include <validation.h>
 
-#include <list>
-#include <vector>
 
 
 static void DuplicateInputs(benchmark::State& state)
@@ -57,7 +54,7 @@ static void DuplicateInputs(benchmark::State& state)
     block.hashMerkleRoot = BlockMerkleRoot(block);
 
     while (state.KeepRunning()) {
-        CValidationState cvstate{};
+        BlockValidationState cvstate{};
         assert(!CheckBlock(block, cvstate, chainparams.GetConsensus(), false, false));
         assert(cvstate.GetRejectReason() == "bad-txns-inputs-duplicate");
     }

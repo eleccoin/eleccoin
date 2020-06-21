@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2018 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -102,7 +102,7 @@ public:
         CAmount val = value(&valid);
 
         currentUnit = unit;
-
+        lineEdit()->setPlaceholderText(EleccoinUnits::format(currentUnit, m_min_amount, false, EleccoinUnits::separatorAlways));
         if(valid)
             setValue(val);
         else

@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Copyright (c) 2020 The Eleccoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 import os
 import re
@@ -18,6 +21,7 @@ libs = [
     'libeleccoin_wallet',
     'libeleccoin_zmq',
     'bench_eleccoin',
+    'libtest_util',
 ]
 
 ignore_list = [

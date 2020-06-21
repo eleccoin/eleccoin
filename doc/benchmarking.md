@@ -11,7 +11,7 @@ Running
 For benchmarks purposes you only need to compile `eleccoin_bench`. Beware of configuring without `--enable-debug` as this would impact
 benchmarking by unlatching log printers and lock analysis.
 
-    make -C src bench_eleccoin
+    make -C src eleccoin_bench
 
 After compiling eleccoin-core, the benchmarks can be run with:
 
@@ -39,3 +39,10 @@ More benchmarks are needed for, in no particular order:
 - Memory pool
 - Cuckoo Cache
 - P2P throughput
+
+Going Further
+--------------------
+
+To monitor Eleccoin Core performance more in depth (like reindex or IBD): https://github.com/chaincodelabs/eleccoinperf
+
+To generate Flame Graphs for Eleccoin Core: https://github.com/eklitzke/eleccoin/blob/flamegraphs/doc/flamegraphs.md

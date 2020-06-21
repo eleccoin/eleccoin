@@ -1,11 +1,10 @@
-// Copyright (c) 2016 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ELECCOIN_WALLET_WALLETTOOL_H
 #define ELECCOIN_WALLET_WALLETTOOL_H
 
-#include <wallet/ismine.h>
 #include <wallet/wallet.h>
 
 namespace WalletTool {

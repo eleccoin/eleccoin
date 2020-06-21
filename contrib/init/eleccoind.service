@@ -29,6 +29,7 @@ ExecStartPre=/bin/chgrp eleccoin /etc/eleccoin
 Type=forking
 PIDFile=/run/eleccoind/eleccoind.pid
 Restart=on-failure
+TimeoutStopSec=600
 
 # Directory creation and permissions
 ####################################

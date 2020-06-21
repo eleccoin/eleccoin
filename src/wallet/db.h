@@ -1,5 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
-// Copyright (c) 2009-2019 The Eleccoin Core developers
+// Copyright (c) 2020 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,9 +9,7 @@
 #include <fs.h>
 #include <serialize.h>
 #include <streams.h>
-#include <sync.h>
 #include <util/system.h>
-#include <version.h>
 
 #include <atomic>
 #include <map>
@@ -159,7 +156,7 @@ public:
 
     /** Back up the entire database to a file.
      */
-    bool Backup(const std::string& strDest);
+    bool Backup(const std::string& strDest) const;
 
     /** Make sure all changes are flushed to disk.
      */
@@ -195,7 +192,7 @@ private:
      * Only to be used at a low level, application should ideally not care
      * about this.
      */
-    bool IsDummy() { return env == nullptr; }
+    bool IsDummy() const { return env == nullptr; }
 };
 
 /** RAII class that provides access to a Berkeley database */
@@ -246,7 +243,7 @@ public:
     /* verifies the database environment */
     static bool VerifyEnvironment(const fs::path& file_path, std::string& errorStr);
     /* verifies the database file */
-    static bool VerifyDatabaseFile(const fs::path& file_path, std::string& warningStr, std::string& errorStr, BerkeleyEnvironment::recoverFunc_type recoverFunc);
+    static bool VerifyDatabaseFile(const fs::path& file_path, std::vector<std::string>& warnings, std::string& errorStr, BerkeleyEnvironment::recoverFunc_type recoverFunc);
 
     template <typename K, typename T>
     bool Read(const K& key, T& value)
