@@ -19,7 +19,7 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-ELECCOIN_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS) $(CRYPTO_CFLAGS)
+ELECCOIN_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS)
 
 ELECCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
 ELECCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
@@ -178,7 +178,6 @@ ELECCOIN_CORE_H = \
   random.h \
   randomenv.h \
   reverse_iterator.h \
-  reverselock.h \
   rpc/blockchain.h \
   rpc/client.h \
   rpc/protocol.h \
@@ -611,7 +610,6 @@ endif
 eleccoind_LDADD = \
   $(LIBELECCOIN_SERVER) \
   $(LIBELECCOIN_WALLET) \
-  $(LIBELECCOIN_SERVER) \
   $(LIBELECCOIN_COMMON) \
   $(LIBUNIVALUE) \
   $(LIBELECCOIN_UTIL) \
@@ -623,7 +621,7 @@ eleccoind_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-eleccoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+eleccoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # eleccoin-cli binary #
 eleccoin_cli_SOURCES = eleccoin-cli.cpp
@@ -641,7 +639,7 @@ eleccoin_cli_LDADD = \
   $(LIBELECCOIN_UTIL) \
   $(LIBELECCOIN_CRYPTO)
 
-eleccoin_cli_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+eleccoin_cli_LDADD += $(BOOST_LIBS) $(EVENT_LIBS)
 #
 
 # eleccoin-tx binary #
@@ -662,7 +660,7 @@ eleccoin_tx_LDADD = \
   $(LIBELECCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-eleccoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+eleccoin_tx_LDADD += $(BOOST_LIBS)
 #
 
 # eleccoin-wallet binary #
@@ -689,7 +687,7 @@ eleccoin_wallet_LDADD = \
   $(LIBSECP256K1) \
   $(LIBUNIVALUE)
 
-eleccoin_wallet_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(ZMQ_LIBS)
+eleccoin_wallet_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(ZMQ_LIBS)
 #
 
 # eleccoinconsensus library #
