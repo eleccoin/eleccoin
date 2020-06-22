@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2016-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the dumpwallet RPC."""
@@ -137,7 +137,7 @@ class WalletDumpTest(EleccoinTestFramework):
 
         # encrypt wallet, restart, unlock and dump
         self.nodes[0].encryptwallet('test')
-        self.nodes[0].walletpassphrase('test', 10)
+        self.nodes[0].walletpassphrase('test', 100)
         # Should be a no-op:
         self.nodes[0].keypoolrefill()
         self.nodes[0].dumpwallet(wallet_enc_dump)

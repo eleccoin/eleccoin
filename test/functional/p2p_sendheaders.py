@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test behavior of headers messages to announce blocks.
@@ -243,10 +243,6 @@ class SendHeadersTest(EleccoinTestFramework):
         # will occur outside of direct fetching
         test_node = self.nodes[0].add_p2p_connection(BaseNode(), services=NODE_WITNESS)
 
-        # Ensure verack's have been processed by our peer
-        inv_node.sync_with_ping()
-        test_node.sync_with_ping()
-
         self.test_null_locators(test_node, inv_node)
         self.test_nonnull_locators(test_node, inv_node)
 
@@ -307,8 +303,7 @@ class SendHeadersTest(EleccoinTestFramework):
                 new_block.solve()
                 test_node.send_header_for_blocks([new_block])
                 test_node.wait_for_getdata([new_block.sha256])
-                test_node.send_message(msg_block(new_block))
-                test_node.sync_with_ping()  # make sure this block is processed
+                test_node.send_and_ping(msg_block(new_block))  # make sure this block is processed
                 wait_until(lambda: inv_node.block_announced, timeout=60, lock=mininode_lock)
                 inv_node.clear_block_announcements()
                 test_node.clear_block_announcements()

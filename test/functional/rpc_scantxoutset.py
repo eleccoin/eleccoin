@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the scantxoutset rpc call."""
@@ -54,7 +54,7 @@ class ScantxoutsetTest(EleccoinTestFramework):
 
         self.log.info("Stop node, remove wallet, mine again some blocks...")
         self.stop_node(0)
-        shutil.rmtree(os.path.join(self.nodes[0].datadir, "regtest", 'wallets'))
+        shutil.rmtree(os.path.join(self.nodes[0].datadir, self.chain, 'wallets'))
         self.start_node(0)
         self.nodes[0].generate(110)
 

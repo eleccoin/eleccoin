@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -33,6 +33,7 @@ class GetblockstatsTest(EleccoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 1
         self.setup_clean_chain = True
+        self.supports_cli = False
 
     def get_stats(self):
         return [self.nodes[0].getblockstats(hash_or_height=self.start_height + i) for i in range(self.max_stat_pos+1)]

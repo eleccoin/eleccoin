@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test HD Wallet keypool restore function.
@@ -30,7 +30,7 @@ class KeypoolRestoreTest(EleccoinTestFramework):
         self.skip_if_no_wallet()
 
     def run_test(self):
-        wallet_path = os.path.join(self.nodes[1].datadir, "regtest", "wallets", "wallet.dat")
+        wallet_path = os.path.join(self.nodes[1].datadir, self.chain, "wallets", "wallet.dat")
         wallet_backup_path = os.path.join(self.nodes[1].datadir, "wallet.bak")
         self.nodes[0].generate(101)
 

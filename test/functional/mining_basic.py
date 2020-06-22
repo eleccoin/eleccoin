@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test mining RPCs
@@ -43,6 +43,7 @@ class MiningTest(EleccoinTestFramework):
     def set_test_params(self):
         self.num_nodes = 2
         self.setup_clean_chain = True
+        self.supports_cli = False
 
     def mine_chain(self):
         self.log.info('Create some old blocks')
@@ -69,7 +70,7 @@ class MiningTest(EleccoinTestFramework):
         self.log.info('getmininginfo')
         mining_info = node.getmininginfo()
         assert_equal(mining_info['blocks'], 200)
-        assert_equal(mining_info['chain'], 'regtest')
+        assert_equal(mining_info['chain'], self.chain)
         assert 'currentblocktx' not in mining_info
         assert 'currentblockweight' not in mining_info
         assert_equal(mining_info['difficulty'], Decimal('4.656542373906925E-10'))

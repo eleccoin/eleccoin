@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test that the wallet can send and receive using all combinations of address types.
@@ -80,6 +80,10 @@ class AddressTypeTest(EleccoinTestFramework):
             ["-changetype=p2sh-segwit"],
             [],
         ]
+        # whitelist all peers to speed up tx relay / mempool sync
+        for args in self.extra_args:
+            args.append("-whitelist=noban@127.0.0.1")
+        self.supports_cli = False
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -345,7 +349,7 @@ class AddressTypeTest(EleccoinTestFramework):
         self.sync_blocks()
         assert_equal(self.nodes[4].getbalance(), 1)
 
-        self.log.info("Nodes with addresstype=legacy never use a P2WPKH change output")
+        self.log.info("Nodes with addresstype=legacy never use a P2WPKH change output (unless changetype is set otherwise):")
         self.test_change_output_type(0, [to_address_bech32_1], 'legacy')
 
         self.log.info("Nodes with addresstype=p2sh-segwit only use a P2WPKH change output if any destination address is bech32:")

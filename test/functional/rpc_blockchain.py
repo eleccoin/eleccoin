@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test RPCs related to blockchainstate.
@@ -49,6 +49,7 @@ class BlockchainTest(EleccoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 1
+        self.supports_cli = False
 
     def run_test(self):
         self.mine_chain()
@@ -314,8 +315,7 @@ class BlockchainTest(EleccoinTestFramework):
         def solve_and_send_block(prevhash, height, time):
             b = create_block(prevhash, create_coinbase(height), time)
             b.solve()
-            node.p2p.send_message(msg_block(b))
-            node.p2p.sync_with_ping()
+            node.p2p.send_and_ping(msg_block(b))
             return b
 
         b21f = solve_and_send_block(int(b20hash, 16), 21, b20['time'] + 1)

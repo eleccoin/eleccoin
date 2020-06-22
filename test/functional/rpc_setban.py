@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the setban rpc call."""
@@ -26,7 +26,7 @@ class SetBanTests(EleccoinTestFramework):
         self.nodes[1].setban("127.0.0.1", "add")
 
         # Node 0 should not be able to reconnect
-        with self.nodes[1].assert_debug_log(expected_msgs=['dropped (banned)\n'], timeout=5):
+        with self.nodes[1].assert_debug_log(expected_msgs=['dropped (banned)\n'], timeout=50):
             self.restart_node(1, [])
             self.nodes[0].addnode("127.0.0.1:" + str(p2p_port(1)), "onetry")
 

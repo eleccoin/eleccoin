@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2018-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test eleccoin-wallet."""
@@ -23,10 +23,11 @@ class ToolWalletTest(EleccoinTestFramework):
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
+        self.skip_if_no_wallet_tool()
 
     def eleccoin_wallet_process(self, *args):
         binary = self.config["environment"]["BUILDDIR"] + '/src/eleccoin-wallet' + self.config["environment"]["EXEEXT"]
-        args = ['-datadir={}'.format(self.nodes[0].datadir), '-regtest'] + list(args)
+        args = ['-datadir={}'.format(self.nodes[0].datadir), '-chain=%s' % self.chain] + list(args)
         return subprocess.Popen([binary] + args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
 
     def assert_raises_tool_error(self, error, *args):
@@ -197,7 +198,7 @@ class ToolWalletTest(EleccoinTestFramework):
         self.log.debug('Wallet file shasum unchanged\n')
 
     def run_test(self):
-        self.wallet_path = os.path.join(self.nodes[0].datadir, 'regtest', 'wallets', 'wallet.dat')
+        self.wallet_path = os.path.join(self.nodes[0].datadir, self.chain, 'wallets', 'wallet.dat')
         self.test_invalid_tool_commands_and_args()
         # Warning: The following tests are order-dependent.
         self.test_tool_wallet_info()

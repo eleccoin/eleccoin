@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2018 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test mempool re-org scenarios.
@@ -76,7 +76,7 @@ class MempoolCoinbaseTest(EleccoinTestFramework):
         spend_101_id = self.nodes[0].sendrawtransaction(spend_101_raw)
         spend_102_1_id = self.nodes[0].sendrawtransaction(spend_102_1_raw)
 
-        self.sync_all()
+        self.sync_all(timeout=720)
 
         assert_equal(set(self.nodes[0].getrawmempool()), {spend_101_id, spend_102_1_id, timelock_tx_id})
 
@@ -91,10 +91,11 @@ class MempoolCoinbaseTest(EleccoinTestFramework):
         for node in self.nodes:
             node.invalidateblock(new_blocks[0])
 
-        self.sync_all()
+        self.sync_all(timeout=720)
 
         # mempool should be empty.
         assert_equal(set(self.nodes[0].getrawmempool()), set())
+
 
 if __name__ == '__main__':
     MempoolCoinbaseTest().main()

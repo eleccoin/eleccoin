@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2015-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the preciousblock RPC."""
@@ -36,6 +36,7 @@ class PreciousTest(EleccoinTestFramework):
     def set_test_params(self):
         self.setup_clean_chain = True
         self.num_nodes = 3
+        self.supports_cli = False
 
     def setup_network(self):
         self.setup_nodes()

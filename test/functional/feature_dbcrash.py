@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2017-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test recovery from a crash during chainstate writing.
@@ -51,6 +51,7 @@ class ChainstateWriteCrashTest(EleccoinTestFramework):
         self.num_nodes = 4
         self.setup_clean_chain = False
         self.rpc_timeout = 480
+        self.supports_cli = False
 
         # Set -maxmempool=0 to turn off mempool memory sharing with dbcache
         # Set -rpcservertimeout=900 to reduce socket disconnects in this

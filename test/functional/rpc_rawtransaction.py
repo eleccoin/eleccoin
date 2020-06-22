@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2019 The Eleccoin Core developers
+# Copyright (c) 2020 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test the rawtransaction RPCs.
@@ -53,6 +53,7 @@ class RawTransactionsTest(EleccoinTestFramework):
             ["-txindex"],
             ["-txindex"],
         ]
+        self.supports_cli = False
 
     def skip_test_if_missing_module(self):
         self.skip_if_no_wallet()
@@ -209,7 +210,7 @@ class RawTransactionsTest(EleccoinTestFramework):
         rawtx   = self.nodes[2].signrawtransactionwithwallet(rawtx)
 
         # This will raise an exception since there are missing inputs
-        assert_raises_rpc_error(-25, "Missing inputs", self.nodes[2].sendrawtransaction, rawtx['hex'])
+        assert_raises_rpc_error(-25, "bad-txns-inputs-missingorspent", self.nodes[2].sendrawtransaction, rawtx['hex'])
 
         #####################################
         # getrawtransaction with block hash #
@@ -450,11 +451,11 @@ class RawTransactionsTest(EleccoinTestFramework):
         rawTx = self.nodes[2].createrawtransaction(inputs, outputs)
         rawTxSigned = self.nodes[2].signrawtransactionwithwallet(rawTx)
         assert_equal(rawTxSigned['complete'], True)
-        # Fee 10,000 electrons, ~100 b transaction, fee rate should land around 100 ele/byte = 0.00100000 ECC/kB
+        # Fee 10,000 electrons, ~100 b transaction, fee rate should land around 100 sat/byte = 0.00100000 ECC/kB
         # Thus, testmempoolaccept should reject
         testres = self.nodes[2].testmempoolaccept([rawTxSigned['hex']], 0.00001000)[0]
         assert_equal(testres['allowed'], False)
-        assert_equal(testres['reject-reason'], '256: absurdly-high-fee')
+        assert_equal(testres['reject-reason'], 'absurdly-high-fee')
         # and sendrawtransaction should throw
         assert_raises_rpc_error(-26, "absurdly-high-fee", self.nodes[2].sendrawtransaction, rawTxSigned['hex'], 0.00001000)
         # and the following calls should both succeed
@@ -474,11 +475,11 @@ class RawTransactionsTest(EleccoinTestFramework):
         rawTx = self.nodes[2].createrawtransaction(inputs, outputs)
         rawTxSigned = self.nodes[2].signrawtransactionwithwallet(rawTx)
         assert_equal(rawTxSigned['complete'], True)
-        # Fee 2,000,000 electrons, ~100 b transaction, fee rate should land around 20,000 ele/byte = 0.20000000 ECC/kB
+        # Fee 2,000,000 electrons, ~100 b transaction, fee rate should land around 20,000 sat/byte = 0.20000000 ECC/kB
         # Thus, testmempoolaccept should reject
         testres = self.nodes[2].testmempoolaccept([rawTxSigned['hex']])[0]
         assert_equal(testres['allowed'], False)
-        assert_equal(testres['reject-reason'], '256: absurdly-high-fee')
+        assert_equal(testres['reject-reason'], 'absurdly-high-fee')
         # and sendrawtransaction should throw
         assert_raises_rpc_error(-26, "absurdly-high-fee", self.nodes[2].sendrawtransaction, rawTxSigned['hex'])
         # and the following calls should both succeed
