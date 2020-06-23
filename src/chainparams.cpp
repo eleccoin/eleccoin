@@ -62,7 +62,7 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
 class CMainParams : public CChainParams {
 public:
     CMainParams() {
-        strNetworkID = "main";
+        strNetworkID = CBaseChainParams::MAIN;
         consensus.nSubsidyHalvingInterval = 88000;
         consensus.BIP16Exception = uint256();
         consensus.BIP34Height = 0;
@@ -101,7 +101,7 @@ public:
         pchMessageStart[3] = 0x63;
         nDefaultPort = 9833;
         nPruneAfterHeight = 100000;
-        m_assumed_blockchain_size = 4;
+        m_assumed_blockchain_size = 200;
         m_assumed_chain_state_size = 2;
 
         genesis = CreateGenesisBlock(1580910140, 2462255, 0x1e0ffff0, 1, 50 * COIN);
@@ -145,14 +145,15 @@ public:
                 {   1111, uint256S("0x000000d18aea0a0b5a462a15e33366d9ea140dbb71a778fd5257cda286f59c75")},
                 {   3333, uint256S("0x00000006bd45618281aa234fdf69073d59567fbf533d8535799f7b592fbbe050")},
                 {  11111, uint256S("0x000000000d9fd61aa7cff22e57316116cb220c65851704ad82ad589b0f886f39")},
+				{  22222, uint256S("0x0000000008b2a03c96206ee664e7b91edc18cc3f877bc3b8cd6b88bd5deae2ac")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data from RPC: getchaintxstats 11111
-            /* nTime    */ 1584709438,
-            /* nTxCount */ 13330,
-            /* dTxRate  */ 0.003494055863266544,
+            /* nTime    */ 1592893103,
+            /* nTxCount */ 39353,
+            /* dTxRate  */ 0.003174999177924338,
         };
     }
 };
@@ -163,7 +164,7 @@ public:
 class CTestNetParams : public CChainParams {
 public:
     CTestNetParams() {
-        strNetworkID = "test";
+        strNetworkID = CBaseChainParams::TESTNET;
         consensus.nSubsidyHalvingInterval = 88000;
         consensus.BIP16Exception = uint256();
         consensus.BIP34Height = 0;
@@ -197,7 +198,7 @@ public:
         pchMessageStart[3] = 0x63;
         nDefaultPort = 19833;
         nPruneAfterHeight = 1000;
-        m_assumed_blockchain_size = 30;
+        m_assumed_blockchain_size = 60;
         m_assumed_chain_state_size = 2;
 
         genesis = CreateGenesisBlock(1584712563, 392884, 0x1e0ffff0, 1, 50 * COIN);
@@ -230,15 +231,15 @@ public:
 
         checkpointData = {
             {
-                {},
+                { 11111, uint256S("000000993bde95e7675893993295e89924457fc131b357d93dd2b8d057c40486")},
             }
         };
 
         chainTxData = ChainTxData{
             // Data from RPC: getchaintxstats
-            /* nTime    */ 0,
-            /* nTxCount */ 0,
-            /* dTxRate  */ 0,
+            /* nTime    */ 1592910901,
+            /* nTxCount */ 22229,
+            /* dTxRate  */ 0.002744920747855646,
         };
     }
 };
@@ -249,7 +250,7 @@ public:
 class CRegTestParams : public CChainParams {
 public:
     explicit CRegTestParams(const ArgsManager& args) {
-        strNetworkID = "regtest";
+        strNetworkID = CBaseChainParams::REGTEST;
         consensus.nSubsidyHalvingInterval = 150;
         consensus.BIP16Exception = uint256();
         consensus.BIP34Height = 0;
