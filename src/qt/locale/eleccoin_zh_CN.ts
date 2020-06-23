@@ -769,8 +769,8 @@
         <translation>当任何一个收款金额小于目前的粉尘金额阈值时，文字会变红色。</translation>
     </message>
     <message>
-        <source>Can vary +/- %1 satoshi(s) per input.</source>
-        <translation>每个输入可能有 +/- %1 聪 (satoshi) 的误差。</translation>
+        <source>Can vary +/- %1 electron(s) per input.</source>
+        <translation>每个输入可能有 +/- %1 聪 (electron) 的误差。</translation>
     </message>
     <message>
         <source>(no label)</source>
