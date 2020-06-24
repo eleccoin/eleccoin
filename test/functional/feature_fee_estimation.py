@@ -14,7 +14,7 @@ from test_framework.util import (
     assert_greater_than,
     assert_greater_than_or_equal,
     connect_nodes,
-    satoshi_round,
+    electron_round,
 )
 
 # Construct 2 trivial P2SH's and the ScriptSigs that spend them
@@ -44,7 +44,7 @@ def small_txpuzzle_randfee(from_node, conflist, unconflist, amount, min_fee, fee
     # Exponentially distributed from 1-128 * fee_increment
     rand_fee = float(fee_increment) * (1.1892 ** random.randint(0, 28))
     # Total fee ranges from min_fee to min_fee + 127*fee_increment
-    fee = min_fee - fee_increment + satoshi_round(rand_fee)
+    fee = min_fee - fee_increment + electron_round(rand_fee)
     tx = CTransaction()
     total_in = Decimal("0.00000000")
     while total_in <= (amount + fee) and len(conflist) > 0:
@@ -83,7 +83,7 @@ def split_inputs(from_node, txins, txouts, initial_split=False):
     tx = CTransaction()
     tx.vin.append(CTxIn(COutPoint(int(prevtxout["txid"], 16), prevtxout["vout"]), b""))
 
-    half_change = satoshi_round(prevtxout["amount"] / 2)
+    half_change = electron_round(prevtxout["amount"] / 2)
     rem_change = prevtxout["amount"] - half_change - Decimal("0.00001000")
     tx.vout.append(CTxOut(int(half_change * COIN), P2SH_1))
     tx.vout.append(CTxOut(int(rem_change * COIN), P2SH_2))

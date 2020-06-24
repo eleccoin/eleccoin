@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2010 Satoshi Nakamoto
+// Copyright (c) 2009-2010
 // Copyright (c) 2009-2018 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
@@ -19,13 +19,13 @@ extern const std::string CURRENCY_UNIT;
 class CFeeRate
 {
 private:
-    CAmount nSatoshisPerK; // unit is electrons-per-1,000-bytes
+    CAmount nElectronsPerK; // unit is electrons-per-1,000-bytes
 
 public:
     /** Fee rate of 0 electrons per kB */
-    CFeeRate() : nSatoshisPerK(0) { }
+    CFeeRate() : nElectronsPerK(0) { }
     template<typename I>
-    explicit CFeeRate(const I _nSatoshisPerK): nSatoshisPerK(_nSatoshisPerK) {
+    explicit CFeeRate(const I _nElectronsPerK): nElectronsPerK(_nElectronsPerK) {
         // We've previously had bugs creep in from silent double->int conversion...
         static_assert(std::is_integral<I>::value, "CFeeRate should be used without floats");
     }
@@ -39,20 +39,20 @@ public:
      * Return the fee in electrons for a size of 1000 bytes
      */
     CAmount GetFeePerK() const { return GetFee(1000); }
-    friend bool operator<(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK < b.nSatoshisPerK; }
-    friend bool operator>(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK > b.nSatoshisPerK; }
-    friend bool operator==(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK == b.nSatoshisPerK; }
-    friend bool operator<=(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK <= b.nSatoshisPerK; }
-    friend bool operator>=(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK >= b.nSatoshisPerK; }
-    friend bool operator!=(const CFeeRate& a, const CFeeRate& b) { return a.nSatoshisPerK != b.nSatoshisPerK; }
-    CFeeRate& operator+=(const CFeeRate& a) { nSatoshisPerK += a.nSatoshisPerK; return *this; }
+    friend bool operator<(const CFeeRate& a, const CFeeRate& b) { return a.nElectronsPerK < b.nElectronsPerK; }
+    friend bool operator>(const CFeeRate& a, const CFeeRate& b) { return a.nElectronsPerK > b.nElectronsPerK; }
+    friend bool operator==(const CFeeRate& a, const CFeeRate& b) { return a.nElectronsPerK == b.nElectronsPerK; }
+    friend bool operator<=(const CFeeRate& a, const CFeeRate& b) { return a.nElectronsPerK <= b.nElectronsPerK; }
+    friend bool operator>=(const CFeeRate& a, const CFeeRate& b) { return a.nElectronsPerK >= b.nElectronsPerK; }
+    friend bool operator!=(const CFeeRate& a, const CFeeRate& b) { return a.nElectronsPerK != b.nElectronsPerK; }
+    CFeeRate& operator+=(const CFeeRate& a) { nElectronsPerK += a.nElectronsPerK; return *this; }
     std::string ToString() const;
 
     ADD_SERIALIZE_METHODS;
 
     template <typename Stream, typename Operation>
     inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(nSatoshisPerK);
+        READWRITE(nElectronsPerK);
     }
 };
 

@@ -1,9 +1,3 @@
-Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Eleccoin
-Upstream-Contact: Satoshi Nakamoto <satoshin@gmx.com>
- irc://#eleccoin@freenode.net
-Source: https://github.com/eleccoin/eleccoin
-
 Files: *
 Copyright: 2020, Eleccoin Core Developers
 License: Expat
