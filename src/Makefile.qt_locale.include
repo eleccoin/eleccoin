@@ -1,5 +1,7 @@
 QT_TS = \
+  qt/locale/eleccoin_af.ts \
   qt/locale/eleccoin_ar.ts \
+  qt/locale/eleccoin_be.ts \
   qt/locale/eleccoin_en.ts \
   qt/locale/eleccoin_en_GB.ts \
   qt/locale/eleccoin_ja.ts \
