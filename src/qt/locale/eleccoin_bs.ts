@@ -1,120 +1,108 @@
-<TS language="zh-Hans" version="2.1">
+<TS language="bs" version="2.1">
 <context>
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>右击编辑地址或标签</translation>
+        <translation>Desni klik za uređivanje adrese ili oznake</translation>
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>创建一个新的地址</translation>
+        <translation>Napravite novu adresu</translation>
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>新建</translation>
+        <translation>&amp;Nova</translation>
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>复制选定的地址到系统剪切板</translation>
+        <translation>Kopirajte trenutno odabranu adresu u sistemski meduspremnik</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>复制</translation>
+        <translation>&amp;Kopirajte</translation>
     </message>
     <message>
         <source>C&amp;lose</source>
-        <translation>关闭</translation>
+        <translation>&amp;Zatvorite</translation>
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>从列表删除选定的地址</translation>
+        <translation>Izbrišite trenutno odabranu odresu sa liste</translation>
+    </message>
+    <message>
+        <source>Enter address or label to search</source>
+        <translation>Unesite adresu ili oznaku za pretragu</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>导出当前数据到文件</translation>
+        <translation>Izvezite podatke trenutne kartice u datoteku</translation>
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation>导出</translation>
+        <translation>&amp;Izvezite</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>删除</translation>
+        <translation>Iz&amp;brišite</translation>
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>选择发送电子币地址</translation>
+        <translation>Izaberite adresu na koju ćete poslati novac</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>选择接收电子币地址</translation>
+        <translation>Izaberite adresu na koju ćete primiti novac</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
-        <translation>选择</translation>
+        <translation>&amp;Izaberite</translation>
     </message>
     <message>
         <source>Sending addresses</source>
-        <translation>发送地址</translation>
+        <translation>Adrese pošiljalaca</translation>
     </message>
     <message>
         <source>Receiving addresses</source>
-        <translation>接收地址</translation>
+        <translation>Adrese primalaca</translation>
     </message>
     <message>
         <source>These are your Eleccoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>这是你的电子币发币地址。发送前请确认发送数量和接收地址</translation>
+        <translation>Ovo su vaše Eleccoin adrese za slanje novca. Uvijek provjerite iznos i adresu primaoca prije slanja novca.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
-        <translation>复制地址</translation>
+        <translation>&amp;Kopirajte adresu</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
-        <translation>复制标签</translation>
+        <translation>Kopirajte &amp;ozanku</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
-        <translation>编辑</translation>
+        <translation>&amp;Uredite</translation>
     </message>
     <message>
         <source>Export Address List</source>
-        <translation>导出地址列表</translation>
+        <translation>Izvezite listu adresa</translation>
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>逗号分隔文件(*.csv)</translation>
+        <translation>Datoteka podataka odvojenih zarezima (*.csv)</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>导出失败</translation>
+        <translation>Izvoz neuspješan</translation>
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>保存地址列表至%1时发生错误，请重试。</translation>
+        <translation>Došlo je do greške kod spašavanja liste adresa na %1. Molimo pokušajte ponovo.</translation>
     </message>
 </context>
 <context>
     <name>AddressTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>标签</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>地址</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(无标签)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>AskPassphraseDialog</name>
-    <message>
-        <source>Encrypt wallet</source>
-        <translation>加密钱包</translation>
-    </message>
     </context>
 <context>
     <name>BanTableModel</name>
@@ -124,10 +112,6 @@
     </context>
 <context>
     <name>CoinControlDialog</name>
-    <message>
-        <source>(no label)</source>
-        <translation>(无标签)</translation>
-    </message>
     </context>
 <context>
     <name>CreateWalletActivity</name>
@@ -146,6 +130,10 @@
     </context>
 <context>
     <name>Intro</name>
+    <message>
+        <source>Eleccoin</source>
+        <translation>Eleccoin</translation>
+    </message>
     </context>
 <context>
     <name>ModalOverlay</name>
@@ -182,41 +170,37 @@
     </context>
 <context>
     <name>ReceiveRequestDialog</name>
-    <message>
-        <source>Address</source>
-        <translation>地址</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>标签</translation>
-    </message>
     </context>
 <context>
     <name>RecentRequestsTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>标签</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(无标签)</translation>
-    </message>
     </context>
 <context>
     <name>SendCoinsDialog</name>
-    <message>
-        <source>(no label)</source>
-        <translation>(无标签)</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>SendCoinsEntry</name>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
     </context>
 <context>
     <name>ShutdownWindow</name>
     </context>
 <context>
     <name>SignVerifyMessageDialog</name>
+    <message>
+        <source>Alt+A</source>
+        <translation>Alt+A</translation>
+    </message>
+    <message>
+        <source>Alt+P</source>
+        <translation>Alt+P</translation>
+    </message>
     </context>
 <context>
     <name>TrafficGraphWidget</name>
@@ -229,32 +213,36 @@
     </context>
 <context>
     <name>TransactionTableModel</name>
-    <message>
-        <source>Label</source>
-        <translation>标签</translation>
-    </message>
-    <message>
-        <source>(no label)</source>
-        <translation>(无标签)</translation>
-    </message>
     </context>
 <context>
     <name>TransactionView</name>
     <message>
+        <source>All</source>
+        <translation>Sve</translation>
+    </message>
+    <message>
+        <source>Today</source>
+        <translation>Danas</translation>
+    </message>
+    <message>
+        <source>This month</source>
+        <translation>Ovaj mjesec</translation>
+    </message>
+    <message>
+        <source>Last month</source>
+        <translation>Prošli mjesec</translation>
+    </message>
+    <message>
+        <source>This year</source>
+        <translation>Ove godine</translation>
+    </message>
+    <message>
         <source>Comma separated file (*.csv)</source>
-        <translation>逗号分隔文件(*.csv)</translation>
-    </message>
-    <message>
-        <source>Label</source>
-        <translation>标签</translation>
-    </message>
-    <message>
-        <source>Address</source>
-        <translation>地址</translation>
+        <translation>Datoteka podataka odvojenih zarezima (*.csv)</translation>
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>导出失败</translation>
+        <translation>Izvoz neuspješan</translation>
     </message>
     </context>
 <context>
@@ -273,11 +261,11 @@
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
-        <translation>导出</translation>
+        <translation>&amp;Izvezite</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>导出当前数据到文件</translation>
+        <translation>Izvezite podatke trenutne kartice u datoteku</translation>
     </message>
     </context>
 <context>

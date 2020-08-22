@@ -67,7 +67,7 @@
     </message>
     <message>
         <source>These are your Eleccoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>Тут знаходзяцца Біткойн-адрасы для высылання плацяжоў. Заўсёды спраўджвайце колькасць і адрас прызначэння перад здзяйсненнем транзакцыі.</translation>
+        <translation>Тут знаходзяцца Електроннавалюта-адрасы для высылання плацяжоў. Заўсёды спраўджвайце колькасць і адрас прызначэння перад здзяйсненнем транзакцыі.</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
@@ -161,7 +161,7 @@
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ELECCOINS&lt;/b&gt;!</source>
-        <translation>Увага: калі вы зашыфруеце свой гаманец і страціце парольную фразу, то &lt;b&gt;СТРАЦІЦЕ ЎСЕ СВАЕ БІТКОЙНЫ&lt;/b&gt;!</translation>
+        <translation>Увага: калі вы зашыфруеце свой гаманец і страціце парольную фразу, то &lt;b&gt;СТРАЦІЦЕ ЎСЕ СВАЕ ЕлектроннавалютаЫ&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
@@ -279,7 +279,7 @@
     </message>
     <message>
         <source>Send coins to a Eleccoin address</source>
-        <translation>Даслаць манеты на Біткойн-адрас</translation>
+        <translation>Даслаць манеты на Електроннавалюта-адрас</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
@@ -315,11 +315,11 @@
     </message>
     <message>
         <source>Sign messages with your Eleccoin addresses to prove you own them</source>
-        <translation>Падпісаць паведамленне з дапамогай Біткойн-адраса каб даказаць, што яно належыць вам</translation>
+        <translation>Падпісаць паведамленне з дапамогай Електроннавалюта-адраса каб даказаць, што яно належыць вам</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Eleccoin addresses</source>
-        <translation>Спраўдзіць паведамленне з дапамогай Біткойн-адраса каб даказаць, што яно належыць вам</translation>
+        <translation>Спраўдзіць паведамленне з дапамогай Електроннавалюта-адраса каб даказаць, што яно належыць вам</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -335,7 +335,7 @@
     </message>
     <message>
         <source>Request payments (generates QR codes and eleccoin: URIs)</source>
-        <translation>Запатрабаваць плацёж (генеруецца QR-код для біткойн URI)</translation>
+        <translation>Запатрабаваць плацёж (генеруецца QR-код для Електроннавалюта URI)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
@@ -618,7 +618,7 @@
     </message>
     <message>
         <source>Eleccoin</source>
-        <translation>Біткойн</translation>
+        <translation>Електроннавалюта</translation>
     </message>
     <message>
         <source>Error</source>

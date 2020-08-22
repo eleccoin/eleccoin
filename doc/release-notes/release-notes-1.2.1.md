@@ -110,6 +110,7 @@ removed from the mempool because they conflict with a new block.
 ### Miscellaneous
 - util: Don't reference errno when pthread fails
 - Fix locking on WSL using flock instead of fcntl
+- Add multi-language for Qt wallet
 
 Credits
 =======

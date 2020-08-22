@@ -1,33 +1,33 @@
-<TS language="en_GB" version="2.1">
+<TS language="vi" version="2.1">
 <context>
     <name>AddressBookPage</name>
     <message>
         <source>Right-click to edit address or label</source>
-        <translation>Right-click to edit address or label</translation>
+        <translation>Phải chuột để sửa địa chỉ hoặc nhãn</translation>
     </message>
     <message>
         <source>Create a new address</source>
-        <translation>Create a new address</translation>
+        <translation>Tạo một địa chỉ mới</translation>
     </message>
     <message>
         <source>&amp;New</source>
-        <translation>&amp;New</translation>
+        <translation>&amp;Mới</translation>
     </message>
     <message>
         <source>Copy the currently selected address to the system clipboard</source>
-        <translation>Copy the currently selected address to the system clipboard</translation>
+        <translation>Sao chép các địa chỉ đã được chọn vào bộ nhớ tạm thời của hệ thống</translation>
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;Copy</translation>
+        <translation>&amp;Sao chép</translation>
     </message>
     <message>
         <source>C&amp;lose</source>
-        <translation>C&amp;lose</translation>
+        <translation>Đ&amp;óng lại</translation>
     </message>
     <message>
         <source>Delete the currently selected address from the list</source>
-        <translation>Delete the currently selected address from the list</translation>
+        <translation>Xóa địa chỉ đang chọn từ danh sách</translation>
     </message>
     <message>
         <source>Enter address or label to search</source>
@@ -35,51 +35,51 @@
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Export the data in the current tab to a file</translation>
+        <translation>Xuất dữ liệu trong thẻ hiện tại ra file</translation>
     </message>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;Export</translation>
+        <translation>&amp;Xuất</translation>
     </message>
     <message>
         <source>&amp;Delete</source>
-        <translation>&amp;Delete</translation>
+        <translation>&amp;Xóa</translation>
     </message>
     <message>
         <source>Choose the address to send coins to</source>
-        <translation>Choose the address to send coins to</translation>
+        <translation>Chọn địa chỉ để gửi coins đến</translation>
     </message>
     <message>
         <source>Choose the address to receive coins with</source>
-        <translation>Choose the address to receive coins with</translation>
+        <translation>Chọn địa chỉ để nhận coins với</translation>
     </message>
     <message>
         <source>C&amp;hoose</source>
-        <translation>C&amp;hoose</translation>
+        <translation>C&amp;họn</translation>
     </message>
     <message>
         <source>Sending addresses</source>
-        <translation>Sending addresses</translation>
+        <translation>Địa chỉ đang gửi</translation>
     </message>
     <message>
         <source>Receiving addresses</source>
-        <translation>Receiving addresses</translation>
+        <translation>Địa chỉ đang nhận</translation>
     </message>
     <message>
         <source>These are your Eleccoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</source>
-        <translation>These are your Eleccoin addresses for sending payments. Always check the amount and the receiving address before sending coins.</translation>
+        <translation>Đây là những địa chỉ đang thực hiện thanh toán. Luôn kiểm tra số lượng và địa chỉ nhận trước khi gửi coins.</translation>
     </message>
     <message>
         <source>These are your Eleccoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</source>
-        <translation>These are your Eleccoin addresses for receiving payments. Use the 'Create new receiving address' button in the receive tab to create new addresses.</translation>
+        <translation>Những địa chỉ Eleccoin này để bạn nhận thanh toán. Sử dụng  'Tạo địa chỉ nhận mới'</translation>
     </message>
     <message>
         <source>&amp;Copy Address</source>
-        <translation>&amp;Copy Address</translation>
+        <translation>&amp;Copy Địa Chỉ</translation>
     </message>
     <message>
         <source>Copy &amp;Label</source>
-        <translation>Copy &amp;Label</translation>
+        <translation>Copy &amp;Nhãn</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -87,7 +87,7 @@
     </message>
     <message>
         <source>Export Address List</source>
-        <translation>Export Address List</translation>
+        <translation>Xuất List Địa Chỉ</translation>
     </message>
     <message>
         <source>Comma separated file (*.csv)</source>
@@ -95,149 +95,121 @@
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>Exporting Failed</translation>
+        <translation>Xuất Thất Bại</translation>
     </message>
     <message>
         <source>There was an error trying to save the address list to %1. Please try again.</source>
-        <translation>There was an error trying to save the address list to %1. Please try again.</translation>
+        <translation>Có lỗi khi đang save list địa chỉ đến %1. Vui lòng thử lại.</translation>
     </message>
 </context>
 <context>
     <name>AddressTableModel</name>
     <message>
         <source>Label</source>
-        <translation>Label</translation>
+        <translation>Nhãn</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Address</translation>
+        <translation>Địa chỉ</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(no label)</translation>
+        <translation>(không nhãn)</translation>
     </message>
 </context>
 <context>
     <name>AskPassphraseDialog</name>
     <message>
         <source>Passphrase Dialog</source>
-        <translation>Passphrase Dialog</translation>
+        <translation>Log Cụm Mật Khẩu</translation>
     </message>
     <message>
         <source>Enter passphrase</source>
-        <translation>Enter passphrase</translation>
+        <translation>Nhập cụm mật khẩu</translation>
     </message>
     <message>
         <source>New passphrase</source>
-        <translation>New passphrase</translation>
+        <translation>Cụm mật khẩu mới</translation>
     </message>
     <message>
         <source>Repeat new passphrase</source>
-        <translation>Repeat new passphrase</translation>
-    </message>
-    <message>
-        <source>Show passphrase</source>
-        <translation>Show passphrase</translation>
+        <translation>Lặp lại cụm mật khẩu mới</translation>
     </message>
     <message>
         <source>Encrypt wallet</source>
-        <translation>Encrypt wallet</translation>
+        <translation>Ví mã hóa</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to unlock the wallet.</source>
-        <translation>This operation needs your wallet passphrase to unlock the wallet.</translation>
+        <translation>Quá trình này cần cụm mật khẩu của bạn để mở khóa ví.</translation>
     </message>
     <message>
         <source>Unlock wallet</source>
-        <translation>Unlock wallet</translation>
+        <translation>Mở khóa ví</translation>
     </message>
     <message>
         <source>This operation needs your wallet passphrase to decrypt the wallet.</source>
-        <translation>This operation needs your wallet passphrase to decrypt the wallet.</translation>
+        <translation>Quá trình này cần cụm mật khẩu của bạn để giải mã ví.</translation>
     </message>
     <message>
         <source>Decrypt wallet</source>
-        <translation>Decrypt wallet</translation>
+        <translation>Giải mã ví</translation>
     </message>
     <message>
         <source>Change passphrase</source>
-        <translation>Change passphrase</translation>
+        <translation>Đổi cụm mật khẩu</translation>
     </message>
     <message>
         <source>Confirm wallet encryption</source>
-        <translation>Confirm wallet encryption</translation>
+        <translation>Xác nhận mã hóa ví</translation>
     </message>
     <message>
         <source>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ELECCOINS&lt;/b&gt;!</source>
-        <translation>Warning: If you encrypt your wallet and lose your passphrase, you will &lt;b&gt;LOSE ALL OF YOUR ELECCOINS&lt;/b&gt;!</translation>
+        <translation>Cảnh báo: Nếu bạn mã hóa ví và mất cụm mật khẩu, bạn sẽ &lt;b&gt;MẤT TẤT CẢ ELECCOIN&lt;/b&gt;!</translation>
     </message>
     <message>
         <source>Are you sure you wish to encrypt your wallet?</source>
-        <translation>Are you sure you wish to encrypt your wallet?</translation>
+        <translation>Bạn có chắc bạn muốn mã hóa ví của mình?</translation>
     </message>
     <message>
         <source>Wallet encrypted</source>
-        <translation>Wallet encrypted</translation>
-    </message>
-    <message>
-        <source>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</source>
-        <translation>Enter the new passphrase for the wallet.&lt;br/&gt;Please use a passphrase of &lt;b&gt;ten or more random characters&lt;/b&gt;, or &lt;b&gt;eight or more words&lt;/b&gt;.</translation>
-    </message>
-    <message>
-        <source>Enter the old passphrase and new passphrase for the wallet.</source>
-        <translation>Enter the old passphrase and new passphrase for the wallet.</translation>
-    </message>
-    <message>
-        <source>Remember that encrypting your wallet cannot fully protect your eleccoins from being stolen by malware infecting your computer.</source>
-        <translation>Remember that encrypting your wallet cannot fully protect your Eleccoins from being stolen by malware infecting your computer.</translation>
-    </message>
-    <message>
-        <source>Wallet to be encrypted</source>
-        <translation>Wallet to be encrypted</translation>
-    </message>
-    <message>
-        <source>Your wallet is about to be encrypted. </source>
-        <translation>Your wallet is about to be encrypted. </translation>
-    </message>
-    <message>
-        <source>Your wallet is now encrypted. </source>
-        <translation>Your wallet is now encrypted. </translation>
+        <translation>Ví đã được mã hóa</translation>
     </message>
     <message>
         <source>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</source>
-        <translation>IMPORTANT: Any previous backups you have made of your wallet file should be replaced with the newly generated, encrypted wallet file. For security reasons, previous backups of the unencrypted wallet file will become useless as soon as you start using the new, encrypted wallet.</translation>
+        <translation>QUAN TRỌNG: Bất cứ backup nào bạn từng làm trước đây từ ví của bạn nên được thay thế tạo mới, file mã hóa ví. Vì lý do bảo mật, các backup trước đây của các ví chưa mã hóa sẽ bị vô tác dụng ngay khi bạn bắt đầu sử dụng mới, ví đã được mã hóa.</translation>
     </message>
     <message>
         <source>Wallet encryption failed</source>
-        <translation>Wallet encryption failed</translation>
+        <translation>Quá trình mã hóa ví thất bại</translation>
     </message>
     <message>
         <source>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</source>
-        <translation>Wallet encryption failed due to an internal error. Your wallet was not encrypted.</translation>
+        <translation>Quá trình mã hóa ví thất bại do một lỗi nội tại. Ví của bạn vẫn chưa được mã hóa.</translation>
     </message>
     <message>
         <source>The supplied passphrases do not match.</source>
-        <translation>The supplied passphrases do not match.</translation>
+        <translation>Cụm mật khẩu được cung cấp không đúng.</translation>
     </message>
     <message>
         <source>Wallet unlock failed</source>
-        <translation>Wallet unlock failed</translation>
+        <translation>Mở khóa ví thất bại</translation>
     </message>
     <message>
         <source>The passphrase entered for the wallet decryption was incorrect.</source>
-        <translation>The passphrase entered for the wallet decryption was incorrect.</translation>
+        <translation>Cụm mật khẩu đã nhập để giải mã ví không đúng.</translation>
     </message>
     <message>
         <source>Wallet decryption failed</source>
-        <translation>Wallet decryption failed</translation>
+        <translation>Giải mã ví thất bại</translation>
     </message>
     <message>
         <source>Wallet passphrase was successfully changed.</source>
-        <translation>Wallet passphrase was successfully changed.</translation>
+        <translation>Cụm mật khẩu thay đổi thành công.</translation>
     </message>
     <message>
         <source>Warning: The Caps Lock key is on!</source>
-        <translation>Warning: The Caps Lock key is on!</translation>
+        <translation>Cảnh báo: chữ Viết Hoa đang bật!</translation>
     </message>
 </context>
 <context>
@@ -248,162 +220,154 @@
     </message>
     <message>
         <source>Banned Until</source>
-        <translation>Banned Until</translation>
+        <translation>Cấm Đến</translation>
     </message>
 </context>
 <context>
     <name>EleccoinGUI</name>
     <message>
         <source>Sign &amp;message...</source>
-        <translation>Sign &amp;message ...</translation>
+        <translation>Chữ ký &amp;lời nhắn...</translation>
     </message>
     <message>
         <source>Synchronizing with network...</source>
-        <translation>Synchronising with network ...</translation>
+        <translation>Đồng bộ hóa với network...</translation>
     </message>
     <message>
         <source>&amp;Overview</source>
-        <translation>&amp;Overview</translation>
+        <translation>&amp;Tổng quan</translation>
     </message>
     <message>
         <source>Show general overview of wallet</source>
-        <translation>Show general overview of wallet</translation>
+        <translation>Hiển thị tổng quan ví</translation>
     </message>
     <message>
         <source>&amp;Transactions</source>
-        <translation>&amp;Transactions</translation>
+        <translation>&amp;Các Giao Dịch</translation>
     </message>
     <message>
         <source>Browse transaction history</source>
-        <translation>Browse transaction history</translation>
+        <translation>Trình duyệt lịch sử giao dịch</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation>E&amp;xit</translation>
+        <translation>T&amp;hoát</translation>
     </message>
     <message>
         <source>Quit application</source>
-        <translation>Quit application</translation>
+        <translation>Đóng ứng dụng</translation>
     </message>
     <message>
         <source>&amp;About %1</source>
-        <translation>&amp;About %1</translation>
+        <translation>&amp;Khoảng %1</translation>
     </message>
     <message>
         <source>Show information about %1</source>
-        <translation>Show information about %1</translation>
+        <translation>Hiện thông tin khoảng %1</translation>
     </message>
     <message>
         <source>About &amp;Qt</source>
-        <translation>About &amp;Qt</translation>
+        <translation>Về &amp;Qt</translation>
     </message>
     <message>
         <source>Show information about Qt</source>
-        <translation>Show information about Qt</translation>
+        <translation>Hiện thông tin về Qt</translation>
     </message>
     <message>
         <source>&amp;Options...</source>
-        <translation>&amp;Options ...</translation>
+        <translation>&amp;Tùy chọn...</translation>
     </message>
     <message>
         <source>Modify configuration options for %1</source>
-        <translation>Modify configuration options for %1</translation>
+        <translation>Sửa đổi tùy chỉnh cấu hình cho %1</translation>
     </message>
     <message>
         <source>&amp;Encrypt Wallet...</source>
-        <translation>&amp;Encrypt Wallet ...</translation>
+        <translation>&amp;Mã Hóa Ví...</translation>
     </message>
     <message>
         <source>&amp;Backup Wallet...</source>
-        <translation>&amp;Backup Wallet ...</translation>
+        <translation>&amp;Backup Ví...</translation>
     </message>
     <message>
         <source>&amp;Change Passphrase...</source>
-        <translation>&amp;Change Passphrase ...</translation>
+        <translation>&amp;Thay Đổi Cụm Mật Khẩu...</translation>
     </message>
     <message>
         <source>Open &amp;URI...</source>
-        <translation>Open &amp;URI ...</translation>
-    </message>
-    <message>
-        <source>Create Wallet...</source>
-        <translation>Create Wallet...</translation>
-    </message>
-    <message>
-        <source>Create a new wallet</source>
-        <translation>Create a new wallet</translation>
+        <translation>Mở &amp;URI...</translation>
     </message>
     <message>
         <source>Wallet:</source>
-        <translation>Wallet:</translation>
+        <translation>Ví tiền</translation>
     </message>
     <message>
         <source>Click to disable network activity.</source>
-        <translation>Click to disable network activity.</translation>
+        <translation>Click để vô hiệu hoạt động mạng.</translation>
     </message>
     <message>
         <source>Network activity disabled.</source>
-        <translation>Network activity disabled.</translation>
+        <translation>Hoạt động mạng được vô hiệu.</translation>
     </message>
     <message>
         <source>Click to enable network activity again.</source>
-        <translation>Click to enable network activity again.</translation>
+        <translation>Click để mở hoạt động mạng trở lại.</translation>
     </message>
     <message>
         <source>Syncing Headers (%1%)...</source>
-        <translation>Syncing Headers (%1%) ...</translation>
+        <translation>Đồng bộ hóa tiêu đề (%1%)...</translation>
     </message>
     <message>
         <source>Reindexing blocks on disk...</source>
-        <translation>Reindexing blocks on disk ...</translation>
+        <translation>Khôi phục các khối trên ổ đĩa...</translation>
     </message>
     <message>
         <source>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</source>
-        <translation>Proxy is &lt;b&gt;enabled&lt;/b&gt;: %1</translation>
+        <translation>Proxy là &lt;b&gt; cho phép &lt;/b&gt;: %1</translation>
     </message>
     <message>
         <source>Send coins to a Eleccoin address</source>
-        <translation>Send coins to a Eleccoin address</translation>
+        <translation>Gửi coin đến một địa chỉ Eleccoin</translation>
     </message>
     <message>
         <source>Backup wallet to another location</source>
-        <translation>Backup wallet to another location</translation>
+        <translation>Backup ví đến một địa chỉ khác</translation>
     </message>
     <message>
         <source>Change the passphrase used for wallet encryption</source>
-        <translation>Change the passphrase used for wallet encryption</translation>
+        <translation>Thay đổi cụm mật khẩu cho ví đã mã hóa</translation>
     </message>
     <message>
         <source>&amp;Verify message...</source>
-        <translation>&amp;Verify message ...</translation>
+        <translation>&amp;Lời nhắn xác nhận...</translation>
     </message>
     <message>
         <source>&amp;Send</source>
-        <translation>&amp;Send</translation>
+        <translation>&amp;Gửi</translation>
     </message>
     <message>
         <source>&amp;Receive</source>
-        <translation>&amp;Receive</translation>
+        <translation>&amp;Nhận</translation>
     </message>
     <message>
         <source>&amp;Show / Hide</source>
-        <translation>&amp;Show / Hide</translation>
+        <translation>&amp;Hiển thị / Ẩn</translation>
     </message>
     <message>
         <source>Show or hide the main Window</source>
-        <translation>Show or hide the main Window</translation>
+        <translation>Hiện hoặc ẩn cửa sổ chính</translation>
     </message>
     <message>
         <source>Encrypt the private keys that belong to your wallet</source>
-        <translation>Encrypt the private keys that belong to your wallet</translation>
+        <translation>Mã hóa private key thuộc về ví của bạn</translation>
     </message>
     <message>
         <source>Sign messages with your Eleccoin addresses to prove you own them</source>
-        <translation>Sign messages with your Eleccoin addresses to prove you own them</translation>
+        <translation>Đăng ký lời nhắn với địa chỉ Eleccoin của bạn để chứng minh quyền sở hữu chúng</translation>
     </message>
     <message>
         <source>Verify messages to ensure they were signed with specified Eleccoin addresses</source>
-        <translation>Verify messages to ensure they were signed with specified Eleccoin addresses</translation>
+        <translation>Xác minh lời nhắn để chắc chắn đã được đăng ký với địa chỉ Eleccoin xác định</translation>
     </message>
     <message>
         <source>&amp;File</source>
@@ -419,115 +383,103 @@
     </message>
     <message>
         <source>Tabs toolbar</source>
-        <translation>Tabs toolbar</translation>
+        <translation>Các thanh công cụ</translation>
     </message>
     <message>
         <source>Request payments (generates QR codes and eleccoin: URIs)</source>
-        <translation>Request payments (generates QR codes and eleccoin: URIs)</translation>
+        <translation>Yêu cầu thanh toán (tạo QR code và eleccoin: URIs)</translation>
     </message>
     <message>
         <source>Show the list of used sending addresses and labels</source>
-        <translation>Show the list of used sending addresses and labels</translation>
+        <translation>Hiển thị danh sách các địa chỉ và nhãn đã dùng để gửi</translation>
     </message>
     <message>
         <source>Show the list of used receiving addresses and labels</source>
-        <translation>Show the list of used receiving addresses and labels</translation>
+        <translation>Hiển thị danh sách các địa chỉ và nhãn đã dùng để nhận</translation>
     </message>
     <message>
         <source>&amp;Command-line options</source>
-        <translation>&amp;Command-line options</translation>
+        <translation>&amp;Tùy chỉnh Command-line</translation>
     </message>
     <message numerus="yes">
         <source>%n active connection(s) to Eleccoin network</source>
-        <translation><numerusform>%n active connection to Eleccoin network</numerusform><numerusform>%n active connections to Eleccoin network</numerusform></translation>
+        <translation><numerusform>%n kết nối đến Eleccoin network</numerusform></translation>
     </message>
     <message>
         <source>Indexing blocks on disk...</source>
-        <translation>Indexing blocks on disk ...</translation>
+        <translation>Khối đang được ghi nhận trên đĩa...</translation>
     </message>
     <message>
         <source>Processing blocks on disk...</source>
-        <translation>Processing blocks on disk ...</translation>
+        <translation>Khối đang được xử lý trên đĩa...</translation>
     </message>
     <message numerus="yes">
         <source>Processed %n block(s) of transaction history.</source>
-        <translation><numerusform>Processed %n block of transaction history.</numerusform><numerusform>Processed %n blocks of transaction history.</numerusform></translation>
+        <translation><numerusform>Hoàn thành %n khối của lịch sử giao dịch.</numerusform></translation>
     </message>
     <message>
         <source>%1 behind</source>
-        <translation>%1 behind</translation>
+        <translation>%1 phia sau</translation>
     </message>
     <message>
         <source>Last received block was generated %1 ago.</source>
-        <translation>Last received block was generated %1 ago.</translation>
+        <translation>Khối nhận cuối cùng đã được tạo %1.</translation>
     </message>
     <message>
         <source>Transactions after this will not yet be visible.</source>
-        <translation>Transactions after this will not yet be visible.</translation>
+        <translation>Các giao dịch sau giao dịch này sẽ không được hiển thị.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation>Lỗi</translation>
     </message>
     <message>
         <source>Warning</source>
-        <translation>Warning</translation>
+        <translation>Cảnh báo</translation>
     </message>
     <message>
         <source>Information</source>
-        <translation>Information</translation>
+        <translation>Thông tin</translation>
     </message>
     <message>
         <source>Up to date</source>
-        <translation>Up to date</translation>
-    </message>
-    <message>
-        <source>Node window</source>
-        <translation>Node window</translation>
-    </message>
-    <message>
-        <source>Open node debugging and diagnostic console</source>
-        <translation>Open node debugging and diagnostic console</translation>
+        <translation>Đã cập nhật</translation>
     </message>
     <message>
         <source>&amp;Sending addresses</source>
-        <translation>&amp;Sending addresses</translation>
+        <translation>&amp;Các địa chỉ đang gửi</translation>
     </message>
     <message>
         <source>&amp;Receiving addresses</source>
-        <translation>&amp;Receiving addresses</translation>
-    </message>
-    <message>
-        <source>Open a eleccoin: URI</source>
-        <translation>Open a Eleccoin: URI</translation>
+        <translation>&amp;Các địa chỉ đang nhận</translation>
     </message>
     <message>
         <source>Open Wallet</source>
-        <translation>Open Wallet</translation>
+        <translation>Mớ ví</translation>
     </message>
     <message>
         <source>Open a wallet</source>
-        <translation>Open a wallet</translation>
+        <translation>Mở một ví</translation>
     </message>
     <message>
         <source>Close Wallet...</source>
-        <translation>Close Wallet ...</translation>
+        <translation>Đóng ví...</translation>
     </message>
     <message>
         <source>Close wallet</source>
-        <translation>Close wallet</translation>
+        <translation>Đông ví</translation>
     </message>
     <message>
         <source>Show the %1 help message to get a list with possible Eleccoin command-line options</source>
-        <translation>Show the %1 help message to get a list with possible Eleccoin command-line options</translation>
+        <translation>Hiển thị %1 tin nhắn hỗ trợ để nhận được danh sách Eleccoin command-line khả dụng</translation>
     </message>
     <message>
         <source>default wallet</source>
-        <translation>default wallet</translation>
+        <translation>ví mặc định</translation>
     </message>
     <message>
         <source>No wallets available</source>
-        <translation>No wallets available</translation>
+        <translation>Không có ví nào</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -535,27 +487,27 @@
     </message>
     <message>
         <source>Minimize</source>
-        <translation>Minimise</translation>
+        <translation>Thu nhỏ</translation>
     </message>
     <message>
         <source>Zoom</source>
-        <translation>Zoom</translation>
+        <translation>Phóng</translation>
     </message>
     <message>
         <source>Main Window</source>
-        <translation>Main Window</translation>
+        <translation>Màn hình chính</translation>
     </message>
     <message>
         <source>%1 client</source>
-        <translation>%1 client</translation>
+        <translation>%1 khách</translation>
     </message>
     <message>
         <source>Connecting to peers...</source>
-        <translation>Connecting to peers ...</translation>
+        <translation>Đang kết nối đến peers...</translation>
     </message>
     <message>
         <source>Catching up...</source>
-        <translation>Catching up ...</translation>
+        <translation>Đang bắt kịp...</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -563,86 +515,86 @@
     </message>
     <message>
         <source>Warning: %1</source>
-        <translation>Warning: %1</translation>
+        <translation>Cảnh báo: %1</translation>
     </message>
     <message>
         <source>Date: %1
 </source>
-        <translation>Date: %1
+        <translation>Ngày %1
 </translation>
     </message>
     <message>
         <source>Amount: %1
 </source>
-        <translation>Amount: %1
+        <translation>Số lượng: %1
 </translation>
     </message>
     <message>
         <source>Wallet: %1
 </source>
-        <translation>Wallet: %1
+        <translation>Ví: %1
 </translation>
     </message>
     <message>
         <source>Type: %1
 </source>
-        <translation>Type: %1
+        <translation>Loại: %1
 </translation>
     </message>
     <message>
         <source>Label: %1
 </source>
-        <translation>Label: %1
+        <translation>Nhãn: %1
 </translation>
     </message>
     <message>
         <source>Address: %1
 </source>
-        <translation>Address: %1
+        <translation>Địa chỉ: %1
 </translation>
     </message>
     <message>
         <source>Sent transaction</source>
-        <translation>Sent transaction</translation>
+        <translation>Giao dịch đã gửi</translation>
     </message>
     <message>
         <source>Incoming transaction</source>
-        <translation>Incoming transaction</translation>
+        <translation>Giao dịch đang nhận</translation>
     </message>
     <message>
         <source>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</source>
-        <translation>HD key generation is &lt;b&gt;enabled&lt;/b&gt;</translation>
+        <translation>Khởi tạo HD key &lt;b&gt;enabled&lt;/b&gt;</translation>
     </message>
     <message>
         <source>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>HD key generation is &lt;b&gt;disabled&lt;/b&gt;</translation>
+        <translation>Khởi tạo HD key &lt;b&gt;disabled&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Private key &lt;b&gt;disabled&lt;/b&gt;</source>
-        <translation>Private key &lt;b&gt;disabled&lt;/b&gt;</translation>
+        <translation>Khóa riên tư &lt;b&gt;đã tắt&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</source>
-        <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;unlocked&lt;/b&gt;</translation>
+        <translation>Ví thì &lt;b&gt;encrypted&lt;/b&gt; và hiện tại &lt;b&gt;unlocked&lt;/b&gt;</translation>
     </message>
     <message>
         <source>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</source>
-        <translation>Wallet is &lt;b&gt;encrypted&lt;/b&gt; and currently &lt;b&gt;locked&lt;/b&gt;</translation>
+        <translation>Ví thì &lt;b&gt;encrypted&lt;/b&gt; và hiện tại &lt;b&gt;locked&lt;/b&gt;</translation>
     </message>
     <message>
         <source>A fatal error occurred. Eleccoin can no longer continue safely and will quit.</source>
-        <translation>A fatal error occurred. Eleccoin can no longer continue safely and will quit.</translation>
+        <translation>Một lỗi nghiêm trọng vừa xảy ra. Eleccoin có thể không còn tiếp tục an toàn và sẽ bị bỏ.</translation>
     </message>
 </context>
 <context>
     <name>CoinControlDialog</name>
     <message>
         <source>Coin Selection</source>
-        <translation>Coin Selection</translation>
+        <translation>Lựa chọn Coin</translation>
     </message>
     <message>
         <source>Quantity:</source>
-        <translation>Quantity:</translation>
+        <translation>Số lượng:</translation>
     </message>
     <message>
         <source>Bytes:</source>
@@ -650,27 +602,27 @@
     </message>
     <message>
         <source>Amount:</source>
-        <translation>Amount:</translation>
+        <translation>Số lượng:</translation>
     </message>
     <message>
         <source>Fee:</source>
-        <translation>Fee:</translation>
+        <translation>Phí:</translation>
     </message>
     <message>
         <source>Dust:</source>
-        <translation>Dust:</translation>
+        <translation>Rác:</translation>
     </message>
     <message>
         <source>After Fee:</source>
-        <translation>After Fee:</translation>
+        <translation>Sau Phí:</translation>
     </message>
     <message>
         <source>Change:</source>
-        <translation>Change:</translation>
+        <translation>Thay đổi:</translation>
     </message>
     <message>
         <source>(un)select all</source>
-        <translation>(un)select all</translation>
+        <translation>(không)chọn tất cả</translation>
     </message>
     <message>
         <source>Tree mode</source>
@@ -682,103 +634,103 @@
     </message>
     <message>
         <source>Amount</source>
-        <translation>Amount</translation>
+        <translation>Số lượng</translation>
     </message>
     <message>
         <source>Received with label</source>
-        <translation>Received with label</translation>
+        <translation>Đã nhận với nhãn</translation>
     </message>
     <message>
         <source>Received with address</source>
-        <translation>Received with address</translation>
+        <translation>Đã nhận với địa chỉ</translation>
     </message>
     <message>
         <source>Date</source>
-        <translation>Date</translation>
+        <translation>Ngày</translation>
     </message>
     <message>
         <source>Confirmations</source>
-        <translation>Confirmations</translation>
+        <translation>Xác nhận</translation>
     </message>
     <message>
         <source>Confirmed</source>
-        <translation>Confirmed</translation>
+        <translation>Đã xác nhận</translation>
     </message>
     <message>
         <source>Copy address</source>
-        <translation>Copy address</translation>
+        <translation>Sao chép địa chỉ</translation>
     </message>
     <message>
         <source>Copy label</source>
-        <translation>Copy label</translation>
+        <translation>Sao chép nhãn</translation>
     </message>
     <message>
         <source>Copy amount</source>
-        <translation>Copy amount</translation>
+        <translation>Sao chép số lượng</translation>
     </message>
     <message>
         <source>Copy transaction ID</source>
-        <translation>Copy transaction ID</translation>
+        <translation>Sao chép ID giao dịch</translation>
     </message>
     <message>
         <source>Lock unspent</source>
-        <translation>Lock unspent</translation>
+        <translation>Khóa unspent</translation>
     </message>
     <message>
         <source>Unlock unspent</source>
-        <translation>Unlock unspent</translation>
+        <translation>Mở khóa unspent</translation>
     </message>
     <message>
         <source>Copy quantity</source>
-        <translation>Copy quantity</translation>
+        <translation>Sao chép số lượng</translation>
     </message>
     <message>
         <source>Copy fee</source>
-        <translation>Copy fee</translation>
+        <translation>Sao chép phí</translation>
     </message>
     <message>
         <source>Copy after fee</source>
-        <translation>Copy after fee</translation>
+        <translation>Sao chép sau phí</translation>
     </message>
     <message>
         <source>Copy bytes</source>
-        <translation>Copy bytes</translation>
+        <translation>Sao chép bytes</translation>
     </message>
     <message>
         <source>Copy dust</source>
-        <translation>Copy dust</translation>
+        <translation>Sao chép rác</translation>
     </message>
     <message>
         <source>Copy change</source>
-        <translation>Copy change</translation>
+        <translation>Sao chép thay đổi</translation>
     </message>
     <message>
         <source>(%1 locked)</source>
-        <translation>(%1 locked)</translation>
+        <translation>(%1 đã khóa)</translation>
     </message>
     <message>
         <source>yes</source>
-        <translation>yes</translation>
+        <translation>có</translation>
     </message>
     <message>
         <source>no</source>
-        <translation>no</translation>
+        <translation>không</translation>
     </message>
     <message>
         <source>This label turns red if any recipient receives an amount smaller than the current dust threshold.</source>
-        <translation>This label turns red if any recipient receives an amount smaller than the current dust threshold.</translation>
+        <translation>Label này chuyển sang đỏ nếu bất cứ giao dịch nhận nào có số lượng nhỏ hơn ngưỡng dust.</translation>
     </message>
     <message>
         <source>Can vary +/- %1 electron(s) per input.</source>
-        <translation>Can vary +/- %1 electron(s) per input.</translation>
+        <translation>Có thể thay đổi +/-%1 electron(s) trên input.</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(no label)</translation>
+        <translation>(không nhãn)</translation>
     </message>
     <message>
         <source>change from %1 (%2)</source>
-        <translation>change from %1 (%2)</translation>
+        <translation>change từ %1 (%2)</translation>
     </message>
     <message>
         <source>(change)</source>
@@ -787,58 +739,10 @@
 </context>
 <context>
     <name>CreateWalletActivity</name>
-    <message>
-        <source>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>Creating Wallet &lt;b&gt;%1&lt;/b&gt;...</translation>
-    </message>
-    <message>
-        <source>Create wallet failed</source>
-        <translation>Create wallet failed</translation>
-    </message>
-    <message>
-        <source>Create wallet warning</source>
-        <translation>Create wallet warning</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>CreateWalletDialog</name>
-    <message>
-        <source>Create Wallet</source>
-        <translation>Create Wallet</translation>
-    </message>
-    <message>
-        <source>Wallet Name</source>
-        <translation>Wallet Name</translation>
-    </message>
-    <message>
-        <source>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</source>
-        <translation>Encrypt the wallet. The wallet will be encrypted with a passphrase of your choice.</translation>
-    </message>
-    <message>
-        <source>Encrypt Wallet</source>
-        <translation>Encrypt Wallet</translation>
-    </message>
-    <message>
-        <source>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</source>
-        <translation>Disable private keys for this wallet. Wallets with private keys disabled will have no private keys and cannot have an HD seed or imported private keys. This is ideal for watch-only wallets.</translation>
-    </message>
-    <message>
-        <source>Disable Private Keys</source>
-        <translation>Disable Private Keys</translation>
-    </message>
-    <message>
-        <source>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</source>
-        <translation>Make a blank wallet. Blank wallets do not initially have private keys or scripts. Private keys and addresses can be imported, or an HD seed can be set, at a later time.</translation>
-    </message>
-    <message>
-        <source>Make Blank Wallet</source>
-        <translation>Make Blank Wallet</translation>
-    </message>
-    <message>
-        <source>Create</source>
-        <translation>Create</translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>EditAddressDialog</name>
     <message>
@@ -847,81 +751,81 @@
     </message>
     <message>
         <source>&amp;Label</source>
-        <translation>&amp;Label</translation>
+        <translation>Nhãn dữ liệu</translation>
     </message>
     <message>
         <source>The label associated with this address list entry</source>
-        <translation>The label associated with this address list entry</translation>
+        <translation>Label liên kết với list address ban đầu này</translation>
     </message>
     <message>
         <source>The address associated with this address list entry. This can only be modified for sending addresses.</source>
-        <translation>The address associated with this address list entry. This can only be modified for sending addresses.</translation>
+        <translation>Label liên kết với list address ban đầu này. Điều này chỉ được điều chỉnh cho địa chỉ gửi.</translation>
     </message>
     <message>
         <source>&amp;Address</source>
-        <translation>&amp;Address</translation>
+        <translation>Địa chỉ</translation>
     </message>
     <message>
         <source>New sending address</source>
-        <translation>New sending address</translation>
+        <translation>Address đang gửi mới</translation>
     </message>
     <message>
         <source>Edit receiving address</source>
-        <translation>Edit receiving address</translation>
+        <translation>Edit address đang nhận</translation>
     </message>
     <message>
         <source>Edit sending address</source>
-        <translation>Edit sending address</translation>
+        <translation>Edit address đang gửi</translation>
     </message>
     <message>
         <source>The entered address "%1" is not a valid Eleccoin address.</source>
-        <translation>The entered address "%1" is not a valid Eleccoin address.</translation>
+        <translation>Address đã nhập "%1" không valid Eleccoin address.</translation>
     </message>
     <message>
         <source>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</source>
-        <translation>Address "%1" already exists as a receiving address with label "%2" and so cannot be added as a sending address.</translation>
+        <translation>Địa chỉ "%1" đã tồn tại như địa chỉ nhận với nhãn "%2" và vì vậy không thể thêm như là địa chỉ gửi.</translation>
     </message>
     <message>
         <source>The entered address "%1" is already in the address book with label "%2".</source>
-        <translation>The entered address "%1" is already in the address book with label "%2".</translation>
+        <translation>Địa chỉ  nhập "%1" đã có trong sổ địa chỉ với nhãn "%2".</translation>
     </message>
     <message>
         <source>Could not unlock wallet.</source>
-        <translation>Could not unlock wallet.</translation>
+        <translation>Không thể unlock wallet.</translation>
     </message>
     <message>
         <source>New key generation failed.</source>
-        <translation>New key generation failed.</translation>
+        <translation>Khởi tạo key mới thất bại.</translation>
     </message>
 </context>
 <context>
     <name>FreespaceChecker</name>
     <message>
         <source>A new data directory will be created.</source>
-        <translation>A new data directory will be created.</translation>
+        <translation>Một danh mục dữ liệu mới sẽ được tạo.</translation>
     </message>
     <message>
         <source>name</source>
-        <translation>name</translation>
+        <translation>tên</translation>
     </message>
     <message>
         <source>Directory already exists. Add %1 if you intend to create a new directory here.</source>
-        <translation>Directory already exists. Add %1 if you intend to create a new directory here.</translation>
+        <translation>Danh mục đã tồn tại. Thêm %1 nếu bạn dự định creat một danh mục mới ở đây.</translation>
     </message>
     <message>
         <source>Path already exists, and is not a directory.</source>
-        <translation>Path already exists, and is not a directory.</translation>
+        <translation>Path đã tồn tại, và không là danh mục.</translation>
     </message>
     <message>
         <source>Cannot create data directory here.</source>
-        <translation>Cannot create data directory here.</translation>
+        <translation>Không thể create dữ liệu danh mục tại đây.</translation>
     </message>
 </context>
 <context>
     <name>HelpMessageDialog</name>
     <message>
         <source>version</source>
-        <translation>version</translation>
+        <translation>phiên bản</translation>
     </message>
     <message>
         <source>About %1</source>
@@ -944,77 +848,65 @@
     </message>
     <message>
         <source>As this is the first time the program is launched, you can choose where %1 will store its data.</source>
-        <translation>As this is the first time the program is launched, you can choose where %1 will store its data.</translation>
+        <translation>Đây là lần đầu chương trình khởi chạy, bạn có thể chọn nơi %1 sẽ lưu trữ data.</translation>
     </message>
     <message>
         <source>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</source>
-        <translation>When you click OK, %1 will begin to download and process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</translation>
-    </message>
-    <message>
-        <source>Reverting this setting requires re-downloading the entire blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</source>
-        <translation>Reverting this setting requires re-downloading the entire Blockchain. It is faster to download the full chain first and prune it later. Disables some advanced features.</translation>
+        <translation>Khi bạn click OK, %1 sẽ bắt đầu download và process the full %4 block chain (%2GB) starting with the earliest transactions in %3 when %4 initially launched.</translation>
     </message>
     <message>
         <source>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</source>
-        <translation>This initial synchronisation is very demanding, and may expose hardware problems with your computer that had previously gone unnoticed. Each time you run %1, it will continue downloading where it left off.</translation>
+        <translation>Đồng bộ hóa ban đầu này rất đòi hỏi, và có thể phơi bày các sự cố về phần cứng với máy tính của bạn trước đó đã không được chú ý. Mỗi khi bạn chạy %1, nó sẽ tiếp tục tải về nơi nó dừng lại.</translation>
     </message>
     <message>
         <source>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterward to keep your disk usage low.</source>
-        <translation>If you have chosen to limit block chain storage (pruning), the historical data must still be downloaded and processed, but will be deleted afterwards to keep your disk usage low.</translation>
+        <translation>Nếu bạn đã chọn giới hạn block chain lưu trữ (pruning),dữ liệu lịch sử vẫn phải được tải xuống và xử lý, nhưng sẽ bị xóa sau đó để giữ cho việc sử dụng đĩa của bạn ở mức usage thấp.</translation>
     </message>
     <message>
         <source>Use the default data directory</source>
-        <translation>Use the default data directory</translation>
+        <translation>Sử dụng default danh mục đa ta</translation>
     </message>
     <message>
         <source>Use a custom data directory:</source>
-        <translation>Use a custom data directory:</translation>
+        <translation>Sử dụng custom danh mục data:</translation>
     </message>
     <message>
         <source>Eleccoin</source>
         <translation>Eleccoin</translation>
     </message>
     <message>
-        <source>Discard blocks after verification, except most recent %1 GB (prune)</source>
-        <translation>Discard blocks after verification, except most recent %1 GB (prune)</translation>
-    </message>
-    <message>
         <source>At least %1 GB of data will be stored in this directory, and it will grow over time.</source>
-        <translation>At least %1 GB of data will be stored in this directory, and it will grow over time.</translation>
+        <translation>Ít nhất %1 GB data sẽ được trữ tại danh mục này, và nó sẽ lớn theo thời gian.</translation>
     </message>
     <message>
         <source>Approximately %1 GB of data will be stored in this directory.</source>
-        <translation>Approximately %1 GB of data will be stored in this directory.</translation>
+        <translation>Gần đúng %1 GB of data sẽ được lưu giữ trong danh mục này.</translation>
     </message>
     <message>
         <source>%1 will download and store a copy of the Eleccoin block chain.</source>
-        <translation>%1 will download and store a copy of the Eleccoin block chain.</translation>
+        <translation>%1 sẽ download và lưu trữ một bản copy của Eleccoin block chain.</translation>
     </message>
     <message>
         <source>The wallet will also be stored in this directory.</source>
-        <translation>The wallet will also be stored in this directory.</translation>
+        <translation>Wallet sẽ cùng được lưu giữ trong danh mục này.</translation>
     </message>
     <message>
         <source>Error: Specified data directory "%1" cannot be created.</source>
-        <translation>Error: Specified data directory "%1" cannot be created.</translation>
+        <translation>Error: Danh mục data xác định "%1" không thể được tạo.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation>Lỗi</translation>
     </message>
     <message numerus="yes">
         <source>%n GB of free space available</source>
-        <translation><numerusform>%n GB of free space available</numerusform><numerusform>%n GB of free space available</numerusform></translation>
+        <translation><numerusform>%n GB of free space available</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>(of %n GB needed)</source>
-        <translation><numerusform>(of %n GB needed)</numerusform><numerusform>(of %n GB needed)</numerusform></translation>
+        <translation><numerusform>(of %n GB cần thiết)</numerusform></translation>
     </message>
-    <message numerus="yes">
-        <source>(%n GB needed for full chain)</source>
-        <translation><numerusform>(%n GB needed for full chain)</numerusform><numerusform>(%n GB needed for full chain)</numerusform></translation>
-    </message>
-</context>
+    </context>
 <context>
     <name>ModalOverlay</name>
     <message>
@@ -1023,63 +915,51 @@
     </message>
     <message>
         <source>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronizing with the eleccoin network, as detailed below.</source>
-        <translation>Recent transactions may not yet be visible, and therefore your wallet's balance might be incorrect. This information will be correct once your wallet has finished synchronising with the Eleccoin network, as detailed below.</translation>
+        <translation>Giao dịch gần đây có thể chưa được hiển thị, và vì vậy số dư wallet của bạn có thể không dúng. Thông tin này sẽ được làm đúng khi wallet hoàn thành đồng bộ với eleccoin network, như chi tiết bên dưới.</translation>
     </message>
     <message>
         <source>Attempting to spend eleccoins that are affected by not-yet-displayed transactions will not be accepted by the network.</source>
-        <translation>Attempting to spend Eleccoins that are affected by not-yet-displayed transactions will not be accepted by the network.</translation>
+        <translation>Cố gắng spend các eleccoins bị ảnh hưởng bởi các giao dịch chưa được hiển thị sẽ không được chấp nhận bởi mạng.</translation>
     </message>
     <message>
         <source>Number of blocks left</source>
-        <translation>Number of blocks left</translation>
+        <translation>Số của blocks còn lại</translation>
     </message>
     <message>
         <source>Unknown...</source>
-        <translation>Unknown ...</translation>
+        <translation>Unknown...</translation>
     </message>
     <message>
         <source>Last block time</source>
-        <translation>Last block time</translation>
+        <translation>Thời gian block cuối cùng</translation>
     </message>
     <message>
         <source>Progress</source>
-        <translation>Progress</translation>
+        <translation>Tiến độ</translation>
     </message>
     <message>
         <source>Progress increase per hour</source>
-        <translation>Progress increase per hour</translation>
+        <translation>Tiến độ tăng mỗi giờ</translation>
     </message>
     <message>
         <source>calculating...</source>
-        <translation>calculating ...</translation>
+        <translation>Đang tính...</translation>
     </message>
     <message>
         <source>Estimated time left until synced</source>
-        <translation>Estimated time left until synced</translation>
+        <translation>Ước tính thời gian còn lại đến khi đồng bộ</translation>
     </message>
     <message>
         <source>Hide</source>
-        <translation>Hide</translation>
-    </message>
-    <message>
-        <source>Esc</source>
-        <translation>Esc</translation>
-    </message>
-    <message>
-        <source>%1 is currently syncing.  It will download headers and blocks from peers and validate them until reaching the tip of the block chain.</source>
-        <translation>%1 is currently syncing.  It will download headers and blocks from peers and validate them until reaching the tip of the block chain.</translation>
+        <translation>Ẩn</translation>
     </message>
     <message>
         <source>Unknown. Syncing Headers (%1, %2%)...</source>
-        <translation>Unknown. Syncing Headers (%1, %2%) ...</translation>
+        <translation>Không biết. Đang đồng bộ Headers (%1, %2%)...</translation>
     </message>
 </context>
 <context>
     <name>OpenURIDialog</name>
-    <message>
-        <source>Open eleccoin URI</source>
-        <translation>Open Eleccoin URI</translation>
-    </message>
     <message>
         <source>URI:</source>
         <translation>URI:</translation>
@@ -1088,39 +968,31 @@
 <context>
     <name>OpenWalletActivity</name>
     <message>
-        <source>Open wallet failed</source>
-        <translation>Open wallet failed</translation>
-    </message>
-    <message>
-        <source>Open wallet warning</source>
-        <translation>Open wallet warning</translation>
-    </message>
-    <message>
         <source>default wallet</source>
-        <translation>default wallet</translation>
+        <translation>ví mặc định</translation>
     </message>
     <message>
         <source>Opening Wallet &lt;b&gt;%1&lt;/b&gt;...</source>
-        <translation>Opening Wallet &lt;b&gt;%1&lt;/b&gt; ...</translation>
+        <translation>Đang mở ví &lt;b&gt; %1&lt;/b&gt;...</translation>
     </message>
 </context>
 <context>
     <name>OptionsDialog</name>
     <message>
         <source>Options</source>
-        <translation>Options</translation>
+        <translation>Tùy chỉnh</translation>
     </message>
     <message>
         <source>&amp;Main</source>
-        <translation>&amp;Main</translation>
+        <translation>&amp;Chính</translation>
     </message>
     <message>
         <source>Automatically start %1 after logging in to the system.</source>
-        <translation>Automatically start %1 after logging in to the system.</translation>
+        <translation>Tự động bắt đầu %1 sau khi đăng nhập vào system.</translation>
     </message>
     <message>
         <source>&amp;Start %1 on system login</source>
-        <translation>&amp;Start %1 on system login</translation>
+        <translation>&amp;Bắt đầu %1 trên đăng nhập system</translation>
     </message>
     <message>
         <source>Size of &amp;database cache</source>
@@ -1136,43 +1008,43 @@
     </message>
     <message>
         <source>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</source>
-        <translation>Shows if the supplied default SOCKS5 proxy is used to reach peers via this network type.</translation>
+        <translation>Hiển thị nếu cung cấp default SOCKS5 proxy is used to reach peers via this network type.</translation>
     </message>
     <message>
         <source>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</source>
-        <translation>Use separate SOCKS&amp;5 proxy to reach peers via Tor hidden services:</translation>
+        <translation>Dùng riêng lẻ  proxy  SOCKS&amp;5 để nối tới nốt mạng khác qua dịch vị ẩn Tor:</translation>
     </message>
     <message>
         <source>Hide the icon from the system tray.</source>
-        <translation>Hide the icon from the system tray.</translation>
+        <translation>Ẩn biểu tượng ở khay hệ thống</translation>
     </message>
     <message>
         <source>&amp;Hide tray icon</source>
-        <translation>&amp;Hide tray icon</translation>
+        <translation>&amp;Ẩn biểu tượng khay</translation>
     </message>
     <message>
         <source>Minimize instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</source>
-        <translation>Minimise instead of exit the application when the window is closed. When this option is enabled, the application will be closed only after selecting Exit in the menu.</translation>
+        <translation>Minimize thay vì thoát khỏi ứng dụng khi cửa sổ đóng lại. Khi bật tùy chọn này, ứng dụng sẽ chỉ được đóng sau khi chọn Exit trong menu.</translation>
     </message>
     <message>
         <source>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</source>
-        <translation>Third party URLs (e.g. a block explorer) that appear in the transactions tab as context menu items. %s in the URL is replaced by transaction hash. Multiple URLs are separated by vertical bar |.</translation>
+        <translation>Bên thứ ba URLs (e.g. a block explorer) xuất hiện trong thẻ giao dịch như context menu items. %s in the URL thì được thay thế bởi transaction hash. Multiple URLs are separated by vertical bar |.</translation>
     </message>
     <message>
         <source>Open the %1 configuration file from the working directory.</source>
-        <translation>Open the %1 configuration file from the working directory.</translation>
+        <translation>Mở %1 configuration file từ danh mục làm việc working directory.</translation>
     </message>
     <message>
         <source>Open Configuration File</source>
-        <translation>Open Configuration File</translation>
+        <translation>Mở File cấu hình</translation>
     </message>
     <message>
         <source>Reset all client options to default.</source>
-        <translation>Reset all client options to default.</translation>
+        <translation>Reset tất cả client options to default.</translation>
     </message>
     <message>
         <source>&amp;Reset Options</source>
-        <translation>&amp;Reset Options</translation>
+        <translation>&amp;Reset Tùy chọn</translation>
     </message>
     <message>
         <source>&amp;Network</source>
@@ -1180,11 +1052,11 @@
     </message>
     <message>
         <source>Disables some advanced features but all blocks will still be fully validated. Reverting this setting requires re-downloading the entire blockchain. Actual disk usage may be somewhat higher.</source>
-        <translation>Disables some advanced features but all blocks will still be fully validated. Reverting this setting requires re-downloading the entire blockchain. Actual disk usage may be somewhat higher.</translation>
+        <translation>Tăt một số tính năng nâng cao nhưng tất cả các khối vẫn tiếp tục được xác nhận đầy đủ. Hoàn nguyên cài đặt này yêu cầu tải xuống lại toàn bộ blockchain. Sử dụng dung lượng đĩa lưu trữ thực tế có thể cao hơn một chút.</translation>
     </message>
     <message>
         <source>Prune &amp;block storage to</source>
-        <translation>Prune &amp;block storage to</translation>
+        <translation>Cắt tỉa và lưu trữ khối tới</translation>
     </message>
     <message>
         <source>GB</source>
@@ -1192,7 +1064,7 @@
     </message>
     <message>
         <source>Reverting this setting requires re-downloading the entire blockchain.</source>
-        <translation>Reverting this setting requires re-downloading the entire blockchain.</translation>
+        <translation>Hoàn nguyên cài đặt này yêu cầu tải xuống lại toàn bộ blockchain.</translation>
     </message>
     <message>
         <source>MiB</source>
@@ -1232,19 +1104,19 @@
     </message>
     <message>
         <source>Accept connections from outside.</source>
-        <translation>Accept connections from outside.</translation>
+        <translation>Chấp nhận kết nối từ bên ngoài</translation>
     </message>
     <message>
         <source>Allow incomin&amp;g connections</source>
-        <translation>Allow incomin&amp;g connections</translation>
+        <translation>Chấp nhận  kết nối đang tới</translation>
     </message>
     <message>
         <source>Connect to the Eleccoin network through a SOCKS5 proxy.</source>
-        <translation>Connect to the Eleccoin network through a SOCKS5 proxy.</translation>
+        <translation>Kết nối đến Eleccoin network qua một SOCKS5 proxy.</translation>
     </message>
     <message>
         <source>&amp;Connect through SOCKS5 proxy (default proxy):</source>
-        <translation>&amp;Connect through SOCKS5 proxy (default proxy):</translation>
+        <translation>&amp;Connect qua SOCKS5 proxy (default proxy):</translation>
     </message>
     <message>
         <source>Proxy &amp;IP:</source>
@@ -1260,7 +1132,7 @@
     </message>
     <message>
         <source>Used for reaching peers via:</source>
-        <translation>Used for reaching peers via:</translation>
+        <translation>Sử dụng reaching peers via:</translation>
     </message>
     <message>
         <source>IPv4</source>
@@ -1276,7 +1148,7 @@
     </message>
     <message>
         <source>Connect to the Eleccoin network through a separate SOCKS5 proxy for Tor hidden services.</source>
-        <translation>Connect to the Eleccoin network through a separate SOCKS5 proxy for Tor hidden services.</translation>
+        <translation>Kết nối đến Eleccoin network qua một nhánh rời SOCKS5 proxy của Tor hidden services.</translation>
     </message>
     <message>
         <source>&amp;Window</source>
@@ -1284,15 +1156,15 @@
     </message>
     <message>
         <source>Show only a tray icon after minimizing the window.</source>
-        <translation>Show on a tray icon after minimising the window.</translation>
+        <translation>Hiển thị chỉ thẻ icon sau khi thu nhỏ cửa sổ.</translation>
     </message>
     <message>
         <source>&amp;Minimize to the tray instead of the taskbar</source>
-        <translation>&amp;Minimise to the tray instead of the task bar</translation>
+        <translation>&amp;Minimize đến thẻ thay vì taskbar</translation>
     </message>
     <message>
         <source>M&amp;inimize on close</source>
-        <translation>M&amp;inimise on close</translation>
+        <translation>M&amp;inimize on close</translation>
     </message>
     <message>
         <source>&amp;Display</source>
@@ -1300,31 +1172,31 @@
     </message>
     <message>
         <source>User Interface &amp;language:</source>
-        <translation>User Interface &amp;language:</translation>
+        <translation>Giao diện người dùng &amp;language:</translation>
     </message>
     <message>
         <source>The user interface language can be set here. This setting will take effect after restarting %1.</source>
-        <translation>The user interface language can be set here. This setting will take effect after restarting %1.</translation>
+        <translation>Giao diện ngôn ngữ người dùng có thể được thiết lập tại đây. Tùy chọn này sẽ có hiệu lực sau khi khởi động lại %1.</translation>
     </message>
     <message>
         <source>&amp;Unit to show amounts in:</source>
-        <translation>&amp;Unit to show amounts in:</translation>
+        <translation>&amp;Unit để hiện số lượng tại đây:</translation>
     </message>
     <message>
         <source>Choose the default subdivision unit to show in the interface and when sending coins.</source>
-        <translation>Choose the default subdivision unit to show in the interface and when sending coins.</translation>
+        <translation>Chọn default đơn vị phân chia để hiện giao diện và đang gửi coins.</translation>
     </message>
     <message>
         <source>Whether to show coin control features or not.</source>
-        <translation>Whether to show coin control features or not.</translation>
+        <translation>Cho hiển thị tính năng coin control hoặc không.</translation>
     </message>
     <message>
         <source>&amp;Third party transaction URLs</source>
-        <translation>&amp;Third party transaction URLs</translation>
+        <translation>&amp;Các URL giao dịch của bên thứ ba</translation>
     </message>
     <message>
         <source>Options set in this dialog are overridden by the command line or in the configuration file:</source>
-        <translation>Options set in this dialog are overridden by the command line or in the configuration file:</translation>
+        <translation>Các tùy chọn được đặt trong hộp thoại này bị ghi đè bởi dòng lệnh hoặc trong tệp cấu hình:</translation>
     </message>
     <message>
         <source>&amp;OK</source>
@@ -1332,7 +1204,7 @@
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation>&amp;Cancel</translation>
+        <translation>&amp;Hủy</translation>
     </message>
     <message>
         <source>default</source>
@@ -1340,43 +1212,43 @@
     </message>
     <message>
         <source>none</source>
-        <translation>none</translation>
+        <translation>không có gì</translation>
     </message>
     <message>
         <source>Confirm options reset</source>
-        <translation>Confirm options reset</translation>
+        <translation>Confirm tùy chọn reset</translation>
     </message>
     <message>
         <source>Client restart required to activate changes.</source>
-        <translation>Client restart required to activate changes.</translation>
+        <translation>Client yêu cầu khởi động lại để thay đổi có hiệu lực.</translation>
     </message>
     <message>
         <source>Client will be shut down. Do you want to proceed?</source>
-        <translation>Client will be shut down. Do you want to proceed?</translation>
+        <translation>Client sẽ đóng lại. Tiếp tục chứ?</translation>
     </message>
     <message>
         <source>Configuration options</source>
-        <translation>Configuration options</translation>
+        <translation>Tùy chọn cấu hình</translation>
     </message>
     <message>
         <source>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</source>
-        <translation>The configuration file is used to specify advanced user options which override GUI settings. Additionally, any command-line options will override this configuration file.</translation>
+        <translation>File cấu hình được sử dụng để chỉ định các tùy chọn nâng cao của người dùng mà ghi đè GUI settings. Ngoài ra, bất kỳ tùy chọn dòng lệnh sẽ ghi đè lên tập tin cấu hình này.</translation>
     </message>
     <message>
         <source>Error</source>
-        <translation>Error</translation>
+        <translation>Lỗi</translation>
     </message>
     <message>
         <source>The configuration file could not be opened.</source>
-        <translation>The configuration file could not be opened.</translation>
+        <translation>Không thẻ mở tệp cấu hình.</translation>
     </message>
     <message>
         <source>This change would require a client restart.</source>
-        <translation>This change would require a client restart.</translation>
+        <translation>Việc change này sẽ cần một client restart.</translation>
     </message>
     <message>
         <source>The supplied proxy address is invalid.</source>
-        <translation>The supplied proxy address is invalid.</translation>
+        <translation>Cung cấp proxy address thì invalid.</translation>
     </message>
 </context>
 <context>
@@ -1387,71 +1259,71 @@
     </message>
     <message>
         <source>The displayed information may be out of date. Your wallet automatically synchronizes with the Eleccoin network after a connection is established, but this process has not completed yet.</source>
-        <translation>The displayed information may be out of date. Your Wallet automatically synchronises with the Eleccoin Network after a connection is established, but this process has not been completed yet.</translation>
+        <translation>Thông tin được hiển thị có thể đã lỗi thời. Cái wallet tự động đồng bộ với Eleccoin network sau một connection được thiết lập, nhưng quá trình này vẫn chưa completed yet.</translation>
     </message>
     <message>
         <source>Watch-only:</source>
-        <translation>Watch-only:</translation>
+        <translation>Chỉ-xem:</translation>
     </message>
     <message>
         <source>Available:</source>
-        <translation>Available:</translation>
+        <translation>Có hiệu lực:</translation>
     </message>
     <message>
         <source>Your current spendable balance</source>
-        <translation>Your current spendable balance</translation>
+        <translation>Số dư khả dụng:</translation>
     </message>
     <message>
         <source>Pending:</source>
-        <translation>Pending:</translation>
+        <translation>Đang xử lý:</translation>
     </message>
     <message>
         <source>Total of transactions that have yet to be confirmed, and do not yet count toward the spendable balance</source>
-        <translation>Total of transactions that have yet to be confirmed, and do not yet count toward the spendable balance</translation>
+        <translation>Tất cả giao dịch vẫn chưa được confirmed, và chưa tính vào số dư có thể chi tiêu</translation>
     </message>
     <message>
         <source>Immature:</source>
-        <translation>Immature:</translation>
+        <translation>Chưa hoàn thiện:</translation>
     </message>
     <message>
         <source>Mined balance that has not yet matured</source>
-        <translation>Mined balance that has not yet matured</translation>
+        <translation>Mined balance chưa matured hẳn</translation>
     </message>
     <message>
         <source>Balances</source>
-        <translation>Balances</translation>
+        <translation>Số dư</translation>
     </message>
     <message>
         <source>Total:</source>
-        <translation>Total:</translation>
+        <translation>Tổng cộng:</translation>
     </message>
     <message>
         <source>Your current total balance</source>
-        <translation>Your current total balance</translation>
+        <translation>Tổng số dư hiện tại</translation>
     </message>
     <message>
         <source>Your current balance in watch-only addresses</source>
-        <translation>Your current balance in watch-only addresses</translation>
+        <translation>Số dư hiện tại trong địa chỉ watch-only</translation>
     </message>
     <message>
         <source>Spendable:</source>
-        <translation>Spendable:</translation>
+        <translation>Có thể sử dụng</translation>
     </message>
     <message>
         <source>Recent transactions</source>
-        <translation>Recent transactions</translation>
+        <translation>Giao dịch gần đây</translation>
     </message>
     <message>
         <source>Unconfirmed transactions to watch-only addresses</source>
-        <translation>Unconfirmed transactions to watch-only addresses</translation>
+        <translation>Giao dịch chưa được xác nhận đến watch-only addresses</translation>
     </message>
     <message>
         <source>Mined balance in watch-only addresses that has not yet matured</source>
-        <translation>Mined balance in watch-only addresses that has not yet matured</translation>
+        <translation>Mined số dư trong watch-only address chưa matured hẳn</translation>
     </message>
     <message>
         <source>Current total balance in watch-only addresses</source>
-        <translation>Current total balance in watch-only addresses</translation>
+        <translation>Tổng số dư hiện tại trong watch-only addresses</translation>
     </message>
 </context>
 <context>
@@ -1462,7 +1334,7 @@
     </message>
     <message>
         <source>Cannot start eleccoin: click-to-pay handler</source>
-        <translation>Cannot start Eleccoin: click-to-pay handler</translation>
+        <translation>Không thể khởi tạo eleccoin: click-to-pay handler</translation>
     </message>
     <message>
         <source>URI handling</source>
@@ -1470,19 +1342,7 @@
     </message>
     <message>
         <source>'eleccoin://' is not a valid URI. Use 'eleccoin:' instead.</source>
-        <translation>'eleccoin://' is not a valid URI. Use 'eleccoin:' instead.</translation>
-    </message>
-    <message>
-        <source>Cannot process payment request because BIP70 is not supported.</source>
-        <translation>Cannot process payment request because BIP70 is not supported.</translation>
-    </message>
-    <message>
-        <source>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</source>
-        <translation>Due to widespread security flaws in BIP70 it's strongly recommended that any merchant instructions to switch wallets be ignored.</translation>
-    </message>
-    <message>
-        <source>If you are receiving this error you should request the merchant provide a BIP21 compatible URI.</source>
-        <translation>If you are receiving this error you should request the merchant provide a BIP21 compatible URI.</translation>
+        <translation>'eleccoin://' không khả dụng URI. Dùng thay vì 'eleccoin:' .</translation>
     </message>
     <message>
         <source>Invalid payment address %1</source>
@@ -1490,26 +1350,26 @@
     </message>
     <message>
         <source>URI cannot be parsed! This can be caused by an invalid Eleccoin address or malformed URI parameters.</source>
-        <translation>URI cannot be parsed! This can be caused by an invalid Eleccoin address or malformed URI parameters.</translation>
+        <translation>URI không thể phân tích cú pháp! Đây có thể gây nên bởi invalid Eleccoin address hoặc URI không đúng định dạng tham số.</translation>
     </message>
     <message>
         <source>Payment request file handling</source>
-        <translation>Payment request file handling</translation>
+        <translation>Payment request file đang xử lý</translation>
     </message>
 </context>
 <context>
     <name>PeerTableModel</name>
     <message>
         <source>User Agent</source>
-        <translation>User Agent</translation>
+        <translation>User Đặc Vụ</translation>
     </message>
     <message>
         <source>Node/Service</source>
-        <translation>Node/Service</translation>
+        <translation>Node/Dịch vụ</translation>
     </message>
     <message>
         <source>NodeId</source>
-        <translation>NodeId</translation>
+        <translation>NodeID</translation>
     </message>
     <message>
         <source>Ping</source>
@@ -1517,22 +1377,22 @@
     </message>
     <message>
         <source>Sent</source>
-        <translation>Sent</translation>
+        <translation>Gửi</translation>
     </message>
     <message>
         <source>Received</source>
-        <translation>Received</translation>
+        <translation>Nhận</translation>
     </message>
 </context>
 <context>
     <name>QObject</name>
     <message>
         <source>Amount</source>
-        <translation>Amount</translation>
+        <translation>Số lượng</translation>
     </message>
     <message>
         <source>Enter a Eleccoin address (e.g. %1)</source>
-        <translation>Enter a Eleccoin address (e.g. %1)</translation>
+        <translation>Nhập một Eleccoin address (e.g. %1)</translation>
     </message>
     <message>
         <source>%1 d</source>
@@ -1540,15 +1400,15 @@
     </message>
     <message>
         <source>%1 h</source>
-        <translation>%1 h</translation>
+        <translation>%1 giờ</translation>
     </message>
     <message>
         <source>%1 m</source>
-        <translation>%1 m</translation>
+        <translation>%1 phút</translation>
     </message>
     <message>
         <source>%1 s</source>
-        <translation>%1 s</translation>
+        <translation>%1 giây</translation>
     </message>
     <message>
         <source>None</source>
@@ -1564,31 +1424,31 @@
     </message>
     <message numerus="yes">
         <source>%n second(s)</source>
-        <translation><numerusform>%n second</numerusform><numerusform>%n seconds</numerusform></translation>
+        <translation><numerusform>%n giây</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n minute(s)</source>
-        <translation><numerusform>%n minute</numerusform><numerusform>%n minutes</numerusform></translation>
+        <translation><numerusform>%n phút</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n hour(s)</source>
-        <translation><numerusform>%n hour</numerusform><numerusform>%n hours</numerusform></translation>
+        <translation><numerusform>%n giờ</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n day(s)</source>
-        <translation><numerusform>%n day</numerusform><numerusform>%n days</numerusform></translation>
+        <translation><numerusform>%n ngày</numerusform></translation>
     </message>
     <message numerus="yes">
         <source>%n week(s)</source>
-        <translation><numerusform>%n week</numerusform><numerusform>%n weeks</numerusform></translation>
+        <translation><numerusform>%n tuần</numerusform></translation>
     </message>
     <message>
         <source>%1 and %2</source>
-        <translation>%1 and %2</translation>
+        <translation>%1 và %2</translation>
     </message>
     <message numerus="yes">
         <source>%n year(s)</source>
-        <translation><numerusform>%n year</numerusform><numerusform>%n years</numerusform></translation>
+        <translation><numerusform>%n năm</numerusform></translation>
     </message>
     <message>
         <source>%1 B</source>
@@ -1608,11 +1468,11 @@
     </message>
     <message>
         <source>Error: Specified data directory "%1" does not exist.</source>
-        <translation>Error: Specified data directory "%1" does not exist.</translation>
+        <translation>Error: Xác định data directory "%1" không tồn tại.</translation>
     </message>
     <message>
         <source>Error: Cannot parse configuration file: %1.</source>
-        <translation>Error: Cannot parse configuration file: %1.</translation>
+        <translation>Lỗi: không thể  phân giải tệp cài đặt cấu hình: %1.</translation>
     </message>
     <message>
         <source>Error: %1</source>
@@ -1620,7 +1480,7 @@
     </message>
     <message>
         <source>%1 didn't yet exit safely...</source>
-        <translation>%1 didn't exit safely yet ...</translation>
+        <translation>%1 vẫn chưa thoát an toàn...</translation>
     </message>
     <message>
         <source>unknown</source>
@@ -1631,27 +1491,27 @@
     <name>QRImageWidget</name>
     <message>
         <source>&amp;Save Image...</source>
-        <translation>&amp;Save Image ...</translation>
+        <translation>&amp;Lưu ảnh...</translation>
     </message>
     <message>
         <source>&amp;Copy Image</source>
-        <translation>&amp;Copy Image</translation>
+        <translation>&amp;Sao chép ảnh</translation>
     </message>
     <message>
         <source>Resulting URI too long, try to reduce the text for label / message.</source>
-        <translation>Resulting URI too long, try to reduce the text for label / message.</translation>
+        <translation>Đang tính toán URI quá dài, cố gắng giảm text cho label / message.</translation>
     </message>
     <message>
         <source>Error encoding URI into QR Code.</source>
-        <translation>Error encoding URI into QR Code.</translation>
+        <translation>Error đang mã hóa URI đến QR Code.</translation>
     </message>
     <message>
         <source>QR code support not available.</source>
-        <translation>QR code support not available.</translation>
+        <translation>Sự hổ trợ mã QR không sẵn có</translation>
     </message>
     <message>
         <source>Save QR Code</source>
-        <translation>Save QR Code</translation>
+        <translation>Lưu QR Code</translation>
     </message>
     <message>
         <source>PNG Image (*.png)</source>
@@ -1670,15 +1530,15 @@
     </message>
     <message>
         <source>&amp;Information</source>
-        <translation>&amp;Information</translation>
+        <translation>&amp;Thông tin</translation>
     </message>
     <message>
         <source>General</source>
-        <translation>General</translation>
+        <translation>Tổng thể</translation>
     </message>
     <message>
         <source>Using BerkeleyDB version</source>
-        <translation>Using BerkeleyDB version</translation>
+        <translation>Sử dụng phiên bản BerkeleyDB</translation>
     </message>
     <message>
         <source>Datadir</source>
@@ -1686,31 +1546,31 @@
     </message>
     <message>
         <source>To specify a non-default location of the data directory use the '%1' option.</source>
-        <translation>To specify a non-default location of the data directory use the '%1' option.</translation>
+        <translation>Để chỉ ra một nơi không mặt định của thư mục dữ liệu hãy dùng tùy chọn '%1'</translation>
     </message>
     <message>
         <source>Blocksdir</source>
-        <translation>Blocksdir</translation>
+        <translation>Thư mục chứa các khối Blocksdir</translation>
     </message>
     <message>
         <source>To specify a non-default location of the blocks directory use the '%1' option.</source>
-        <translation>To specify a non-default location of the blocks directory use the '%1' option.</translation>
+        <translation>Để chỉ ra một nơi không mặt định của thư mục các khối hãy dùng tùy chọn '%1'</translation>
     </message>
     <message>
         <source>Startup time</source>
-        <translation>Start up time</translation>
+        <translation>Startup lúc</translation>
     </message>
     <message>
         <source>Network</source>
-        <translation>Network</translation>
+        <translation>Mạng</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation>Name</translation>
+        <translation>Tên</translation>
     </message>
     <message>
         <source>Number of connections</source>
-        <translation>Number of connections</translation>
+        <translation>Số lượng connections</translation>
     </message>
     <message>
         <source>Block chain</source>
@@ -1718,27 +1578,27 @@
     </message>
     <message>
         <source>Current number of blocks</source>
-        <translation>Current number of blocks</translation>
+        <translation>Số blocks hiện tại</translation>
     </message>
     <message>
         <source>Memory Pool</source>
-        <translation>Memory Pool</translation>
+        <translation>Pool Bộ Nhớ</translation>
     </message>
     <message>
         <source>Current number of transactions</source>
-        <translation>Current number of transactions</translation>
+        <translation>Số giao dịch hiện tại</translation>
     </message>
     <message>
         <source>Memory usage</source>
-        <translation>Memory usage</translation>
+        <translation>Bộ nhớ usage</translation>
     </message>
     <message>
         <source>Wallet: </source>
-        <translation>Wallet:</translation>
+        <translation>Ví :</translation>
     </message>
     <message>
         <source>(none)</source>
-        <translation>(none)</translation>
+        <translation>(không)</translation>
     </message>
     <message>
         <source>&amp;Reset</source>
@@ -1746,11 +1606,11 @@
     </message>
     <message>
         <source>Received</source>
-        <translation>Received</translation>
+        <translation>Nhận</translation>
     </message>
     <message>
         <source>Sent</source>
-        <translation>Sent</translation>
+        <translation>Gửi</translation>
     </message>
     <message>
         <source>&amp;Peers</source>
@@ -1758,11 +1618,11 @@
     </message>
     <message>
         <source>Banned peers</source>
-        <translation>Banned peers</translation>
+        <translation>Bị khóa peers</translation>
     </message>
     <message>
         <source>Select a peer to view detailed information.</source>
-        <translation>Select a peer to view detailed information.</translation>
+        <translation>Chọn một peer để xem thông tin chi tiết.</translation>
     </message>
     <message>
         <source>Whitelisted</source>
@@ -1774,67 +1634,55 @@
     </message>
     <message>
         <source>Version</source>
-        <translation>Version</translation>
+        <translation>Phiên bản</translation>
     </message>
     <message>
         <source>Starting Block</source>
-        <translation>Starting Block</translation>
+        <translation>Block Bắt Đầu</translation>
     </message>
     <message>
         <source>Synced Headers</source>
-        <translation>Synced Headers</translation>
+        <translation>Headers đã được đồng bộ</translation>
     </message>
     <message>
         <source>Synced Blocks</source>
-        <translation>Synced Blocks</translation>
-    </message>
-    <message>
-        <source>The mapped Autonomous System used for diversifying peer selection.</source>
-        <translation>The mapped Autonomous System used for diversifying peer selection.</translation>
-    </message>
-    <message>
-        <source>Mapped AS</source>
-        <translation>Mapeado como</translation>
+        <translation>Blocks đã được đồng bộ</translation>
     </message>
     <message>
         <source>User Agent</source>
-        <translation>User Agent</translation>
-    </message>
-    <message>
-        <source>Node window</source>
-        <translation>Node window</translation>
+        <translation>User đặc vụ</translation>
     </message>
     <message>
         <source>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</source>
-        <translation>Open the %1 debug log file from the current data directory. This can take a few seconds for large log files.</translation>
+        <translation>Mở cái %1 debug log file từ danh mục dữ liệu hiện tại. Điều này cần vài giây cho large log files.</translation>
     </message>
     <message>
         <source>Decrease font size</source>
-        <translation>Decrease font size</translation>
+        <translation>Giảm font size</translation>
     </message>
     <message>
         <source>Increase font size</source>
-        <translation>Increase font size</translation>
+        <translation>Tăng font size</translation>
     </message>
     <message>
         <source>Services</source>
-        <translation>Services</translation>
+        <translation>Dịch vụ</translation>
     </message>
     <message>
         <source>Ban Score</source>
-        <translation>Ban Score</translation>
+        <translation>Cấm Score</translation>
     </message>
     <message>
         <source>Connection Time</source>
-        <translation>Connection Time</translation>
+        <translation>Connection Thời Gian</translation>
     </message>
     <message>
         <source>Last Send</source>
-        <translation>Last Send</translation>
+        <translation>Gửi Sau Cùng</translation>
     </message>
     <message>
         <source>Last Receive</source>
-        <translation>Last Receive</translation>
+        <translation>Nhận Sau Cùng</translation>
     </message>
     <message>
         <source>Ping Time</source>
@@ -1842,23 +1690,23 @@
     </message>
     <message>
         <source>The duration of a currently outstanding ping.</source>
-        <translation>The duration of a currently outstanding ping.</translation>
+        <translation>Thời hạn của một ping hiện đang nổi trội.</translation>
     </message>
     <message>
         <source>Ping Wait</source>
-        <translation>Ping Wait</translation>
+        <translation>Ping Chờ</translation>
     </message>
     <message>
         <source>Min Ping</source>
-        <translation>Min Ping</translation>
+        <translation>Ping Nhỏ Nhất</translation>
     </message>
     <message>
         <source>Time Offset</source>
-        <translation>Time Offset</translation>
+        <translation>Thời gian Offset</translation>
     </message>
     <message>
         <source>Last block time</source>
-        <translation>Last block time</translation>
+        <translation>Thời gian block cuối cùng</translation>
     </message>
     <message>
         <source>&amp;Open</source>
@@ -1866,7 +1714,7 @@
     </message>
     <message>
         <source>&amp;Console</source>
-        <translation>&amp;Console</translation>
+        <translation>&amp;BangDieuKhien</translation>
     </message>
     <message>
         <source>&amp;Network Traffic</source>
@@ -1886,11 +1734,11 @@
     </message>
     <message>
         <source>Debug log file</source>
-        <translation>Debug log file</translation>
+        <translation>Debug file log</translation>
     </message>
     <message>
         <source>Clear console</source>
-        <translation>Clear console</translation>
+        <translation>Xóa console</translation>
     </message>
     <message>
         <source>1 &amp;hour</source>
@@ -1930,15 +1778,15 @@
     </message>
     <message>
         <source>Type %1 for an overview of available commands.</source>
-        <translation>Type %1 for an overview of available commands.</translation>
+        <translation>Nhậ p %1 để biết tổng quan về các lệnh có sẵn.</translation>
     </message>
     <message>
         <source>For more information on using this console type %1.</source>
-        <translation>For more information on using this console type %1.</translation>
+        <translation>Để biết thêm thông tin về việc sử dụng bảng điều khiển này, hãy nhập %1.</translation>
     </message>
     <message>
         <source>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</source>
-        <translation>WARNING: Scammers have been active, telling users to type commands here and stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</translation>
+        <translation>WARNING: Scammers have been active, telling users to type commands here, stealing their wallet contents. Do not use this console without fully understanding the ramifications of a command.</translation>
     </message>
     <message>
         <source>Network activity disabled</source>
@@ -1946,11 +1794,11 @@
     </message>
     <message>
         <source>Executing command without any wallet</source>
-        <translation>Executing command without any wallet</translation>
+        <translation>Đang chạy lệnh khi không có ví nào</translation>
     </message>
     <message>
         <source>Executing command using "%1" wallet</source>
-        <translation>Executing command using "%1" wallet</translation>
+        <translation>Chạy lệnh bằng ví "%1"</translation>
     </message>
     <message>
         <source>(node id: %1)</source>
@@ -1962,7 +1810,7 @@
     </message>
     <message>
         <source>never</source>
-        <translation>never</translation>
+        <translation>không bao giờ</translation>
     </message>
     <message>
         <source>Inbound</source>
@@ -1982,7 +1830,7 @@
     </message>
     <message>
         <source>Unknown</source>
-        <translation>Unknown</translation>
+        <translation>Không biết</translation>
     </message>
 </context>
 <context>
@@ -2001,83 +1849,67 @@
     </message>
     <message>
         <source>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Eleccoin network.</source>
-        <translation>An optional message to attach to the payment request, which will be displayed when the request is opened. Note: The message will not be sent with the payment over the Eleccoin network.</translation>
+        <translation>Một optional lời nhắn để đính kèm đến payment request, cái mà sẽ được hiển thị khi mà request đang mở. Lưu ý: Tin nhắn này sẽ không được gửi với payment over the Eleccoin network.</translation>
     </message>
     <message>
         <source>An optional label to associate with the new receiving address.</source>
-        <translation>An optional label to associate with the new receiving address.</translation>
+        <translation>Một optional label để liên kết với address đang nhận mới.</translation>
     </message>
     <message>
         <source>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</source>
-        <translation>Use this form to request payments. All fields are &lt;b&gt;optional&lt;/b&gt;.</translation>
+        <translation>Sử dụng form cho request thanh toán. Tất cả chỗ trống là &lt;b&gt;optional&lt;/b&gt;.</translation>
     </message>
     <message>
         <source>An optional amount to request. Leave this empty or zero to not request a specific amount.</source>
-        <translation>An optional amount to request. Leave this empty or zero to not request a specific amount.</translation>
-    </message>
-    <message>
-        <source>An optional label to associate with the new receiving address (used by you to identify an invoice).  It is also attached to the payment request.</source>
-        <translation>An optional label to associate with the new receiving address (used by you to identify an invoice).  It is also attached to the payment request.</translation>
-    </message>
-    <message>
-        <source>An optional message that is attached to the payment request and may be displayed to the sender.</source>
-        <translation>An optional message that is attached to the payment request and may be displayed to the sender.</translation>
+        <translation>Một optional giá trị để request. Để lại đây khoảng trống hoặc zero để không request một giá trị xác định.</translation>
     </message>
     <message>
         <source>&amp;Create new receiving address</source>
-        <translation>&amp;Create new receiving address</translation>
+        <translation>&amp;Tạo địa chỉ nhận mới</translation>
     </message>
     <message>
         <source>Clear all fields of the form.</source>
-        <translation>Clear all fields of the form.</translation>
+        <translation>Xóa hết các khoảng trống của form.</translation>
     </message>
     <message>
         <source>Clear</source>
-        <translation>Clear</translation>
-    </message>
-    <message>
-        <source>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</source>
-        <translation>Native segwit addresses (aka Bech32 or BIP-173) reduce your transaction fees later on and offer better protection against typos, but old wallets don't support them. When unchecked, an address compatible with older wallets will be created instead.</translation>
-    </message>
-    <message>
-        <source>Generate native segwit (Bech32) address</source>
-        <translation>Generate native segwit (Bech32) address</translation>
+        <translation>Xóa</translation>
     </message>
     <message>
         <source>Requested payments history</source>
-        <translation>Requested payments history</translation>
+        <translation>Yêu cầu lịch sử giao dịch</translation>
     </message>
     <message>
         <source>Show the selected request (does the same as double clicking an entry)</source>
-        <translation>Show the selected request (does the same as double clicking an entry)</translation>
+        <translation>Hiển thị request đã chọn (does the same as double clicking an entry)</translation>
     </message>
     <message>
         <source>Show</source>
-        <translation>Show</translation>
+        <translation>Hiển thị</translation>
     </message>
     <message>
         <source>Remove the selected entries from the list</source>
-        <translation>Remove the selected entries from the list</translation>
+        <translation>Xóa bỏ mục đang chọn từ danh sách</translation>
     </message>
     <message>
         <source>Remove</source>
-        <translation>Remove</translation>
+        <translation>Gỡ bỏ</translation>
     </message>
     <message>
         <source>Copy URI</source>
-        <translation>Copy URI</translation>
+        <translation>Sao chép URI</translation>
     </message>
     <message>
         <source>Copy label</source>
-        <translation>Copy label</translation>
+        <translation>Sao chép nhãn</translation>
     </message>
     <message>
         <source>Copy message</source>
-        <translation>Copy message</translation>
+        <translation>Sao chép tin nhắn</translation>
     </message>
     <message>
         <source>Copy amount</source>
-        <translation>Copy amount</translation>
+        <translation>Sao chép số lượng</translation>
     </message>
 </context>
 <context>
@@ -2088,23 +1920,23 @@
     </message>
     <message>
         <source>Copy &amp;URI</source>
-        <translation>Copy &amp;URI</translation>
+        <translation>Sao chép &amp;URI</translation>
     </message>
     <message>
         <source>Copy &amp;Address</source>
-        <translation>Copy &amp;Address</translation>
+        <translation>Sao chép địa chỉ</translation>
     </message>
     <message>
         <source>&amp;Save Image...</source>
-        <translation>&amp;Save Image ...</translation>
+        <translation>&amp;Lưu ảnh...</translation>
     </message>
     <message>
         <source>Request payment to %1</source>
-        <translation>Request payment to %1</translation>
+        <translation>Request payment đến %1</translation>
     </message>
     <message>
         <source>Payment information</source>
-        <translation>Payment information</translation>
+        <translation>Payment thông tin</translation>
     </message>
     <message>
         <source>URI</source>
@@ -2112,81 +1944,81 @@
     </message>
     <message>
         <source>Address</source>
-        <translation>Address</translation>
+        <translation>Địa chỉ</translation>
     </message>
     <message>
         <source>Amount</source>
-        <translation>Amount</translation>
+        <translation>Số lượng</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation>Label</translation>
+        <translation>Nhãn</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation>Message</translation>
+        <translation>Tin nhắn</translation>
     </message>
     <message>
         <source>Wallet</source>
-        <translation>Wallet</translation>
+        <translation>Ví</translation>
     </message>
 </context>
 <context>
     <name>RecentRequestsTableModel</name>
     <message>
         <source>Date</source>
-        <translation>Date</translation>
+        <translation>Ngày</translation>
     </message>
     <message>
         <source>Label</source>
-        <translation>Label</translation>
+        <translation>Nhãn</translation>
     </message>
     <message>
         <source>Message</source>
-        <translation>Message</translation>
+        <translation>Tin nhắn</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(no label)</translation>
+        <translation>(không nhãn)</translation>
     </message>
     <message>
         <source>(no message)</source>
-        <translation>(no message)</translation>
+        <translation>(no tin nhắn)</translation>
     </message>
     <message>
         <source>(no amount requested)</source>
-        <translation>(no amount requested)</translation>
+        <translation>(không amount yêu cầu)</translation>
     </message>
     <message>
         <source>Requested</source>
-        <translation>Requested</translation>
+        <translation>Đã yêu cầu</translation>
     </message>
 </context>
 <context>
     <name>SendCoinsDialog</name>
     <message>
         <source>Send Coins</source>
-        <translation>Send Coins</translation>
+        <translation>Gửi Coins</translation>
     </message>
     <message>
         <source>Coin Control Features</source>
-        <translation>Coin Control Features</translation>
+        <translation>Coin Control Tính-năng</translation>
     </message>
     <message>
         <source>Inputs...</source>
-        <translation>Inputs ...</translation>
+        <translation>Đang nhập...</translation>
     </message>
     <message>
         <source>automatically selected</source>
-        <translation>automatically selected</translation>
+        <translation>được chọn một cách hoàn toàn tự động</translation>
     </message>
     <message>
         <source>Insufficient funds!</source>
-        <translation>Insufficient funds!</translation>
+        <translation>Không đủ tiền kìa!</translation>
     </message>
     <message>
         <source>Quantity:</source>
-        <translation>Quantity:</translation>
+        <translation>Số lượng:</translation>
     </message>
     <message>
         <source>Bytes:</source>
@@ -2194,23 +2026,23 @@
     </message>
     <message>
         <source>Amount:</source>
-        <translation>Amount:</translation>
+        <translation>Số lượng:</translation>
     </message>
     <message>
         <source>Fee:</source>
-        <translation>Fee:</translation>
+        <translation>Phí:</translation>
     </message>
     <message>
         <source>After Fee:</source>
-        <translation>After Fee:</translation>
+        <translation>Sau Phí:</translation>
     </message>
     <message>
         <source>Change:</source>
-        <translation>Change:</translation>
+        <translation>Thay đổi:</translation>
     </message>
     <message>
         <source>If this is activated, but the change address is empty or invalid, change will be sent to a newly generated address.</source>
-        <translation>If this is activated, but the change address is empty or invalid, change will be sent to a newly generated address.</translation>
+        <translation>Nếu cái này được bật, nhưng việc change address thì trống hoặc invalid, change sẽ được gửi cho một address vừa được tạo mới.</translation>
     </message>
     <message>
         <source>Custom change address</source>
@@ -2222,35 +2054,35 @@
     </message>
     <message>
         <source>Choose...</source>
-        <translation>Choose ...</translation>
+        <translation>Chọn...</translation>
     </message>
     <message>
         <source>Using the fallbackfee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</source>
-        <translation>Using the fallback fee can result in sending a transaction that will take several hours or days (or never) to confirm. Consider choosing your fee manually or wait until you have validated the complete chain.</translation>
+        <translation>Sử dụng fallbackfee có thể dẫn đến hết quả đang gửi một transaction mà nó sẽ mất hàng giờ hoặc ngày (hoặc chẳng bao giờ) được confirm. Suy nghĩ chọn fee của bạn bình thường hoặc chờ cho đến khi validated hoàn thành chain.</translation>
     </message>
     <message>
         <source>Warning: Fee estimation is currently not possible.</source>
-        <translation>Warning: Fee estimation is currently not possible.</translation>
+        <translation>Warning: Fee ước tính hiện tại không khả thi.</translation>
     </message>
     <message>
         <source>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
 
 Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 electrons.</source>
-        <translation>Specify a custom fee per kB (1,000 bytes) of the transaction's virtual size.
+        <translation>Chỉ định một khoản phí tùy chỉnh cho mỗi kB (1.000 byte) kích thước ảo của giao dịch.
 
-Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 electrons.</translation>
+Lưu ý: Vì phí được tính trên cơ sở mỗi byte, nên phí "100 electron trên mỗi kB" cho kích thước giao dịch là 500 byte (một nửa của 1 kB) cuối cùng sẽ mang lại một khoản phí chỉ 50 electron.</translation>
     </message>
     <message>
         <source>per kilobyte</source>
-        <translation>per kilobyte</translation>
+        <translation>trên mỗi kilobyte</translation>
     </message>
     <message>
         <source>Hide</source>
-        <translation>Hide</translation>
+        <translation>Ẩn</translation>
     </message>
     <message>
         <source>Recommended:</source>
-        <translation>Recommended:</translation>
+        <translation>Khuyên dùng:</translation>
     </message>
     <message>
         <source>Custom:</source>
@@ -2258,11 +2090,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>(Smart fee not initialized yet. This usually takes a few blocks...)</source>
-        <translation>(Smart fee not initialised yet. This usually takes a few blocks ...)</translation>
+        <translation>(Thông minh fee vẫn chưa được khởi tạo. Điều này thường mất vài blocks...)</translation>
     </message>
     <message>
         <source>Send to multiple recipients at once</source>
-        <translation>Send to multiple recipients at once</translation>
+        <translation>Gửi đến tập thể người nhận một lần</translation>
     </message>
     <message>
         <source>Add &amp;Recipient</source>
@@ -2270,35 +2102,31 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Clear all fields of the form.</source>
-        <translation>Clear all fields of the form.</translation>
+        <translation>Xóa hết các khoảng trống của form.</translation>
     </message>
     <message>
         <source>Dust:</source>
-        <translation>Dust:</translation>
-    </message>
-    <message>
-        <source>Hide transaction fee settings</source>
-        <translation>Hide transaction fee settings</translation>
+        <translation>Rác:</translation>
     </message>
     <message>
         <source>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for eleccoin transactions than the network can process.</source>
-        <translation>When there is less transaction volume than space in the blocks, miners as well as relaying nodes may enforce a minimum fee. Paying only this minimum fee is just fine, but be aware that this can result in a never confirming transaction once there is more demand for eleccoin transactions than the network can process.</translation>
+        <translation>Khi có khối lượng giao dịch ít hơn chổ trống trong các khối, các nhà đào mỏ cũng như các nút chuyển tiếp có thể thực thi chỉ với một khoản phí tối thiểu. Chỉ trả khoản phí tối thiểu này là tốt, nhưng lưu ý rằng điều này có thể dẫn đến một giao dịch không bao giờ xác nhận một khi có nhu cầu giao dịch eleccoin nhiều hơn khả năng mạng có thể xử lý.</translation>
     </message>
     <message>
         <source>A too low fee might result in a never confirming transaction (read the tooltip)</source>
-        <translation>A too low fee might result in a never-confirming transaction (read the tooltip)</translation>
+        <translation>Một khoản phí quá thấp có thể dẫn đến một giao dịch không bao giờ xác nhận (đọc chú giải công cụ)</translation>
     </message>
     <message>
         <source>Confirmation time target:</source>
-        <translation>Confirmation time target:</translation>
+        <translation>Thời gian xác nhận đối tượng:</translation>
     </message>
     <message>
         <source>Enable Replace-By-Fee</source>
-        <translation>Enable Replace-By-Fee</translation>
+        <translation>Kích hoạt  Phí thay thế</translation>
     </message>
     <message>
         <source>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</source>
-        <translation>With Replace-By-Fee (BIP-125) you can increase a transaction's fee after it is sent. Without this, a higher fee may be recommended to compensate for increased transaction delay risk.</translation>
+        <translation>Với Phí thay thế (BIP-125), bạn có thể tăng phí giao dịch sau khi được gửi. Nếu không có điều này, một khoản phí cao hơn có thể được đề xuất để bù đắp cho rủi ro chậm trễ giao dịch tăng lên.</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -2306,11 +2134,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Balance:</source>
-        <translation>Balance:</translation>
+        <translation>Số dư:</translation>
     </message>
     <message>
         <source>Confirm the send action</source>
-        <translation>Confirm the send action</translation>
+        <translation>Confirm hành động gửi</translation>
     </message>
     <message>
         <source>S&amp;end</source>
@@ -2318,79 +2146,63 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Copy quantity</source>
-        <translation>Copy quantity</translation>
+        <translation>Sao chép số lượng</translation>
     </message>
     <message>
         <source>Copy amount</source>
-        <translation>Copy amount</translation>
+        <translation>Sao chép số lượng</translation>
     </message>
     <message>
         <source>Copy fee</source>
-        <translation>Copy fee</translation>
+        <translation>Sao chép phí</translation>
     </message>
     <message>
         <source>Copy after fee</source>
-        <translation>Copy after fee</translation>
+        <translation>Sao chép sau phí</translation>
     </message>
     <message>
         <source>Copy bytes</source>
-        <translation>Copy bytes</translation>
+        <translation>Sao chép bytes</translation>
     </message>
     <message>
         <source>Copy dust</source>
-        <translation>Copy dust</translation>
+        <translation>Sao chép rác</translation>
     </message>
     <message>
         <source>Copy change</source>
-        <translation>Copy change</translation>
+        <translation>Sao chép thay đổi</translation>
     </message>
     <message>
         <source>%1 (%2 blocks)</source>
         <translation>%1 (%2 blocks)</translation>
     </message>
     <message>
-        <source>Cr&amp;eate Unsigned</source>
-        <translation>Cr&amp;eate Unsigned</translation>
-    </message>
-    <message>
-        <source>Creates a Partially Signed Eleccoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Creates a Partially Signed Eleccoin Transaction (PSBT) for use with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</translation>
-    </message>
-    <message>
         <source> from wallet '%1'</source>
-        <translation> from wallet '%1'</translation>
+        <translation>từ ví  '%1'</translation>
     </message>
     <message>
         <source>%1 to '%2'</source>
-        <translation>%1 to '%2'</translation>
+        <translation>%1 tới '%2'</translation>
     </message>
     <message>
         <source>%1 to %2</source>
-        <translation>%1 to %2</translation>
-    </message>
-    <message>
-        <source>Do you want to draft this transaction?</source>
-        <translation>Do you want to draft this transaction?</translation>
+        <translation>%1 đến%2</translation>
     </message>
     <message>
         <source>Are you sure you want to send?</source>
-        <translation>Are you sure you want to send?</translation>
-    </message>
-    <message>
-        <source>Please, review your transaction proposal. This will produce a Partially Signed Eleccoin Transaction (PSBT) which you can copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</source>
-        <translation>Please, review your transaction proposal. This will produce a Partially Signed Eleccoin Transaction (PSBT) which you can copy and then sign with e.g. an offline %1 wallet, or a PSBT-compatible hardware wallet.</translation>
+        <translation>Bạn chắc chắn muốn gửi chứ?</translation>
     </message>
     <message>
         <source>or</source>
-        <translation>or</translation>
+        <translation>hoặc</translation>
     </message>
     <message>
         <source>You can increase the fee later (signals Replace-By-Fee, BIP-125).</source>
-        <translation>You can increase the fee later (signals Replace-By-Fee, BIP-125).</translation>
+        <translation>Bạn có thể tăng phí sau khi gửi( với tín hiệu Phí Thay Thế, BIP-125)</translation>
     </message>
     <message>
         <source>Please, review your transaction.</source>
-        <translation>Please, review your transaction.</translation>
+        <translation>Làm ơn xem xét đánh giá giao dịch của bạn.</translation>
     </message>
     <message>
         <source>Transaction fee</source>
@@ -2398,75 +2210,55 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Not signalling Replace-By-Fee, BIP-125.</source>
-        <translation>Not signalling Replace-By-Fee, BIP-125.</translation>
+        <translation>Không có tín hiệu Phí Thay Thế, BIP-125.</translation>
     </message>
     <message>
         <source>Total Amount</source>
-        <translation>Total Amount</translation>
+        <translation>Tổng số</translation>
     </message>
     <message>
         <source>To review recipient list click "Show Details..."</source>
-        <translation>To review recipient list click "Show Details..."</translation>
+        <translation>Để xem nhận xét người nhận, nhấn "Xem chi tiết..."</translation>
     </message>
     <message>
         <source>Confirm send coins</source>
-        <translation>Confirm send coins</translation>
-    </message>
-    <message>
-        <source>Confirm transaction proposal</source>
-        <translation>Confirm transaction proposal</translation>
-    </message>
-    <message>
-        <source>Copy PSBT to clipboard</source>
-        <translation>Copy PSBT to clipboard</translation>
-    </message>
-    <message>
-        <source>Send</source>
-        <translation>Send</translation>
-    </message>
-    <message>
-        <source>PSBT copied</source>
-        <translation>PSBT copied</translation>
-    </message>
-    <message>
-        <source>Watch-only balance:</source>
-        <translation>Watch-only balance:</translation>
+        <translation>Confirm gửi coins</translation>
     </message>
     <message>
         <source>The recipient address is not valid. Please recheck.</source>
-        <translation>The recipient address is not valid. Please recheck.</translation>
+        <translation>Địa chỉ người nhận address thì không valid. Kiểm tra lại đi.</translation>
     </message>
     <message>
         <source>The amount to pay must be larger than 0.</source>
-        <translation>The amount to pay must be larger than 0.</translation>
+        <translation>Giả trị để pay cần phải lớn hơn 0.</translation>
     </message>
     <message>
         <source>The amount exceeds your balance.</source>
-        <translation>The amount exceeds your balance.</translation>
+        <translation>Số tiền vượt quá số dư của bạn.</translation>
     </message>
     <message>
         <source>The total exceeds your balance when the %1 transaction fee is included.</source>
-        <translation>The total exceeds your balance when the %1 transaction fee is included.</translation>
+        <translation>Tổng số lớn hơn số dư của bạn khi %1 transaction fee được tính vào.</translation>
     </message>
     <message>
         <source>Duplicate address found: addresses should only be used once each.</source>
-        <translation>Duplicate address found: addresses should only be used once each.</translation>
+        <translation>Trùng address được tìm thấy: địa chỉ chỉ nên được dùng một lần.</translation>
     </message>
     <message>
         <source>Transaction creation failed!</source>
-        <translation>Transaction creation failed!</translation>
+        <translation>Transaction khởi tạo thất bại!</translation>
     </message>
     <message>
         <source>A fee higher than %1 is considered an absurdly high fee.</source>
-        <translation>A fee higher than %1 is considered an absurdly high fee.</translation>
+        <translation>Một fee lớn hơn %1 được coi là ngớ ngẩn cao fee.</translation>
     </message>
     <message>
         <source>Payment request expired.</source>
-        <translation>Payment request expired.</translation>
+        <translation>Payment request hết hạn.</translation>
     </message>
     <message numerus="yes">
         <source>Estimated to begin confirmation within %n block(s).</source>
-        <translation><numerusform>Estimated to begin confirmation within %n block.</numerusform><numerusform>Estimated to begin confirmation within %n blocks.</numerusform></translation>
+        <translation><numerusform>Dự kiến bắt đầu xác nhận trong vòng %n blocks.</numerusform></translation>
     </message>
     <message>
         <source>Warning: Invalid Eleccoin address</source>
@@ -2474,7 +2266,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Warning: Unknown change address</source>
-        <translation>Warning: Unknown change address</translation>
+        <translation>Warning: Không biết change address</translation>
     </message>
     <message>
         <source>Confirm custom change address</source>
@@ -2482,11 +2274,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>The address you selected for change is not part of this wallet. Any or all funds in your wallet may be sent to this address. Are you sure?</source>
-        <translation>The address you selected for change is not part of this wallet. Any or all funds in your wallet may be sent to this address. Are you sure?</translation>
+        <translation>The address bạn đã chọn dành cho change thì không phải part of this wallet. Bất kỳ hay tất cả funds in your wallet có thể được gửi đến address này. Bạn chắc chứ?</translation>
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(no label)</translation>
+        <translation>(không nhãn)</translation>
     </message>
 </context>
 <context>
@@ -2505,11 +2297,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Choose previously used address</source>
-        <translation>Choose previously used address</translation>
+        <translation>Chọn mới thì address</translation>
     </message>
     <message>
         <source>The Eleccoin address to send the payment to</source>
-        <translation>The Eleccoin address to send the payment to</translation>
+        <translation>The Eleccoin address để gửi the payment đến</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2517,7 +2309,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Paste address from clipboard</source>
-        <translation>Paste address from clipboard</translation>
+        <translation>Paste address từ clipboard</translation>
     </message>
     <message>
         <source>Alt+P</source>
@@ -2525,85 +2317,81 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Remove this entry</source>
-        <translation>Remove this entry</translation>
-    </message>
-    <message>
-        <source>The amount to send in the selected unit</source>
-        <translation>The amount to send in the selected unit</translation>
+        <translation>Xóa bỏ entry này</translation>
     </message>
     <message>
         <source>The fee will be deducted from the amount being sent. The recipient will receive less eleccoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</source>
-        <translation>The fee will be deducted from the amount being sent. The recipient will receive less eleccoins than you enter in the amount field. If multiple recipients are selected, the fee is split equally.</translation>
+        <translation>The fee sẽ được khấu trừ từ số tiền đang gửi. Người nhận sẽ receive ít eleccoins hơn bạn gõ vào khoảng trống. Nếu nhiều người gửi được chọn, fee sẽ được chia đều.</translation>
     </message>
     <message>
         <source>S&amp;ubtract fee from amount</source>
-        <translation>S&amp;ubtract fee from amount</translation>
+        <translation>S&amp;ubtract fee từ amount</translation>
     </message>
     <message>
         <source>Use available balance</source>
-        <translation>Use available balance</translation>
+        <translation>Sử dụng số dư sẵn có</translation>
     </message>
     <message>
         <source>Message:</source>
-        <translation>Message:</translation>
+        <translation>Tin nhắn:</translation>
     </message>
     <message>
         <source>This is an unauthenticated payment request.</source>
-        <translation>This is an unauthenticated payment request.</translation>
+        <translation>Đây là một chưa được chứng thực payment request.</translation>
     </message>
     <message>
         <source>This is an authenticated payment request.</source>
-        <translation>This is an authenticated payment request.</translation>
+        <translation>Đây là một chưa được chứng thực payment request.</translation>
     </message>
     <message>
         <source>Enter a label for this address to add it to the list of used addresses</source>
-        <translation>Enter a label for this address to add it to the list of used addresses</translation>
+        <translation>Nhập một label cho cái address này để thêm vào danh sách địa chỉ đã sử dụng</translation>
     </message>
     <message>
         <source>A message that was attached to the eleccoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Eleccoin network.</source>
-        <translation>A message that was attached to the eleccoin: URI which will be stored with the transaction for your reference. Note: This message will not be sent over the Eleccoin network.</translation>
+        <translation>Một tin nhắn được đính kèm với số eleccoin: URI mà sẽ được lưu giữ với transaction dành cho tài liệu tham khảo. Lưu ý: Tin nhắn này sẽ không được gửi thông qua Eleccoin network.</translation>
     </message>
     <message>
         <source>Pay To:</source>
-        <translation>Pay To:</translation>
+        <translation>Pay Đến:</translation>
     </message>
     <message>
         <source>Memo:</source>
-        <translation>Memo:</translation>
+        <translation>Bản ghi nhớ:</translation>
     </message>
 </context>
 <context>
     <name>ShutdownWindow</name>
     <message>
         <source>%1 is shutting down...</source>
-        <translation>%1 is shutting down ...</translation>
+        <translation>%1 đang shutting down...</translation>
     </message>
     <message>
         <source>Do not shut down the computer until this window disappears.</source>
-        <translation>Do not shut down the computer until this window disappears.</translation>
+        <translation>Đừng tắt máy tính đến khi cửa sổ này đóng.</translation>
     </message>
 </context>
 <context>
     <name>SignVerifyMessageDialog</name>
     <message>
         <source>Signatures - Sign / Verify a Message</source>
-        <translation>Signatures - Sign / Verify a Message</translation>
+        <translation>Chữ ký - Sign / Verify a Message</translation>
     </message>
     <message>
         <source>&amp;Sign Message</source>
-        <translation>&amp;Sign Message</translation>
+        <translation>&amp;Sign Tin nhắn</translation>
     </message>
     <message>
         <source>You can sign messages/agreements with your addresses to prove you can receive eleccoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</source>
-        <translation>You can sign messages/agreements with your addresses to prove you can receive eleccoins sent to them. Be careful not to sign anything vague or random, as phishing attacks may try to trick you into signing your identity over to them. Only sign fully-detailed statements you agree to.</translation>
+        <translation>Bạn có thể ký/đồng ý với địa chỉ chứng minh bạn có thể receive eleccoins đã gửi đến chúng. Cẩn thận không ký bất cứ không rõ hay random, như các cuộc tấn công lừa đảo có thể cố lừa bạn ký tên vào danh tính của bạn.. Chỉ ký các bản tuyên bố hoàn chỉnh mà bạn đồng ý.</translation>
     </message>
     <message>
         <source>The Eleccoin address to sign the message with</source>
-        <translation>The Eleccoin address to sign the message with</translation>
+        <translation>The Eleccoin address để ký với tin nhắn</translation>
     </message>
     <message>
         <source>Choose previously used address</source>
-        <translation>Choose previously used address</translation>
+        <translation>Chọn mới thì address</translation>
     </message>
     <message>
         <source>Alt+A</source>
@@ -2611,7 +2399,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Paste address from clipboard</source>
-        <translation>Paste address from clipboard</translation>
+        <translation>Paste address từ clipboard</translation>
     </message>
     <message>
         <source>Alt+P</source>
@@ -2619,7 +2407,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Enter the message you want to sign here</source>
-        <translation>Enter the message you want to sign here</translation>
+        <translation>Nhập tin nhắn bạn muốn ký tại đây</translation>
     </message>
     <message>
         <source>Signature</source>
@@ -2627,11 +2415,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Copy the current signature to the system clipboard</source>
-        <translation>Copy the current signature to the system clipboard</translation>
+        <translation>Copy hiện tại signature tới system clipboard</translation>
     </message>
     <message>
         <source>Sign the message to prove you own this Eleccoin address</source>
-        <translation>Sign the message to prove you own this Eleccoin address</translation>
+        <translation>Ký tin nhắn để chứng minh bạn sở hữu Eleccoin address này</translation>
     </message>
     <message>
         <source>Sign &amp;Message</source>
@@ -2639,7 +2427,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Reset all sign message fields</source>
-        <translation>Reset all sign message fields</translation>
+        <translation>Reset tất cả khoảng chữ ký nhắn</translation>
     </message>
     <message>
         <source>Clear &amp;All</source>
@@ -2647,27 +2435,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>&amp;Verify Message</source>
-        <translation>&amp;Verify Message</translation>
+        <translation>&amp;Verify Tin nhắn</translation>
     </message>
     <message>
         <source>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</source>
-        <translation>Enter the receiver's address, message (ensure you copy line breaks, spaces, tabs, etc. exactly) and signature below to verify the message. Be careful not to read more into the signature than what is in the signed message itself, to avoid being tricked by a man-in-the-middle attack. Note that this only proves the signing party receives with the address, it cannot prove sendership of any transaction!</translation>
+        <translation>Nhập vào address người nhận, tin nhắn (chắc rằng bạn copy line breaks, khoảng trống, tabs, etc. chính xác) và signature bên dưới verify tin nhắn. Cẩn thận không đọc nhiều hơn từ signature so với cái được ký trong bản thân tin nhắn, để tránh bị lừa bới man-in-the-middle tấn công. Lưu ý rằng điều này chỉ chứng nhận nhóm những người nhân với address, nó không thể chứng minh bên gửi có bất kỳ transaction!</translation>
     </message>
     <message>
         <source>The Eleccoin address the message was signed with</source>
-        <translation>The Eleccoin address the message was signed with</translation>
-    </message>
-    <message>
-        <source>The signed message to verify</source>
-        <translation>The signed message to verify</translation>
-    </message>
-    <message>
-        <source>The signature given when the message was signed</source>
-        <translation>The signature given when the message was signed</translation>
+        <translation>The Eleccoin address tin nhắn đã ký với</translation>
     </message>
     <message>
         <source>Verify the message to ensure it was signed with the specified Eleccoin address</source>
-        <translation>Verify the message to ensure it was signed with the specified Eleccoin address</translation>
+        <translation>Verify tin nhắn để chắc rằng nó đã được ký với xác định Eleccoin address</translation>
     </message>
     <message>
         <source>Verify &amp;Message</source>
@@ -2675,35 +2455,31 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Reset all verify message fields</source>
-        <translation>Reset all verify message fields</translation>
+        <translation>Reset tất cả verify khoảng trống nhắn</translation>
     </message>
     <message>
         <source>Click "Sign Message" to generate signature</source>
-        <translation>Click "Sign Message" to generate signature</translation>
+        <translation>Click "Sign Message" để generate signature</translation>
     </message>
     <message>
         <source>The entered address is invalid.</source>
-        <translation>The entered address is invalid.</translation>
+        <translation>Đã nhập address thì invalid.</translation>
     </message>
     <message>
         <source>Please check the address and try again.</source>
-        <translation>Please check the address and try again.</translation>
+        <translation>Vui lòng kiểm tra address và thử lại.</translation>
     </message>
     <message>
         <source>The entered address does not refer to a key.</source>
-        <translation>The entered address does not refer to a key.</translation>
+        <translation>Đã nhập address không refer to a key.</translation>
     </message>
     <message>
         <source>Wallet unlock was cancelled.</source>
-        <translation>Wallet unlock was cancelled.</translation>
-    </message>
-    <message>
-        <source>No error</source>
-        <translation>No error</translation>
+        <translation>Wallet unlock đã được hủy.</translation>
     </message>
     <message>
         <source>Private key for the entered address is not available.</source>
-        <translation>Private key for the entered address is not available.</translation>
+        <translation>Private key cho address đã nhập thì không có sẵn.</translation>
     </message>
     <message>
         <source>Message signing failed.</source>
@@ -2745,7 +2521,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     <name>TransactionDesc</name>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Open for %n more block</numerusform><numerusform>Open for %n more blocks</numerusform></translation>
+        <translation><numerusform>Mở cho %n nhiều hơn blocks</numerusform></translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2785,7 +2561,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Date</source>
-        <translation>Date</translation>
+        <translation>Ngày</translation>
     </message>
     <message>
         <source>Source</source>
@@ -2825,7 +2601,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message numerus="yes">
         <source>matures in %n more block(s)</source>
-        <translation><numerusform>matures in %n more block</numerusform><numerusform>matures in %n more blocks</numerusform></translation>
+        <translation><numerusform>Hoàn thiện trong %n nhiều hơn blocks</numerusform></translation>
     </message>
     <message>
         <source>not accepted</source>
@@ -2853,7 +2629,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Message</source>
-        <translation>Message</translation>
+        <translation>Tin nhắn</translation>
     </message>
     <message>
         <source>Comment</source>
@@ -2869,15 +2645,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Transaction virtual size</source>
-        <translation>Transaction virtual size</translation>
+        <translation>Kích cỡ giao dịch ảo</translation>
     </message>
     <message>
         <source>Output index</source>
         <translation>Output index</translation>
-    </message>
-    <message>
-        <source> (Certificate was not verified)</source>
-        <translation> (Certificate was not verified)</translation>
     </message>
     <message>
         <source>Merchant</source>
@@ -2901,7 +2673,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Amount</source>
-        <translation>Amount</translation>
+        <translation>Giá trị</translation>
     </message>
     <message>
         <source>true</source>
@@ -2927,7 +2699,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     <name>TransactionTableModel</name>
     <message>
         <source>Date</source>
-        <translation>Date</translation>
+        <translation>Ngày</translation>
     </message>
     <message>
         <source>Type</source>
@@ -2935,11 +2707,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Label</source>
-        <translation>Label</translation>
+        <translation>Nhãn</translation>
     </message>
     <message numerus="yes">
         <source>Open for %n more block(s)</source>
-        <translation><numerusform>Open for %n more block</numerusform><numerusform>Open for %n more blocks</numerusform></translation>
+        <translation><numerusform>Mở cho %n nhiều hơn blocks</numerusform></translation>
     </message>
     <message>
         <source>Open until %1</source>
@@ -2963,7 +2735,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Conflicted</source>
-        <translation>Conflicted</translation>
+        <translation>Xung đột</translation>
     </message>
     <message>
         <source>Immature (%1 confirmations, will be available after %2)</source>
@@ -3003,7 +2775,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>(no label)</source>
-        <translation>(no label)</translation>
+        <translation>(không nhãn)</translation>
     </message>
     <message>
         <source>Transaction status. Hover over this field to show number of confirmations.</source>
@@ -3034,31 +2806,31 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     <name>TransactionView</name>
     <message>
         <source>All</source>
-        <translation>All</translation>
+        <translation>Tất cả</translation>
     </message>
     <message>
         <source>Today</source>
-        <translation>Today</translation>
+        <translation>Hôm nay</translation>
     </message>
     <message>
         <source>This week</source>
-        <translation>This week</translation>
+        <translation>Tuần này</translation>
     </message>
     <message>
         <source>This month</source>
-        <translation>This month</translation>
+        <translation>Tháng này</translation>
     </message>
     <message>
         <source>Last month</source>
-        <translation>Last month</translation>
+        <translation>Tháng trước</translation>
     </message>
     <message>
         <source>This year</source>
-        <translation>This year</translation>
+        <translation>Năm nay</translation>
     </message>
     <message>
         <source>Range...</source>
-        <translation>Range ...</translation>
+        <translation>Range...</translation>
     </message>
     <message>
         <source>Received with</source>
@@ -3082,7 +2854,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Enter address, transaction id, or label to search</source>
-        <translation>Enter address, transaction id or label to search.</translation>
+        <translation>Nhập địa chỉ, số id giao dịch, hoặc nhãn để tìm kiếm</translation>
     </message>
     <message>
         <source>Min amount</source>
@@ -3102,15 +2874,15 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Copy label</source>
-        <translation>Copy label</translation>
+        <translation>Sao chép nhãn</translation>
     </message>
     <message>
         <source>Copy amount</source>
-        <translation>Copy amount</translation>
+        <translation>Sao chép số lượng</translation>
     </message>
     <message>
         <source>Copy transaction ID</source>
-        <translation>Copy transaction ID</translation>
+        <translation>Sao chép ID giao dịch</translation>
     </message>
     <message>
         <source>Copy raw transaction</source>
@@ -3138,7 +2910,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Confirmed</source>
-        <translation>Confirmed</translation>
+        <translation>Đã xác nhận</translation>
     </message>
     <message>
         <source>Watch-only</source>
@@ -3146,7 +2918,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Date</source>
-        <translation>Date</translation>
+        <translation>Ngày</translation>
     </message>
     <message>
         <source>Type</source>
@@ -3154,11 +2926,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Label</source>
-        <translation>Label</translation>
+        <translation>Nhãn</translation>
     </message>
     <message>
         <source>Address</source>
-        <translation>Address</translation>
+        <translation>Địa chỉ</translation>
     </message>
     <message>
         <source>ID</source>
@@ -3166,7 +2938,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Exporting Failed</source>
-        <translation>Exporting Failed</translation>
+        <translation>Xuất Thất Bại</translation>
     </message>
     <message>
         <source>There was an error trying to save the transaction history to %1.</source>
@@ -3200,15 +2972,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     <name>WalletController</name>
     <message>
         <source>Close wallet</source>
-        <translation>Close wallet</translation>
-    </message>
-    <message>
-        <source>Are you sure you wish to close the wallet &lt;i&gt;%1&lt;/i&gt;?</source>
-        <translation>Are you sure you wish to close the wallet &lt;i&gt;%1&lt;/i&gt;?</translation>
+        <translation>Đông ví</translation>
     </message>
     <message>
         <source>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</source>
-        <translation>Closing the wallet for too long can result in having to resync the entire chain if pruning is enabled.</translation>
+        <translation>Đóng ví thời gian dài sẽ dẫn đến phải đồng bộ hóa lại cả chuỗi nếu cắt tỉa pruning được kích hoạt</translation>
     </message>
 </context>
 <context>
@@ -3222,23 +2990,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     <name>WalletModel</name>
     <message>
         <source>Send Coins</source>
-        <translation>Send Coins</translation>
+        <translation>Gửi Coins</translation>
     </message>
     <message>
         <source>Fee bump error</source>
-        <translation>Fee bump error</translation>
+        <translation>Fee bơm error</translation>
     </message>
     <message>
         <source>Increasing transaction fee failed</source>
-        <translation>Increasing transaction fee failed.</translation>
+        <translation>Increasing transaction fee failed</translation>
     </message>
     <message>
         <source>Do you want to increase the fee?</source>
         <translation>Do you want to increase the fee?</translation>
-    </message>
-    <message>
-        <source>Do you want to draft a transaction with fee increase?</source>
-        <translation>Do you want to draft a transaction with fee increase?</translation>
     </message>
     <message>
         <source>Current fee:</source>
@@ -3257,35 +3021,27 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
         <translation>Confirm fee bump</translation>
     </message>
     <message>
-        <source>Can't draft transaction.</source>
-        <translation>Can't draft transaction.</translation>
-    </message>
-    <message>
-        <source>PSBT copied</source>
-        <translation>PSBT copied</translation>
-    </message>
-    <message>
         <source>Can't sign transaction.</source>
         <translation>Can't sign transaction.</translation>
     </message>
     <message>
         <source>Could not commit transaction</source>
-        <translation>Could not commit transaction.</translation>
+        <translation>Could not commit transaction</translation>
     </message>
     <message>
         <source>default wallet</source>
-        <translation>default wallet</translation>
+        <translation>ví mặc định</translation>
     </message>
 </context>
 <context>
     <name>WalletView</name>
     <message>
         <source>&amp;Export</source>
-        <translation>&amp;Export</translation>
+        <translation>&amp;Xuất</translation>
     </message>
     <message>
         <source>Export the data in the current tab to a file</source>
-        <translation>Export the data in the current tab to a file</translation>
+        <translation>Xuất dữ liệu trong thẻ hiện tại ra file</translation>
     </message>
     <message>
         <source>Backup Wallet</source>
@@ -3313,14 +3069,14 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Cancel</source>
-        <translation>Cancel</translation>
+        <translation>Hủy</translation>
     </message>
 </context>
 <context>
     <name>eleccoin-core</name>
     <message>
         <source>Distributed under the MIT software license, see the accompanying file %s or %s</source>
-        <translation>Distributed under the MIT software license, see the accompanying file %s or %s.</translation>
+        <translation>Distributed under the MIT software license, see the accompanying file %s or %s</translation>
     </message>
     <message>
         <source>Prune configured below the minimum of %d MiB.  Please use a higher number.</source>
@@ -3336,7 +3092,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Pruning blockstore...</source>
-        <translation>Pruning blockstore ...</translation>
+        <translation>Pruning blockstore...</translation>
     </message>
     <message>
         <source>Unable to start HTTP server. See debug log for details.</source>
@@ -3348,7 +3104,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</source>
-        <translation>Can't generate a change-address key. No keys in the internal keypool and can't generate any keys.</translation>
+        <translation>Không thể tạo khóa địa chỉ thay đổi. Không có các khóa trong hồ khóa keypool nội bộ và không thể tạo bất kì khóa nào.</translation>
     </message>
     <message>
         <source>Cannot obtain a lock on data directory %s. %s is probably already running.</source>
@@ -3356,7 +3112,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Cannot provide specific connections and have addrman find outgoing connections at the same.</source>
-        <translation>Cannot provide specific connections and have addrman find outgoing connections at the same.</translation>
+        <translation>Không thể cung cấp kết nối nào và có addrman tìm kết nối đi cùng một lúc.</translation>
     </message>
     <message>
         <source>Error reading %s! All keys read correctly, but transaction data or address book entries might be missing or incorrect.</source>
@@ -3380,7 +3136,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>This is the transaction fee you may discard if change is smaller than dust at this level</source>
-        <translation>This is the transaction fee you may discard if change is smaller than dust at this level.</translation>
+        <translation>This is the transaction fee you may discard if change is smaller than dust at this level</translation>
     </message>
     <message>
         <source>Unable to replay blocks. You will need to rebuild the database using -reindex-chainstate.</source>
@@ -3388,7 +3144,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</source>
-        <translation>Unable to rewind the database to a pre-fork state. You will need to re-download the blockchain</translation>
+        <translation>Unable to rewind the database to a pre-fork state. You will need to redownload the blockchain</translation>
     </message>
     <message>
         <source>Warning: The network does not appear to fully agree! Some miners appear to be experiencing issues.</source>
@@ -3400,7 +3156,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>%d of last 100 blocks have unexpected version</source>
-        <translation>%d of last 100 blocks have unexpected version.</translation>
+        <translation>%d of last 100 blocks have unexpected version</translation>
     </message>
     <message>
         <source>%s corrupt, salvage failed</source>
@@ -3420,7 +3176,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Config setting for %s only applied on %s network when in [%s] section.</source>
-        <translation>Config setting for %s only applied on %s network when in [%s] section.</translation>
+        <translation>Cài  dặt thuộc tính cho %s chỉ có thể áp dụng cho  mạng %s trong khi  [%s] .</translation>
     </message>
     <message>
         <source>Copyright (C) %i-%i</source>
@@ -3431,24 +3187,16 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
         <translation>Corrupted block database detected</translation>
     </message>
     <message>
-        <source>Could not find asmap file %s</source>
-        <translation>Could not find asmap file %s</translation>
-    </message>
-    <message>
-        <source>Could not parse asmap file %s</source>
-        <translation>Could not parse asmap file %s</translation>
-    </message>
-    <message>
         <source>Do you want to rebuild the block database now?</source>
         <translation>Do you want to rebuild the block database now?</translation>
     </message>
     <message>
         <source>Error initializing block database</source>
-        <translation>Error initialising block database</translation>
+        <translation>Error initializing block database</translation>
     </message>
     <message>
         <source>Error initializing wallet database environment %s!</source>
-        <translation>Error initialising wallet database environment %s!</translation>
+        <translation>Error initializing wallet database environment %s!</translation>
     </message>
     <message>
         <source>Error loading %s</source>
@@ -3456,7 +3204,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Error loading %s: Private keys can only be disabled during creation</source>
-        <translation>Error loading %s: Private keys can only be disabled during creation</translation>
+        <translation>Lỗi tải %s: Khóa riêng tư chỉ có thể không kích hoạt trong suốt quá trình tạo.</translation>
     </message>
     <message>
         <source>Error loading %s: Wallet corrupted</source>
@@ -3480,11 +3228,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Failed to rescan the wallet during initialization</source>
-        <translation>Failed to rescan the wallet during initialisation.</translation>
+        <translation>Lỗi quét lại ví trong xuất quá trình khởi tạo</translation>
     </message>
     <message>
         <source>Importing...</source>
-        <translation>Importing ...</translation>
+        <translation>Importing...</translation>
     </message>
     <message>
         <source>Incorrect or no genesis block found. Wrong datadir for network?</source>
@@ -3492,11 +3240,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Initialization sanity check failed. %s is shutting down.</source>
-        <translation>Initialisation sanity check failed. %s is shutting down.</translation>
+        <translation>Initialization sanity check failed. %s is shutting down.</translation>
     </message>
     <message>
         <source>Invalid P2P permission: '%s'</source>
-        <translation>Invalid P2P permission: '%s'</translation>
+        <translation>Quyền P2P không hợp lệ: '%s'</translation>
     </message>
     <message>
         <source>Invalid amount for -%s=&lt;amount&gt;: '%s'</source>
@@ -3512,31 +3260,23 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Specified blocks directory "%s" does not exist.</source>
-        <translation>Specified blocks directory "%s" does not exist.</translation>
-    </message>
-    <message>
-        <source>Unknown address type '%s'</source>
-        <translation>Unknown address type '%s'</translation>
-    </message>
-    <message>
-        <source>Unknown change type '%s'</source>
-        <translation>Unknown change type '%s'</translation>
+        <translation>Thư mục chứa các khối được chỉ ra "%s"  không tồn tại</translation>
     </message>
     <message>
         <source>Upgrading txindex database</source>
-        <translation>Upgrading txindex database</translation>
+        <translation>Đang nâng cấp dữ liệu txindex</translation>
     </message>
     <message>
         <source>Loading P2P addresses...</source>
-        <translation>Loading P2P addresses ...</translation>
+        <translation>Loading P2P addresses...</translation>
     </message>
     <message>
         <source>Error: Disk space is too low!</source>
-        <translation>Error: Disk space is too low!</translation>
+        <translation>Lỗi: Chổ tróng đĩa lưu trữ còn quá ít!</translation>
     </message>
     <message>
         <source>Loading banlist...</source>
-        <translation>Loading banlist ...</translation>
+        <translation>Loading banlist...</translation>
     </message>
     <message>
         <source>Not enough file descriptors available.</source>
@@ -3552,11 +3292,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Replaying blocks...</source>
-        <translation>Replaying blocks ...</translation>
+        <translation>Replaying blocks...</translation>
     </message>
     <message>
         <source>Rewinding blocks...</source>
-        <translation>Rewinding blocks ...</translation>
+        <translation>Rewinding blocks...</translation>
     </message>
     <message>
         <source>The source code is available from %s.</source>
@@ -3564,7 +3304,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Transaction fee and change calculation failed</source>
-        <translation>Transaction fee and change calculation failed.</translation>
+        <translation>Transaction fee and change calculation failed</translation>
     </message>
     <message>
         <source>Unable to bind to %s on this computer. %s is probably already running.</source>
@@ -3572,7 +3312,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Unable to generate keys</source>
-        <translation>Unable to generate keys</translation>
+        <translation>Không thể tạo khóa</translation>
     </message>
     <message>
         <source>Unsupported logging category %s=%s.</source>
@@ -3588,7 +3328,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Verifying blocks...</source>
-        <translation>Verifying blocks ...</translation>
+        <translation>Verifying blocks...</translation>
     </message>
     <message>
         <source>Wallet needed to be rewritten: restart %s to complete</source>
@@ -3616,11 +3356,11 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Error upgrading chainstate database</source>
-        <translation>Error upgrading chainstate database.</translation>
+        <translation>Error upgrading chainstate database</translation>
     </message>
     <message>
         <source>Error: Disk space is low for %s</source>
-        <translation>Error: Disk space is low for %s</translation>
+        <translation>Lỗi: Đĩa trống ít quá cho %s</translation>
     </message>
     <message>
         <source>Invalid -onion address or hostname: '%s'</source>
@@ -3644,7 +3384,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Prune mode is incompatible with -blockfilterindex.</source>
-        <translation>Prune mode is incompatible with -blockfilterindex.</translation>
+        <translation>Chế độ prune không tương thích với -blockfilterindex.</translation>
     </message>
     <message>
         <source>Reducing -maxconnections from %d to %d, because of system limitations.</source>
@@ -3652,7 +3392,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Section [%s] is not recognized.</source>
-        <translation>Section [%s] is not recognized.</translation>
+        <translation>Mục [%s] không được nhìn nhận.</translation>
     </message>
     <message>
         <source>Signing transaction failed</source>
@@ -3660,20 +3400,20 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Specified -walletdir "%s" does not exist</source>
-        <translation>Specified -walletdir "%s" does not exist.</translation>
+        <translation>Thư mục ví được nêu  -walletdir "%s" không tồn tại</translation>
     </message>
     <message>
         <source>Specified -walletdir "%s" is a relative path</source>
-        <translation>Specified -walletdir "%s" is a relative path.</translation>
+        <translation>Chỉ định -walletdir "%s" là đường dẫn tương đối</translation>
     </message>
     <message>
         <source>Specified -walletdir "%s" is not a directory</source>
-        <translation>Specified -walletdir "%s" is not a directory.</translation>
+        <translation>Chỉ định -walletdir "%s" không phải là một thư mục</translation>
     </message>
     <message>
         <source>The specified config file %s does not exist
 </source>
-        <translation>The specified config file %s does not exist
+        <translation>Tệp cấu hình đã chỉ định %s không tồn tại
 </translation>
     </message>
     <message>
@@ -3698,19 +3438,19 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Unable to create the PID file '%s': %s</source>
-        <translation>Unable to create the PID file '%s': %s</translation>
+        <translation>Không thể tạo tệp PID '%s': %s</translation>
     </message>
     <message>
         <source>Unable to generate initial keys</source>
-        <translation>Unable to generate initial keys.</translation>
+        <translation>Không thể tạo khóa ban đầu</translation>
     </message>
     <message>
         <source>Unknown -blockfilterindex value %s.</source>
-        <translation>Unknown -blockfilterindex value %s.</translation>
+        <translation>Không rõ giá trị  -blockfilterindex  %s.</translation>
     </message>
     <message>
         <source>Verifying wallet(s)...</source>
-        <translation>Verifying wallet(s) ...</translation>
+        <translation>Verifying wallet(s)...</translation>
     </message>
     <message>
         <source>Warning: unknown new rules activated (versionbit %i)</source>
@@ -3718,7 +3458,7 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Zapping all transactions from wallet...</source>
-        <translation>Zapping all transactions from wallet ...</translation>
+        <translation>Zapping all transactions from wallet...</translation>
     </message>
     <message>
         <source>-maxtxfee is set very high! Fees this large could be paid on a single transaction.</source>
@@ -3746,71 +3486,71 @@ Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons 
     </message>
     <message>
         <source>Starting network threads...</source>
-        <translation>Starting network threads ...</translation>
+        <translation>Starting network threads...</translation>
     </message>
     <message>
         <source>The wallet will avoid paying less than the minimum relay fee.</source>
-        <translation>The wallet will avoid paying less than the minimum relay fee.</translation>
+        <translation>Wallet sẽ hủy thanh toán nhỏ hơn phí relay.</translation>
     </message>
     <message>
         <source>This is the minimum transaction fee you pay on every transaction.</source>
-        <translation>This is the minimum transaction fee you pay on every transaction.</translation>
+        <translation>Đây là minimum transaction fee bạn pay cho mỗi transaction.</translation>
     </message>
     <message>
         <source>This is the transaction fee you will pay if you send a transaction.</source>
-        <translation>This is the transaction fee you will pay if you send a transaction.</translation>
+        <translation>Đây là transaction fee bạn sẽ pay nếu gửi transaction.</translation>
     </message>
     <message>
         <source>Transaction amounts must not be negative</source>
-        <translation>Transaction amounts must not be negative.</translation>
+        <translation>Transaction amounts phải không âm</translation>
     </message>
     <message>
         <source>Transaction has too long of a mempool chain</source>
-        <translation>Transaction has too long of a mempool chain.</translation>
+        <translation>Transaction có chuỗi mempool chain quá dài</translation>
     </message>
     <message>
         <source>Transaction must have at least one recipient</source>
-        <translation>Transaction must have at least one recipient.</translation>
+        <translation>Transaction phải có ít nhất một người nhận</translation>
     </message>
     <message>
         <source>Unknown network specified in -onlynet: '%s'</source>
-        <translation>Unknown network specified in -onlynet: '%s'</translation>
+        <translation>Unknown network được xác định trong -onlynet: '%s'</translation>
     </message>
     <message>
         <source>Insufficient funds</source>
-        <translation>Insufficient funds</translation>
+        <translation>Không đủ tiền</translation>
     </message>
     <message>
         <source>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</source>
-        <translation>Cannot upgrade a non HD split wallet without upgrading to support pre split keypool. Please use -upgradewallet=169900 or -upgradewallet with no version specified.</translation>
+        <translation>Không thể nâng cấp một địa chỉ HD tách rời mà không nâng cấp hỗ trợ keypool tách rời trước. Làm ơn dùng  upgradewallet=169900 hoặc -upgradewallet với không có chỉ ra phiên bản.</translation>
     </message>
     <message>
         <source>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</source>
-        <translation>Fee estimation failed. Fallbackfee is disabled. Wait a few blocks or enable -fallbackfee.</translation>
+        <translation>Dự toán phí không thành công. Fallbackfee bị vô hiệu hóa. Đợi sau một vài khối hoặc kích hoạt -fallbackfee.</translation>
     </message>
     <message>
         <source>Warning: Private keys detected in wallet {%s} with disabled private keys</source>
-        <translation>Warning: Private keys detected in wallet {%s} with disabled private keys</translation>
+        <translation>Cảnh báo: các khóa riêng tư được tìm thấy trong ví {%s} với  khóa riêng tư không kích hoạt</translation>
     </message>
     <message>
         <source>Cannot write to data directory '%s'; check permissions.</source>
-        <translation>Cannot write to data directory '%s'; check permissions.</translation>
+        <translation>Không thể ghi vào thư mục dữ liệu  '%s'; kiểm tra lại quyền.</translation>
     </message>
     <message>
         <source>Loading block index...</source>
-        <translation>Loading block index ...</translation>
+        <translation>Đang tải block index...</translation>
     </message>
     <message>
         <source>Loading wallet...</source>
-        <translation>Loading wallet ...</translation>
+        <translation>Loading wallet...</translation>
     </message>
     <message>
         <source>Cannot downgrade wallet</source>
-        <translation>Cannot downgrade wallet</translation>
+        <translation>Không thể downgrade wallet</translation>
     </message>
     <message>
         <source>Rescanning...</source>
-        <translation>Rescanning ...</translation>
+        <translation>Rescanning...</translation>
     </message>
     <message>
         <source>Done loading</source>

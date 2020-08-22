@@ -1,12 +1,86 @@
 QT_TS = \
   qt/locale/eleccoin_af.ts \
+  qt/locale/eleccoin_am.ts \
   qt/locale/eleccoin_ar.ts \
   qt/locale/eleccoin_be.ts \
+  qt/locale/eleccoin_bg.ts \
+  qt/locale/eleccoin_bn.ts \
+  qt/locale/eleccoin_bs.ts \
+  qt/locale/eleccoin_ca.ts \
+  qt/locale/eleccoin_cs.ts \
+  qt/locale/eleccoin_cy.ts \
+  qt/locale/eleccoin_da.ts \
+  qt/locale/eleccoin_de.ts \
+  qt/locale/eleccoin_el.ts \
   qt/locale/eleccoin_en.ts \
   qt/locale/eleccoin_en_GB.ts \
+  qt/locale/eleccoin_eo.ts \
+  qt/locale/eleccoin_es.ts \
+  qt/locale/eleccoin_es_CL.ts \
+  qt/locale/eleccoin_es_CO.ts \
+  qt/locale/eleccoin_es_DO.ts \
+  qt/locale/eleccoin_es_MX.ts \
+  qt/locale/eleccoin_es_VE.ts \
+  qt/locale/eleccoin_et.ts \
+  qt/locale/eleccoin_eu.ts \
+  qt/locale/eleccoin_fa.ts \
+  qt/locale/eleccoin_fi.ts \
+  qt/locale/eleccoin_fil.ts \
+  qt/locale/eleccoin_fr.ts \
+  qt/locale/eleccoin_he.ts \
+  qt/locale/eleccoin_hi.ts \
+  qt/locale/eleccoin_hr.ts \
+  qt/locale/eleccoin_hu.ts \
+  qt/locale/eleccoin_id.ts \
+  qt/locale/eleccoin_is.ts \
+  qt/locale/eleccoin_it.ts \
   qt/locale/eleccoin_ja.ts \
+  qt/locale/eleccoin_ka.ts \
+  qt/locale/eleccoin_kk.ts \
+  qt/locale/eleccoin_km.ts \
   qt/locale/eleccoin_ko.ts \
+  qt/locale/eleccoin_ku_IQ.ts \
+  qt/locale/eleccoin_ky.ts \
+  qt/locale/eleccoin_la.ts \
+  qt/locale/eleccoin_lt.ts \
+  qt/locale/eleccoin_lv.ts \
+  qt/locale/eleccoin_mk.ts \
+  qt/locale/eleccoin_ml.ts \
+  qt/locale/eleccoin_mn.ts \
+  qt/locale/eleccoin_mr_IN.ts \
+  qt/locale/eleccoin_ms.ts \
+  qt/locale/eleccoin_my.ts \
+  qt/locale/eleccoin_nb.ts \
+  qt/locale/eleccoin_ne.ts \
+  qt/locale/eleccoin_nl.ts \
+  qt/locale/eleccoin_pam.ts \
+  qt/locale/eleccoin_pl.ts \
+  qt/locale/eleccoin_pt.ts \
+  qt/locale/eleccoin_pt_BR.ts \
+  qt/locale/eleccoin_ro.ts \
+  qt/locale/eleccoin_ru.ts \
+  qt/locale/eleccoin_si.ts \
+  qt/locale/eleccoin_sk.ts \
+  qt/locale/eleccoin_sl.ts \
+  qt/locale/eleccoin_sn.ts \
+  qt/locale/eleccoin_sq.ts \
+  qt/locale/eleccoin_sr.ts \
+  qt/locale/eleccoin_sr@latin.ts \
+  qt/locale/eleccoin_sv.ts \
+  qt/locale/eleccoin_szl.ts \
+  qt/locale/eleccoin_ta.ts \
+  qt/locale/eleccoin_te.ts \
+  qt/locale/eleccoin_th.ts \
+  qt/locale/eleccoin_tr.ts \
+  qt/locale/eleccoin_uk.ts \
+  qt/locale/eleccoin_ur.ts \
+  qt/locale/eleccoin_uz@Cyrl.ts \
+  qt/locale/eleccoin_uz@Latn.ts \
+  qt/locale/eleccoin_vi.ts \
+  qt/locale/eleccoin_yo.ts \
   qt/locale/eleccoin_zh-Hans.ts \
+  qt/locale/eleccoin_zh.ts \
   qt/locale/eleccoin_zh_CN.ts \
   qt/locale/eleccoin_zh_HK.ts \
-  qt/locale/eleccoin_zh_TW.ts
+  qt/locale/eleccoin_zh_TW.ts \
+  qt/locale/eleccoin_zu.ts
