@@ -188,18 +188,6 @@ class MultiWalletTest(EleccoinTestFramework):
         # accessing wallet RPC without using wallet endpoint fails
         assert_raises_rpc_error(-19, "Wallet file not specified", node.getwalletinfo)
 
-        self.log.info("Concurrent wallet loading")
-        threads = []
-        for _ in range(3):
-            n = node.cli if self.options.usecli else get_rpc_proxy(node.url, 1, timeout=600, coveragedir=node.coverage_dir)
-            t = Thread(target=test_load_unload, args=(n, wallet_names[2], ))
-            t.start()
-            threads.append(t)
-        for t in threads:
-            t.join()
-        global got_loading_error
-        assert_equal(got_loading_error, True)
-
         w1, w2, w3, w4, *_ = wallets
         node.generatetoaddress(nblocks=101, address=w1.getnewaddress())
         assert_equal(w1.getbalance(), 100)
@@ -247,6 +235,18 @@ class MultiWalletTest(EleccoinTestFramework):
         assert_raises_rpc_error(-19, "Wallet file not specified", node.getwalletinfo)
         w2 = node.get_wallet_rpc(wallet_names[1])
         w2.getwalletinfo()
+
+        self.log.info("Concurrent wallet loading")
+        threads = []
+        for _ in range(3):
+            n = node.cli if self.options.usecli else get_rpc_proxy(node.url, 1, timeout=600, coveragedir=node.coverage_dir)
+            t = Thread(target=test_load_unload, args=(n, wallet_names[2], ))
+            t.start()
+            threads.append(t)
+        for t in threads:
+            t.join()
+        global got_loading_error
+        assert_equal(got_loading_error, True)
 
         self.log.info("Load remaining wallets")
         for wallet_name in wallet_names[2:]:

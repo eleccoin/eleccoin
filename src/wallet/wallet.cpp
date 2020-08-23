@@ -1135,24 +1135,22 @@ void CWallet::transactionRemovedFromMempool(const CTransactionRef& tx, MemPoolRe
         // 1. The transactionRemovedFromMempool callback does not currently
         //    provide the conflicting block's hash and height, and for backwards
         //    compatibility reasons it may not be not safe to store conflicted
-        //    wallet transactions with a null block hash. See
-        //    https://github.com/eleccoin/eleccoin/pull/18600#discussion_r420195993.
+        //    wallet transactions with a null block hash. 
         // 2. For most of these transactions, the wallet's internal conflict
         //    detection in the blockConnected handler will subsequently call
         //    MarkConflicted and update them with CONFLICTED status anyway. This
         //    applies to any wallet transaction that has inputs spent in the
         //    block, or that has ancestors in the wallet with inputs spent by
         //    the block.
-        // 3. Longstanding behavior since the sync implementation in
-        //    https://github.com/eleccoin/eleccoin/pull/9371 and the prior sync
+        // 3. Longstanding behavior since the sync implemented
+        //    and the prior sync
         //    implementation before that was to mark these transactions
         //    unconfirmed rather than conflicted.
         //
         // Nothing described above should be seen as an unchangeable requirement
         // when improving this code in the future. The wallet's heuristics for
         // distinguishing between conflicted and unconfirmed transactions are
-        // imperfect, and could be improved in general, see
-        // https://github.com/eleccoin-core/eleccoin-devwiki/wiki/Wallet-Transaction-Conflict-Tracking
+        // imperfect, and could be improved in general.
         SyncTransaction(tx, {CWalletTx::Status::UNCONFIRMED, /* block height */ 0, /* block hash */ {}, /* index */ 0});
     }
 }
@@ -1183,8 +1181,7 @@ void CWallet::blockDisconnected(const CBlock& block, int height)
     m_last_block_processed_height = height - 1;
     m_last_block_processed = block.hashPrevBlock;
     for (const CTransactionRef& ptx : block.vtx) {
-        CWalletTx::Confirmation confirm(CWalletTx::Status::UNCONFIRMED, /* block_height */ 0, {}, /* nIndex */ 0);
-        SyncTransaction(ptx, confirm);
+        SyncTransaction(ptx, {CWalletTx::Status::UNCONFIRMED, /* block height */ 0, /* block hash */ {}, /* index */ 0});
     }
 }
 
