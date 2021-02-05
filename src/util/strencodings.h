@@ -9,6 +9,7 @@
 #define ELECCOIN_UTIL_STRENCODINGS_H
 
 #include <attributes.h>
+#include <span.h>
 
 #include <cstdint>
 #include <iterator>
@@ -140,11 +141,11 @@ std::string HexStr(const T itbegin, const T itend)
     return rv;
 }
 
-template<typename T>
-inline std::string HexStr(const T& vch)
-{
-    return HexStr(vch.begin(), vch.end());
-}
+/**
+ * Convert a span of bytes to a lower-case hexadecimal string.
+ */
+std::string HexStr(const Span<const uint8_t> s);
+inline std::string HexStr(const Span<const char> s) { return HexStr(MakeUCharSpan(s)); }
 
 /**
  * Format a paragraph of text to a fixed width, adding spaces for
