@@ -6,7 +6,7 @@
 #include <index/base.h>
 #include <shutdown.h>
 #include <tinyformat.h>
-#include <ui_interface.h>
+#include <node/ui_interface.h>
 #include <util/system.h>
 #include <validation.h>
 #include <warnings.h>

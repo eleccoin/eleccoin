@@ -1,4 +1,4 @@
-# Copyright (c) 2020 The Eleccoin Core developers
+# Copyright (c) 2020-2021 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -163,6 +163,7 @@ ELECCOIN_CORE_H = \
   node/context.h \
   node/psbt.h \
   node/transaction.h \
+  node/ui_interface.h \
   node/utxo_snapshot.h \
   noui.h \
   optional.h \
@@ -207,7 +208,6 @@ ELECCOIN_CORE_H = \
   torcontrol.h \
   txdb.h \
   txmempool.h \
-  ui_interface.h \
   undo.h \
   algo/extra.h \
   algo/sph_groestl.h \
@@ -320,6 +320,7 @@ libeleccoin_server_a_SOURCES = \
   node/context.cpp \
   node/psbt.cpp \
   node/transaction.cpp \
+  node/ui_interface.cpp \
   noui.cpp \
   policy/fees.cpp \
   policy/rbf.cpp \
@@ -338,7 +339,6 @@ libeleccoin_server_a_SOURCES = \
   torcontrol.cpp \
   txdb.cpp \
   txmempool.cpp \
-  ui_interface.cpp \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \

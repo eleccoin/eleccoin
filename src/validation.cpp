@@ -34,7 +34,7 @@
 #include <tinyformat.h>
 #include <txdb.h>
 #include <txmempool.h>
-#include <ui_interface.h>
+#include <node/ui_interface.h>
 #include <uint256.h>
 #include <undo.h>
 #include <util/moneystr.h>

@@ -13,7 +13,7 @@
 #include <rpc/protocol.h> // For HTTP status codes
 #include <shutdown.h>
 #include <sync.h>
-#include <ui_interface.h>
+#include <node/ui_interface.h>
 
 #include <deque>
 #include <memory>

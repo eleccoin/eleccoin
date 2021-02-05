@@ -1,8 +1,8 @@
-// Copyright (c) 2010-2018 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <ui_interface.h>
+#include <node/ui_interface.h>
 
 #include <boost/signals2/last_value.hpp>
 #include <boost/signals2/signal.hpp>

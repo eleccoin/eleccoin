@@ -17,7 +17,7 @@
 #include <net_permissions.h>
 #include <random.h>
 #include <scheduler.h>
-#include <ui_interface.h>
+#include <node/ui_interface.h>
 #include <util/strencodings.h>
 #include <util/translation.h>
 

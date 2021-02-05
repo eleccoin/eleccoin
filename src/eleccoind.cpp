@@ -14,7 +14,7 @@
 #include <node/context.h>
 #include <noui.h>
 #include <shutdown.h>
-#include <ui_interface.h>
+#include <node/ui_interface.h>
 #include <util/strencodings.h>
 #include <util/system.h>
 #include <util/threadnames.h>

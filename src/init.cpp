@@ -45,7 +45,7 @@
 #include <torcontrol.h>
 #include <txdb.h>
 #include <txmempool.h>
-#include <ui_interface.h>
+#include <node/ui_interface.h>
 #include <util/asmap.h>
 #include <util/moneystr.h>
 #include <util/system.h>

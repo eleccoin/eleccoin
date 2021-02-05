@@ -4,7 +4,7 @@
 
 #include <noui.h>
 
-#include <ui_interface.h>
+#include <node/ui_interface.h>
 #include <util/system.h>
 
 #include <string>
