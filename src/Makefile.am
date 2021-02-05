@@ -243,16 +243,19 @@ ELECCOIN_CORE_H = \
   util/fees.h \
   util/spanparsing.h \
   util/system.h \
+  util/golombrice.h \
   util/macros.h \
   util/memory.h \
   util/message.h \
   util/moneystr.h \
   util/rbf.h \
+  util/ref.h \
   util/settings.h \
   util/string.h \
   util/threadnames.h \
   util/time.h \
   util/translation.h \
+  util/ui_change_type.h \
   util/url.h \
   util/vector.h \
   validation.h \
