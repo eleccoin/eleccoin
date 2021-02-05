@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,9 +10,9 @@
 #include <serialize.h>
 
 #include <string>
-#include <map>
+#include <vector>
 
-class CSubNet;
+class CAddress;
 class CAddrMan;
 class CDataStream;
 
@@ -71,5 +71,21 @@ public:
     bool Write(const banmap_t& banSet);
     bool Read(banmap_t& banSet);
 };
+
+/**
+ * Dump the anchor IP address database (anchors.dat)
+ *
+ * Anchors are last known outgoing block-relay-only peers that are
+ * tried to re-connect to on startup.
+ */
+void DumpAnchors(const fs::path& anchors_db_path, const std::vector<CAddress>& anchors);
+
+/**
+ * Read the anchor IP address database (anchors.dat)
+ *
+ * Deleting anchors.dat is intentional as it avoids renewed peering to anchors after
+ * an unclean shutdown and thus potential exploitation of the anchor peer policy.
+ */
+std::vector<CAddress> ReadAnchors(const fs::path& anchors_db_path);
 
 #endif // ELECCOIN_ADDRDB_H

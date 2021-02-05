@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -42,7 +42,6 @@ class LockImpl : public Chain::Lock, public UniqueLock<RecursiveMutex>
 {
     Optional<int> getHeight() override
     {
-        LockAssertion lock(::cs_main);
         int height = ::ChainActive().Height();
         if (height >= 0) {
             return height;
@@ -51,7 +50,6 @@ class LockImpl : public Chain::Lock, public UniqueLock<RecursiveMutex>
     }
     Optional<int> getBlockHeight(const uint256& hash) override
     {
-        LockAssertion lock(::cs_main);
         CBlockIndex* block = LookupBlockIndex(hash);
         if (block && ::ChainActive().Contains(block)) {
             return block->nHeight;
@@ -60,34 +58,29 @@ class LockImpl : public Chain::Lock, public UniqueLock<RecursiveMutex>
     }
     uint256 getBlockHash(int height) override
     {
-        LockAssertion lock(::cs_main);
         CBlockIndex* block = ::ChainActive()[height];
         assert(block != nullptr);
         return block->GetBlockHash();
     }
     int64_t getBlockTime(int height) override
     {
-        LockAssertion lock(::cs_main);
         CBlockIndex* block = ::ChainActive()[height];
         assert(block != nullptr);
         return block->GetBlockTime();
     }
     int64_t getBlockMedianTimePast(int height) override
     {
-        LockAssertion lock(::cs_main);
         CBlockIndex* block = ::ChainActive()[height];
         assert(block != nullptr);
         return block->GetMedianTimePast();
     }
     bool haveBlockOnDisk(int height) override
     {
-        LockAssertion lock(::cs_main);
         CBlockIndex* block = ::ChainActive()[height];
         return block && ((block->nStatus & BLOCK_HAVE_DATA) != 0) && block->nTx > 0;
     }
     Optional<int> findFirstBlockWithTimeAndHeight(int64_t time, int height, uint256* hash) override
     {
-        LockAssertion lock(::cs_main);
         CBlockIndex* block = ::ChainActive().FindEarliestAtLeast(time, height);
         if (block) {
             if (hash) *hash = block->GetBlockHash();
@@ -97,7 +90,6 @@ class LockImpl : public Chain::Lock, public UniqueLock<RecursiveMutex>
     }
     Optional<int> findPruned(int start_height, Optional<int> stop_height) override
     {
-        LockAssertion lock(::cs_main);
         if (::fPruneMode) {
             CBlockIndex* block = stop_height ? ::ChainActive()[*stop_height] : ::ChainActive().Tip();
             while (block && block->nHeight >= start_height) {
@@ -111,7 +103,6 @@ class LockImpl : public Chain::Lock, public UniqueLock<RecursiveMutex>
     }
     Optional<int> findFork(const uint256& hash, Optional<int>* height) override
     {
-        LockAssertion lock(::cs_main);
         const CBlockIndex* block = LookupBlockIndex(hash);
         const CBlockIndex* fork = block ? ::ChainActive().FindFork(block) : nullptr;
         if (height) {
@@ -128,12 +119,10 @@ class LockImpl : public Chain::Lock, public UniqueLock<RecursiveMutex>
     }
     CBlockLocator getTipLocator() override
     {
-        LockAssertion lock(::cs_main);
         return ::ChainActive().GetLocator();
     }
     Optional<int> findLocatorFork(const CBlockLocator& locator) override
     {
-        LockAssertion lock(::cs_main);
         if (CBlockIndex* fork = FindForkInGlobalIndex(::ChainActive(), locator)) {
             return fork->nHeight;
         }
@@ -141,7 +130,6 @@ class LockImpl : public Chain::Lock, public UniqueLock<RecursiveMutex>
     }
     bool checkFinalTx(const CTransaction& tx) override
     {
-        LockAssertion lock(::cs_main);
         return CheckFinalTx(tx);
     }
 
