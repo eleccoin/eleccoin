@@ -13,6 +13,7 @@ namespace Consensus {
 enum DeploymentPos
 {
     DEPLOYMENT_TESTDUMMY,
+    DEPLOYMENT_TAPROOT, // Deployment of Schnorr/Taproot (BIPs 340-342)
     // NOTE: Also add new deployments to VersionBitsDeploymentInfo in versionbits.cpp
     MAX_VERSION_BITS_DEPLOYMENTS
 };
@@ -87,6 +88,11 @@ struct Params {
     /** By default assume that the signatures in ancestors of this block are valid */
     uint256 defaultAssumeValid;
 
+    /**
+     * If true, witness commitments contain a payload equal to a Eleccoin Script solution
+     * to the signet challenge. See BIP325.
+     */
+    bool signet_blocks{false};
     std::vector<uint8_t> signet_challenge;
 };
 } // namespace Consensus
