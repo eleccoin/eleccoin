@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -59,6 +59,9 @@ public:
     //! Attempt to update from an older database format. Returns whether an error occurred.
     bool Upgrade();
     size_t EstimateSize() const override;
+
+    //! Dynamically alter the underlying leveldb cache size.
+    void ResizeCache(size_t new_cache_size) EXCLUSIVE_LOCKS_REQUIRED(cs_main);
 };
 
 /** Specialization of CCoinsViewCursor to iterate over a CCoinsViewDB */

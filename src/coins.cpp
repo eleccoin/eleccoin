@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -244,6 +244,14 @@ bool CCoinsViewCache::HaveInputs(const CTransaction& tx) const
         }
     }
     return true;
+}
+
+void CCoinsViewCache::ReallocateCache()
+{
+    // Cache should be empty when we're calling this.
+    assert(cacheCoins.size() == 0);
+    cacheCoins.~CCoinsMap();
+    ::new (&cacheCoins) CCoinsMap();
 }
 
 static const size_t MIN_TRANSACTION_OUTPUT_WEIGHT = WITNESS_SCALE_FACTOR * ::GetSerializeSize(CTxOut(), PROTOCOL_VERSION);
