@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,7 +16,7 @@ constexpr char DB_BEST_BLOCK = 'B';
 constexpr int64_t SYNC_LOG_INTERVAL = 30; // seconds
 constexpr int64_t SYNC_LOCATOR_WRITE_INTERVAL = 30; // seconds
 
-template<typename... Args>
+template <typename... Args>
 static void FatalError(const char* fmt, const Args&... args)
 {
     std::string strMessage = tfm::format(fmt, args...);
@@ -319,4 +319,13 @@ void BaseIndex::Stop()
     if (m_thread_sync.joinable()) {
         m_thread_sync.join();
     }
+}
+
+IndexSummary BaseIndex::GetSummary() const
+{
+    IndexSummary summary{};
+    summary.name = GetName();
+    summary.synced = m_synced;
+    summary.best_block_height = m_best_block_index.load()->nHeight;
+    return summary;
 }
