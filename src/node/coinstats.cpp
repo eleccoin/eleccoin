@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,11 +7,21 @@
 #include <coins.h>
 #include <hash.h>
 #include <serialize.h>
-#include <validation.h>
 #include <uint256.h>
 #include <util/system.h>
+#include <validation.h>
 
 #include <map>
+
+static uint64_t GetBogoSize(const CScript& scriptPubKey)
+{
+    return 32 /* txid */ +
+           4 /* vout index */ +
+           4 /* height + coinbase */ +
+           8 /* amount */ +
+           2 /* scriptPubKey len */ +
+           scriptPubKey.size() /* scriptPubKey */;
+}
 
 static void ApplyStats(CCoinsStats &stats, CHashWriter& ss, const uint256& hash, const std::map<uint32_t, Coin>& outputs)
 {
@@ -29,6 +39,17 @@ static void ApplyStats(CCoinsStats &stats, CHashWriter& ss, const uint256& hash,
                            2 /* scriptPubKey len */ + output.second.out.scriptPubKey.size() /* scriptPubKey */;
     }
     ss << VARINT(0u);
+}
+
+static void ApplyStats(CCoinsStats& stats, std::nullptr_t, const uint256& hash, const std::map<uint32_t, Coin>& outputs)
+{
+    assert(!outputs.empty());
+    stats.nTransactions++;
+    for (const auto& output : outputs) {
+        stats.nTransactionOutputs++;
+        stats.nTotalAmount += output.second.out.nValue;
+        stats.nBogoSize += GetBogoSize(output.second.out.scriptPubKey);
+    }
 }
 
 //! Calculate statistics about the unspent transaction output set
