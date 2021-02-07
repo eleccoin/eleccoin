@@ -4,10 +4,11 @@
 
 DIST_SUBDIRS = secp256k1 univalue
 
-AM_LDFLAGS = $(PTHREAD_CFLAGS) $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS) $(GPROF_LDFLAGS) $(SANITIZER_LDFLAGS)
+AM_LDFLAGS = $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS) $(GPROF_LDFLAGS) $(SANITIZER_LDFLAGS)
 AM_CXXFLAGS = $(DEBUG_CXXFLAGS) $(HARDENED_CXXFLAGS) $(WARN_CXXFLAGS) $(NOWARN_CXXFLAGS) $(ERROR_CXXFLAGS) $(GPROF_CXXFLAGS) $(SANITIZER_CXXFLAGS)
 AM_CPPFLAGS = $(DEBUG_CPPFLAGS) $(HARDENED_CPPFLAGS)
 AM_LIBTOOLFLAGS = --preserve-dup-deps
+PTHREAD_FLAGS = $(PTHREAD_CFLAGS) $(PTHREAD_LIBS)
 EXTRA_LIBRARIES =
 
 if EMBEDDED_UNIVALUE
@@ -19,9 +20,8 @@ else
 LIBUNIVALUE = $(UNIVALUE_LIBS)
 endif
 
-ELECCOIN_INCLUDES=-I$(builddir) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS)
+ELECCOIN_INCLUDES=-I$(builddir) -I$(srcdir)/secp256k1/include $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS)
 
-ELECCOIN_INCLUDES += -I$(srcdir)/secp256k1/include
 ELECCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
 
 LIBELECCOIN_SERVER=libeleccoin_server.a
@@ -85,6 +85,10 @@ if BUILD_ELECCOIND
   bin_PROGRAMS += eleccoind
 endif
 
+if BUILD_ELECCOIN_NODE
+  bin_PROGRAMS += eleccoin-node
+endif
+
 if BUILD_ELECCOIN_CLI
   bin_PROGRAMS += eleccoin-cli
 endif
@@ -106,9 +110,9 @@ ELECCOIN_CORE_H = \
   banman.h \
   base58.h \
   bech32.h \
-  bloom.h \
   blockencodings.h \
   blockfilter.h \
+  bloom.h \
   chain.h \
   chainparams.h \
   chainparamsbase.h \
@@ -129,12 +133,14 @@ ELECCOIN_CORE_H = \
   core_io.h \
   core_memusage.h \
   cuckoocache.h \
+  dbwrapper.h \
   flatfile.h \
   fs.h \
   httprpc.h \
   httpserver.h \
   index/base.h \
   index/blockfilterindex.h \
+  index/disktxpos.h \
   index/txindex.h \
   indirectmap.h \
   init.h \
@@ -144,7 +150,6 @@ ELECCOIN_CORE_H = \
   interfaces/wallet.h \
   key.h \
   key_io.h \
-  dbwrapper.h \
   limitedmap.h \
   logging.h \
   logging/timer.h \
@@ -181,6 +186,7 @@ ELECCOIN_CORE_H = \
   reverse_iterator.h \
   rpc/blockchain.h \
   rpc/client.h \
+  rpc/mining.h \
   rpc/protocol.h \
   rpc/rawtransaction_util.h \
   rpc/register.h \
@@ -203,8 +209,8 @@ ELECCOIN_CORE_H = \
   support/events.h \
   support/lockedpool.h \
   sync.h \
-  threadsafety.h \
   threadinterrupt.h \
+  threadsafety.h \
   timedata.h \
   torcontrol.h \
   txdb.h \
@@ -243,8 +249,6 @@ ELECCOIN_CORE_H = \
   util/check.h \
   util/error.h \
   util/fees.h \
-  util/spanparsing.h \
-  util/system.h \
   util/golombrice.h \
   util/macros.h \
   util/memory.h \
@@ -253,7 +257,9 @@ ELECCOIN_CORE_H = \
   util/rbf.h \
   util/ref.h \
   util/settings.h \
+  util/spanparsing.h \
   util/string.h \
+  util/system.h \
   util/threadnames.h \
   util/time.h \
   util/translation.h \
@@ -264,8 +270,9 @@ ELECCOIN_CORE_H = \
   validationinterface.h \
   versionbits.h \
   versionbitsinfo.h \
-  walletinitinterface.h \
+  wallet/bdb.h \
   wallet/coincontrol.h \
+  wallet/coinselection.h \
   wallet/context.h \
   wallet/crypter.h \
   wallet/db.h \
@@ -274,15 +281,16 @@ ELECCOIN_CORE_H = \
   wallet/ismine.h \
   wallet/load.h \
   wallet/rpcwallet.h \
+  wallet/salvage.h \
   wallet/scriptpubkeyman.h \
+  wallet/sqlite.h \
   wallet/wallet.h \
   wallet/walletdb.h \
   wallet/wallettool.h \
   wallet/walletutil.h \
-  wallet/coinselection.h \
+  walletinitinterface.h \
   warnings.h \
   zmq/zmqabstractnotifier.h \
-  zmq/zmqconfig.h\
   zmq/zmqnotificationinterface.h \
   zmq/zmqpublishnotifier.h \
   zmq/zmqrpc.h \
@@ -309,16 +317,16 @@ libeleccoin_server_a_SOURCES = \
   blockfilter.cpp \
   chain.cpp \
   consensus/tx_verify.cpp \
+  dbwrapper.cpp \
   flatfile.cpp \
   httprpc.cpp \
   httpserver.cpp \
   index/base.cpp \
   index/blockfilterindex.cpp \
   index/txindex.cpp \
+  init.cpp \
   interfaces/chain.cpp \
   interfaces/node.cpp \
-  init.cpp \
-  dbwrapper.cpp \
   miner.cpp \
   net.cpp \
   net_processing.cpp \
@@ -374,10 +382,11 @@ endif
 
 # wallet: shared between eleccoind and eleccoin-qt, but only linked
 # when wallet enabled
-libeleccoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
+libeleccoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES) $(SQLITE_CFLAGS)
 libeleccoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeleccoin_wallet_a_SOURCES = \
   interfaces/wallet.cpp \
+  wallet/bdb.cpp \
   wallet/coincontrol.cpp \
   wallet/context.cpp \
   wallet/crypter.cpp \
@@ -387,12 +396,17 @@ libeleccoin_wallet_a_SOURCES = \
   wallet/load.cpp \
   wallet/rpcdump.cpp \
   wallet/rpcwallet.cpp \
+  wallet/salvage.cpp \
   wallet/scriptpubkeyman.cpp \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   wallet/walletutil.cpp \
   wallet/coinselection.cpp \
   $(ELECCOIN_CORE_H)
+
+if USE_SQLITE
+libeleccoin_wallet_a_SOURCES += wallet/sqlite.cpp
+endif
 
 libeleccoin_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
 libeleccoin_wallet_tool_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
@@ -458,7 +472,6 @@ crypto_libeleccoin_crypto_base_a_SOURCES = \
   algo/aes_helper.c \
   algo/hamsi_helper.c \
   algo/sph_hamsi_helper.c
-
 
 if USE_ASM
 crypto_libeleccoin_crypto_base_a_SOURCES += crypto/sha256_sse4.cpp
@@ -593,6 +606,10 @@ libeleccoin_util_a_SOURCES = \
   util/url.cpp \
   $(ELECCOIN_CORE_H)
 
+if USE_LIBEVENT
+libeleccoin_util_a_SOURCES += util/url.cpp
+endif
+
 if GLIBC_BACK_COMPAT
 libeleccoin_util_a_SOURCES += compat/glibc_compat.cpp
 AM_LDFLAGS += $(COMPAT_LDFLAGS)
@@ -610,22 +627,21 @@ libeleccoin_cli_a_SOURCES = \
 nodist_libeleccoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
-# eleccoind binary #
-eleccoind_SOURCES = eleccoind.cpp
-eleccoind_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
-eleccoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-eleccoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+# eleccoind & eleccoin-node binaries #
+eleccoin_daemon_sources = eleccoind.cpp
+eleccoin_bin_cppflags = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
+eleccoin_bin_cxxflags = $(AM_CXXFLAGS) $(PIE_FLAGS)
+eleccoin_bin_ldflags = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
-eleccoind_SOURCES += eleccoind-res.rc
+eleccoin_daemon_sources += eleccoind-res.rc
 endif
 
-eleccoind_LDADD = \
-  $(LIBELECCOIN_SERVER) \
+eleccoin_bin_ldadd = \
   $(LIBELECCOIN_WALLET) \
   $(LIBELECCOIN_COMMON) \
-  $(LIBUNIVALUE) \
   $(LIBELECCOIN_UTIL) \
+  $(LIBUNIVALUE) \
   $(LIBELECCOIN_ZMQ) \
   $(LIBELECCOIN_CONSENSUS) \
   $(LIBELECCOIN_CRYPTO) \
@@ -634,13 +650,25 @@ eleccoind_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-eleccoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+eleccoin_bin_ldadd += $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(SQLITE_LIBS)
+
+eleccoind_SOURCES = $(eleccoin_daemon_sources)
+eleccoind_CPPFLAGS = $(eleccoin_bin_cppflags)
+eleccoind_CXXFLAGS = $(eleccoin_bin_cxxflags)
+eleccoind_LDFLAGS = $(eleccoin_bin_ldflags)
+eleccoind_LDADD = $(LIBELECCOIN_SERVER) $(eleccoin_bin_ldadd)
+
+eleccoin_node_SOURCES = $(eleccoin_daemon_sources)
+eleccoin_node_CPPFLAGS = $(eleccoin_bin_cppflags)
+eleccoin_node_CXXFLAGS = $(eleccoin_bin_cxxflags)
+eleccoin_node_LDFLAGS = $(eleccoin_bin_ldflags)
+eleccoin_node_LDADD = $(LIBELECCOIN_SERVER) $(eleccoin_bin_ldadd)
 
 # eleccoin-cli binary #
 eleccoin_cli_SOURCES = eleccoin-cli.cpp
 eleccoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES) $(EVENT_CFLAGS)
 eleccoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-eleccoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+eleccoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
 eleccoin_cli_SOURCES += eleccoin-cli-res.rc
@@ -659,7 +687,7 @@ eleccoin_cli_LDADD += $(BOOST_LIBS) $(EVENT_LIBS)
 eleccoin_tx_SOURCES = eleccoin-tx.cpp
 eleccoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
 eleccoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-eleccoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+eleccoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 if TARGET_WINDOWS
 eleccoin_tx_SOURCES += eleccoin-tx-res.rc
@@ -678,29 +706,14 @@ eleccoin_tx_LDADD += $(BOOST_LIBS)
 
 # eleccoin-wallet binary #
 eleccoin_wallet_SOURCES = eleccoin-wallet.cpp
-eleccoin_wallet_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
-eleccoin_wallet_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-eleccoin_wallet_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+eleccoin_wallet_CPPFLAGS = $(eleccoin_bin_cppflags)
+eleccoin_wallet_CXXFLAGS = $(eleccoin_bin_cxxflags)
+eleccoin_wallet_LDFLAGS = $(eleccoin_bin_ldflags)
+eleccoin_wallet_LDADD = $(LIBELECCOIN_WALLET_TOOL) $(eleccoin_bin_ldadd)
 
 if TARGET_WINDOWS
 eleccoin_wallet_SOURCES += eleccoin-wallet-res.rc
 endif
-
-eleccoin_wallet_LDADD = \
-  $(LIBELECCOIN_WALLET_TOOL) \
-  $(LIBELECCOIN_WALLET) \
-  $(LIBELECCOIN_COMMON) \
-  $(LIBELECCOIN_CONSENSUS) \
-  $(LIBELECCOIN_UTIL) \
-  $(LIBELECCOIN_CRYPTO) \
-  $(LIBELECCOIN_ZMQ) \
-  $(LIBLEVELDB) \
-  $(LIBLEVELDB_SSE42) \
-  $(LIBMEMENV) \
-  $(LIBSECP256K1) \
-  $(LIBUNIVALUE)
-
-eleccoin_wallet_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(ZMQ_LIBS)
 #
 
 # eleccoinconsensus library #
@@ -731,12 +744,18 @@ CLEANFILES = $(EXTRA_LIBRARIES)
 CLEANFILES += *.gcda *.gcno
 CLEANFILES += compat/*.gcda compat/*.gcno
 CLEANFILES += consensus/*.gcda consensus/*.gcno
+CLEANFILES += crc32c/src/*.gcda crc32c/src/*.gcno
 CLEANFILES += crypto/*.gcda crypto/*.gcno
+CLEANFILES += index/*.gcda index/*.gcno
+CLEANFILES += interfaces/*.gcda interfaces/*.gcno
+CLEANFILES += node/*.gcda node/*.gcno
 CLEANFILES += policy/*.gcda policy/*.gcno
 CLEANFILES += primitives/*.gcda primitives/*.gcno
+CLEANFILES += rpc/*.gcda rpc/*.gcno
 CLEANFILES += script/*.gcda script/*.gcno
 CLEANFILES += support/*.gcda support/*.gcno
 CLEANFILES += univalue/*.gcda univalue/*.gcno
+CLEANFILES += util/*.gcda util/*.gcno
 CLEANFILES += wallet/*.gcda wallet/*.gcno
 CLEANFILES += wallet/test/*.gcda wallet/test/*.gcno
 CLEANFILES += zmq/*.gcda zmq/*.gcno

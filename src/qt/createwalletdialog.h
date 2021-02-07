@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -27,6 +27,7 @@ public:
     bool isEncryptWalletChecked() const;
     bool isDisablePrivateKeysChecked() const;
     bool isMakeBlankWalletChecked() const;
+    bool isDescriptorWalletChecked() const;
 
 private:
     Ui::CreateWalletDialog *ui;

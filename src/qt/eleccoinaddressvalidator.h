@@ -1,4 +1,4 @@
-// Copyright (c) 2011-2014 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,7 +17,7 @@ class EleccoinAddressEntryValidator : public QValidator
 public:
     explicit EleccoinAddressEntryValidator(QObject *parent);
 
-    State validate(QString &input, int &pos) const;
+    State validate(QString &input, int &pos) const override;
 };
 
 /** Eleccoin address widget validator, checks for a valid eleccoin address.
@@ -29,7 +29,7 @@ class EleccoinAddressCheckValidator : public QValidator
 public:
     explicit EleccoinAddressCheckValidator(QObject *parent);
 
-    State validate(QString &input, int &pos) const;
+    State validate(QString &input, int &pos) const override;
 };
 
 #endif // ELECCOIN_QT_ELECCOINADDRESSVALIDATOR_H

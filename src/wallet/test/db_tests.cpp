@@ -1,4 +1,4 @@
-// Copyright (c) 2018-2019 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,7 +8,7 @@
 
 #include <fs.h>
 #include <test/util/setup_common.h>
-#include <wallet/db.h>
+#include <wallet/bdb.h>
 
 
 BOOST_FIXTURE_TEST_SUITE(db_tests, BasicTestingSetup)

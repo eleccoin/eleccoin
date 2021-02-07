@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,6 +7,24 @@
 #include <hash.h>
 #include <consensus/consensus.h>
 
+
+std::vector<unsigned char> BitsToBytes(const std::vector<bool>& bits)
+{
+    std::vector<unsigned char> ret((bits.size() + 7) / 8);
+    for (unsigned int p = 0; p < bits.size(); p++) {
+        ret[p / 8] |= bits[p] << (p % 8);
+    }
+    return ret;
+}
+
+std::vector<bool> BytesToBits(const std::vector<unsigned char>& bytes)
+{
+    std::vector<bool> ret(bytes.size() * 8);
+    for (unsigned int p = 0; p < ret.size(); p++) {
+        ret[p] = (bytes[p / 8] & (1 << (p % 8))) != 0;
+    }
+    return ret;
+}
 
 CMerkleBlock::CMerkleBlock(const CBlock& block, CBloomFilter* filter, const std::set<uint256>* txids)
 {
@@ -51,7 +69,7 @@ uint256 CPartialMerkleTree::CalcHash(int height, unsigned int pos, const std::ve
         else
             right = left;
         // combine subhashes
-        return Hash(left.begin(), left.end(), right.begin(), right.end());
+        return Hash(left, right);
     }
 }
 
@@ -107,7 +125,7 @@ uint256 CPartialMerkleTree::TraverseAndExtract(int height, unsigned int pos, uns
             right = left;
         }
         // and combine them before returning
-        return Hash(left.begin(), left.end(), right.begin(), right.end());
+        return Hash(left, right);
     }
 }
 

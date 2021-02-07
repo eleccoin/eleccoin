@@ -2,27 +2,22 @@
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef ELECCOIN_UI_INTERFACE_H
-#define ELECCOIN_UI_INTERFACE_H
+#ifndef ELECCOIN_NODE_UI_INTERFACE_H
+#define ELECCOIN_NODE_UI_INTERFACE_H
 
 #include <functional>
 #include <memory>
 #include <string>
 
 class CBlockIndex;
+enum class SynchronizationState;
+struct bilingual_str;
+
 namespace boost {
 namespace signals2 {
 class connection;
 }
 } // namespace boost
-
-/** General change type (added, updated, removed). */
-enum ChangeType
-{
-    CT_NEW,
-    CT_UPDATED,
-    CT_DELETED
-};
 
 /** Signals for UI communication. */
 class CClientUIInterface
@@ -63,9 +58,6 @@ public:
         /** Force blocking, modal message box dialog (not just OS notification) */
         MODAL               = 0x10000000U,
 
-        /** Do not prepend error/warning prefix */
-        MSG_NOPREFIX        = 0x20000000U,
-
         /** Do not print contents of message to debug log */
         SECURE              = 0x40000000U,
 
@@ -81,10 +73,10 @@ public:
     boost::signals2::connection signal_name##_connect(std::function<signal_name##Sig> fn);
 
     /** Show message box. */
-    ADD_SIGNALS_DECL_WRAPPER(ThreadSafeMessageBox, bool, const std::string& message, const std::string& caption, unsigned int style);
+    ADD_SIGNALS_DECL_WRAPPER(ThreadSafeMessageBox, bool, const bilingual_str& message, const std::string& caption, unsigned int style);
 
     /** If possible, ask the user a question. If not, falls back to ThreadSafeMessageBox(noninteractive_message, caption, style) and returns false. */
-    ADD_SIGNALS_DECL_WRAPPER(ThreadSafeQuestion, bool, const std::string& message, const std::string& noninteractive_message, const std::string& caption, unsigned int style);
+    ADD_SIGNALS_DECL_WRAPPER(ThreadSafeQuestion, bool, const bilingual_str& message, const std::string& noninteractive_message, const std::string& caption, unsigned int style);
 
     /** Progress message during initialization. */
     ADD_SIGNALS_DECL_WRAPPER(InitMessage, void, const std::string& message);
@@ -107,21 +99,22 @@ public:
     ADD_SIGNALS_DECL_WRAPPER(ShowProgress, void, const std::string& title, int nProgress, bool resume_possible);
 
     /** New block has been accepted */
-    ADD_SIGNALS_DECL_WRAPPER(NotifyBlockTip, void, bool, const CBlockIndex*);
+    ADD_SIGNALS_DECL_WRAPPER(NotifyBlockTip, void, SynchronizationState, const CBlockIndex*);
 
     /** Best header has changed */
-    ADD_SIGNALS_DECL_WRAPPER(NotifyHeaderTip, void, bool, const CBlockIndex*);
+    ADD_SIGNALS_DECL_WRAPPER(NotifyHeaderTip, void, SynchronizationState, const CBlockIndex*);
 
     /** Banlist did change. */
     ADD_SIGNALS_DECL_WRAPPER(BannedListChanged, void, void);
 };
 
 /** Show warning message **/
-void InitWarning(const std::string& str);
+void InitWarning(const bilingual_str& str);
 
 /** Show error message **/
-bool InitError(const std::string& str);
+bool InitError(const bilingual_str& str);
+constexpr auto AbortError = InitError;
 
 extern CClientUIInterface uiInterface;
 
-#endif // ELECCOIN_UI_INTERFACE_H
+#endif // ELECCOIN_NODE_UI_INTERFACE_H

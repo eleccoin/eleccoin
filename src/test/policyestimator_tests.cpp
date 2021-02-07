@@ -1,9 +1,9 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#include <policy/policy.h>
 #include <policy/fees.h>
+#include <policy/policy.h>
 #include <txmempool.h>
 #include <uint256.h>
 #include <util/time.h>

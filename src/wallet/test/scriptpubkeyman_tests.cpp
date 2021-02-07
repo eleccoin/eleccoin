@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_CASE(CanProvide)
     // Set up wallet and keyman variables.
     NodeContext node;
     std::unique_ptr<interfaces::Chain> chain = interfaces::MakeChain(node);
-    CWallet wallet(chain.get(), WalletLocation(), WalletDatabase::CreateDummy());
+    CWallet wallet(chain.get(), "", CreateDummyWalletDatabase());
     LegacyScriptPubKeyMan& keyman = *wallet.GetOrCreateLegacyScriptPubKeyMan();
 
     // Make a 1 of 2 multisig script

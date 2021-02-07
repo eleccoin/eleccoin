@@ -1,4 +1,4 @@
-# Copyright (c) 2015-2016 The Eleccoin Core developers
+# Copyright (c) 2020-2021 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -12,6 +12,7 @@ GENERATED_BENCH_FILES = $(RAW_BENCH_FILES:.raw=.raw.h)
 
 bench_bench_eleccoin_SOURCES = \
   $(RAW_BENCH_FILES) \
+  bench/addrman.cpp \
   bench/bench_eleccoin.cpp \
   bench/bench.cpp \
   bench/bench.h \
@@ -28,9 +29,12 @@ bench_bench_eleccoin_SOURCES = \
   bench/crypto_hash.cpp \
   bench/ccoins_caching.cpp \
   bench/gcs_filter.cpp \
+  bench/hashpadding.cpp \
   bench/merkle_root.cpp \
   bench/mempool_eviction.cpp \
   bench/mempool_stress.cpp \
+  bench/nanobench.h \
+  bench/nanobench.cpp \
   bench/rpc_blockchain.cpp \
   bench/rpc_mempool.cpp \
   bench/util_time.cpp \
@@ -48,7 +52,6 @@ bench_bench_eleccoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 bench_bench_eleccoin_LDADD = \
   $(LIBELECCOIN_SERVER) \
   $(LIBELECCOIN_WALLET) \
-  $(LIBELECCOIN_SERVER) \
   $(LIBELECCOIN_COMMON) \
   $(LIBELECCOIN_UTIL) \
   $(LIBELECCOIN_CONSENSUS) \
@@ -71,8 +74,8 @@ bench_bench_eleccoin_SOURCES += bench/coin_selection.cpp
 bench_bench_eleccoin_SOURCES += bench/wallet_balance.cpp
 endif
 
-bench_bench_eleccoin_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(CRYPTO_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS)
-bench_bench_eleccoin_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+bench_bench_eleccoin_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(MINIUPNPC_LIBS) $(SQLITE_LIBS)
+bench_bench_eleccoin_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
 
 CLEAN_ELECCOIN_BENCH = bench/*.gcda bench/*.gcno $(GENERATED_BENCH_FILES)
 

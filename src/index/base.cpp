@@ -4,10 +4,11 @@
 
 #include <chainparams.h>
 #include <index/base.h>
+#include <node/ui_interface.h>
 #include <shutdown.h>
 #include <tinyformat.h>
-#include <node/ui_interface.h>
 #include <util/system.h>
+#include <util/translation.h>
 #include <validation.h>
 #include <warnings.h>
 
@@ -20,11 +21,9 @@ template <typename... Args>
 static void FatalError(const char* fmt, const Args&... args)
 {
     std::string strMessage = tfm::format(fmt, args...);
-    SetMiscWarning(strMessage);
+    SetMiscWarning(Untranslated(strMessage));
     LogPrintf("*** %s\n", strMessage);
-    uiInterface.ThreadSafeMessageBox(
-        "Error: A fatal internal error occurred, see debug.log for details",
-        "", CClientUIInterface::MSG_ERROR);
+    AbortError(_("A fatal internal error occurred, see debug.log for details"));
     StartShutdown();
 }
 
