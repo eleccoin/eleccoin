@@ -247,6 +247,17 @@ public:
 };
 
 /**
+ * Signet
+ */
+class SigNetParams : public CChainParams {
+public:
+    explicit SigNetParams(const ArgsManager& args) {
+        std::vector<uint8_t> bin;
+        vSeeds.clear();
+	}
+};
+
+/**
  * Regression test
  */
 class CRegTestParams : public CChainParams {
@@ -388,12 +399,15 @@ const CChainParams &Params() {
 
 std::unique_ptr<const CChainParams> CreateChainParams(const ArgsManager& args, const std::string& chain)
 {
-    if (chain == CBaseChainParams::MAIN)
+    if (chain == CBaseChainParams::MAIN) {
         return std::unique_ptr<CChainParams>(new CMainParams());
-    else if (chain == CBaseChainParams::TESTNET)
+    } else if (chain == CBaseChainParams::TESTNET) {
         return std::unique_ptr<CChainParams>(new CTestNetParams());
-    else if (chain == CBaseChainParams::REGTEST)
-        return std::unique_ptr<CChainParams>(new CRegTestParams(gArgs));
+    } else if (chain == CBaseChainParams::SIGNET) {
+        return std::unique_ptr<CChainParams>(new SigNetParams(args));
+    } else if (chain == CBaseChainParams::REGTEST) {
+        return std::unique_ptr<CChainParams>(new CRegTestParams(args));
+    }
     throw std::runtime_error(strprintf("%s: Unknown chain %s.", __func__, chain));
 }
 
