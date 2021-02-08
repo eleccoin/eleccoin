@@ -2062,7 +2062,7 @@
 Note:  Since the fee is calculated on a per-byte basis, a fee of "100 electrons per kB" for a transaction size of 500 bytes (half of 1 kB) would ultimately yield a fee of only 50 electrons.</source>
         <translation>Nurodykite individualų mokestį už kB (1000 baitų) nuo sandorio virtualaus dydžio.
 
-Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 satošių per kB“ už 500 baitų (pusę 1 kB) sandorio dydžio galiausiai sudarytų tik 50 satošių mokestį.</translation>
+Pastaba: Kadangi mokestis apskaičiuojamas pagal baitą, mokestis už „100 electrons per kB“ už 500 baitų (pusę 1 kB) sandorio dydžio galiausiai sudarytų tik 50 electrons mokestį.</translation>
     </message>
     <message>
         <source>per kilobyte</source>

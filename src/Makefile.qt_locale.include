@@ -27,6 +27,7 @@ QT_TS = \
   qt/locale/eleccoin_fi.ts \
   qt/locale/eleccoin_fil.ts \
   qt/locale/eleccoin_fr.ts \
+  qt/locale/eleccoin_gl_ES.ts \
   qt/locale/eleccoin_he.ts \
   qt/locale/eleccoin_hi.ts \
   qt/locale/eleccoin_hr.ts \
