@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -46,6 +46,7 @@ static const int TOOLTIP_WRAP_THRESHOLD = 80;
 #define QAPP_ORG_DOMAIN "eleccoin.org"
 #define QAPP_APP_NAME_DEFAULT "Eleccoin-Qt"
 #define QAPP_APP_NAME_TESTNET "Eleccoin-Qt-testnet"
+#define QAPP_APP_NAME_SIGNET "Eleccoin-Qt-signet"
 #define QAPP_APP_NAME_REGTEST "Eleccoin-Qt-regtest"
 
 /* One gigabyte (GB) in bytes */

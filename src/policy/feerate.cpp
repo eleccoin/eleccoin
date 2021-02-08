@@ -1,13 +1,10 @@
-// Copyright (c) 2009-2010
-// Copyright (c) 2009-2018 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <policy/feerate.h>
 
 #include <tinyformat.h>
-
-const std::string CURRENCY_UNIT = "ECC";
 
 CFeeRate::CFeeRate(const CAmount& nFeePaid, size_t nBytes_)
 {
@@ -37,7 +34,7 @@ CAmount CFeeRate::GetFee(size_t nBytes_) const
     return nFee;
 }
 
-std::string CFeeRate::ToString() const
+std::string CFeeRate::ToString(const FeeEstimateMode& fee_estimate_mode) const
 {
     return strprintf("%d.%08d %s/kB", nElectronsPerK / COIN, nElectronsPerK % COIN, CURRENCY_UNIT);
 }

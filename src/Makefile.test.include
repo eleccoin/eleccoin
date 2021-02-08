@@ -1,4 +1,4 @@
-# Copyright (c) 2020 The Eleccoin Core developers
+# Copyright (c) 2020-2021 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,9 +7,13 @@ FUZZ_TARGETS = \
   test/fuzz/addr_info_deserialize \
   test/fuzz/addrdb \
   test/fuzz/address_deserialize \
+  test/fuzz/addrman \
   test/fuzz/addrman_deserialize \
   test/fuzz/asmap \
+  test/fuzz/asmap_direct \
+  test/fuzz/autofile \
   test/fuzz/banentry_deserialize \
+  test/fuzz/banman \
   test/fuzz/base_encode_decode \
   test/fuzz/bech32 \
   test/fuzz/block \
@@ -27,6 +31,7 @@ FUZZ_TARGETS = \
   test/fuzz/blockundo_deserialize \
   test/fuzz/bloom_filter \
   test/fuzz/bloomfilter_deserialize \
+  test/fuzz/buffered_file \
   test/fuzz/chain \
   test/fuzz/checkqueue \
   test/fuzz/coins_deserialize \

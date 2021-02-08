@@ -1,15 +1,18 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ELECCOIN_HTTPRPC_H
 #define ELECCOIN_HTTPRPC_H
 
+namespace util {
+class Ref;
+} // namespace util
 
 /** Start HTTP RPC subsystem.
  * Precondition; HTTP and RPC has been started.
  */
-bool StartHTTPRPC();
+bool StartHTTPRPC(const util::Ref& context);
 /** Interrupt HTTP RPC subsystem.
  */
 void InterruptHTTPRPC();
@@ -21,7 +24,7 @@ void StopHTTPRPC();
 /** Start HTTP REST subsystem.
  * Precondition; HTTP and RPC has been started.
  */
-void StartREST();
+void StartREST(const util::Ref& context);
 /** Interrupt RPC REST subsystem.
  */
 void InterruptREST();

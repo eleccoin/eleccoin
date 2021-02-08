@@ -1,5 +1,4 @@
-// Copyright (c) 2009-2010
-// Copyright (c) 2009-2019 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -35,16 +34,7 @@ public:
             m_coins_count(coins_count),
             m_nchaintx(nchaintx) { }
 
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action)
-    {
-        READWRITE(m_base_blockhash);
-        READWRITE(m_coins_count);
-        READWRITE(m_nchaintx);
-    }
-
+    SERIALIZE_METHODS(SnapshotMetadata, obj) { READWRITE(obj.m_base_blockhash, obj.m_coins_count, obj.m_nchaintx); }
 };
 
 #endif // ELECCOIN_NODE_UTXO_SNAPSHOT_H

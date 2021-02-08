@@ -38,8 +38,9 @@ Spec
 - Difficult Algorism **DGW v3**
 - Support **Segwit**
 
-- TCP Port main  9833 test 19833 reg  19844
-- RPC Port main  9832 test 19832 reg  19843
+- TCP   Port main  9833 test 19833 reg  19844
+- RPC   Port main  9832 test 19832 reg  19843
+- Onion Port main  9834 test 19834 reg  19845
 - ZMQ Port 29832
 
  

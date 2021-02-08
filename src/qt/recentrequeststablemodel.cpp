@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -82,7 +82,7 @@ QVariant RecentRequestsTableModel::data(const QModelIndex &index, int role) cons
             if (rec->recipient.amount == 0 && role == Qt::DisplayRole)
                 return tr("(no amount requested)");
             else if (role == Qt::EditRole)
-                return EleccoinUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), rec->recipient.amount, false, EleccoinUnits::separatorNever);
+                return EleccoinUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), rec->recipient.amount, false, EleccoinUnits::SeparatorStyle::NEVER);
             else
                 return EleccoinUnits::format(walletModel->getOptionsModel()->getDisplayUnit(), rec->recipient.amount);
         }

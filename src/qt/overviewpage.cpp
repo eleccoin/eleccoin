@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,7 +16,9 @@
 #include <qt/walletmodel.h>
 
 #include <QAbstractItemDelegate>
+#include <QApplication>
 #include <QPainter>
+#include <QStatusTipEvent>
 
 #define DECORATION_SIZE 54
 #define NUM_ITEMS 5
@@ -35,7 +37,7 @@ public:
     }
 
     inline void paint(QPainter *painter, const QStyleOptionViewItem &option,
-                      const QModelIndex &index ) const
+                      const QModelIndex &index ) const override
     {
         painter->save();
 
@@ -86,7 +88,7 @@ public:
             foreground = option.palette.color(QPalette::Text);
         }
         painter->setPen(foreground);
-        QString amountText = EleccoinUnits::formatWithUnit(unit, amount, true, EleccoinUnits::separatorAlways);
+        QString amountText = EleccoinUnits::formatWithUnit(unit, amount, true, EleccoinUnits::SeparatorStyle::ALWAYS);
         if(!confirmed)
         {
             amountText = QString("[") + amountText + QString("]");
@@ -99,7 +101,7 @@ public:
         painter->restore();
     }
 
-    inline QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const
+    inline QSize sizeHint(const QStyleOptionViewItem &option, const QModelIndex &index) const override
     {
         return QSize(DECORATION_SIZE, DECORATION_SIZE);
     }
@@ -152,6 +154,21 @@ void OverviewPage::handleOutOfSyncWarningClicks()
     Q_EMIT outOfSyncWarningClicked();
 }
 
+void OverviewPage::setPrivacy(bool privacy)
+{
+    m_privacy = privacy;
+    if (m_balances.balance != -1) {
+        setBalance(m_balances);
+    }
+
+    ui->listTransactions->setVisible(!m_privacy);
+
+    const QString status_tip = m_privacy ? tr("Privacy mode activated for the Overview tab. To unmask the values, uncheck Settings->Mask values.") : "";
+    setStatusTip(status_tip);
+    QStatusTipEvent event(status_tip);
+    QApplication::sendEvent(this, &event);
+}
+
 OverviewPage::~OverviewPage()
 {
     delete ui;
@@ -161,20 +178,27 @@ void OverviewPage::setBalance(const interfaces::WalletBalances& balances)
 {
     int unit = walletModel->getOptionsModel()->getDisplayUnit();
     m_balances = balances;
-    if (walletModel->wallet().privateKeysDisabled()) {
-        ui->labelBalance->setText(EleccoinUnits::formatWithUnit(unit, balances.watch_only_balance, false, EleccoinUnits::separatorAlways));
-        ui->labelUnconfirmed->setText(EleccoinUnits::formatWithUnit(unit, balances.unconfirmed_watch_only_balance, false, EleccoinUnits::separatorAlways));
-        ui->labelImmature->setText(EleccoinUnits::formatWithUnit(unit, balances.immature_watch_only_balance, false, EleccoinUnits::separatorAlways));
-        ui->labelTotal->setText(EleccoinUnits::formatWithUnit(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, false, EleccoinUnits::separatorAlways));
+    if (walletModel->wallet().isLegacy()) {
+        if (walletModel->wallet().privateKeysDisabled()) {
+            ui->labelBalance->setText(EleccoinUnits::formatWithPrivacy(unit, balances.watch_only_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelUnconfirmed->setText(EleccoinUnits::formatWithPrivacy(unit, balances.unconfirmed_watch_only_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelImmature->setText(EleccoinUnits::formatWithPrivacy(unit, balances.immature_watch_only_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelTotal->setText(EleccoinUnits::formatWithPrivacy(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+        } else {
+            ui->labelBalance->setText(EleccoinUnits::formatWithPrivacy(unit, balances.balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelUnconfirmed->setText(EleccoinUnits::formatWithPrivacy(unit, balances.unconfirmed_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelImmature->setText(EleccoinUnits::formatWithPrivacy(unit, balances.immature_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelTotal->setText(EleccoinUnits::formatWithPrivacy(unit, balances.balance + balances.unconfirmed_balance + balances.immature_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelWatchAvailable->setText(EleccoinUnits::formatWithPrivacy(unit, balances.watch_only_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelWatchPending->setText(EleccoinUnits::formatWithPrivacy(unit, balances.unconfirmed_watch_only_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelWatchImmature->setText(EleccoinUnits::formatWithPrivacy(unit, balances.immature_watch_only_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+            ui->labelWatchTotal->setText(EleccoinUnits::formatWithPrivacy(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+        }
     } else {
-        ui->labelBalance->setText(EleccoinUnits::formatWithUnit(unit, balances.balance, false, EleccoinUnits::separatorAlways));
-        ui->labelUnconfirmed->setText(EleccoinUnits::formatWithUnit(unit, balances.unconfirmed_balance, false, EleccoinUnits::separatorAlways));
-        ui->labelImmature->setText(EleccoinUnits::formatWithUnit(unit, balances.immature_balance, false, EleccoinUnits::separatorAlways));
-        ui->labelTotal->setText(EleccoinUnits::formatWithUnit(unit, balances.balance + balances.unconfirmed_balance + balances.immature_balance, false, EleccoinUnits::separatorAlways));
-        ui->labelWatchAvailable->setText(EleccoinUnits::formatWithUnit(unit, balances.watch_only_balance, false, EleccoinUnits::separatorAlways));
-        ui->labelWatchPending->setText(EleccoinUnits::formatWithUnit(unit, balances.unconfirmed_watch_only_balance, false, EleccoinUnits::separatorAlways));
-        ui->labelWatchImmature->setText(EleccoinUnits::formatWithUnit(unit, balances.immature_watch_only_balance, false, EleccoinUnits::separatorAlways));
-        ui->labelWatchTotal->setText(EleccoinUnits::formatWithUnit(unit, balances.watch_only_balance + balances.unconfirmed_watch_only_balance + balances.immature_watch_only_balance, false, EleccoinUnits::separatorAlways));
+        ui->labelBalance->setText(EleccoinUnits::formatWithPrivacy(unit, balances.balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+        ui->labelUnconfirmed->setText(EleccoinUnits::formatWithPrivacy(unit, balances.unconfirmed_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+        ui->labelImmature->setText(EleccoinUnits::formatWithPrivacy(unit, balances.immature_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
+        ui->labelTotal->setText(EleccoinUnits::formatWithPrivacy(unit, balances.balance + balances.unconfirmed_balance + balances.immature_balance, EleccoinUnits::SeparatorStyle::ALWAYS, m_privacy));
     }
     // only show immature (newly mined) balance if it's non-zero, so as not to complicate things
     // for the non-mining users

@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,14 +17,6 @@ enum class OutputType {
     LEGACY,
     P2SH_SEGWIT,
     BECH32,
-
-    /**
-     * Special output type for change outputs only. Automatically choose type
-     * based on address type setting and the types other of non-change outputs
-     * (see -changetype option documentation and implementation in
-     * CWallet::TransactionChangeType for details).
-     */
-    CHANGE_AUTO,
 };
 
 extern const std::array<OutputType, 3> OUTPUT_TYPES;

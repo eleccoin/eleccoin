@@ -1,5 +1,4 @@
-// Copyright (c) 2009-2010
-// Copyright (c) 2009-2019 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -67,7 +66,8 @@ void RandAddSeedPerfmon(CSHA512& hasher)
 #ifdef WIN32
     // Seed with the entire set of perfmon data
 
-    // This can take up to 2 seconds, so only do it every 10 minutes
+    // This can take up to 2 seconds, so only do it every 10 minutes.
+    // Initialize last_perfmon to 0 seconds, we don't skip the first call.
     static std::atomic<std::chrono::seconds> last_perfmon{std::chrono::seconds{0}};
     auto last_time = last_perfmon.load();
     auto current_time = GetTime<std::chrono::seconds>();
@@ -83,7 +83,7 @@ void RandAddSeedPerfmon(CSHA512& hasher)
         ret = RegQueryValueExA(HKEY_PERFORMANCE_DATA, "Global", nullptr, nullptr, vData.data(), &nSize);
         if (ret != ERROR_MORE_DATA || vData.size() >= nMaxSize)
             break;
-        vData.resize(std::max((vData.size() * 3) / 2, nMaxSize)); // Grow size of buffer exponentially
+        vData.resize(std::min((vData.size() * 3) / 2, nMaxSize)); // Grow size of buffer exponentially
     }
     RegCloseKey(HKEY_PERFORMANCE_DATA);
     if (ret == ERROR_SUCCESS) {

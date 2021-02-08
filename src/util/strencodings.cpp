@@ -243,11 +243,6 @@ std::string EncodeBase32(const std::string& str, bool pad)
     return EncodeBase32(MakeUCharSpan(str), pad);
 }
 
-//std::string EncodeBase32(const std::string& str)
-//{
-//    return EncodeBase32((const unsigned char*)str.data(), str.size());
-//}
-
 std::vector<unsigned char> DecodeBase32(const char* p, bool* pf_invalid)
 {
     static const int decode32_table[256] =

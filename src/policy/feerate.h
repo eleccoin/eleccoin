@@ -1,5 +1,4 @@
-// Copyright (c) 2009-2010
-// Copyright (c) 2009-2018 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +10,17 @@
 
 #include <string>
 
-extern const std::string CURRENCY_UNIT;
+const std::string CURRENCY_UNIT = "ECC"; // One formatted unit
+const std::string CURRENCY_ATOM = "ELE"; // One indivisible minimum value unit
+
+/* Used to determine type of fee estimation requested */
+enum class FeeEstimateMode {
+    UNSET,        //!< Use default settings based on other criteria
+    ECONOMICAL,   //!< Force estimateSmartFee to use non-conservative estimates
+    CONSERVATIVE, //!< Force estimateSmartFee to use conservative estimates
+    ECC_KVB,      //!< Use ECC/kvB fee rate unit
+    ELE_VB,       //!< Use sat/vB fee rate unit
+};
 
 /**
  * Fee rate in electrons per kilobyte: CAmount / kB
@@ -29,7 +38,16 @@ public:
         // We've previously had bugs creep in from silent double->int conversion...
         static_assert(std::is_integral<I>::value, "CFeeRate should be used without floats");
     }
-    /** Constructor for a fee rate in electrons per kB. The size in bytes must not exceed (2^63 - 1)*/
+    /** Constructor for a fee rate in electrons per kvB (ele/kvB). The size in bytes must not exceed (2^63 - 1).
+     *
+     *  Passing an nBytes value of COIN (1e8) returns a fee rate in electrons per vB (ele/vB),
+     *  e.g. (nFeePaid * 1e8 / 1e3) == (nFeePaid / 1e5),
+     *  where 1e5 is the ratio to convert from ECC/kvB to ele/vB.
+     *
+     *  @param[in] nFeePaid  CAmount fee rate to construct with
+     *  @param[in] nBytes    size_t bytes (units) to construct with
+     *  @returns   fee rate
+     */
     CFeeRate(const CAmount& nFeePaid, size_t nBytes);
     /**
      * Return the fee in electrons for the given size in bytes.
@@ -46,14 +64,9 @@ public:
     friend bool operator>=(const CFeeRate& a, const CFeeRate& b) { return a.nElectronsPerK >= b.nElectronsPerK; }
     friend bool operator!=(const CFeeRate& a, const CFeeRate& b) { return a.nElectronsPerK != b.nElectronsPerK; }
     CFeeRate& operator+=(const CFeeRate& a) { nElectronsPerK += a.nElectronsPerK; return *this; }
-    std::string ToString() const;
+    std::string ToString(const FeeEstimateMode& fee_estimate_mode = FeeEstimateMode::ECC_KVB) const;
 
-    ADD_SERIALIZE_METHODS;
-
-    template <typename Stream, typename Operation>
-    inline void SerializationOp(Stream& s, Operation ser_action) {
-        READWRITE(nElectronsPerK);
-    }
+    SERIALIZE_METHODS(CFeeRate, obj) { READWRITE(obj.nElectronsPerK); }
 };
 
 #endif //  ELECCOIN_POLICY_FEERATE_H

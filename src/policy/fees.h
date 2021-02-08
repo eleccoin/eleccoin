@@ -1,5 +1,4 @@
-// Copyright (c) 2009-2010
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #ifndef ELECCOIN_POLICY_FEES_H
@@ -43,13 +42,6 @@ enum class FeeReason {
     PAYTXFEE,
     FALLBACK,
     REQUIRED,
-};
-
-/* Used to determine type of fee estimation requested */
-enum class FeeEstimateMode {
-    UNSET,        //!< Use default settings based on other criteria
-    ECONOMICAL,   //!< Force estimateSmartFee to use non-conservative estimates
-    CONSERVATIVE, //!< Force estimateSmartFee to use conservative estimates
 };
 
 /* Used to return detailed information about a feerate bucket */
@@ -145,9 +137,9 @@ private:
 
     /** Decay of .962 is a half-life of 18 blocks or about 3 hours */
     static constexpr double SHORT_DECAY = .962;
-    /** Decay of .998 is a half-life of 144 blocks or about 1 day */
+    /** Decay of .9952 is a half-life of 144 blocks or about 1 day */
     static constexpr double MED_DECAY = .9952;
-    /** Decay of .9995 is a half-life of 1008 blocks or about 1 week */
+    /** Decay of .99931 is a half-life of 1008 blocks or about 1 week */
     static constexpr double LONG_DECAY = .99931;
 
     /** Require greater than 60% of X feerate transactions to be confirmed within Y/2 blocks*/
@@ -280,7 +272,7 @@ public:
     /** Create new FeeFilterRounder */
     explicit FeeFilterRounder(const CFeeRate& minIncrementalFee);
 
-    /** Quantize a minimum fee for privacy purpose before broadcast **/
+    /** Quantize a minimum fee for privacy purpose before broadcast. Not thread-safe due to use of FastRandomContext */
     CAmount round(CAmount currentMinFee);
 
 private:
