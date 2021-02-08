@@ -352,7 +352,7 @@ or using a graphical tool like [Hotspot](https://github.com/KDAB/hotspot).
 See the functional test documentation for how to invoke perf within tests.
 
 
-**Sanitizers**
+### Sanitizers
 
 Eleccoin Core can be compiled with various "sanitizers" enabled, which add
 instrumentation for issues regarding things like memory safety, thread race
@@ -413,7 +413,7 @@ Deadlocks due to inconsistent lock ordering (thread 1 locks `cs_main` and then
 `cs_wallet`, while thread 2 locks them in the opposite order: result, deadlock
 as each waits for the other to release its lock) are a problem. Compile with
 `-DDEBUG_LOCKORDER` (or use `--enable-debug`) to get lock order inconsistencies
-reported in the debug.log file.
+reported in the `debug.log` file.
 
 Re-architecting the core code so there are better-defined interfaces
 between the various components is a goal, with any necessary locking
@@ -423,29 +423,52 @@ and its `cs_KeyStore` lock for example).
 Threads
 -------
 
-- ThreadScriptCheck : Verifies block scripts.
+- [Main thread (`eleccoind`)](https://doxygen.eleccoincore.org/eleccoind_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97)
+  : Started from `main()` in `eleccoind.cpp`. Responsible for starting up and
+  shutting down the application.
 
-- ThreadImport : Loads blocks from blk*.dat files or bootstrap.dat.
+- [ThreadImport (`b-loadblk`)](https://doxygen.eleccoincore.org/init_8cpp.html#ae9e290a0e829ec0198518de2eda579d1)
+  : Loads blocks from `blk*.dat` files or `-loadblock=<file>` on startup.
 
-- StartNode : Starts other threads.
+- [ThreadScriptCheck (`b-scriptch.x`)](https://doxygen.eleccoincore.org/validation_8cpp.html#a925a33e7952a157922b0bbb8dab29a20)
+  : Parallel script validation threads for transactions in blocks.
 
-- ThreadDNSAddressSeed : Loads addresses of peers from the DNS.
+- [ThreadHTTP (`b-http`)](https://doxygen.eleccoincore.org/httpserver_8cpp.html#abb9f6ea8819672bd9a62d3695070709c)
+  : Libevent thread to listen for RPC and REST connections.
 
-- ThreadMapPort : Universal plug-and-play startup/shutdown.
+- [HTTP worker threads(`b-httpworker.x`)](https://doxygen.eleccoincore.org/httpserver_8cpp.html#aa6a7bc27265043bc0193220c5ae3a55f)
+  : Threads to service RPC and REST requests.
 
-- ThreadSocketHandler : Sends/Receives data from peers on port 9833.
+- [Indexer threads (`b-txindex`, etc)](https://doxygen.eleccoincore.org/class_base_index.html#a96a7407421fbf877509248bbe64f8d87)
+  : One thread per indexer.
 
-- ThreadOpenAddedConnections : Opens network connections to added nodes.
+- [SchedulerThread (`b-scheduler`)](https://doxygen.eleccoincore.org/class_c_scheduler.html#a14d2800815da93577858ea078aed1fba)
+  : Does asynchronous background tasks like dumping wallet contents, dumping
+  addrman and running asynchronous validationinterface callbacks.
 
-- ThreadOpenConnections : Initiates new connections to peers.
+- [TorControlThread (`b-torcontrol`)](https://doxygen.eleccoincore.org/torcontrol_8cpp.html#a4faed3692d57a0d7bdbecf3b37f72de0)
+  : Libevent thread for tor connections.
 
-- ThreadMessageHandler : Higher-level message handling (sending and receiving).
+- Net threads:
 
-- DumpAddresses : Dumps IP addresses of nodes to peers.dat.
+  - [ThreadMessageHandler (`b-msghand`)](https://doxygen.eleccoincore.org/class_c_connman.html#aacdbb7148575a31bb33bc345e2bf22a9)
+    : Application level message handling (sending and receiving). Almost
+    all net_processing and validation logic runs on this thread.
 
-- ThreadRPCServer : Remote procedure call handler, listens on port 9832 for connections and services them.
+  - [ThreadDNSAddressSeed (`b-dnsseed`)](https://doxygen.eleccoincore.org/class_c_connman.html#aa7c6970ed98a4a7bafbc071d24897d13)
+    : Loads addresses of peers from the DNS.
 
-- Shutdown : Does an orderly shutdown of everything.
+  - [ThreadMapPort (`b-upnp`)](https://doxygen.eleccoincore.org/net_8cpp.html#a63f82a71c4169290c2db1651a9bbe249)
+    : Universal plug-and-play startup/shutdown.
+
+  - [ThreadSocketHandler (`b-net`)](https://doxygen.eleccoincore.org/class_c_connman.html#a765597cbfe99c083d8fa3d61bb464e34)
+    : Sends/Receives data from peers on port 9833.
+
+  - [ThreadOpenAddedConnections (`b-addcon`)](https://doxygen.eleccoincore.org/class_c_connman.html#a0b787caf95e52a346a2b31a580d60a62)
+    : Opens network connections to added nodes.
+
+  - [ThreadOpenConnections (`b-opencon`)](https://doxygen.eleccoincore.org/class_c_connman.html#a55e9feafc3bab78e5c9d408c207faa45)
+    : Initiates new connections to peers.
 
 Ignoring IDE/editor files
 --------------------------
@@ -506,11 +529,6 @@ Wallet
 -------
 
 - Make sure that no crashes happen with run-time option `-disablewallet`.
-
-  - *Rationale*: In RPC code that conditionally uses the wallet (such as
-    `validateaddress`), it is easy to forget that global pointer `pwalletMain`
-    can be nullptr. See `test/functional/disablewallet.py` for functional tests
-    exercising the API with `-disablewallet`.
 
 - Include `db_cxx.h` (BerkeleyDB header) only when `ENABLE_WALLET` is set.
 
@@ -586,11 +604,10 @@ class A
 }
 ```
 
-- By default, declare single-argument constructors `explicit`.
+- By default, declare constructors `explicit`.
 
-  - *Rationale*: This is a precaution to avoid unintended conversions that might
-    arise when single-argument constructors are used as implicit conversion
-    functions.
+  - *Rationale*: This is a precaution to avoid unintended
+    [conversions](https://en.cppreference.com/w/cpp/language/converting_constructor).
 
 - Use explicitly signed or unsigned `char`s, or even better `uint8_t` and
   `int8_t`. Do not use bare `char` unless it is to pass to a third-party API.
@@ -602,6 +619,47 @@ class A
 
   - *Rationale*: Easier to understand what is happening, thus easier to spot mistakes, even for those
   that are not language lawyers.
+
+- Use `Span` as function argument when it can operate on any range-like container.
+
+  - *Rationale*: Compared to `Foo(const vector<int>&)` this avoids the need for a (potentially expensive)
+    conversion to vector if the caller happens to have the input stored in another type of container.
+    However, be aware of the pitfalls documented in [span.h](../src/span.h).
+
+```cpp
+void Foo(Span<const int> data);
+
+std::vector<int> vec{1,2,3};
+Foo(vec);
+```
+
+- Prefer `enum class` (scoped enumerations) over `enum` (traditional enumerations) where possible.
+
+  - *Rationale*: Scoped enumerations avoid two potential pitfalls/problems with traditional C++ enumerations: implicit conversions to `int`, and name clashes due to enumerators being exported to the surrounding scope.
+
+- `switch` statement on an enumeration example:
+
+```cpp
+enum class Tabs {
+    INFO,
+    CONSOLE,
+    GRAPH,
+    PEERS
+};
+
+int GetInt(Tabs tab)
+{
+    switch (tab) {
+    case Tabs::INFO: return 0;
+    case Tabs::CONSOLE: return 1;
+    case Tabs::GRAPH: return 2;
+    case Tabs::PEERS: return 3;
+    } // no default case, so the compiler can warn about missing cases
+    assert(false);
+}
+```
+
+*Rationale*: The comment documents skipping `default:` label, and it complies with `clang-format` rules. The assertion prevents firing of `-Wreturn-type` warning on some compilers.
 
 Strings and formatting
 ------------------------
@@ -653,6 +711,28 @@ Strings and formatting
 
   - *Rationale*: Eleccoin Core uses tinyformat, which is type safe. Leave them out to avoid confusion.
 
+- Use `.c_str()` sparingly. Its only valid use is to pass C++ strings to C functions that take NULL-terminated
+  strings.
+
+  - Do not use it when passing a sized array (so along with `.size()`). Use `.data()` instead to get a pointer
+    to the raw data.
+
+    - *Rationale*: Although this is guaranteed to be safe starting with C++11, `.data()` communicates the intent better.
+
+  - Do not use it when passing strings to `tfm::format`, `strprintf`, `LogPrint[f]`.
+
+    - *Rationale*: This is redundant. Tinyformat handles strings.
+
+  - Do not use it to convert to `QString`. Use `QString::fromStdString()`.
+
+    - *Rationale*: Qt has built-in functionality for converting their string
+      type from/to C++. No need to roll your own.
+
+  - In cases where do you call `.c_str()`, you might want to additionally check that the string does not contain embedded '\0' characters, because
+    it will (necessarily) truncate the string. This might be used to hide parts of the string from logging or to circumvent
+    checks. If a use of strings is sensitive to this, take care to check the string for embedded NULL characters first
+    and reject it if there are any (see `ParsePrechecks` in `strencodings.cpp` for an example).
+
 Shadowing
 --------------
 
@@ -665,6 +745,53 @@ the upper cycle, etc.
 
 Threads and synchronization
 ----------------------------
+
+- Prefer `Mutex` type to `RecursiveMutex` one
+
+- Consistently use [Clang Thread Safety Analysis](https://clang.llvm.org/docs/ThreadSafetyAnalysis.html) annotations to
+  get compile-time warnings about potential race conditions in code. Combine annotations in function declarations with
+  run-time asserts in function definitions:
+
+```C++
+// txmempool.h
+class CTxMemPool
+{
+public:
+    ...
+    mutable RecursiveMutex cs;
+    ...
+    void UpdateTransactionsFromBlock(...) EXCLUSIVE_LOCKS_REQUIRED(::cs_main, cs);
+    ...
+}
+
+// txmempool.cpp
+void CTxMemPool::UpdateTransactionsFromBlock(...)
+{
+    AssertLockHeld(::cs_main);
+    AssertLockHeld(cs);
+    ...
+}
+```
+
+```C++
+// validation.h
+class ChainstateManager
+{
+public:
+    ...
+    bool ProcessNewBlock(...) EXCLUSIVE_LOCKS_REQUIRED(!::cs_main);
+    ...
+}
+
+// validation.cpp
+bool ChainstateManager::ProcessNewBlock(...)
+{
+    AssertLockNotHeld(::cs_main);
+    ...
+    LOCK(::cs_main);
+    ...
+}
+```
 
 - Build and run tests with `-DDEBUG_LOCKORDER` to verify that no potential
   deadlocks are introduced. As of 0.12, this is defined by default when
@@ -807,7 +934,7 @@ Others are external projects without a tight relationship with our project. Chan
 be sent upstream, but bugfixes may also be prudent to PR against Eleccoin Core so that they can be integrated
 quickly. Cosmetic changes should be purely taken upstream.
 
-There is a tool in `test/lint/git-subtree-check.sh` to check a subtree directory for consistency with
+There is a tool in `test/lint/git-subtree-check.sh` ([instructions](../test/lint#git-subtree-checksh)) to check a subtree directory for consistency with
 its upstream repository.
 
 Current subtrees include:
@@ -818,7 +945,11 @@ Current subtrees include:
   - **Note**: Follow the instructions in [Upgrading LevelDB](#upgrading-leveldb) when
     merging upstream changes to the LevelDB subtree.
 
-- src/libsecp256k1
+- src/crc32c
+  - Used by leveldb for hardware acceleration of CRC32C checksums for data integrity.
+  - Upstream at https://github.com/google/crc32c ; Maintained by Google.
+
+- src/secp256k1
   - Upstream at https://github.com/eleccoin-core/secp256k1/ ; actively maintained by Core contributors.
 
 - src/crypto/ctaes
@@ -901,7 +1032,35 @@ For development, it might be more convenient to verify all scripted-diffs in a r
 test/lint/commit-script-check.sh origin/master..HEAD
 ```
 
-Commit [`bb81e173`](https://github.com/eleccoin/eleccoin/commit/bb81e173) is an example of a scripted-diff.
+### Suggestions and examples
+
+If you need to replace in multiple files, prefer `git ls-files` to `find` or globbing, and `git grep` to `grep`, to
+avoid changing files that are not under version control.
+
+For efficient replacement scripts, reduce the selection to the files that potentially need to be modified, so for
+example, instead of a blanket `git ls-files src | xargs sed -i s/apple/orange/`, use
+`git grep -l apple src | xargs sed -i s/apple/orange/`.
+
+Also, it is good to keep the selection of files as specific as possible — for example, replace only in directories where
+you expect replacements — because it reduces the risk that a rebase of your commit by re-running the script will
+introduce accidental changes.
+
+Some good examples of scripted-diff:
+
+- [scripted-diff: Rename InitInterfaces to NodeContext](https://github.com/eleccoin/eleccoin/commit/301bd41a2e6765b185bd55f4c541f9e27aeea29d)
+uses an elegant script to replace occurrences of multiple terms in all source files.
+
+- [scripted-diff: Remove g_connman, g_banman globals](https://github.com/eleccoin/eleccoin/commit/8922d7f6b751a3e6b3b9f6fb7961c442877fb65a)
+replaces specific terms in a list of specific source files.
+
+- [scripted-diff: Replace fprintf with tfm::format](https://github.com/eleccoin/eleccoin/commit/fac03ec43a15ad547161e37e53ea82482cc508f9)
+does a global replacement but excludes certain directories.
+
+To find all previous uses of scripted diffs in the repository, do:
+
+```
+git log --grep="-BEGIN VERIFY SCRIPT-"
+```
 
 Release notes
 -------------

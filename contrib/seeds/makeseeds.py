@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 The Eleccoin Core developers
+# Copyright (c) 2020-2021 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 #
@@ -30,7 +30,8 @@ PATTERN_AGENT = re.compile(
     r"^/Electron:("
     r"1.0.(0|1|99)|"
     r"1.1.(0|99)|"
-    r"1.2.(0|99)|"
+    r"1.2.(0|1|99)|"
+    r"1.3.(0|99)"
     r")")
 
 def parseline(line):

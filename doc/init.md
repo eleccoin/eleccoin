@@ -20,9 +20,9 @@ The macOS configuration assumes eleccoind will be set up for the current user.
 Configuration
 ---------------------------------
 
-At a bare minimum, eleccoind requires that the rpcpassword setting be set
-when running as a daemon.  If the configuration file does not exist or this
-setting is not set, eleccoind will shut down promptly after startup.
+Running eleccoind as a daemon does not require any manual configuration. You may
+set the `rpcauth` setting in the `eleccoin.conf` configuration file to override
+the default behaviour of using a special cookie for authentication.
 
 This password does not have to be remembered or typed as it is mostly used
 as a fixed token that eleccoind and client programs read from the configuration
