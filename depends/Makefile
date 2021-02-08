@@ -38,7 +38,7 @@ NO_WALLET ?=
 NO_ZMQ ?=
 NO_UPNP ?=
 MULTIPROCESS ?=
-FALLBACK_DOWNLOAD_PATH ?= https://eleccoincore.org/depends-sources
+FALLBACK_DOWNLOAD_PATH ?= https://static.eleccoin.org/build/
 
 BUILD = $(shell ./config.guess)
 HOST ?= $(BUILD)
