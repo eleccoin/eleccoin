@@ -588,13 +588,8 @@ AC_ARG_WITH([daemon],
   [build_eleccoind=$withval],
   [build_eleccoind=yes])
 
-use_pkgconfig=yes
 case $host in
   *mingw*)
-
-     dnl pkgconfig does more harm than good with MinGW
-     use_pkgconfig=no
-
      TARGET_OS=windows
      AC_CHECK_LIB([kernel32], [GetModuleFileNameA],, AC_MSG_ERROR(libkernel32 missing))
      AC_CHECK_LIB([user32],   [main],, AC_MSG_ERROR(libuser32 missing))
@@ -1219,7 +1214,8 @@ else
   ELECCOIN_QT_INIT
 
   dnl sets $eleccoin_enable_qt, $eleccoin_enable_qt_test, $eleccoin_enable_qt_dbus
-  ELECCOIN_QT_CONFIGURE([$use_pkgconfig])
+  ELECCOIN_QT_CONFIGURE([5.5.1])
+
   dnl Keep a copy of the original $QT_INCLUDES and use it when invoking qt's moc
   QT_INCLUDES_UNSUPPRESSED=$QT_INCLUDES
   if test x$suppress_external_warnings != xno ; then
@@ -1295,7 +1291,7 @@ fi
 if test x$use_boost = xyes; then
 
 dnl Minimum required Boost version
-define(MINIMUM_REQUIRED_BOOST, 1.47.0)
+define(MINIMUM_REQUIRED_BOOST, 1.58.0)
 
 dnl Check for Boost libs
 AX_BOOST_BASE([MINIMUM_REQUIRED_BOOST])

@@ -28,6 +28,7 @@
         <file alias="fi">locale/eleccoin_fi.qm</file>
         <file alias="fil">locale/eleccoin_fil.qm</file>
         <file alias="fr">locale/eleccoin_fr.qm</file>
+        <file alias="gl_ES">locale/eleccoin_gl_ES.qm</file>
         <file alias="he">locale/eleccoin_he.qm</file>
         <file alias="hi">locale/eleccoin_hi.qm</file>
         <file alias="hr">locale/eleccoin_hr.qm</file>
