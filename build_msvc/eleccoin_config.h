@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,10 +18,10 @@
 #define CLIENT_VERSION_MAJOR 1
 
 /* Minor version */
-#define CLIENT_VERSION_MINOR 2
+#define CLIENT_VERSION_MINOR 3
 
 /* Build revision */
-#define CLIENT_VERSION_REVISION 1
+#define CLIENT_VERSION_REVISION 0
 
 /* Copyright holder(s) before %s replacement */
 #define COPYRIGHT_HOLDERS "The %s developers"
@@ -33,7 +33,7 @@
 #define COPYRIGHT_HOLDERS_SUBSTITUTION "Eleccoin Core"
 
 /* Copyright year */
-#define COPYRIGHT_YEAR 2020
+#define COPYRIGHT_YEAR 2021
 
 /* Define to 1 to enable wallet functions */
 #define ENABLE_WALLET 1
@@ -41,14 +41,14 @@
 /* Define to 1 to enable ZMQ functions */
 #define ENABLE_ZMQ 1
 
-/* parameter and return value type for __fdelt_chk */
-/* #undef FDELT_TYPE */
-
 /* define if the Boost library is available */
 #define HAVE_BOOST /**/
 
 /* define if the Boost::Filesystem library is available */
 #define HAVE_BOOST_FILESYSTEM /**/
+
+/* define if the Boost::Process library is available */
+#define HAVE_BOOST_PROCESS /**/
 
 /* define if the Boost::System library is available */
 #define HAVE_BOOST_SYSTEM /**/
@@ -139,18 +139,6 @@
 /* Define to 1 if you have the declaration of `strnlen', and to 0 if you
    don't. */
 #define HAVE_DECL_STRNLEN 1
-
-/* Define to 1 if you have the declaration of `__builtin_clz', and to 0 if you
-   don't. */
-//#define HAVE_DECL___BUILTIN_CLZ 1
-
-/* Define to 1 if you have the declaration of `__builtin_clzl', and to 0 if
-   you don't. */
-//#define HAVE_DECL___BUILTIN_CLZL 1
-
-/* Define to 1 if you have the declaration of `__builtin_clzll', and to 0 if
-   you don't. */
-//#define HAVE_DECL___BUILTIN_CLZLL 1
 
 /* Define to 1 if you have the <dlfcn.h> header file. */
 /* #undef HAVE_DLFCN_H */
@@ -265,7 +253,7 @@
 #define PACKAGE_NAME "Eleccoin Core"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Eleccoin Core 1.2.0"
+#define PACKAGE_STRING "Eleccoin Core 1.3.0"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "eleccoin"
@@ -274,7 +262,7 @@
 #define PACKAGE_URL "https://eleccoin.org/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.2.0"
+#define PACKAGE_VERSION "1.3.0"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */

@@ -24,3 +24,4 @@ libtest_util/libtest_util.vcxproj
 */Win32
 libeleccoin_qt/QtGeneratedFiles/*
 test_eleccoin-qt/QtGeneratedFiles/*
+vcpkg_installed
