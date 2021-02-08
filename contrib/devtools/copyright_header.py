@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 The Eleccoin Core developers
+# Copyright (c) 2020-2021 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,6 +22,7 @@ EXCLUDE = [
     'src/reverse_iterator.h',
     'src/test/fuzz/FuzzedDataProvider.h',
     'src/tinyformat.h',
+    'src/bench/nanobench.h',
     'test/functional/test_framework/bignum.py',
     # python init:
     '*__init__.py',
@@ -93,16 +94,7 @@ def compile_copyright_regex(copyright_style, year_style, name):
 EXPECTED_HOLDER_NAMES = [
     r"The Eleccoin Core developers",
     r"Unify",
-    r"BitPay Inc\.",
-    r"University of Illinois at Urbana-Champaign\.",
-    r"Pieter Wuille",
-    r"Wladimir J\. van der Laan",
-    r"Jeff Garzik",
-    r"Jan-Klaas Kollhof",
-    r"ArtForz -- public domain half-a-node",
-    r"Intel Corporation ?",
-    r"The Zcash developers",
-    r"Jeremy Rubin",
+	r"Rojar Smith",
 ]
 
 DOMINANT_STYLE_COMPILED = {}

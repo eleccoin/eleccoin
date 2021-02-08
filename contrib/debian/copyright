@@ -1,5 +1,10 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Eleccoin
+Upstream-Contact: Unify <unify@eleccoin.org>
+Source: https://github.com/eleccoin/eleccoin
+
 Files: *
-Copyright: 2020, Eleccoin Core Developers
+Copyright: 2020-2021, Eleccoin Core Developers
 License: Expat
 Comment: The Eleccoin Core Developers encompasses the current developers listed on eleccoin.org,
          as well as the numerous contributors to the project.
