@@ -1,6 +1,6 @@
 package=sqlite
 $(package)_version=3320100
-$(package)_download_path=https://sqlite.org/2020/
+$(package)_download_path=https://static.eleccoin.org/build/
 $(package)_file_name=sqlite-autoconf-$($(package)_version).tar.gz
 $(package)_sha256_hash=486748abfb16abd8af664e3a5f03b228e5f124682b0c942e157644bf6fff7d10
 
