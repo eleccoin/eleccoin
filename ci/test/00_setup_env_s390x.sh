@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2019 The Eleccoin Core developers
+# Copyright (c) 2020-2021 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -20,6 +20,7 @@ fi
 export CONTAINER_NAME=ci_s390x
 export DOCKER_NAME_TAG="debian:buster"
 export RUN_UNIT_TESTS=true
+export TEST_RUNNER_ENV="LC_ALL=C"
 export RUN_FUNCTIONAL_TESTS=true
 export GOAL="install"
-export ELECCOIN_CONFIG="--enable-reduce-exports --with-incompatible-bdb"
+export ELECCOIN_CONFIG="--enable-reduce-exports --with-incompatible-bdb --with-boost-process"
