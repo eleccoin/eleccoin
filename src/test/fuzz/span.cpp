@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -18,7 +18,7 @@ void test_one_input(const std::vector<uint8_t>& buffer)
     FuzzedDataProvider fuzzed_data_provider(buffer.data(), buffer.size());
 
     std::string str = fuzzed_data_provider.ConsumeBytesAsString(32);
-    const Span<const char> span = MakeSpan(str);
+    const Span<const char> span{str};
     (void)span.data();
     (void)span.begin();
     (void)span.end();
@@ -32,7 +32,7 @@ void test_one_input(const std::vector<uint8_t>& buffer)
     }
 
     std::string another_str = fuzzed_data_provider.ConsumeBytesAsString(32);
-    const Span<const char> another_span = MakeSpan(another_str);
+    const Span<const char> another_span{another_str};
     assert((span <= another_span) != (span > another_span));
     assert((span == another_span) != (span != another_span));
     assert((span >= another_span) != (span < another_span));

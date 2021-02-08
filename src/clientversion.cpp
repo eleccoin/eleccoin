@@ -25,6 +25,7 @@ const std::string CLIENT_NAME("Electron");
 #endif
 
 //! git will put "#define GIT_COMMIT_ID ..." on the next line inside archives. 
+#define GIT_COMMIT_ID ""
 #ifdef BUILD_GIT_TAG
     #define BUILD_DESC BUILD_GIT_TAG
     #define BUILD_SUFFIX ""

@@ -5,9 +5,11 @@
 src/eleccoin
 src/eleccoind
 src/eleccoin-cli
+src/eleccoin-gui
+src/eleccoin-node
 src/eleccoin-tx
 src/eleccoin-wallet
-src/test/fuzz
+src/test/fuzz/*
 !src/test/fuzz/*.*
 src/test/test_eleccoin
 src/test/test_eleccoin_fuzzy
@@ -91,7 +93,7 @@ src/qt/eleccoin-qt.includes
 *.qm
 Makefile
 !depends/Makefile
-eleccoin-qt
+src/qt/eleccoin-qt
 Eleccoin-Qt.app
 background.tiff*
 
@@ -124,6 +126,7 @@ releases
 /*.info
 test_eleccoin.coverage/
 total.coverage/
+fuzz.coverage/
 coverage_percent.txt
 
 #build tests
@@ -132,6 +135,7 @@ linux-build
 win32-build
 test/config.ini
 test/cache/*
+test/.mypy_cache/
 
 !src/leveldb*/Makefile
 
