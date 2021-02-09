@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -107,7 +107,9 @@ BOOST_AUTO_TEST_CASE(ToStringTest)
 {
     CFeeRate feeRate;
     feeRate = CFeeRate(1);
-    BOOST_CHECK_EQUAL(feeRate.ToString(), "0.00000001 ECC/kB");
+    BOOST_CHECK_EQUAL(feeRate.ToString(), "0.00000001 ECC/kvB");
+    BOOST_CHECK_EQUAL(feeRate.ToString(FeeEstimateMode::ECC_KVB), "0.00000001 ECC/kvB");
+    BOOST_CHECK_EQUAL(feeRate.ToString(FeeEstimateMode::ELE_VB), "0.001 ele/vB");
 }
 
 BOOST_AUTO_TEST_SUITE_END()

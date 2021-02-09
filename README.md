@@ -7,10 +7,15 @@ Download : http://eleccoin.org
 What is Eleccoin?
 ----------------
 
-Eleccoin is an experimental digital currency that enables instant payments to anyone, anywhere in the world. Eleccoin uses peer-to-peer technology to operate with no central authority: managing transactions and issuing money are carried out collectively by the network. Eleccoin Core is the name of open source
+Eleccoin is an experimental digital currency that enables instant payments to
+anyone, anywhere in the world. Eleccoin uses peer-to-peer technology to operate
+with no central authority: managing transactions and issuing money are carried
+out collectively by the network. Eleccoin Core is the name of open source
 software which enables the use of this currency.
 
-For more information, as well as an immediately usable, binary version of the Eleccoin Core software, see https://eleccoin.org, or read the original whitepaper.
+For more information, as well as an immediately usable, binary version of
+the Eleccoin Core software, see https://eleccoin.org/en/download/, or read the
+[original whitepaper].
 
 License
 -------
