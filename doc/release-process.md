@@ -361,7 +361,7 @@ eleccoin.org (see below for eleccoin.org update instructions).
 
   - eleccoin-dev and eleccoin-core-dev mailing list
 
-  - Eleccoin Core announcements list https://eleccoincore.org/en/list/announcements/join/
+  - Eleccoin Core announcements list https://eleccoin.org/en/list/announcements/join/
 
   - Update title of #eleccoin on Freenode IRC
 
