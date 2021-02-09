@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 The Eleccoin Core developers
+# Copyright (c) 2020-2021 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Tests some generic aspects of the RPC interface."""
@@ -45,7 +45,7 @@ class RPCInterfaceTest(EleccoinTestFramework):
             # work fine.
             {"method": "invalidmethod", "id": 2},
             # Another call that should succeed.
-            {"method": "getbestblockhash", "id": 3},
+            {"method": "getblockhash", "id": 3, "params": [0]},
         ])
 
         result_by_id = {}

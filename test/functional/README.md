@@ -29,7 +29,7 @@ don't have test cases for.
 - Avoid wildcard imports
 - Use a module-level docstring to describe what the test is testing, and how it
   is testing it.
-- When subclassing the EleccoinTestFramwork, place overrides for the
+- When subclassing the EleccoinTestFramework, place overrides for the
   `set_test_params()`, `add_options()` and `setup_xxxx()` methods at the top of
   the subclass, then locally-defined helper methods, then the `run_test()` method.
 - Use `'{}'.format(x)` for string formatting, not `'%s' % x`.
@@ -45,7 +45,7 @@ don't have test cases for.
     - `rpc` for tests for individual RPC methods or features, eg `rpc_listtransactions.py`
     - `tool` for tests for tools, eg `tool_wallet.py`
     - `wallet` for tests for wallet features, eg `wallet_keypool.py`
-- use an underscore to separate words
+- Use an underscore to separate words
     - exception: for tests for specific RPCs or command line options which don't include underscores, name the test after the exact RPC or argument name, eg `rpc_decodescript.py`, not `rpc_decode_script.py`
 - Don't use the redundant word `test` in the name, eg `interface_zmq.py`, not `interface_zmq_test.py`
 
@@ -98,8 +98,22 @@ contains the higher level logic for processing P2P payloads and connecting to
 the Eleccoin Core node application logic. For custom behaviour, subclass the
 P2PInterface object and override the callback methods.
 
-- Can be used to write tests where specific P2P protocol behavior is tested.
-Examples tests are [p2p_unrequested_blocks.py](p2p_unrequested_blocks.py),
+`P2PConnection`s can be used as such:
+
+```python
+p2p_conn = node.add_p2p_connection(P2PInterface())
+p2p_conn.send_and_ping(msg)
+```
+
+They can also be referenced by indexing into a `TestNode`'s `p2ps` list, which
+contains the list of test framework `p2p` objects connected to itself
+(it does not include any `TestNode`s):
+
+```python
+node.p2ps[0].sync_with_ping()
+```
+
+More examples can be found in [p2p_unrequested_blocks.py](p2p_unrequested_blocks.py),
 [p2p_compactblocks.py](p2p_compactblocks.py).
 
 #### Prototyping tests
@@ -125,8 +139,8 @@ Base class for functional tests.
 #### [util.py](test_framework/util.py)
 Generally useful functions.
 
-#### [mininode.py](test_framework/mininode.py)
-Basic code to support P2P connectivity to a eleccoind.
+#### [p2p.py](test_framework/p2p.py)
+Test objects for interacting with a eleccoind node over the p2p interface.
 
 #### [script.py](test_framework/script.py)
 Utilities for manipulating transaction scripts (originally from python-eleccoinlib)
@@ -155,7 +169,7 @@ way is the use the `profile_with_perf` context manager, e.g.
 with node.profile_with_perf("send-big-msgs"):
     # Perform activity on the node you're interested in profiling, e.g.:
     for _ in range(10000):
-        node.p2p.send_message(some_large_message)
+        node.p2ps[0].send_message(some_large_message)
 ```
 
 To see useful textual output, run
