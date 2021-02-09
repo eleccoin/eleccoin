@@ -601,7 +601,6 @@ libeleccoin_util_a_SOURCES = \
   util/strencodings.cpp \
   util/string.cpp \
   util/time.cpp \
-  util/url.cpp \
   $(ELECCOIN_CORE_H)
 
 if USE_LIBEVENT

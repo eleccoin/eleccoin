@@ -36,5 +36,8 @@ CAmount CFeeRate::GetFee(size_t nBytes_) const
 
 std::string CFeeRate::ToString(const FeeEstimateMode& fee_estimate_mode) const
 {
-    return strprintf("%d.%08d %s/kB", nElectronsPerK / COIN, nElectronsPerK % COIN, CURRENCY_UNIT);
+    switch (fee_estimate_mode) {
+    case FeeEstimateMode::ELE_VB: return strprintf("%d.%03d %s/vB", nElectronsPerK / 1000, nElectronsPerK % 1000, CURRENCY_ATOM);
+    default:                      return strprintf("%d.%08d %s/kvB", nElectronsPerK / COIN, nElectronsPerK % COIN, CURRENCY_UNIT);
+    }
 }
