@@ -18,10 +18,10 @@
 #define CLIENT_VERSION_MAJOR 1
 
 /* Minor version */
-#define CLIENT_VERSION_MINOR 3
+#define CLIENT_VERSION_MINOR 4
 
 /* Build revision */
-#define CLIENT_VERSION_REVISION 0
+#define CLIENT_VERSION_REVISION 99
 
 /* Copyright holder(s) before %s replacement */
 #define COPYRIGHT_HOLDERS "The %s developers"
@@ -253,7 +253,7 @@
 #define PACKAGE_NAME "Eleccoin Core"
 
 /* Define to the full name and version of this package. */
-#define PACKAGE_STRING "Eleccoin Core 1.3.0"
+#define PACKAGE_STRING "Eleccoin Core 1.3.99"
 
 /* Define to the one symbol short name of this package. */
 #define PACKAGE_TARNAME "eleccoin"
@@ -262,7 +262,7 @@
 #define PACKAGE_URL "https://eleccoin.org/"
 
 /* Define to the version of this package. */
-#define PACKAGE_VERSION "1.3.0"
+#define PACKAGE_VERSION "1.3.99"
 
 /* Define to necessary symbol if this constant uses a non-standard name on
    your system. */
