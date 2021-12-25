@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,9 +16,6 @@
 
 static UniValue rpcNestedTest_rpc(const JSONRPCRequest& request)
 {
-    if (request.fHelp) {
-        return "help message";
-    }
     return request.params.write(0, 0);
 }
 
