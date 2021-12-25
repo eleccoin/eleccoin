@@ -1,6 +1,6 @@
 Sample configuration files for:
 ```
-SystemD: eleccoind.service
+systemd: eleccoind.service
 Upstart: eleccoind.conf
 OpenRC:  eleccoind.openrc
          eleccoind.openrcconf
@@ -9,4 +9,4 @@ macOS:   org.eleccoin.eleccoind.plist
 ```
 have been made available to assist packagers in creating node packages here.
 
-See doc/init.md for more information.
+See [doc/init.md](../../doc/init.md) for more information.

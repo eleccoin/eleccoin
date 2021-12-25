@@ -21,21 +21,21 @@ The script returns 0 if everything passes the checks. It returns 1 if either the
 
 
 ```sh
-./verify.sh eleccoin-core-0.11.2
-./verify.sh eleccoin-core-0.12.0
-./verify.sh eleccoin-core-0.13.0-rc3
+./verify.py eleccoin-core-1.1.0
+./verify.py eleccoin-core-1.2.0
+./verify.py eleccoin-core-1.3.0
 ```
 
 If you only want to download the binaries of certain platform, add the corresponding suffix, e.g.:
 
 ```sh
-./verify.sh eleccoin-core-0.11.2-osx
-./verify.sh 0.12.0-linux
-./verify.sh eleccoin-core-0.13.0-rc3-win64
+./verify.py eleccoin-core-1.1.0-osx
+./verify.py 1.2.0-linux
+./verify.py eleccoin-core-1,3.0-win64
 ```
 
 If you do not want to keep the downloaded binaries, specify anything as the second parameter.
 
 ```sh
-./verify.sh eleccoin-core-0.13.0 delete
+./verify.py eleccoin-core-1.3.0 delete
 ```

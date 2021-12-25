@@ -60,16 +60,17 @@ start_pre() {
 	"${ELECCOIND_PIDDIR}"
 
 	checkpath -f \
-	-o ${ELECCOIND_USER}:${ELECCOIND_GROUP} \
+	-o "${ELECCOIND_USER}:${ELECCOIND_GROUP}" \
 	-m 0660 \
-	${ELECCOIND_CONFIGFILE}
+	"${ELECCOIND_CONFIGFILE}"
 
 	checkconfig || return 1
 }
 
 checkconfig()
 {
-	if ! grep -qs '^rpcpassword=' "${ELECCOIND_CONFIGFILE}" ; then
+	if grep -qs '^rpcuser=' "${ELECCOIND_CONFIGFILE}" && \
+		! grep -qs '^rpcpassword=' "${ELECCOIND_CONFIGFILE}" ; then
 		eerror ""
 		eerror "ERROR: You must set a secure rpcpassword to run eleccoind."
 		eerror "The setting must appear in ${ELECCOIND_CONFIGFILE}"

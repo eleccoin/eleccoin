@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2014-2018 The Eleccoin Core developers
+# Copyright (c) 2020-2021 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,8 @@
                 -zmqpubrawtx=tcp://127.0.0.1:29832 \
                 -zmqpubrawblock=tcp://127.0.0.1:29832 \
                 -zmqpubhashtx=tcp://127.0.0.1:29832 \
-                -zmqpubhashblock=tcp://127.0.0.1:29832
+                -zmqpubhashblock=tcp://127.0.0.1:29832 \
+                -zmqpubsequence=tcp://127.0.0.1:29832
 
     We use the asyncio library here.  `self.handle()` installs itself as a
     future at the end of the function.  Since it never returns with the event

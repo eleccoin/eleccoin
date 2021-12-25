@@ -29,8 +29,8 @@ All other packaging related files can be found in the [eleccoin-core/packaging](
 ### [Gitian-descriptors](/contrib/gitian-descriptors) ###
 Files used during the gitian build process. For more information about gitian, see the [the Eleccoin Core documentation repository](https://github.com/eleccoin-core/docs).
 
-### [Gitian-keys](/contrib/gitian-keys)
-PGP keys used for signing Eleccoin Core [Gitian release](/doc/release-process.md) results.
+### [Builder keys](/contrib/builder-keys)
+PGP keys used for signing Eleccoin Core [release](/doc/release-process.md) results.
 
 ### [MacDeploy](/contrib/macdeploy) ###
 Scripts and notes for Mac builds.
