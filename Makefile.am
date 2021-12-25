@@ -3,8 +3,8 @@
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 # Pattern rule to print variables, e.g. make print-top_srcdir
-print-%:
-	@echo $* = $($*)
+print-%: FORCE
+	@echo '$*'='$($*)'
 
 ACLOCAL_AMFLAGS = -I build-aux/m4
 SUBDIRS = src
@@ -12,6 +12,7 @@ if ENABLE_MAN
 SUBDIRS += doc/man
 endif
 .PHONY: deploy FORCE
+.INTERMEDIATE: $(OSX_TEMP_ISO) $(COVERAGE_INFO)
 
 export PYTHONPATH
 
@@ -24,7 +25,10 @@ ELECCOIND_BIN=$(top_builddir)/src/$(ELECCOIN_DAEMON_NAME)$(EXEEXT)
 ELECCOIN_QT_BIN=$(top_builddir)/src/qt/$(ELECCOIN_GUI_NAME)$(EXEEXT)
 ELECCOIN_CLI_BIN=$(top_builddir)/src/$(ELECCOIN_CLI_NAME)$(EXEEXT)
 ELECCOIN_TX_BIN=$(top_builddir)/src/$(ELECCOIN_TX_NAME)$(EXEEXT)
+ELECCOIN_UTIL_BIN=$(top_builddir)/src/$(ELECCOIN_UTIL_NAME)$(EXEEXT)
 ELECCOIN_WALLET_BIN=$(top_builddir)/src/$(ELECCOIN_WALLET_TOOL_NAME)$(EXEEXT)
+ELECCOIN_NODE_BIN=$(top_builddir)/src/$(ELECCOIN_MP_NODE_NAME)$(EXEEXT)
+ELECCOIN_GUI_BIN=$(top_builddir)/src/$(ELECCOIN_MP_GUI_NAME)$(EXEEXT)
 ELECCOIN_WIN_INSTALLER=$(PACKAGE)-$(PACKAGE_VERSION)-win64-setup$(EXEEXT)
 
 empty :=
@@ -33,6 +37,7 @@ space := $(empty) $(empty)
 OSX_APP=Eleccoin-Qt.app
 OSX_VOLNAME = $(subst $(space),-,$(PACKAGE_NAME))
 OSX_DMG = $(OSX_VOLNAME).dmg
+OSX_TEMP_ISO = $(OSX_DMG:.dmg=).temp.iso
 OSX_BACKGROUND_SVG=background.svg
 OSX_BACKGROUND_IMAGE=background.tiff
 OSX_BACKGROUND_IMAGE_DPIS=36 72

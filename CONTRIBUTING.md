@@ -8,11 +8,12 @@ contributing.
 
 First, in terms of structure, there is no particular concept of "Eleccoin Core
 developers" in the sense of privileged people. Open source often naturally
-revolves around meritocracy where longer term contributors gain more trust from
-the developer community. However, some hierarchy is necessary for practical
-purposes. As such there are repository "maintainers" who are responsible for
-merging pull requests as well as a "lead maintainer" who is responsible for the
-release cycle, overall merging, moderation and appointment of maintainers.
+revolves around a meritocracy where contributors earn trust from the developer
+community over time. Nevertheless, some hierarchy is necessary for practical
+purposes. As such, there are repository "maintainers" who are responsible for
+merging pull requests, as well as a "lead maintainer" who is responsible for the
+release cycle as well as overall merging, moderation and appointment of
+maintainers.
 
 Getting Started
 ---------------
@@ -29,9 +30,6 @@ system and tests. Refer to the documentation in the repository on how to build
 Eleccoin Core and how to run the unit tests, functional tests, and fuzz tests.
 
 There are many open issues of varying difficulty waiting to be fixed.
-If you're looking for somewhere to start contributing, check out the
-[good first issue](https://github.com/eleccoin/eleccoin/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22)
-list.
 
 ### Good First Issue Label
 
@@ -49,19 +47,14 @@ and is also an effective way to request assistance if and when you need it.
 Communication Channels
 ----------------------
 
-Most communication about Eleccoin Core development happens on IRC, in the
-#eleccoin-core-dev channel on Freenode. The easiest way to participate on IRC is
-with the web client, [webchat.freenode.net](https://webchat.freenode.net/). Chat
-history logs can be found
-on [http://www.erisian.com.au/eleccoin-core-dev/](http://www.erisian.com.au/eleccoin-core-dev/)
-and [http://gnusha.org/eleccoin-core-dev/](http://gnusha.org/eleccoin-core-dev/).
+Most communication about Eleccoin Core development happens on Email.
 
-Discussion about code base improvements happens in GitHub issues and on pull
+Discussion about codebase improvements happens in GitHub issues and pull
 requests.
 
 The developer
 [mailing list](https://lists.linuxfoundation.org/mailman/listinfo/eleccoin-dev)
-should be used to discuss complicated or controversial changes before working on
+should be used to discuss complicated or controversial consensus or P2P protocol changes before working on
 a patch set.
 
 
@@ -74,9 +67,26 @@ facilitates social contribution, easy testing and peer review.
 
 To contribute a patch, the workflow is as follows:
 
-  1. Fork repository
+  1. Fork repository ([only for the first time]
   1. Create topic branch
   1. Commit patches
+
+The master branch for all monotree repositories is identical.
+
+As a rule of thumb, everything that only modifies `src/qt` is a GUI-only pull
+request. However:
+
+* For global refactoring or other transversal changes the node repository
+  should be used.
+* For GUI-related build system changes, the node repository should be used
+  because the change needs review by the build systems reviewers.
+* Changes in `src/interfaces` need to go to the node repository because they
+  might affect other components like the wallet.
+
+For large GUI changes that include build system and interface changes, it is
+recommended to first open a pull request against the GUI repository. When there
+is agreement to proceed with the changes, a pull request with the build system
+and interfaces changes can be submitted to the node repository.
 
 The project coding conventions in the [developer notes](doc/developer-notes.md)
 must be followed.
@@ -101,7 +111,7 @@ If a particular commit references another issue, please add the reference. For
 example: `refs #1234` or `fixes #4321`. Using the `fixes` or `closes` keywords
 will cause the corresponding issue to be closed when the pull request is merged.
 
-Commit messages should never contain any `@` mentions.
+Commit messages should never contain any `@` mentions (usernames prefixed with "@").
 
 Please refer to the [Git manual](https://git-scm.com/doc) for more information
 about Git.
@@ -170,7 +180,7 @@ Note: Code review is a burdensome but important part of the development process,
 
 If your pull request contains fixup commits (commits that change the same line of code repeatedly) or too fine-grained
 commits, you may be asked to [squash](https://git-scm.com/docs/git-rebase#_interactive_mode) your commits
-before it will be merged. The basic squashing workflow is shown below.
+before it will be reviewed. The basic squashing workflow is shown below.
 
     git checkout your_branch_name
     git rebase -i HEAD~n
@@ -390,10 +400,7 @@ Rebased-From: <commit hash of the original commit>
 ```
 
 Have a look at [an example backport PR](
-https://github.com/eleccoin/eleccoin/pull/16189).
-
-Also see the [backport.py script](
-https://github.com/eleccoin/eleccoin-maintainer-tools#backport).
+https://github.com/eleccoin/eleccoin/pull).
 
 Release Policy
 --------------

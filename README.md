@@ -1,8 +1,11 @@
 Eleccoin Core integration/staging tree
 =====================================
 
-Fundation : service@eleccoin.org
-Download : http://eleccoin.org
+https://eleccoin.org
+
+Fundation Contact Window: service@eleccoin.org
+
+Further information about Eleccoin Core is available in the [doc folder](/doc).
 
 What is Eleccoin?
 ----------------
@@ -13,9 +16,7 @@ with no central authority: managing transactions and issuing money are carried
 out collectively by the network. Eleccoin Core is the name of open source
 software which enables the use of this currency.
 
-For more information, as well as an immediately usable, binary version of
-the Eleccoin Core software, see https://eleccoin.org/en/download/, or read the
-[original whitepaper](https://static.eleccoin.org/eleccoin.pdf).
+For more information read the original Eleccoin whitepaper.
 
 License
 -------
@@ -54,10 +55,11 @@ submit new unit tests for old code. Unit tests can be compiled and run
 and extending unit tests can be found in [/src/test/README.md](/src/test/README.md).
 
 There are also [regression and integration tests](/test), written
-in Python, that are run automatically on the build server.
+in Python.
 These tests can be run (if the [test dependencies](/test) are installed) with: `test/functional/test_runner.py`
 
-The Travis CI system makes sure that every pull request is built for Windows, Linux, and macOS, and that unit/sanity tests are run automatically.
+The CI (Continuous Integration) systems make sure that every pull request is built for Windows, Linux, and macOS,
+and that unit/sanity tests are run automatically.
 
 ### Manual Quality Assurance (QA) Testing
 
@@ -77,5 +79,3 @@ Translations are periodically pulled from Transifex and merged into the git repo
 
 **Important**: We do not accept translation changes as GitHub pull requests because the next
 pull from Transifex would automatically overwrite them again.
-
-Translators should also subscribe to the [mailing list](https://groups.google.com/forum/#!forum/eleccoin-translators).
