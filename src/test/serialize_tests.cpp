@@ -341,12 +341,7 @@ BOOST_AUTO_TEST_CASE(insert_delete)
     BOOST_CHECK_EQUAL(ss[0], 0);
     BOOST_CHECK_EQUAL(ss[1], 1);
     BOOST_CHECK_EQUAL(ss[2], 2);
-    BOOST_CHECK_EQUAL(ss[3], (char)0xff);
-
-    // Make sure GetAndClear does the right thing:
-    CSerializeData d;
-    ss.GetAndClear(d);
-    BOOST_CHECK_EQUAL(ss.size(), 0U);
+    BOOST_CHECK_EQUAL(ss[3], 0xff);
 }
 
 BOOST_AUTO_TEST_CASE(class_methods)
