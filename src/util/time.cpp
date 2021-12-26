@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,7 +17,7 @@
 
 void UninterruptibleSleep(const std::chrono::microseconds& n) { std::this_thread::sleep_for(n); }
 
-static std::atomic<int64_t> nMockTime(0); //!< For unit testing
+static std::atomic<int64_t> nMockTime(0); //!< For testing
 
 int64_t GetTime()
 {
@@ -27,6 +27,49 @@ int64_t GetTime()
     time_t now = time(nullptr);
     assert(now > 0);
     return now;
+}
+
+bool ChronoSanityCheck()
+{
+    // std::chrono::system_clock.time_since_epoch and time_t(0) are not guaranteed
+    // to use the Unix epoch timestamp, prior to C++20, but in practice they almost
+    // certainly will. Any differing behavior will be assumed to be an error, unless
+    // certain platforms prove to consistently deviate, at which point we'll cope
+    // with it by adding offsets.
+
+    // Create a new clock from time_t(0) and make sure that it represents 0
+    // seconds from the system_clock's time_since_epoch. Then convert that back
+    // to a time_t and verify that it's the same as before.
+    const time_t time_t_epoch{};
+    auto clock = std::chrono::system_clock::from_time_t(time_t_epoch);
+    if (std::chrono::duration_cast<std::chrono::seconds>(clock.time_since_epoch()).count() != 0) {
+        return false;
+    }
+
+    time_t time_val = std::chrono::system_clock::to_time_t(clock);
+    if (time_val != time_t_epoch) {
+        return false;
+    }
+
+    // Check that the above zero time is actually equal to the known unix timestamp.
+    struct tm epoch;
+#ifdef HAVE_GMTIME_R
+    if (gmtime_r(&time_val, &epoch) == nullptr) {
+#else
+    if (gmtime_s(&epoch, &time_val) != 0) {
+#endif
+        return false;
+    }
+
+    if ((epoch.tm_sec != 0)  ||
+       (epoch.tm_min  != 0)  ||
+       (epoch.tm_hour != 0)  ||
+       (epoch.tm_mday != 1)  ||
+       (epoch.tm_mon  != 0)  ||
+       (epoch.tm_year != 70)) {
+        return false;
+    }
+    return true;
 }
 
 template <typename T>

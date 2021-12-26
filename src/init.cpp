@@ -771,9 +771,6 @@ static bool InitSanityCheck()
         return InitError(Untranslated("Elliptic curve cryptography sanity check failure. Aborting."));
     }
 
-    if (!glibc_sanity_test() || !glibcxx_sanity_test())
-        return false;
-
     if (!Random_SanityCheck()) {
         return InitError(Untranslated("OS cryptographic RNG sanity check failure. Aborting."));
     }

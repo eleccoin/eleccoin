@@ -23,6 +23,7 @@ ELECCOIN_DAEMON_NAME=eleccoind
 ELECCOIN_GUI_NAME=eleccoin-qt
 ELECCOIN_CLI_NAME=eleccoin-cli
 ELECCOIN_TX_NAME=eleccoin-tx
+ELECCOIN_UTIL_NAME=eleccoin-util
 ELECCOIN_WALLET_TOOL_NAME=eleccoin-wallet
 
 dnl Unless the user specified ARFLAGS, force it to be cr
@@ -543,7 +544,7 @@ CPPFLAGS="$CPPFLAGS -DHAVE_BUILD_INFO -D__STDC_FORMAT_MACROS"
 
 AC_ARG_WITH([utils],
   [AS_HELP_STRING([--with-utils],
-  [build eleccoin-cli eleccoin-tx eleccoin-wallet (default=yes)])],
+  [build eleccoin-cli eleccoin-tx eleccoin-util eleccoin-wallet (default=yes)])],
   [build_eleccoin_utils=$withval],
   [build_eleccoin_utils=yes])
 
@@ -564,6 +565,12 @@ AC_ARG_ENABLE([util-wallet],
   [build eleccoin-wallet])],
   [build_eleccoin_wallet=$enableval],
   [build_eleccoin_wallet=$build_eleccoin_utils])
+
+AC_ARG_ENABLE([util-util],
+  [AS_HELP_STRING([--enable-util-util],
+  [build eleccoin-util])],
+  [build_eleccoin_util=$enableval],
+  [build_eleccoin_util=$build_eleccoin_utils])
 
 AC_ARG_WITH([libs],
   [AS_HELP_STRING([--with-libs],
@@ -1175,6 +1182,7 @@ if test "x$enable_fuzz" = "xyes"; then
   build_eleccoin_utils=no
   build_eleccoin_cli=no
   build_eleccoin_tx=no
+  build_eleccoin_util=no
   build_eleccoin_wallet=no
   build_eleccoind=no
   build_eleccoin_libs=no
@@ -1381,7 +1389,7 @@ fi
 dnl univalue check
 
 need_bundled_univalue=yes
-if test x$build_eleccoin_wallet$build_eleccoin_cli$build_eleccoin_tx$build_eleccoind$eleccoin_enable_qt$use_tests$use_bench = xnonononononono; then
+if test x$build_eleccoin_wallet$build_eleccoin_cli$build_eleccoin_tx$build_eleccoin_util$build_eleccoind$eleccoin_enable_qt$use_tests$use_bench = xnononononononono; then
   need_bundled_univalue=no
 else
   if test x$system_univalue != xno; then
@@ -1638,6 +1646,7 @@ AC_SUBST(ELECCOIN_DAEMON_NAME)
 AC_SUBST(ELECCOIN_GUI_NAME)
 AC_SUBST(ELECCOIN_CLI_NAME)
 AC_SUBST(ELECCOIN_TX_NAME)
+AC_SUBST(ELECCOIN_UTIL_NAME)
 AC_SUBST(ELECCOIN_WALLET_TOOL_NAME)
 
 AC_SUBST(RELDFLAGS)
