@@ -4,6 +4,7 @@
 
 #include <logging.h>
 #include <util/threadnames.h>
+#include <util/string.h>
 #include <util/time.h>
 
 #include <mutex>
@@ -154,6 +155,8 @@ const CLogCategoryDesc LogCategories[] =
     {BCLog::QT, "qt"},
     {BCLog::LEVELDB, "leveldb"},
     {BCLog::VALIDATION, "validation"},
+    {BCLog::I2P, "i2p"},
+    {BCLog::IPC, "ipc"},
     {BCLog::ALL, "1"},
     {BCLog::ALL, "all"},
 };
@@ -173,7 +176,7 @@ bool GetLogCategory(BCLog::LogFlags& flag, const std::string& str)
     return false;
 }
 
-std::vector<LogCategory> BCLog::Logger::LogCategoriesList()
+std::vector<LogCategory> BCLog::Logger::LogCategoriesList() const
 {
     std::vector<LogCategory> ret;
     for (const CLogCategoryDesc& category_desc : LogCategories) {
@@ -235,7 +238,7 @@ namespace BCLog {
     }
 }
 
-void BCLog::Logger::LogPrintStr(const std::string& str)
+void BCLog::Logger::LogPrintStr(const std::string& str, const std::string& logging_function, const std::string& source_file, const int source_line)
 {
     StdLockGuard scoped_lock(m_cs);
     std::string str_prefixed = LogEscapeMessage(str);
