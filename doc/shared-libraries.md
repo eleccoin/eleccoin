@@ -41,9 +41,10 @@ The interface is defined in the C header `eleccoinconsensus.h` located in `src/s
 - `eleccoinconsensus_ERR_TX_SIZE_MISMATCH` - `txToLen` did not match with the size of `txTo`
 - `eleccoinconsensus_ERR_DESERIALIZE` - An error deserializing `txTo`
 - `eleccoinconsensus_ERR_AMOUNT_REQUIRED` - Input amount is required if WITNESS is used
+- `eleccoinconsensus_ERR_INVALID_FLAGS` - Script verification `flags` are invalid (i.e. not part of the libconsensus interface)
 
 ### Example Implementations
-- [NEleccoin](https://github.com/NicolasDorier/NEleccoin/blob/master/NEleccoin/Script.cs#L814) (.NET Bindings)
+- [NEleccoin](https://github.com/MetacoSA/NEleccoin/blob/5e1055cd7c4186dee4227c344af8892aea54faec/NEleccoin/Script.cs#L979-#L1031) (.NET Bindings)
 - [node-libeleccoinconsensus](https://github.com/bitpay/node-libeleccoinconsensus) (Node.js Bindings)
 - [java-libeleccoinconsensus](https://github.com/dexX7/java-libeleccoinconsensus) (Java Bindings)
 - [eleccoinconsensus-php](https://github.com/Bit-Wasp/eleccoinconsensus-php) (PHP Bindings)

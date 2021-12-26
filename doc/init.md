@@ -53,11 +53,12 @@ Paths
 
 All three configurations assume several paths that might need to be adjusted.
 
-Binary:              `/usr/bin/eleccoind`
-Configuration file:  `/etc/eleccoin/eleccoin.conf`
-Data directory:      `/var/lib/eleccoind`
-PID file:            `/var/run/eleccoind/eleccoind.pid` (OpenRC and Upstart) or `/run/eleccoind/eleccoind.pid` (systemd)
-Lock file:           `/var/lock/subsys/eleccoind` (CentOS)
+    Binary:              /usr/bin/eleccoind
+    Configuration file:  /etc/eleccoin/eleccoin.conf
+    Data directory:      /var/lib/eleccoind
+    PID file:            /var/run/eleccoind/eleccoind.pid (OpenRC and Upstart) or
+                         /run/eleccoind/eleccoind.pid (systemd)
+    Lock file:           /var/lock/subsys/eleccoind (CentOS)
 
 The PID directory (if applicable) and data directory should both be owned by the
 eleccoin user and group. It is advised for security reasons to make the
@@ -83,10 +84,10 @@ OpenRC).
 
 ### macOS
 
-Binary:              `/usr/local/bin/eleccoind`
-Configuration file:  `~/Library/Application Support/Eleccoin/eleccoin.conf`
-Data directory:      `~/Library/Application Support/Eleccoin`
-Lock file:           `~/Library/Application Support/Eleccoin/.lock`
+    Binary:              /usr/local/bin/eleccoind
+    Configuration file:  ~/Library/Application Support/Eleccoin/eleccoin.conf
+    Data directory:      ~/Library/Application Support/Eleccoin
+    Lock file:           ~/Library/Application Support/Eleccoin/.lock
 
 Installing Service Configuration
 -----------------------------------

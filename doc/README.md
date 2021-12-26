@@ -26,6 +26,7 @@ Unpack the files into a directory, and then run eleccoin-qt.exe.
 
 Drag Eleccoin Core to your applications folder, and then run Eleccoin Core.
 
+* Ask for help on [Email](service@eleccoin.org).
 Building
 ---------------------
 The following are developer notes on how to build Eleccoin Core on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
@@ -37,7 +38,8 @@ The following are developer notes on how to build Eleccoin Core on your native p
 - [FreeBSD Build Notes](build-freebsd.md)
 - [OpenBSD Build Notes](build-openbsd.md)
 - [NetBSD Build Notes](build-netbsd.md)
-- [Gitian Building Guide (External Link)]
+- [Android Build Notes](build-android.md)
+- [Gitian Building Guide]
 
 Development
 ---------------------
@@ -47,7 +49,7 @@ The Eleccoin repo's [root README](/README.md) contains relevant information on t
 - [Productivity Notes](productivity.md)
 - [Release Notes](release-notes.md)
 - [Release Process](release-process.md)
-- [Source Code Documentation (External Link)](https://dev.visucore.com/eleccoin/doxygen/)
+- [Source Code Documentation (External Link)](https://doxygen.eleccoincore.org/)
 - [Translation Process](translation_process.md)
 - [Translation Strings Policy](translation_strings_policy.md)
 - [JSON-RPC Interface](JSON-RPC-interface.md)
@@ -65,12 +67,13 @@ The Eleccoin repo's [root README](/README.md) contains relevant information on t
 - [eleccoin.conf Configuration File](eleccoin-conf.md)
 - [Files](files.md)
 - [Fuzz-testing](fuzzing.md)
+- [I2P Support](i2p.md)
+- [Init Scripts (systemd/upstart/openrc)](init.md)
+- [PSBT support](psbt.md)
 - [Reduce Memory](reduce-memory.md)
 - [Reduce Traffic](reduce-traffic.md)
 - [Tor Support](tor.md)
-- [Init Scripts (systemd/upstart/openrc)](init.md)
 - [ZMQ](zmq.md)
-- [PSBT support](psbt.md)
 
 License
 ---------------------

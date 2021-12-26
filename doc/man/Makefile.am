@@ -16,6 +16,10 @@ if BUILD_ELECCOIN_TX
   dist_man1_MANS+=eleccoin-tx.1
 endif
 
+if BUILD_ELECCOIN_UTIL
+  dist_man1_MANS+=eleccoin-util.1
+endif
+
 if ENABLE_WALLET
 if BUILD_ELECCOIN_WALLET
   dist_man1_MANS+=eleccoin-wallet.1
