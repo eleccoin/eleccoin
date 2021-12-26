@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,7 @@
 #if __has_builtin(__builtin_mul_overflow)
 #define HAVE_BUILTIN_MUL_OVERFLOW
 #endif
-#elif defined(__GNUC__) && (__GNUC__ >= 5)
+#elif defined(__GNUC__)
 #define HAVE_BUILTIN_MUL_OVERFLOW
 #endif
 
