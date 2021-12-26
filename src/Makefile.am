@@ -385,7 +385,6 @@ libeleccoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES) $(SQLITE_CFL
 libeleccoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeleccoin_wallet_a_SOURCES = \
   interfaces/wallet.cpp \
-  wallet/bdb.cpp \
   wallet/coincontrol.cpp \
   wallet/context.cpp \
   wallet/crypter.cpp \
@@ -395,7 +394,6 @@ libeleccoin_wallet_a_SOURCES = \
   wallet/load.cpp \
   wallet/rpcdump.cpp \
   wallet/rpcwallet.cpp \
-  wallet/salvage.cpp \
   wallet/scriptpubkeyman.cpp \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
@@ -405,6 +403,9 @@ libeleccoin_wallet_a_SOURCES = \
 
 if USE_SQLITE
 libeleccoin_wallet_a_SOURCES += wallet/sqlite.cpp
+endif
+if USE_BDB
+libeleccoin_wallet_a_SOURCES += wallet/bdb.cpp wallet/salvage.cpp
 endif
 
 libeleccoin_wallet_tool_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
