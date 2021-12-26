@@ -5,6 +5,7 @@
 #include <fs.h>
 #include <streams.h>
 #include <util/translation.h>
+#include <wallet/bdb.h>
 #include <wallet/salvage.h>
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
