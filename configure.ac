@@ -1464,6 +1464,10 @@ AC_MSG_CHECKING([whether to build eleccoin-wallet])
 AM_CONDITIONAL([BUILD_ELECCOIN_WALLET], [test x$build_eleccoin_wallet = xyes])
 AC_MSG_RESULT($build_eleccoin_wallet)
 
+AC_MSG_CHECKING([whether to build eleccoin-util])
+AM_CONDITIONAL([BUILD_ELECCOIN_UTIL], [test x$build_eleccoin_util = xyes])
+AC_MSG_RESULT($build_eleccoin_util)
+
 AC_MSG_CHECKING([whether to build libraries])
 AM_CONDITIONAL([BUILD_ELECCOIN_LIBS], [test x$build_eleccoin_libs = xyes])
 if test x$build_eleccoin_libs = xyes; then
