@@ -22,13 +22,6 @@ while getopts "?" opt; do
   esac
 done
 
-# TRAVIS_BRANCH will be present in a Travis environment. For builds triggered
-# by a pull request this is the name of the branch targeted by the pull request.
-# https://docs.travis-ci.com/user/environment-variables/
-if [ -n "${TRAVIS_BRANCH}" ]; then
-  COMMIT_RANGE="$TRAVIS_BRANCH..HEAD"
-fi
-
 if [ -z "${COMMIT_RANGE}" ]; then
   if [ -n "$1" ]; then
     COMMIT_RANGE="HEAD~$1...HEAD"
@@ -40,7 +33,7 @@ if [ -z "${COMMIT_RANGE}" ]; then
 fi
 
 showdiff() {
-  if ! git diff -U0 "${COMMIT_RANGE}" -- "." ":(exclude)depends/patches/" ":(exclude)src/leveldb/" ":(exclude)src/crc32c/" ":(exclude)src/secp256k1/" ":(exclude)src/univalue/" ":(exclude)doc/release-notes/" ":(exclude)src/qt/locale/"; then
+  if ! git diff -U0 "${COMMIT_RANGE}" -- "." ":(exclude)depends/patches/" ":(exclude)contrib/guix/patches/" ":(exclude)src/leveldb/" ":(exclude)src/crc32c/" ":(exclude)src/secp256k1/" ":(exclude)src/univalue/" ":(exclude)doc/release-notes/" ":(exclude)src/qt/locale/"; then
     echo "Failed to get a diff"
     exit 1
   fi
