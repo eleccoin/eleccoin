@@ -10,6 +10,7 @@
 #include <random.h>
 #include <sync.h>
 
+#include <array>
 #include <map>
 #include <memory>
 #include <string>

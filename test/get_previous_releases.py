@@ -21,37 +21,22 @@ import hashlib
 
 
 SHA256_SUMS = {
-"d40f18b4e43c6e6370ef7db9131f584fbb137276ec2e3dba67a4b267f81cb644": "eleccoin-0.15.2-aarch64-linux-gnu.tar.gz",
-"54fb877a148a6ad189a1e1ab1ff8b11181e58ff2aaf430da55b3fd46ae549a6b": "eleccoin-0.15.2-arm-linux-gnueabihf.tar.gz",
-"2b843506c3f1af0eeca5854a920264f9a829f02d0d50328005950ddcbe88874d": "eleccoin-0.15.2-i686-pc-linux-gnu.tar.gz",
-"87e9340ff3d382d543b2b69112376077f0c8b4f7450d372e83b68f5a1e22b2df": "eleccoin-0.15.2-osx64.tar.gz",
-"566be44190fd76daa01f13d428939dadfb8e3daacefc8fa17f433cad28f73bd5": "eleccoin-0.15.2-x86_64-linux-gnu.tar.gz",
-
-"0768c6c15caffbaca6524824c9563b42c24f70633c681c2744649158aa3fd484": "eleccoin-0.16.3-aarch64-linux-gnu.tar.gz",
-"fb2818069854a6ad20ea03b28b55dbd35d8b1f7d453e90b83eace5d0098a2a87": "eleccoin-0.16.3-arm-linux-gnueabihf.tar.gz",
-"75a537844313b0a84bdb61ffcdc5c4ce19a738f7ddf71007cd2edf664efd7c37": "eleccoin-0.16.3-i686-pc-linux-gnu.tar.gz",
-"78c3bff3b619a19aed575961ea43cc9e142959218835cf51aede7f0b764fc25d": "eleccoin-0.16.3-osx64.tar.gz",
-"5d422a9d544742bc0df12427383f9c2517433ce7b58cf672b9a9b17c2ef51e4f": "eleccoin-0.16.3-x86_64-linux-gnu.tar.gz",
-
-"5a6b35d1a348a402f2d2d6ab5aed653a1a1f13bc63aaaf51605e3501b0733b7a": "eleccoin-0.17.2-aarch64-linux-gnu.tar.gz",
-"d1913a5d19c8e8da4a67d1bd5205d03c8614dfd2e02bba2fe3087476643a729e": "eleccoin-0.17.2-arm-linux-gnueabihf.tar.gz",
-"d295fc93f39bbf0fd937b730a93184899a2eb6c3a6d53f3d857cbe77ef89b98c": "eleccoin-0.17.2-i686-pc-linux-gnu.tar.gz",
-"a783ba20706dbfd5b47fbedf42165fce70fbbc7d78003305d964f6b3da14887f": "eleccoin-0.17.2-osx64.tar.gz",
-"943f9362b9f11130177839116f48f809d83478b4c28591d486ee9a7e35179da6": "eleccoin-0.17.2-x86_64-linux-gnu.tar.gz",
-
-"88f343af72803b851c7da13874cc5525026b0b55e63e1b5e1298390c4688adc6": "eleccoin-0.18.1-aarch64-linux-gnu.tar.gz",
-"cc7d483e4b20c5dabd4dcaf304965214cf4934bcc029ca99cbc9af00d3771a1f": "eleccoin-0.18.1-arm-linux-gnueabihf.tar.gz",
-"989e847b3e95fc9fedc0b109cae1b4fa43348f2f712e187a118461876af9bd16": "eleccoin-0.18.1-i686-pc-linux-gnu.tar.gz",
-"b7bbcee7a7540f711b171d6981f939ca8482005fde22689bc016596d80548bb1": "eleccoin-0.18.1-osx64.tar.gz",
-"425ee5ec631ae8da71ebc1c3f5c0269c627cf459379b9b030f047107a28e3ef8": "eleccoin-0.18.1-riscv64-linux-gnu.tar.gz",
-"600d1db5e751fa85903e935a01a74f5cc57e1e7473c15fd3e17ed21e202cfe5a": "eleccoin-0.18.1-x86_64-linux-gnu.tar.gz",
-
-"3a80431717842672df682bdb619e66523b59541483297772a7969413be3502ff": "eleccoin-0.19.1-aarch64-linux-gnu.tar.gz",
-"657f28213823d240dd3324d14829702f9ad6f0710f8bdd1c379cb3c447197f48": "eleccoin-0.19.1-arm-linux-gnueabihf.tar.gz",
-"10d1e53208aa7603022f4acc084a046299ab4ccf25fe01e81b3fb6f856772589": "eleccoin-0.19.1-i686-pc-linux-gnu.tar.gz",
-"1ae1b87de26487075cd2fd22e0d4ead87d969bd55c44f2f1d873ecdc6147ebb3": "eleccoin-0.19.1-osx64.tar.gz",
-"aa7a9563b48aa79252c8e7b6a41c07a5441bd9f14c5e4562cc72720ea6cb0ee5": "eleccoin-0.19.1-riscv64-linux-gnu.tar.gz",
-"5fcac9416e486d4960e1a946145566350ca670f9aaba99de6542080851122e4c": "eleccoin-0.19.1-x86_64-linux-gnu.tar.gz"
+"c84cbbf7b919864f9d01672a69d470b548166d418c41de2df8d408acfe2f3e97":  "eleccoin-1.2.1-aarch64-linux-gnu-debug.tar.gz"
+"1bc18ed354cb0b492c69868e34f68eb2c8842f789970a627f8dca798434392e8":  "eleccoin-1.2.1-aarch64-linux-gnu.tar.gz"
+"d20c5641c20b91fac8b047da48a94f9a599cb557b1998c8ce3500c3cbc3eebcd":  "eleccoin-1.2.1-arm-linux-gnueabihf-debug.tar.gz"
+"f3730c44227fbc2c0450d1ed61a5ea1e6f373c219372431f9d9f7ade50814377":  "eleccoin-1.2.1-arm-linux-gnueabihf.tar.gz"
+"61372b4e100f6ec51fcd08f04ec261ee9e9ea6ea2c851f0245816c4cf035505a":  "eleccoin-1.2.1-osx64.tar.gz"
+"71b375c4f9e65d1ffdfc1b5241c04336d825aab82f1ceb1e40408d04701a6bfc":  "eleccoin-1.2.1-osx.dmg"
+"6d7c8def10c65a14121796fc52b257b38948cb6d26db926e9e807bffdd4bc49a":  "eleccoin-1.2.1-osx-unsigned.dmg"
+"72a75e8b52b3074536c21d03ccb238335ee200b820a469dcfc76ac0e32075503":  "eleccoin-1.2.1-osx-unsigned.tar.gz"
+"08ba90bd7b62de240193758460e472490af7ec2acd97d1ac5248caac232a2a37":  "eleccoin-1.2.1.tar.gz"
+"da334e16eecdbaaf1841a052d8442b6b210aedb27de276d2bb484c9dc59c6fae":  "eleccoin-1.2.1-win64-debug.zip"
+"5d6279c8f625b5d4bc0829ecb08c71f7debf20d3f5b6969715afa8bc7d374dba":  "eleccoin-1.2.1-win64-setup.exe"
+"02c25de771863b42a967da97ed8607822116c2b2440999188ddded6784cbcabe":  "eleccoin-1.2.1-win64-setup-unsigned.exe"
+"62d6532a864b4ff62957827681578012c5c9b714e46c0eb0969a78022636df29":  "eleccoin-1.2.1-win64.zip"
+"8bb166a6c9dfae51d208a73e81b34d8b707463029b08273f188f4e689c2c3c0a":  "eleccoin-1.2.1-win-unsigned.tar.gz"
+"7c45360bea2c052a26bb52ca70f6064dc39b6b4be86b09262bc22422ad22a643":  "eleccoin-1.2.1-x86_64-linux-gnu-debug.tar.gz"
+"f96c39ae406374d4d5745ca2a2a1a9e2426a69e808ddd99c90953ec3a8d36355":  "eleccoin-1.2.1-x86_64-linux-gnu.tar.gz"
 }
 
 @contextlib.contextmanager

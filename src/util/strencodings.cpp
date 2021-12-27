@@ -138,9 +138,21 @@ std::string EncodeBase64(Span<const unsigned char> input)
     return str;
 }
 
+std::string EncodeBase64(const unsigned char* pch, size_t len)
+{
+    static const char *pbase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+    std::string str;
+    str.reserve(((len + 2) / 3) * 4);
+    ConvertBits<8, 6, true>([&](int v) { str += pbase64[v]; }, pch, pch + len);
+    while (str.size() % 4) str += '=';
+    return str;
+}
+
 std::string EncodeBase64(const std::string& str)
 {
     return EncodeBase64(MakeUCharSpan(str));
+    //return EncodeBase64((const unsigned char*)str.data(), str.size());
 }
 
 std::vector<unsigned char> DecodeBase64(const char* p, bool* pf_invalid)
@@ -214,6 +226,17 @@ std::string EncodeBase32(Span<const unsigned char> input, bool pad)
             str += '=';
         }
     }
+    return str;
+}
+
+std::string EncodeBase32(const unsigned char* pch, size_t len)
+{
+    static const char *pbase32 = "abcdefghijklmnopqrstuvwxyz234567";
+
+    std::string str;
+    str.reserve(((len + 4) / 5) * 8);
+    ConvertBits<8, 5, true>([&](int v) { str += pbase32[v]; }, pch, pch + len);
+    while (str.size() % 8) str += '=';
     return str;
 }
 
@@ -434,6 +457,25 @@ std::string FormatParagraph(const std::string& in, size_t width, size_t indent)
         }
     }
     return out.str();
+}
+
+std::string i64tostr(int64_t n)
+{
+    return strprintf("%d", n);
+}
+
+std::string itostr(int n)
+{
+    return strprintf("%d", n);
+}
+
+int64_t atoi64(const char* psz)
+{
+#ifdef _MSC_VER
+    return _atoi64(psz);
+#else
+    return strtoll(psz, nullptr, 10);
+#endif
 }
 
 int64_t atoi64(const std::string& str)

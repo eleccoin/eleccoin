@@ -328,4 +328,3 @@ tail -f $HOME/Library/Application\ Support/Eleccoin/debug.log
 ./src/eleccoin-cli help      # Outputs a list of RPC commands when the daemon is running.
 ./src/qt/eleccoin-qt -server # Starts the eleccoin-qt server mode, allows eleccoin-cli control
 ```
-* Building with downloaded Qt binaries is not officially supported. See the notes in [#7714](https://github.com/eleccoin/eleccoin/issues/7714).

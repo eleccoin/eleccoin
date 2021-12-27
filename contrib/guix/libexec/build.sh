@@ -169,6 +169,8 @@ case "$HOST" in
                 arm-linux-gnueabihf)   echo /lib/ld-linux-armhf.so.3 ;;
                 aarch64-linux-gnu)     echo /lib/ld-linux-aarch64.so.1 ;;
                 riscv64-linux-gnu)     echo /lib/ld-linux-riscv64-lp64d.so.1 ;;
+                powerpc64-linux-gnu)   echo /lib/ld64.so.1;;
+                powerpc64le-linux-gnu) echo /lib/ld64.so.2;;
                 *)                     exit 1 ;;
             esac
         )
@@ -261,8 +263,15 @@ case "$HOST" in
     *mingw*)  HOST_LDFLAGS="-Wl,--no-insert-timestamp" ;;
 esac
 
+# Using --no-tls-get-addr-optimize retains compatibility with glibc 2.17, by
+# avoiding a PowerPC64 optimisation available in glibc 2.22 and later.
+# https://sourceware.org/binutils/docs-2.35/ld/PowerPC64-ELF64.html
 case "$HOST" in
-    riscv64-linux-*) HOST_LDFLAGS="${HOST_LDFLAGS} -Wl,-z,noexecstack" ;;
+    *powerpc64*) HOST_LDFLAGS="${HOST_LDFLAGS} -Wl,--no-tls-get-addr-optimize" ;;
+esac
+
+case "$HOST" in
+    powerpc64-linux-*|riscv64-linux-*) HOST_LDFLAGS="${HOST_LDFLAGS} -Wl,-z,noexecstack" ;;
 esac
 
 # Make $HOST-specific native binaries from depends available in $PATH
