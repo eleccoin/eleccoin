@@ -48,11 +48,11 @@ public:
      *  @param[in] nBytes    size_t bytes (units) to construct with
      *  @returns   fee rate
      */
-    CFeeRate(const CAmount& nFeePaid, size_t nBytes);
+    CFeeRate(const CAmount& nFeePaid, uint32_t num_bytes);
     /**
      * Return the fee in electrons for the given size in bytes.
      */
-    CAmount GetFee(size_t nBytes) const;
+    CAmount GetFee(uint32_t num_bytes) const;
     /**
      * Return the fee in electrons for a size of 1000 bytes
      */

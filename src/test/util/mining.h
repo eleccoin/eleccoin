@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,11 +7,16 @@
 
 #include <memory>
 #include <string>
+#include <vector>
 
 class CBlock;
+class CChainParams;
 class CScript;
 class CTxIn;
 struct NodeContext;
+
+/** Create a blockchain, starting from genesis */
+std::vector<std::shared_ptr<CBlock>> CreateBlockChain(size_t total_height, const CChainParams& params);
 
 /** Returns the generated coin */
 CTxIn MineBlock(const NodeContext&, const CScript& coinbase_scriptPubKey);

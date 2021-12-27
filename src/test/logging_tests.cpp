@@ -1,4 +1,4 @@
-// Copyright (c) 2019 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -14,7 +14,6 @@ BOOST_FIXTURE_TEST_SUITE(logging_tests, BasicTestingSetup)
 
 BOOST_AUTO_TEST_CASE(logging_timer)
 {
-
     SetMockTime(1);
     auto sec_timer = BCLog::Timer<std::chrono::seconds>("tests", "end_msg");
     SetMockTime(2);
@@ -29,8 +28,6 @@ BOOST_AUTO_TEST_CASE(logging_timer)
     auto micro_timer = BCLog::Timer<std::chrono::microseconds>("tests", "end_msg");
     SetMockTime(2);
     BOOST_CHECK_EQUAL(micro_timer.LogMsg("test micros"), "tests: test micros (1000000.00μs)");
-
-    SetMockTime(0);
 }
 
 BOOST_AUTO_TEST_SUITE_END()

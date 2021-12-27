@@ -31,8 +31,10 @@ const std::string CLIENT_NAME("Electron");
     #define BUILD_DESC BUILD_GIT_TAG
     #define BUILD_SUFFIX ""
 #else
-#define BUILD_DESC "v" STRINGIZE(CLIENT_VERSION_MAJOR) "." STRINGIZE(CLIENT_VERSION_MINOR) "." STRINGIZE(CLIENT_VERSION_BUILD)
-    #ifdef BUILD_GIT_COMMIT
+    #define BUILD_DESC "v" PACKAGE_VERSION
+    #if CLIENT_VERSION_IS_RELEASE
+        #define BUILD_SUFFIX ""
+    #elif defined(BUILD_GIT_COMMIT)
         #define BUILD_SUFFIX "-" BUILD_GIT_COMMIT
     #elif defined(GIT_COMMIT_ID)
         #define BUILD_SUFFIX "-g" GIT_COMMIT_ID

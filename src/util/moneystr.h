@@ -1,4 +1,4 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2021 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -16,8 +16,8 @@
 /* Do not use these functions to represent or parse monetary amounts to or from
  * JSON but use AmountFromValue and ValueFromAmount for that.
  */
-std::string FormatMoney(const CAmount& n);
+std::string FormatMoney(const CAmount n);
 /** Parse an amount denoted in full coins. E.g. "0.0034" supplied on the command line. **/
-NODISCARD bool ParseMoney(const std::string& str, CAmount& nRet);
+[[nodiscard]] bool ParseMoney(const std::string& str, CAmount& nRet);
 
 #endif // ELECCOIN_UTIL_MONEYSTR_H

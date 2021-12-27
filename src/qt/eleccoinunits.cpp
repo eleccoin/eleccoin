@@ -8,6 +8,8 @@
 
 #include <cassert>
 
+static constexpr auto MAX_DIGITS_ECC = 16;
+
 EleccoinUnits::EleccoinUnits(QObject *parent):
         QAbstractListModel(parent),
         unitlist(availableUnits())
@@ -108,7 +110,9 @@ QString EleccoinUnits::format(int unit, const CAmount& nIn, bool fPlus, Separato
     qint64 n_abs = (n > 0 ? n : -n);
     qint64 quotient = n_abs / coin;
     QString quotient_str = QString::number(quotient);
-    if (justify) quotient_str = quotient_str.rightJustified(16 - num_decimals, ' ');
+    if (justify) {
+        quotient_str = quotient_str.rightJustified(MAX_DIGITS_ECC - num_decimals, ' ');
+    }
 
     // Use SI-style thin space separators as these are locale independent and can't be
     // confused with the decimal marker.

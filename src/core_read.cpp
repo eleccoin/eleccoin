@@ -128,7 +128,7 @@ static bool DecodeTx(CMutableTransaction& tx, const std::vector<unsigned char>& 
 {
     // General strategy:
     // - Decode both with extended serialization (which interprets the 0x0001 tag as a marker for
-    //   the presense of witnesses) and with legacy serialization (which interprets the tag as a
+    //   the presence of witnesses) and with legacy serialization (which interprets the tag as a
     //   0-input 1-output incomplete transaction).
     //   - Restricted by try_no_witness (which disables legacy if false) and try_witness (which
     //     disables extended if false).
@@ -260,6 +260,7 @@ int ParseSighashString(const UniValue& sighash)
     int hash_type = SIGHASH_ALL;
     if (!sighash.isNull()) {
         static std::map<std::string, int> map_sighash_values = {
+            {std::string("DEFAULT"), int(SIGHASH_DEFAULT)},
             {std::string("ALL"), int(SIGHASH_ALL)},
             {std::string("ALL|ANYONECANPAY"), int(SIGHASH_ALL|SIGHASH_ANYONECANPAY)},
             {std::string("NONE"), int(SIGHASH_NONE)},

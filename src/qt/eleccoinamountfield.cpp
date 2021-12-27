@@ -239,7 +239,7 @@ EleccoinAmountField::EleccoinAmountField(QWidget *parent) :
 
     // If one if the widgets changes, the combined content changes as well
     connect(amount, &AmountSpinBox::valueChanged, this, &EleccoinAmountField::valueChanged);
-    connect(unit, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), this, &EleccoinAmountField::unitChanged);
+    connect(unit, qOverload<int>(&QComboBox::currentIndexChanged), this, &EleccoinAmountField::unitChanged);
 
     // Set default based on configuration
     unitChanged(unit->currentIndex());

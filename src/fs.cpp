@@ -31,6 +31,12 @@ FILE *fopen(const fs::path& p, const char *mode)
 #endif
 }
 
+fs::path AbsPathJoin(const fs::path& base, const fs::path& path)
+{
+    assert(base.is_absolute());
+    return fs::absolute(path, base);
+}
+
 #ifndef WIN32
 
 static std::string GetErrorReason()
@@ -236,7 +242,11 @@ void ofstream::close()
 }
 #else // __GLIBCXX__
 
+#if BOOST_VERSION >= 107700
+static_assert(sizeof(*BOOST_FILESYSTEM_C_STR(fs::path())) == sizeof(wchar_t),
+#else
 static_assert(sizeof(*fs::path().BOOST_FILESYSTEM_C_STR) == sizeof(wchar_t),
+#endif // BOOST_VERSION >= 107700
     "Warning: This build is using boost::filesystem ofstream and ifstream "
     "implementations which will fail to open paths containing multibyte "
     "characters. You should delete this static_assert to ignore this warning, "

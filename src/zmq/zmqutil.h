@@ -5,6 +5,8 @@
 #ifndef ELECCOIN_ZMQ_ZMQUTIL_H
 #define ELECCOIN_ZMQ_ZMQUTIL_H
 
-void zmqError(const char* str);
+#include <string>
+
+void zmqError(const std::string& str);
 
 #endif // ELECCOIN_ZMQ_ZMQUTIL_H

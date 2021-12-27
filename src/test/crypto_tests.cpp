@@ -14,7 +14,9 @@
 #include <crypto/sha256.h>
 #include <crypto/sha3.h>
 #include <crypto/sha512.h>
+#include <crypto/muhash.h>
 #include <random.h>
+#include <streams.h>
 #include <test/util/setup_common.h>
 #include <util/strencodings.h>
 
@@ -31,7 +33,7 @@ static void TestVector(const Hasher &h, const In &in, const Out &out) {
     hash.resize(out.size());
     {
         // Test that writing the whole input string at once works.
-        Hasher(h).Write((unsigned char*)&in[0], in.size()).Finalize(&hash[0]);
+        Hasher(h).Write((const uint8_t*)in.data(), in.size()).Finalize(hash.data());
         BOOST_CHECK(hash == out);
     }
     for (int i=0; i<32; i++) {
@@ -40,15 +42,15 @@ static void TestVector(const Hasher &h, const In &in, const Out &out) {
         size_t pos = 0;
         while (pos < in.size()) {
             size_t len = InsecureRandRange((in.size() - pos + 1) / 2 + 1);
-            hasher.Write((unsigned char*)&in[pos], len);
+            hasher.Write((const uint8_t*)in.data() + pos, len);
             pos += len;
             if (pos > 0 && pos + 2 * out.size() > in.size() && pos < in.size()) {
                 // Test that writing the rest at once to a copy of a hasher works.
-                Hasher(hasher).Write((unsigned char*)&in[pos], in.size() - pos).Finalize(&hash[0]);
+                Hasher(hasher).Write((const uint8_t*)in.data() + pos, in.size() - pos).Finalize(hash.data());
                 BOOST_CHECK(hash == out);
             }
         }
-        hasher.Finalize(&hash[0]);
+        hasher.Finalize(hash.data());
         BOOST_CHECK(hash == out);
     }
 }
@@ -857,4 +859,91 @@ BOOST_AUTO_TEST_CASE(sha3_256_tests)
     TestSHA3_256("72c57c359e10684d0517e46653a02d18d29eff803eb009e4d5eb9e95add9ad1a4ac1f38a70296f3a369a16985ca3c957de2084cdc9bdd8994eb59b8815e0debad4ec1f001feac089820db8becdaf896aaf95721e8674e5d476b43bd2b873a7d135cd685f545b438210f9319e4dcd55986c85303c1ddf18dc746fe63a409df0a998ed376eb683e16c09e6e9018504152b3e7628ef350659fb716e058a5263a18823d2f2f6ee6a8091945a48ae1c5cb1694cf2c1fe76ef9177953afe8899cfa2b7fe0603bfa3180937dadfb66fbbdd119bbf8063338aa4a699075a3bfdbae8db7e5211d0917e9665a702fc9b0a0a901d08bea97654162d82a9f05622b060b634244779c33427eb7a29353a5f48b07cbefa72f3622ac5900bef77b71d6b314296f304c8426f451f32049b1f6af156a9dab702e8907d3cd72bb2c50493f4d593e731b285b70c803b74825b3524cda3205a8897106615260ac93c01c5ec14f5b11127783989d1824527e99e04f6a340e827b559f24db9292fcdd354838f9339a5fa1d7f6b2087f04835828b13463dd40927866f16ae33ed501ec0e6c4e63948768c5aeea3e4f6754985954bea7d61088c44430204ef491b74a64bde1358cecb2cad28ee6a3de5b752ff6a051104d88478653339457ac45ba44cbb65f54d1969d047cda746931d5e6a8b48e211416aefd5729f3d60b56b54e7f85aa2f42de3cb69419240c24e67139a11790a709edef2ac52cf35dd0a08af45926ebe9761f498ff83bfe263d6897ee97943a4b982fe3404ef0b4a45e06113c60340e0664f14799bf59cb4b3934b465fabefd87155905ee5309ba41e9e402973311831ea600b16437f71df39ee77130490c4d0227e5d1757fdc66af3ae6b9953053ed9aafca0160209858a7d4dd38fe10e0cb153672d08633ed6c54977aa0a6e67f9ff2f8c9d22dd7b21de08192960fd0e0da68d77c8d810db11dcaa61c725cd4092cbff76c8e1debd8d0361bb3f2e607911d45716f53067bdc0d89dd4889177765166a424e9fc0cb711201099dda213355e6639ac7eb86eca2ae0ab38b7f674f37ef8a6fcca1a6f52f55d9e1dcd631d2c3c82bba129172feb991d5af51afecd9d61a88b6832e4107480e392aed61a8644f551665ebff6b20953b635737a4f895e429fddcfe801f606fbda74b3bf6f5767d0fac14907fcfd0aa1d4c11b9e91b01d68052399b51a29f1ae6acd965109977c14a555cbcbd21ad8cb9f8853506d4bc21c01e62d61d7b21be1b923be54914e6b0a7ca84dd11f1159193e1184568a6134a6bbadf5b4df986edcf2019390ae841cfaa44435e28ce877d3dae4177992fa5d4e5c005876dbe3d1e63bec7dcc0942762b48b1ecc6c1a918409a8a72812a1e245c0c67be6e729c2b49bc6ee4d24a8f63e78e75db45655c26a9a78aff36fcd67117f26b8f654dca664b9f0e30681874cb749e1a692720078856286c2560b0292cc837933423147569350955c9571bf8941ba128fd339cb4268f46b94bc6ee203eb7026813706ea51c4f24c91866fc23a724bf2501327e6ae89c29f8db315dc28d2c7c719514036367e018f4835f63fdecd71f9bdced7132b6c4f8b13c69a517026fcd3622d67cb632320d5e7308f78f4b7cea11f6291b137851dc6cd6366f2785c71c3f237f81a7658b2a8d512b61e0ad5a4710b7b124151689fcb2116063fbff7e9115fed7b93de834970b838e49f8f8ba5f1f874c354078b5810a55ae289a56da563f1da6cd80a3757d6073fa55e016e45ac6cec1f69d871c92fd0ae9670c74249045e6b464787f9504128736309fed205f8df4d90e332908581298d9c75a3fa36ab0c3c9272e62de53ab290c803d67b696fd615c260a47bffad16746f18ba1a10a061bacbea9369693b3c042eec36bed289d7d12e52bca8aa1c2dff88ca7816498d25626d0f1e106ebb0b4a12138e00f3df5b1c2f49d98b1756e69b641b7c6353d99dbff050f4d76842c6cf1c2a4b062fc8e6336fa689b7c9d5c6b4ab8c15a5c20e514ff070a602d85ae52fa7810c22f8eeffd34a095b93342144f7a98d024216b3d68ed7bea047517bfcd83ec83febd1ba0e5858e2bdc1d8b1f7b0f89e90ccc432a3f930cb8209462e64556c5054c56ca2a85f16b32eb83a10459d13516faa4d23302b7607b9bd38dab2239ac9e9440c314433fdfb3ceadab4b4f87415ed6f240e017221f3b5f7ac196cdf54957bec42fe6893994b46de3d27dc7fb58ca88feb5b9e79cf20053d12530ac524337b22a3629bea52f40b06d3e2128f32060f9105847daed81d35f20e2002817434659baff64494c5b5c7f9216bfda38412a0f70511159dc73bb6bae1f8eaa0ef08d99bcb31f94f6be12c29c83df45926430b366c99fca3270c15fc4056398fdf3135b7779e3066a006961d1ac0ad1c83179ce39e87a96b722ec23aabc065badf3e188347a360772ca6a447abac7e6a44f0d4632d52926332e44a0a86bff5ce699fd063bdda3ffd4c41b53ded49fecec67f40599b934e16e3fd1bc063ad7026f8d71bfd4cbaf56599586774723194b692036f1b6bb242e2ffb9c600b5215b412764599476ce475c9e5b396fbcebd6be323dcf4d0048077400aac7500db41dc95fc7f7edbe7c9c2ec5ea89943fe13b42217eef530bbd023671509e12dfce4e1c1c82955d965e6a68aa66f6967dba48feda572db1f099d9a6dc4bc8edade852b5e824a06890dc48a6a6510ecaf8cf7620d757290e3166d431abecc624fa9ac2234d2eb783308ead45544910c633a94964b2ef5fbc409cb8835ac4147d384e12e0a5e13951f7de0ee13eafcb0ca0c04946d7804040c0a3cd088352424b097adb7aad1ca4495952f3e6c0158c02d2bcec33bfda69301434a84d9027ce02c0b9725dad118", "d894b86261436362e64241e61f6b3e6589daf64dc641f60570c4c0bf3b1f2ca3");
 }
 
+static MuHash3072 FromInt(unsigned char i) {
+    unsigned char tmp[32] = {i, 0};
+    return MuHash3072(tmp);
+}
+
+BOOST_AUTO_TEST_CASE(muhash_tests)
+{
+    uint256 out;
+
+    for (int iter = 0; iter < 10; ++iter) {
+        uint256 res;
+        int table[4];
+        for (int i = 0; i < 4; ++i) {
+            table[i] = g_insecure_rand_ctx.randbits(3);
+        }
+        for (int order = 0; order < 4; ++order) {
+            MuHash3072 acc;
+            for (int i = 0; i < 4; ++i) {
+                int t = table[i ^ order];
+                if (t & 4) {
+                    acc /= FromInt(t & 3);
+                } else {
+                    acc *= FromInt(t & 3);
+                }
+            }
+            acc.Finalize(out);
+            if (order == 0) {
+                res = out;
+            } else {
+                BOOST_CHECK(res == out);
+            }
+        }
+
+        MuHash3072 x = FromInt(g_insecure_rand_ctx.randbits(4)); // x=X
+        MuHash3072 y = FromInt(g_insecure_rand_ctx.randbits(4)); // x=X, y=Y
+        MuHash3072 z; // x=X, y=Y, z=1
+        z *= x; // x=X, y=Y, z=X
+        z *= y; // x=X, y=Y, z=X*Y
+        y *= x; // x=X, y=Y*X, z=X*Y
+        z /= y; // x=X, y=Y*X, z=1
+        z.Finalize(out);
+
+        uint256 out2;
+        MuHash3072 a;
+        a.Finalize(out2);
+
+        BOOST_CHECK_EQUAL(out, out2);
+    }
+
+    MuHash3072 acc = FromInt(0);
+    acc *= FromInt(1);
+    acc /= FromInt(2);
+    acc.Finalize(out);
+    BOOST_CHECK_EQUAL(out, uint256S("10d312b100cbd32ada024a6646e40d3482fcff103668d2625f10002a607d5863"));
+
+    MuHash3072 acc2 = FromInt(0);
+    unsigned char tmp[32] = {1, 0};
+    acc2.Insert(tmp);
+    unsigned char tmp2[32] = {2, 0};
+    acc2.Remove(tmp2);
+    acc2.Finalize(out);
+    BOOST_CHECK_EQUAL(out, uint256S("10d312b100cbd32ada024a6646e40d3482fcff103668d2625f10002a607d5863"));
+
+    // Test MuHash3072 serialization
+    MuHash3072 serchk = FromInt(1); serchk *= FromInt(2);
+    std::string ser_exp = "1fa093295ea30a6a3acdc7b3f770fa538eff537528e990e2910e40bbcfd7f6696b1256901929094694b56316de342f593303dd12ac43e06dce1be1ff8301c845beb15468fff0ef002dbf80c29f26e6452bccc91b5cb9437ad410d2a67ea847887fa3c6a6553309946880fe20db2c73fe0641adbd4e86edfee0d9f8cd0ee1230898873dc13ed8ddcaf045c80faa082774279007a2253f8922ee3ef361d378a6af3ddaf180b190ac97e556888c36b3d1fb1c85aab9ccd46e3deaeb7b7cf5db067a7e9ff86b658cf3acd6662bbcce37232daa753c48b794356c020090c831a8304416e2aa7ad633c0ddb2f11be1be316a81be7f7e472071c042cb68faef549c221ebff209273638b741aba5a81675c45a5fa92fea4ca821d7a324cb1e1a2ccd3b76c4228ec8066dad2a5df6e1bd0de45c7dd5de8070bdb46db6c554cf9aefc9b7b2bbf9f75b1864d9f95005314593905c0109b71f703d49944ae94477b51dac10a816bb6d1c700bafabc8bd86fac8df24be519a2f2836b16392e18036cb13e48c5c010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000";
+    CDataStream ss_chk(SER_DISK, PROTOCOL_VERSION);
+    ss_chk << serchk;
+    BOOST_CHECK_EQUAL(ser_exp, HexStr(ss_chk.str()));
+
+    // Test MuHash3072 deserialization
+    MuHash3072 deserchk;
+    ss_chk >> deserchk;
+    uint256 out3;
+    serchk.Finalize(out);
+    deserchk.Finalize(out3);
+    BOOST_CHECK_EQUAL(HexStr(out), HexStr(out3));
+
+    // Test MuHash3072 overflow, meaning the internal data is larger than the modulus.
+    CDataStream ss_max(ParseHex("ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"), SER_DISK, PROTOCOL_VERSION);
+    MuHash3072 overflowchk;
+    ss_max >> overflowchk;
+
+    uint256 out4;
+    overflowchk.Finalize(out4);
+    BOOST_CHECK_EQUAL(HexStr(out4), "3a31e6903aff0de9f62f9a9f7f8b861de76ce2cda09822b90014319ae5dc2271");
+}
 BOOST_AUTO_TEST_SUITE_END()

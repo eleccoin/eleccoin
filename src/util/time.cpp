@@ -6,7 +6,10 @@
 #include <config/eleccoin-config.h>
 #endif
 
+#include <compat.h>
 #include <util/time.h>
+
+#include <util/check.h>
 
 #include <atomic>
 #include <boost/date_time/posix_time/posix_time.hpp>
@@ -86,35 +89,43 @@ template std::chrono::seconds GetTime();
 template std::chrono::milliseconds GetTime();
 template std::chrono::microseconds GetTime();
 
+template <typename T>
+static T GetSystemTime()
+{
+    const auto now = std::chrono::duration_cast<T>(std::chrono::system_clock::now().time_since_epoch());
+    assert(now.count() > 0);
+    return now;
+}
+
 void SetMockTime(int64_t nMockTimeIn)
 {
+    Assert(nMockTimeIn >= 0);
     nMockTime.store(nMockTimeIn, std::memory_order_relaxed);
 }
 
-int64_t GetMockTime()
+void SetMockTime(std::chrono::seconds mock_time_in)
 {
-    return nMockTime.load(std::memory_order_relaxed);
+    nMockTime.store(mock_time_in.count(), std::memory_order_relaxed);
+}
+
+std::chrono::seconds GetMockTime()
+{
+    return std::chrono::seconds(nMockTime.load(std::memory_order_relaxed));
 }
 
 int64_t GetTimeMillis()
 {
-    int64_t now = (boost::posix_time::microsec_clock::universal_time() -
-                   boost::posix_time::ptime(boost::gregorian::date(1970,1,1))).total_milliseconds();
-    assert(now > 0);
-    return now;
+    return int64_t{GetSystemTime<std::chrono::milliseconds>().count()};
 }
 
 int64_t GetTimeMicros()
 {
-    int64_t now = (boost::posix_time::microsec_clock::universal_time() -
-                   boost::posix_time::ptime(boost::gregorian::date(1970,1,1))).total_microseconds();
-    assert(now > 0);
-    return now;
+    return int64_t{GetSystemTime<std::chrono::microseconds>().count()};
 }
 
-int64_t GetSystemTimeInSeconds()
+int64_t GetTimeSeconds()
 {
-    return GetTimeMicros()/1000000;
+    return int64_t{GetSystemTime<std::chrono::seconds>().count()};
 }
 
 std::string FormatISO8601DateTime(int64_t nTime) {
@@ -155,4 +166,17 @@ int64_t ParseISO8601DateTime(const std::string& str)
     if (ptime.is_not_a_date_time() || epoch > ptime)
         return 0;
     return (ptime - epoch).total_seconds();
+}
+
+struct timeval MillisToTimeval(int64_t nTimeout)
+{
+    struct timeval timeout;
+    timeout.tv_sec  = nTimeout / 1000;
+    timeout.tv_usec = (nTimeout % 1000) * 1000;
+    return timeout;
+}
+
+struct timeval MillisToTimeval(std::chrono::milliseconds ms)
+{
+    return MillisToTimeval(count_milliseconds(ms));
 }

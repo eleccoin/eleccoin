@@ -2,6 +2,10 @@
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
+# Pattern rule to print variables, e.g. make print-top_srcdir
+print-%: FORCE
+	@echo '$*'='$($*)'
+
 DIST_SUBDIRS = secp256k1 univalue
 
 AM_LDFLAGS = $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS) $(GPROF_LDFLAGS) $(SANITIZER_LDFLAGS)
@@ -70,6 +74,7 @@ EXTRA_LIBRARIES += \
   $(LIBELECCOIN_CONSENSUS) \
   $(LIBELECCOIN_SERVER) \
   $(LIBELECCOIN_CLI) \
+  $(LIBELECCOIN_IPC) \
   $(LIBELECCOIN_WALLET) \
   $(LIBELECCOIN_WALLET_TOOL) \
   $(LIBELECCOIN_ZMQ)
@@ -92,13 +97,19 @@ endif
 if BUILD_ELECCOIN_CLI
   bin_PROGRAMS += eleccoin-cli
 endif
+
 if BUILD_ELECCOIN_TX
   bin_PROGRAMS += eleccoin-tx
 endif
+
 if ENABLE_WALLET
 if BUILD_ELECCOIN_WALLET
   bin_PROGRAMS += eleccoin-wallet
 endif
+endif
+
+if BUILD_ELECCOIN_UTIL
+  bin_PROGRAMS += eleccoin-util
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -134,24 +145,34 @@ ELECCOIN_CORE_H = \
   core_memusage.h \
   cuckoocache.h \
   dbwrapper.h \
+  deploymentinfo.h \
+  deploymentstatus.h \
+  external_signer.h \
   flatfile.h \
   fs.h \
   httprpc.h \
   httpserver.h \
+  i2p.h \
   index/base.h \
   index/blockfilterindex.h \
+  index/coinstatsindex.h \
   index/disktxpos.h \
   index/txindex.h \
   indirectmap.h \
   init.h \
+  init/common.h \
   interfaces/chain.h \
+  interfaces/echo.h \
   interfaces/handler.h \
+  interfaces/init.h \
+  interfaces/ipc.h \
   interfaces/node.h \
   interfaces/wallet.h \
   key.h \
   key_io.h \
   logging.h \
   logging/timer.h \
+  mapport.h \
   memusage.h \
   merkleblock.h \
   miner.h \
@@ -162,6 +183,7 @@ ELECCOIN_CORE_H = \
   netaddress.h \
   netbase.h \
   netmessagemaker.h \
+  node/blockstorage.h \
   node/coin.h \
   node/coinstats.h \
   node/context.h \
@@ -170,10 +192,10 @@ ELECCOIN_CORE_H = \
   node/ui_interface.h \
   node/utxo_snapshot.h \
   noui.h \
-  optional.h \
   outputtype.h \
   policy/feerate.h \
   policy/fees.h \
+  policy/packages.h \
   policy/policy.h \
   policy/rbf.h \
   policy/settings.h \
@@ -186,6 +208,7 @@ ELECCOIN_CORE_H = \
   rpc/blockchain.h \
   rpc/client.h \
   rpc/mining.h \
+  rpc/net.h \
   rpc/protocol.h \
   rpc/rawtransaction_util.h \
   rpc/register.h \
@@ -213,8 +236,9 @@ ELECCOIN_CORE_H = \
   timedata.h \
   torcontrol.h \
   txdb.h \
-  txrequest.h \
   txmempool.h \
+  txorphanage.h \
+  txrequest.h \
   undo.h \
   algo/extra.h \
   algo/sph_groestl.h \
@@ -246,21 +270,29 @@ ELECCOIN_CORE_H = \
   util/bip32.h \
   util/bytevectorhash.h \
   util/check.h \
+  util/epochguard.h \
   util/error.h \
   util/fees.h \
+  util/getuniquepath.h \
   util/golombrice.h \
+  util/hash_type.h \
+  util/hasher.h \
   util/macros.h \
-  util/memory.h \
   util/message.h \
   util/moneystr.h \
   util/rbf.h \
-  util/ref.h \
+  util/readwritefile.h \
+  util/serfloat.h \
   util/settings.h \
+  util/sock.h \
   util/spanparsing.h \
   util/string.h \
   util/system.h \
+  util/thread.h \
   util/threadnames.h \
   util/time.h \
+  util/tokenpipe.h \
+  util/trace.h \
   util/translation.h \
   util/ui_change_type.h \
   util/url.h \
@@ -268,21 +300,25 @@ ELECCOIN_CORE_H = \
   validation.h \
   validationinterface.h \
   versionbits.h \
-  versionbitsinfo.h \
   wallet/bdb.h \
   wallet/coincontrol.h \
   wallet/coinselection.h \
   wallet/context.h \
   wallet/crypter.h \
   wallet/db.h \
+  wallet/dump.h \
+  wallet/external_signer_scriptpubkeyman.h \
   wallet/feebumper.h \
   wallet/fees.h \
   wallet/ismine.h \
   wallet/load.h \
+  wallet/receive.h \
   wallet/rpcwallet.h \
   wallet/salvage.h \
   wallet/scriptpubkeyman.h \
+  wallet/spend.h \
   wallet/sqlite.h \
+  wallet/transaction.h \
   wallet/wallet.h \
   wallet/walletdb.h \
   wallet/wallettool.h \
@@ -302,11 +338,13 @@ obj/build.h: FORCE
 	  "$(abs_top_srcdir)"
 libeleccoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
+ipc/capnp/libeleccoin_ipc_a-ipc.$(OBJEXT): $(libeleccoin_ipc_mpgen_input:=.h)
+
 # server: shared between eleccoind and eleccoin-qt
 # Contains code accessing mempool and chain state that is meant to be separated
 # from wallet and gui code (see node/README.md). Shared code should go in
 # libeleccoin_common or libeleccoin_util libraries, instead.
-libeleccoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libeleccoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(NATPMP_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libeleccoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeleccoin_server_a_SOURCES = \
   addrdb.cpp \
@@ -317,26 +355,31 @@ libeleccoin_server_a_SOURCES = \
   chain.cpp \
   consensus/tx_verify.cpp \
   dbwrapper.cpp \
+  deploymentstatus.cpp \
   flatfile.cpp \
   httprpc.cpp \
   httpserver.cpp \
+  i2p.cpp \
   index/base.cpp \
   index/blockfilterindex.cpp \
+  index/coinstatsindex.cpp \
   index/txindex.cpp \
   init.cpp \
-  interfaces/chain.cpp \
-  interfaces/node.cpp \
+  mapport.cpp \
   miner.cpp \
   net.cpp \
   net_processing.cpp \
+  node/blockstorage.cpp \
   node/coin.cpp \
   node/coinstats.cpp \
   node/context.cpp \
+  node/interfaces.cpp \
   node/psbt.cpp \
   node/transaction.cpp \
   node/ui_interface.cpp \
   noui.cpp \
   policy/fees.cpp \
+  policy/packages.cpp \
   policy/rbf.cpp \
   policy/settings.cpp \
   pow.cpp \
@@ -353,8 +396,9 @@ libeleccoin_server_a_SOURCES = \
   timedata.cpp \
   torcontrol.cpp \
   txdb.cpp \
-  txrequest.cpp \
   txmempool.cpp \
+  txorphanage.cpp \
+  txrequest.cpp \
   validation.cpp \
   validationinterface.cpp \
   versionbits.cpp \
@@ -384,17 +428,22 @@ endif
 libeleccoin_wallet_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES) $(SQLITE_CFLAGS)
 libeleccoin_wallet_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeleccoin_wallet_a_SOURCES = \
-  interfaces/wallet.cpp \
   wallet/coincontrol.cpp \
   wallet/context.cpp \
   wallet/crypter.cpp \
   wallet/db.cpp \
+  wallet/dump.cpp \
+  wallet/external_signer_scriptpubkeyman.cpp \
   wallet/feebumper.cpp \
   wallet/fees.cpp \
+  wallet/interfaces.cpp \
   wallet/load.cpp \
+  wallet/receive.cpp \
   wallet/rpcdump.cpp \
   wallet/rpcwallet.cpp \
   wallet/scriptpubkeyman.cpp \
+  wallet/spend.cpp \
+  wallet/transaction.cpp \
   wallet/wallet.cpp \
   wallet/walletdb.cpp \
   wallet/walletutil.cpp \
@@ -456,6 +505,8 @@ crypto_libeleccoin_crypto_base_a_SOURCES = \
   crypto/hmac_sha512.h \
   crypto/poly1305.h \
   crypto/poly1305.cpp \
+  crypto/muhash.h \
+  crypto/muhash.cpp \
   crypto/ripemd160.cpp \
   crypto/ripemd160.h \
   crypto/sha1.cpp \
@@ -544,6 +595,9 @@ libeleccoin_common_a_SOURCES = \
   compressor.cpp \
   core_read.cpp \
   core_write.cpp \
+  deploymentinfo.cpp \
+  external_signer.cpp \
+  init/common.cpp \
   key.cpp \
   key_io.cpp \
   merkleblock.cpp \
@@ -556,13 +610,13 @@ libeleccoin_common_a_SOURCES = \
   protocol.cpp \
   psbt.cpp \
   rpc/rawtransaction_util.cpp \
+  rpc/external_signer.cpp \
   rpc/util.cpp \
   scheduler.cpp \
   script/descriptor.cpp \
   script/sign.cpp \
   script/signingprovider.cpp \
   script/standard.cpp \
-  versionbitsinfo.cpp \
   warnings.cpp \
   $(ELECCOIN_CORE_H)
 
@@ -578,7 +632,9 @@ libeleccoin_util_a_SOURCES = \
   compat/glibcxx_sanity.cpp \
   compat/strnlen.cpp \
   fs.cpp \
+  interfaces/echo.cpp \
   interfaces/handler.cpp \
+  interfaces/init.cpp \
   logging.cpp \
   random.cpp \
   randomenv.cpp \
@@ -591,16 +647,23 @@ libeleccoin_util_a_SOURCES = \
   util/bytevectorhash.cpp \
   util/error.cpp \
   util/fees.cpp \
+  util/getuniquepath.cpp \
+  util/hasher.cpp \
+  util/sock.cpp \
   util/system.cpp \
   util/message.cpp \
   util/moneystr.cpp \
   util/rbf.cpp \
+  util/readwritefile.cpp \
   util/settings.cpp \
+  util/thread.cpp \
   util/threadnames.cpp \
+  util/serfloat.cpp \
   util/spanparsing.cpp \
   util/strencodings.cpp \
   util/string.cpp \
   util/time.cpp \
+  util/tokenpipe.cpp \
   $(ELECCOIN_CORE_H)
 
 if USE_LIBEVENT
@@ -647,19 +710,19 @@ eleccoin_bin_ldadd = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-eleccoin_bin_ldadd += $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(SQLITE_LIBS)
+eleccoin_bin_ldadd += $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(SQLITE_LIBS)
 
-eleccoind_SOURCES = $(eleccoin_daemon_sources)
+eleccoind_SOURCES = $(eleccoin_daemon_sources) init/eleccoind.cpp
 eleccoind_CPPFLAGS = $(eleccoin_bin_cppflags)
 eleccoind_CXXFLAGS = $(eleccoin_bin_cxxflags)
 eleccoind_LDFLAGS = $(eleccoin_bin_ldflags)
 eleccoind_LDADD = $(LIBELECCOIN_SERVER) $(eleccoin_bin_ldadd)
 
-eleccoin_node_SOURCES = $(eleccoin_daemon_sources)
+eleccoin_node_SOURCES = $(eleccoin_daemon_sources) init/eleccoin-node.cpp
 eleccoin_node_CPPFLAGS = $(eleccoin_bin_cppflags)
 eleccoin_node_CXXFLAGS = $(eleccoin_bin_cxxflags)
 eleccoin_node_LDFLAGS = $(eleccoin_bin_ldflags)
-eleccoin_node_LDADD = $(LIBELECCOIN_SERVER) $(eleccoin_bin_ldadd)
+eleccoin_node_LDADD = $(LIBELECCOIN_SERVER) $(eleccoin_bin_ldadd) $(LIBELECCOIN_IPC) $(LIBMULTIPROCESS_LIBS)
 
 # eleccoin-cli binary #
 eleccoin_cli_SOURCES = eleccoin-cli.cpp
@@ -711,6 +774,27 @@ eleccoin_wallet_LDADD = $(LIBELECCOIN_WALLET_TOOL) $(eleccoin_bin_ldadd)
 if TARGET_WINDOWS
 eleccoin_wallet_SOURCES += eleccoin-wallet-res.rc
 endif
+#
+
+# eleccoin-util binary #
+eleccoin_util_SOURCES = eleccoin-util.cpp
+eleccoin_util_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
+eleccoin_util_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+eleccoin_util_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
+
+if TARGET_WINDOWS
+eleccoin_util_SOURCES += eleccoin-util-res.rc
+endif
+
+eleccoin_util_LDADD = \
+  $(LIBELECCOIN_COMMON) \
+  $(LIBELECCOIN_UTIL) \
+  $(LIBUNIVALUE) \
+  $(LIBELECCOIN_CONSENSUS) \
+  $(LIBELECCOIN_CRYPTO) \
+  $(LIBSECP256K1)
+
+eleccoin_util_LDADD += $(BOOST_LIBS)
 #
 
 # eleccoinconsensus library #
@@ -783,23 +867,56 @@ clean-local:
 check-symbols: $(bin_PROGRAMS)
 if TARGET_DARWIN
 	@echo "Checking macOS dynamic libraries..."
-	$(AM_V_at) OTOOL=$(OTOOL) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py $(bin_PROGRAMS)
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py $(bin_PROGRAMS)
 endif
 
 if TARGET_WINDOWS
 	@echo "Checking Windows dynamic libraries..."
-	$(AM_V_at) OBJDUMP=$(OBJDUMP) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py $(bin_PROGRAMS)
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py $(bin_PROGRAMS)
 endif
 
-if GLIBC_BACK_COMPAT
+if TARGET_LINUX
 	@echo "Checking glibc back compat..."
-	$(AM_V_at) READELF=$(READELF) CPPFILT=$(CPPFILT) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py $(bin_PROGRAMS)
+	$(AM_V_at) CPPFILT='$(CPPFILT)' $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py $(bin_PROGRAMS)
 endif
 
 check-security: $(bin_PROGRAMS)
 if HARDEN
 	@echo "Checking binary security..."
-	$(AM_V_at) READELF=$(READELF) OBJDUMP=$(OBJDUMP) OTOOL=$(OTOOL) $(PYTHON) $(top_srcdir)/contrib/devtools/security-check.py $(bin_PROGRAMS)
+	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/security-check.py $(bin_PROGRAMS)
+endif
+
+libeleccoin_ipc_mpgen_input = \
+  ipc/capnp/echo.capnp \
+  ipc/capnp/init.capnp
+EXTRA_DIST += $(libeleccoin_ipc_mpgen_input)
+%.capnp:
+
+if BUILD_MULTIPROCESS
+LIBELECCOIN_IPC=libeleccoin_ipc.a
+libeleccoin_ipc_a_SOURCES = \
+  ipc/capnp/init-types.h \
+  ipc/capnp/protocol.cpp \
+  ipc/capnp/protocol.h \
+  ipc/exception.h \
+  ipc/interfaces.cpp \
+  ipc/process.cpp \
+  ipc/process.h \
+  ipc/protocol.h
+libeleccoin_ipc_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
+libeleccoin_ipc_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS) $(LIBMULTIPROCESS_CFLAGS)
+
+include $(MPGEN_PREFIX)/include/mpgen.mk
+libeleccoin_ipc_mpgen_output = \
+  $(libeleccoin_ipc_mpgen_input:=.c++) \
+  $(libeleccoin_ipc_mpgen_input:=.h) \
+  $(libeleccoin_ipc_mpgen_input:=.proxy-client.c++) \
+  $(libeleccoin_ipc_mpgen_input:=.proxy-server.c++) \
+  $(libeleccoin_ipc_mpgen_input:=.proxy-types.c++) \
+  $(libeleccoin_ipc_mpgen_input:=.proxy-types.h) \
+  $(libeleccoin_ipc_mpgen_input:=.proxy.h)
+nodist_libeleccoin_ipc_a_SOURCES = $(libeleccoin_ipc_mpgen_output)
+CLEANFILES += $(libeleccoin_ipc_mpgen_output)
 endif
 
 if EMBEDDED_LEVELDB

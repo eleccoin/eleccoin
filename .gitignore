@@ -8,11 +8,10 @@ src/eleccoin-cli
 src/eleccoin-gui
 src/eleccoin-node
 src/eleccoin-tx
+src/eleccoin-util
 src/eleccoin-wallet
-src/test/fuzz/*
-!src/test/fuzz/*.*
+src/test/fuzz/fuzz
 src/test/test_eleccoin
-src/test/test_eleccoin_fuzzy
 src/qt/test/test_eleccoin-qt
 
 # autoreconf
@@ -62,7 +61,7 @@ src/qt/eleccoin-qt.includes
 .dirstamp
 .libs
 .*.swp
-*.*~*
+*~
 *.bak
 *.rej
 *.orig
@@ -129,6 +128,8 @@ test_eleccoin.coverage/
 total.coverage/
 fuzz.coverage/
 coverage_percent.txt
+/cov_tool_wrapper.sh
+qa-assets/
 
 #build tests
 linux-coverage-build
@@ -156,4 +157,5 @@ osx_volname
 dist/
 *.background.tiff
 
+/guix-build-*
 .vscode
