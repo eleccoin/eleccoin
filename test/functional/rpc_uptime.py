@@ -10,6 +10,7 @@ Test corresponds to code in rpc/server.cpp.
 import time
 
 from test_framework.test_framework import EleccoinTestFramework
+from test_framework.util import assert_raises_rpc_error
 
 
 class UptimeTest(EleccoinTestFramework):
@@ -18,7 +19,11 @@ class UptimeTest(EleccoinTestFramework):
         self.setup_clean_chain = True
 
     def run_test(self):
+        self._test_negative_time()
         self._test_uptime()
+
+    def _test_negative_time(self):
+        assert_raises_rpc_error(-8, "Mocktime can not be negative: -1.", self.nodes[0].setmocktime, -1)
 
     def _test_uptime(self):
         wait_time = 10

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 The Eleccoin Core developers
+# Copyright (c) 2020-2021 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #
 # Test getblockstats rpc call
 #
+
+from test_framework.blocktools import COINBASE_MATURITY
 from test_framework.test_framework import EleccoinTestFramework
 from test_framework.util import (
     assert_equal,
@@ -41,7 +43,7 @@ class GetblockstatsTest(EleccoinTestFramework):
     def generate_test_data(self, filename):
         mocktime = 1525107225
         self.nodes[0].setmocktime(mocktime)
-        self.nodes[0].generate(101)
+        self.nodes[0].generate(COINBASE_MATURITY + 1)
 
         address = self.nodes[0].get_deterministic_priv_key().address
         self.nodes[0].sendtoaddress(address=address, amount=10, subtractfeefromamount=True)
