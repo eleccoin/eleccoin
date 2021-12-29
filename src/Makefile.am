@@ -520,7 +520,6 @@ crypto_libeleccoin_crypto_base_a_SOURCES = \
   crypto/siphash.cpp \
   crypto/siphash.h \
   algo/sph_hamsi.c \
-  algo/aes_helper.c \
   algo/hamsi_helper.c \
   algo/sph_hamsi_helper.c
 
