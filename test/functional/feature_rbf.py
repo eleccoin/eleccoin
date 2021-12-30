@@ -17,7 +17,7 @@ from test_framework.messages import (
 )
 from test_framework.script import CScript, OP_DROP
 from test_framework.test_framework import EleccoinTestFramework
-from test_framework.util import assert_equal, assert_raises_rpc_error, satoshi_round
+from test_framework.util import assert_equal, assert_raises_rpc_error, electron_round
 from test_framework.script_util import DUMMY_P2WPKH_SCRIPT, DUMMY_2_P2WPKH_SCRIPT
 from test_framework.wallet import MiniWallet
 
@@ -33,11 +33,11 @@ def make_utxo(node, amount, confirmed=True, scriptPubKey=DUMMY_P2WPKH_SCRIPT):
                 unconfirmed otherwise.
     """
     fee = 1 * COIN
-    while node.getbalance() < satoshi_round((amount + fee) / COIN):
+    while node.getbalance() < electron_round((amount + fee) / COIN):
         node.generate(COINBASE_MATURITY)
 
     new_addr = node.getnewaddress()
-    txid = node.sendtoaddress(new_addr, satoshi_round((amount + fee) / COIN))
+    txid = node.sendtoaddress(new_addr, electron_round((amount + fee) / COIN))
     tx1 = node.getrawtransaction(txid, 1)
     txid = int(txid, 16)
     i, _ = next(filter(lambda vout: new_addr == vout[1]['scriptPubKey']['address'], enumerate(tx1['vout'])))

@@ -316,8 +316,8 @@ EOF
         #
         #     When --container is specified, the default behavior is to share
         #     the current working directory with the isolated container at the
-        #     same exact path (e.g. mapping '/home/satoshi/eleccoin/' to
-        #     '/home/satoshi/eleccoin/'). This means that the $PWD inside the
+        #     same exact path (e.g. mapping '/home/electron/eleccoin/' to
+        #     '/home/electron/eleccoin/'). This means that the $PWD inside the
         #     container becomes a source of irreproducibility. --no-cwd disables
         #     this behaviour.
         #

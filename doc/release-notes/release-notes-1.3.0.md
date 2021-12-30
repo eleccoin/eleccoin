@@ -467,24 +467,24 @@ was already being broken by the move to descriptors.
   command line setting. The wallet will already fail to create transactions
   with fees higher than `-maxtxfee`. (#18467)
 
-- A new `fee_rate` parameter/option denominated in electrons per vbyte (sat/vB)
+- A new `fee_rate` parameter/option denominated in electrons per vbyte (ele/vB)
   is introduced to the `sendtoaddress`, `sendmany`, `fundrawtransaction` and
   `walletcreatefundedpsbt` RPCs as well as to the experimental new `send`
   RPC. The legacy `feeRate` option in `fundrawtransaction` and
   `walletcreatefundedpsbt` still exists for setting a fee rate in ECC per 1,000
   vbytes (ECC/kvB), but it is expected to be deprecated soon to avoid
   confusion. For these RPCs, the fee rate error message is updated from ECC/kB
-  to sat/vB and the help documentation in ECC/kB is updated to ECC/kvB. The
+  to ele/vB and the help documentation in ECC/kB is updated to ECC/kvB. The
   `send` and `sendtoaddress` RPC examples are updated to aid users in creating
   transactions with explicit fee rates. (#20305, #11413)
 
-- The `bumpfee` RPC `fee_rate` option is changed from ECC/kvB to sat/vB and the
+- The `bumpfee` RPC `fee_rate` option is changed from ECC/kvB to ele/vB and the
   help documentation is updated. Users are warned that this is a breaking API
   change, but it should be relatively benign: the large (100,000 times)
-  difference between ECC/kvB and sat/vB units means that a transaction with a
-  fee rate mistakenly calculated in ECC/kvB rather than sat/vB should raise an
+  difference between ECC/kvB and ele/vB units means that a transaction with a
+  fee rate mistakenly calculated in ECC/kvB rather than ele/vB should raise an
   error due to the fee rate being set too low. In the worst case, the
-  transaction may send at 1 sat/vB, but as Replace-by-Fee (BIP125 RBF) is active
+  transaction may send at 1 ele/vB, but as Replace-by-Fee (BIP125 RBF) is active
   by default when an explicit fee rate is used, the transaction fee can be
   bumped. (#20305)
 
@@ -712,7 +712,7 @@ Tests
 - #20378 Fix potential division by 0 in WalletLogPrintf (jonasschnelli)
 - #18836 Upgradewallet fixes and additional tests (achow101)
 - #20139 Do not return warnings from UpgradeWallet() (stackman27)
-- #20305 Introduce `fee_rate` sat/vB param/option (jonatack)
+- #20305 Introduce `fee_rate` ele/vB param/option (jonatack)
 - #20426 Allow zero-fee fundrawtransaction/walletcreatefundedpsbt and other fixes (jonatack)
 - #20573 wallet, bugfix: allow send with string `fee_rate` amounts (jonatack)
 

@@ -19,7 +19,7 @@ enum class FeeEstimateMode {
     ECONOMICAL,   //!< Force estimateSmartFee to use non-conservative estimates
     CONSERVATIVE, //!< Force estimateSmartFee to use conservative estimates
     ECC_KVB,      //!< Use ECC/kvB fee rate unit
-    ELE_VB,       //!< Use sat/vB fee rate unit
+    ELE_VB,       //!< Use ele/vB fee rate unit
 };
 
 /**
