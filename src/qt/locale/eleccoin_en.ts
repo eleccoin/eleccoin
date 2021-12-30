@@ -90,11 +90,12 @@
     </message>
     <message>
         <location line="+5"/>
-        <source>These are your Eleccoin addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.</source>
+        <source>These are your Eleccoin addresses for receiving payments. Use the &apos;Create new receiving address&apos; button in the receive tab to create new addresses.
+Signing is only possible with addresses of the type &apos;legacy&apos;.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location line="+7"/>
+        <location line="+8"/>
         <source>&amp;Copy Address</source>
         <translation type="unfinished"></translation>
     </message>
