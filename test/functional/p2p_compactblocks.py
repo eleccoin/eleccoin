@@ -818,12 +818,12 @@ class CompactBlocksTest(EleccoinTestFramework):
         # create new p2p connection for a fresh state w/o any prior sendcmpct messages sent
         hb_test_node = self.nodes[0].add_p2p_connection(TestP2PConn(cmpct_version=2))
 
-        # assert the RPC getpeerinfo boolean fields `bip152_hb_{to, from}`
+        # assert the RPC getpeerinfo boolean fields `eip152_hb_{to, from}`
         # match the given parameters for the last peer of a given node
         def assert_highbandwidth_states(node, hb_to, hb_from):
             peerinfo = node.getpeerinfo()[-1]
-            assert_equal(peerinfo['bip152_hb_to'], hb_to)
-            assert_equal(peerinfo['bip152_hb_from'], hb_from)
+            assert_equal(peerinfo['eip152_hb_to'], hb_to)
+            assert_equal(peerinfo['eip152_hb_from'], hb_from)
 
         # initially, neither node has selected the other peer as high-bandwidth yet
         assert_highbandwidth_states(self.nodes[0], hb_to=False, hb_from=False)

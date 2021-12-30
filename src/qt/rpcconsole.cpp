@@ -1136,11 +1136,11 @@ void RPCConsole::updateDetailWidget()
     ui->peerHeading->setText(peerAddrDetails);
     ui->peerServices->setText(GUIUtil::formatServicesStr(stats->nodeStats.nServices));
     ui->peerRelayTxes->setText(stats->nodeStats.fRelayTxes ? ts.yes : ts.no);
-    QString bip152_hb_settings;
-    if (stats->nodeStats.m_bip152_highbandwidth_to) bip152_hb_settings = ts.to;
-    if (stats->nodeStats.m_bip152_highbandwidth_from) bip152_hb_settings += (bip152_hb_settings.isEmpty() ? ts.from : QLatin1Char('/') + ts.from);
-    if (bip152_hb_settings.isEmpty()) bip152_hb_settings = ts.no;
-    ui->peerHighBandwidth->setText(bip152_hb_settings);
+    QString eip152_hb_settings;
+    if (stats->nodeStats.m_eip152_highbandwidth_to) eip152_hb_settings = ts.to;
+    if (stats->nodeStats.m_eip152_highbandwidth_from) eip152_hb_settings += (eip152_hb_settings.isEmpty() ? ts.from : QLatin1Char('/') + ts.from);
+    if (eip152_hb_settings.isEmpty()) eip152_hb_settings = ts.no;
+    ui->peerHighBandwidth->setText(eip152_hb_settings);
     const int64_t time_now{GetTimeSeconds()};
     ui->peerConnTime->setText(GUIUtil::formatDurationStr(time_now - stats->nodeStats.nTimeConnected));
     ui->peerLastBlock->setText(TimeDurationField(time_now, stats->nodeStats.nLastBlockTime));

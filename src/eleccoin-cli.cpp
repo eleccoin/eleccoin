@@ -391,8 +391,8 @@ private:
         int id;
         int mapped_as;
         int version;
-        bool is_bip152_hb_from;
-        bool is_bip152_hb_to;
+        bool is_eip152_hb_from;
+        bool is_eip152_hb_to;
         bool is_block_relay;
         bool is_outbound;
         bool operator<(const Peer& rhs) const { return std::tie(is_outbound, min_ping) < std::tie(rhs.is_outbound, rhs.min_ping); }
@@ -481,9 +481,9 @@ public:
                 const std::string addr{peer["addr"].get_str()};
                 const std::string age{conn_time == 0 ? "" : ToString((m_time_now - conn_time) / 60)};
                 const std::string sub_version{peer["subver"].get_str()};
-                const bool is_bip152_hb_from{peer["bip152_hb_from"].get_bool()};
-                const bool is_bip152_hb_to{peer["bip152_hb_to"].get_bool()};
-                m_peers.push_back({addr, sub_version, conn_type, network, age, min_ping, ping, last_blck, last_recv, last_send, last_trxn, peer_id, mapped_as, version, is_bip152_hb_from, is_bip152_hb_to, is_block_relay, is_outbound});
+                const bool is_eip152_hb_from{peer["eip152_hb_from"].get_bool()};
+                const bool is_eip152_hb_to{peer["eip152_hb_to"].get_bool()};
+                m_peers.push_back({addr, sub_version, conn_type, network, age, min_ping, ping, last_blck, last_recv, last_send, last_trxn, peer_id, mapped_as, version, is_eip152_hb_from, is_eip152_hb_to, is_block_relay, is_outbound});
                 m_max_addr_length = std::max(addr.length() + 1, m_max_addr_length);
                 m_max_age_length = std::max(age.length(), m_max_age_length);
                 m_max_id_length = std::max(ToString(peer_id).length(), m_max_id_length);
@@ -513,7 +513,7 @@ public:
                     peer.last_recv == 0 ? "" : ToString(m_time_now - peer.last_recv),
                     peer.last_trxn == 0 ? "" : ToString((m_time_now - peer.last_trxn) / 60),
                     peer.last_blck == 0 ? "" : ToString((m_time_now - peer.last_blck) / 60),
-                    strprintf("%s%s", peer.is_bip152_hb_to ? "." : " ", peer.is_bip152_hb_from ? "*" : " "),
+                    strprintf("%s%s", peer.is_eip152_hb_to ? "." : " ", peer.is_eip152_hb_from ? "*" : " "),
                     m_max_age_length, // variable spacing
                     peer.age,
                     m_is_asmap_on ? 7 : 0, // variable spacing

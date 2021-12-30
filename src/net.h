@@ -251,8 +251,8 @@ public:
     int nVersion;
     std::string cleanSubVer;
     bool fInbound;
-    bool m_bip152_highbandwidth_to;
-    bool m_bip152_highbandwidth_from;
+    bool m_eip152_highbandwidth_to;
+    bool m_eip152_highbandwidth_from;
     int m_starting_height;
     uint64_t nSendBytes;
     mapMsgCmdSize mapSendBytesPerMsgCmd;
@@ -523,9 +523,9 @@ public:
     Network ConnectedThroughNetwork() const;
 
     // We selected peer as (compact blocks) high-bandwidth peer (BIP152)
-    std::atomic<bool> m_bip152_highbandwidth_to{false};
+    std::atomic<bool> m_eip152_highbandwidth_to{false};
     // Peer selected us as (compact blocks) high-bandwidth peer (BIP152)
-    std::atomic<bool> m_bip152_highbandwidth_from{false};
+    std::atomic<bool> m_eip152_highbandwidth_from{false};
 
     struct TxRelay {
         mutable RecursiveMutex cs_filter;
