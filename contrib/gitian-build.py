@@ -27,9 +27,9 @@ def setup():
         programs += ['apt-cacher-ng', 'lxc', 'debootstrap']
     subprocess.check_call(['sudo', 'apt-get', 'install', '-qq'] + programs)
     if not os.path.isdir('gitian.sigs'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/eleccoin-core/gitian.sigs.git'])
+        subprocess.check_call(['git', 'clone', 'https://github.com/eleccoin/gitian.sigs.git'])
     if not os.path.isdir('eleccoin-detached-sigs'):
-        subprocess.check_call(['git', 'clone', 'https://github.com/eleccoin-core/eleccoin-detached-sigs.git'])
+        subprocess.check_call(['git', 'clone', 'https://github.com/eleccoin/eleccoin-detached-sigs.git'])
     if not os.path.isdir('gitian-builder'):
         subprocess.check_call(['git', 'clone', 'https://github.com/devrandom/gitian-builder.git'])
     if not os.path.isdir('eleccoin'):

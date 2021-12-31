@@ -58,7 +58,7 @@ Release Process
 
 #### Tagging a release (candidate)
 
-To tag the version (or release candidate) in git, use the `make-tag.py` script from [eleccoin-maintainer-tools](https://github.com/eleccoin-core/eleccoin-maintainer-tools). From the root of the repository run:
+To tag the version (or release candidate) in git, use the `make-tag.py` script from [eleccoin-maintainer-tools](https://github.com/eleccoin/eleccoin-maintainer-tools). From the root of the repository run:
 
     ../eleccoin-maintainer-tools/make-tag.py v(new version, e.g. 1.3.0)
 
@@ -74,13 +74,13 @@ Install Guix using one of the installation methods detailed in
 Check out the source code in the following directory hierarchy.
 
     cd /path/to/your/toplevel/build
-    git clone https://github.com/eleccoin-core/guix.sigs.git
-    git clone https://github.com/eleccoin-core/eleccoin-detached-sigs.git
+    git clone https://github.com/eleccoin/guix.sigs.git
+    git clone https://github.com/eleccoin/eleccoin-detached-sigs.git
     git clone https://github.com/eleccoin/eleccoin.git
 
 ### Write the release notes
 
-Open a draft of the release notes for collaborative editing at https://github.com/eleccoin-core/eleccoin-devwiki/wiki.
+Open a draft of the release notes for collaborative editing at https://github.com/eleccoin/eleccoin-devwiki/wiki.
 
 For the period during which the notes are being edited on the wiki, the version on the branch should be wiped and replaced with a link to the wiki which should be used for all announcements until `-final`.
 
@@ -181,7 +181,7 @@ popd
 Non-codesigners: wait for Windows/macOS detached signatures:
 
 - Once the Windows/macOS builds each have 3 matching signatures, they will be signed with their respective release keys.
-- Detached signatures will then be committed to the [eleccoin-detached-sigs](https://github.com/eleccoin-core/eleccoin-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
+- Detached signatures will then be committed to the [eleccoin-detached-sigs](https://github.com/eleccoin/eleccoin-detached-sigs) repository, which can be combined with the unsigned apps to create signed binaries.
 
 Create (and optionally verify) the codesigned outputs:
 
@@ -271,7 +271,7 @@ cat "$VERSION"/*/all.SHA256SUMS.asc > SHA256SUMS.asc
 
       - Push the flatpak to flathub, e.g. https://github.com/flathub/org.eleccoincore.eleccoin-qt/pull/2
 
-      - Push the latest version to master (if applicable), e.g. https://github.com/eleccoin-core/packaging/pull/32
+      - Push the latest version to master (if applicable), e.g. https://github.com/eleccoin/packaging/pull/32
 
       - Create a new branch for the major release "0.xx" from master (used to build the snap package) and request the
         track (if applicable), e.g. https://forum.snapcraft.io/t/track-request-for-eleccoin-core-snap/10112/7

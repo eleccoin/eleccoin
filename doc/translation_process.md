@@ -64,7 +64,7 @@ The Transifex Eleccoin project config file is included as part of the repo. It c
 
 ### Synchronising translations
 
-To assist in updating translations, a helper script is available in the [maintainer-tools repo](https://github.com/eleccoin-core/eleccoin-maintainer-tools). To use it and commit the result, simply do:
+To assist in updating translations, a helper script is available in the [maintainer-tools repo](https://github.com/eleccoin/eleccoin-maintainer-tools). To use it and commit the result, simply do:
 
 ```
 python3 ../eleccoin-maintainer-tools/update-translations.py

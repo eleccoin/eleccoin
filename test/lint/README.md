@@ -26,16 +26,16 @@ Usage: test/lint/git-subtree-check.sh [-r] DIR [COMMIT]
 
 To do a full check with `-r`, make sure that you have fetched the upstream repository branch in which the subtree is
 maintained:
-* for `src/secp256k1`: https://github.com/eleccoin-core/secp256k1.git (branch master)
-* for `src/leveldb`: https://github.com/eleccoin-core/leveldb.git (branch eleccoin-fork)
-* for `src/univalue`: https://github.com/eleccoin-core/univalue.git (branch master)
-* for `src/crypto/ctaes`: https://github.com/eleccoin-core/ctaes.git (branch master)
+* for `src/secp256k1`: https://github.com/eleccoin/secp256k1.git (branch master)
+* for `src/leveldb`: https://github.com/eleccoin/leveldb.git (branch eleccoin-fork)
+* for `src/univalue`: https://github.com/eleccoin/univalue.git (branch master)
+* for `src/crypto/ctaes`: https://github.com/eleccoin/ctaes.git (branch master)
 * for `src/crc32c`: https://github.com/google/crc32c.git (branch master)
 
 To do so, add the upstream repository as remote:
 
 ```
-git remote add --fetch secp256k1 https://github.com/eleccoin-core/secp256k1.git
+git remote add --fetch secp256k1 https://github.com/eleccoin/secp256k1.git
 ```
 
 lint-all.sh

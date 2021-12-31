@@ -16,7 +16,7 @@ GIT = os.getenv('GIT', 'git')
 def tree_sha512sum(commit='HEAD'):
     """Calculate the Tree-sha512 for the commit.
 
-    This is copied from github-merge.py. See https://github.com/eleccoin-core/eleccoin-maintainer-tools."""
+    This is copied from github-merge.py. See https://github.com/eleccoin/eleccoin-maintainer-tools."""
 
     # request metadata for entire tree, recursively
     files = []

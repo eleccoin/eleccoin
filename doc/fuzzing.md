@@ -66,12 +66,12 @@ In this case the fuzzer managed to create a `block` message which when passed to
 
 ## Fuzzing corpora
 
-The project's collection of seed corpora is found in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin-core/qa-assets) repo.
+The project's collection of seed corpora is found in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin/qa-assets) repo.
 
-To fuzz `process_message` using the [`eleccoin-core/qa-assets`](https://github.com/eleccoin-core/qa-assets) seed corpus:
+To fuzz `process_message` using the [`eleccoin-core/qa-assets`](https://github.com/eleccoin/qa-assets) seed corpus:
 
 ```sh
-$ git clone https://github.com/eleccoin-core/qa-assets
+$ git clone https://github.com/eleccoin/qa-assets
 $ FUZZ=process_message src/test/fuzz/fuzz qa-assets/fuzz_seed_corpus/process_message/
 INFO: Seed: 1346407872
 INFO: Loaded 1 modules   (424174 inline 8-bit counters): 424174 [0x55d8a9004ab8, 0x55d8a906c3a6),
@@ -97,9 +97,9 @@ INFO: seed corpus: files: 991 min: 1b max: 1858b total: 288291b rss: 150Mb
 
 ## Submit improved coverage
 
-If you find coverage increasing inputs when fuzzing you are highly encouraged to submit them for inclusion in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin-core/qa-assets) repo.
+If you find coverage increasing inputs when fuzzing you are highly encouraged to submit them for inclusion in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin/qa-assets) repo.
 
-Every single pull request submitted against the Eleccoin Core repo is automatically tested against all inputs in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin-core/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make Eleccoin Core more robust.
+Every single pull request submitted against the Eleccoin Core repo is automatically tested against all inputs in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make Eleccoin Core more robust.
 
 ## macOS hints for libFuzzer
 

@@ -201,7 +201,7 @@ GUI changes
   or fee bumping an existing transaction in the Transactions screen will
   automatically copy a Partially-Signed Eleccoin Transaction (PSBT) to
   the system clipboard.  This can then be pasted into an external
-  program such as [HWI](https://github.com/eleccoin-core/HWI) for
+  program such as [HWI](https://github.com/eleccoin/HWI) for
   signing.  Future versions of Eleccoin Core should support a GUI option
   for finalizing and broadcasting PSBTs, but for now the debug console
   may be used with the `finalizepsbt` and `sendrawtransaction` RPCs.

@@ -3,7 +3,7 @@ Repository Tools
 
 ### [Developer tools](/contrib/devtools) ###
 Specific tools for developers working on this repository.
-Additional tools, including the `github-merge.py` script, are available in the [maintainer-tools](https://github.com/eleccoin-core/eleccoin-maintainer-tools) repository.
+Additional tools, including the `github-merge.py` script, are available in the [maintainer-tools](https://github.com/eleccoin/eleccoin-maintainer-tools) repository.
 
 ### [Verify-Commits](/contrib/verify-commits) ###
 Tool to verify that every merge commit was signed by a developer using the `github-merge.py` script.
@@ -24,10 +24,10 @@ Build Tools and Keys
 ### Packaging ###
 The [Debian](/contrib/debian) subfolder contains the copyright file.
 
-All other packaging related files can be found in the [eleccoin-core/packaging](https://github.com/eleccoin-core/packaging) repository.
+All other packaging related files can be found in the [eleccoin-core/packaging](https://github.com/eleccoin/packaging) repository.
 
 ### [Gitian-descriptors](/contrib/gitian-descriptors) ###
-Files used during the gitian build process. For more information about gitian, see the [the Eleccoin Core documentation repository](https://github.com/eleccoin-core/docs).
+Files used during the gitian build process. For more information about gitian, see the [the Eleccoin Core documentation repository](https://github.com/eleccoin/docs).
 
 ### [Builder keys](/contrib/builder-keys)
 PGP keys used for signing Eleccoin Core [release](/doc/release-process.md) results.
