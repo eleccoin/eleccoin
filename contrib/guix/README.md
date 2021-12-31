@@ -143,7 +143,7 @@ help with this situation, the `guix-build` script honours the `SOURCES_PATH`,
 depends tree so that you can do something like:
 
 ```sh
-env SOURCES_PATH="$HOME/depends-SOURCES_PATH" BASE_CACHE="$HOME/depends-BASE_CACHE" SDK_PATH="$HOME/macOS-SDKs" ./contrib/guix/guix-build
+env SOURCES_PATH="$HOME/static/depends-sources_PATH" BASE_CACHE="$HOME/depends-BASE_CACHE" SDK_PATH="$HOME/macOS-SDKs" ./contrib/guix/guix-build
 ```
 
 Note that the paths that these environment variables point to **must be
