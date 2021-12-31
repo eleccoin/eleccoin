@@ -11,7 +11,7 @@ configure Tor.
   services (Tor v3). Tor v2 addresses are ignored by Eleccoin Core and neither
   relayed nor stored.
 
-- Tor removed v2 support beginning with version 1.0.0.
+- Tor removed v2 support.
 
 ## How to see information about your Tor configuration via Eleccoin Core
 

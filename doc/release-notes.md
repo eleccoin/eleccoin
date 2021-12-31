@@ -60,7 +60,7 @@ P2P and network changes
 New and Updated RPCs
 --------------------
 
-- Due to [BIP 350](https://github.com/eleccoin/bips/blob/master/bip-0350.mediawiki)
+- Due to [EIP 350]
   being implemented, behavior for all RPCs that accept addresses is changed when
   a native witness version 1 (or higher) is passed. These now require a Bech32m
   encoding instead of a Bech32 one, and Bech32m encoding will be used for such
@@ -121,7 +121,7 @@ New and Updated RPCs
   group of transactions, but "too-long-mempool-chain" if they are actually submitted. (#20833)
 
 - `addmultisigaddress` and `createmultisig` now support up to 20 keys for
-  Segwit addresses. (#20867)
+  Segwit addresses.
 
 Changes to Wallet or GUI related RPCs can be found in the GUI or Wallet section below.
 
