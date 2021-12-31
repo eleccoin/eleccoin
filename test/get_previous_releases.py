@@ -21,22 +21,11 @@ import hashlib
 
 
 SHA256_SUMS = {
-"c84cbbf7b919864f9d01672a69d470b548166d418c41de2df8d408acfe2f3e97":  "eleccoin-1.2.1-aarch64-linux-gnu-debug.tar.gz"
-"1bc18ed354cb0b492c69868e34f68eb2c8842f789970a627f8dca798434392e8":  "eleccoin-1.2.1-aarch64-linux-gnu.tar.gz"
-"d20c5641c20b91fac8b047da48a94f9a599cb557b1998c8ce3500c3cbc3eebcd":  "eleccoin-1.2.1-arm-linux-gnueabihf-debug.tar.gz"
-"f3730c44227fbc2c0450d1ed61a5ea1e6f373c219372431f9d9f7ade50814377":  "eleccoin-1.2.1-arm-linux-gnueabihf.tar.gz"
-"61372b4e100f6ec51fcd08f04ec261ee9e9ea6ea2c851f0245816c4cf035505a":  "eleccoin-1.2.1-osx64.tar.gz"
-"71b375c4f9e65d1ffdfc1b5241c04336d825aab82f1ceb1e40408d04701a6bfc":  "eleccoin-1.2.1-osx.dmg"
-"6d7c8def10c65a14121796fc52b257b38948cb6d26db926e9e807bffdd4bc49a":  "eleccoin-1.2.1-osx-unsigned.dmg"
-"72a75e8b52b3074536c21d03ccb238335ee200b820a469dcfc76ac0e32075503":  "eleccoin-1.2.1-osx-unsigned.tar.gz"
-"08ba90bd7b62de240193758460e472490af7ec2acd97d1ac5248caac232a2a37":  "eleccoin-1.2.1.tar.gz"
-"da334e16eecdbaaf1841a052d8442b6b210aedb27de276d2bb484c9dc59c6fae":  "eleccoin-1.2.1-win64-debug.zip"
-"5d6279c8f625b5d4bc0829ecb08c71f7debf20d3f5b6969715afa8bc7d374dba":  "eleccoin-1.2.1-win64-setup.exe"
-"02c25de771863b42a967da97ed8607822116c2b2440999188ddded6784cbcabe":  "eleccoin-1.2.1-win64-setup-unsigned.exe"
-"62d6532a864b4ff62957827681578012c5c9b714e46c0eb0969a78022636df29":  "eleccoin-1.2.1-win64.zip"
-"8bb166a6c9dfae51d208a73e81b34d8b707463029b08273f188f4e689c2c3c0a":  "eleccoin-1.2.1-win-unsigned.tar.gz"
-"7c45360bea2c052a26bb52ca70f6064dc39b6b4be86b09262bc22422ad22a643":  "eleccoin-1.2.1-x86_64-linux-gnu-debug.tar.gz"
-"f96c39ae406374d4d5745ca2a2a1a9e2426a69e808ddd99c90953ec3a8d36355":  "eleccoin-1.2.1-x86_64-linux-gnu.tar.gz"
+    "62d6532a864b4ff62957827681578012c5c9b714e46c0eb0969a78022636df29":  "eleccoin-1.2.1-win64.zip",
+    "f96c39ae406374d4d5745ca2a2a1a9e2426a69e808ddd99c90953ec3a8d36355":  "eleccoin-1.2.1-x86_64-linux-gnu.tar.gz",
+    #
+    "06336b331c132f5c4851f3ee11f2d917c0f9708add31f64f052e8d16abc41e99":  "eleccoin-1.3.0-win64.zip",
+    "bf75cd250568957ad62a2eefbf526fc8eed9a4625763edeb10f45a70120e3864":  "eleccoin-1.3.0-x86_64-linux-gnu.tar.gz",
 }
 
 @contextlib.contextmanager
