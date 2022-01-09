@@ -9,7 +9,7 @@ import argparse
 from shutil import copyfile
 
 SOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
-DEFAULT_PLATFORM_TOOLSET = R'v142'
+DEFAULT_PLATFORM_TOOLSET = R'v143'
 
 libs = [
     'libeleccoin_cli',
@@ -36,7 +36,7 @@ def parse_makefile(makefile):
         for line in file.read().splitlines():
             if current_lib:
                 source = line.split()[0]
-                if source.endswith('.cpp') and not source.startswith('$') and source not in ignore_list:
+                if (source.endswith('.cpp') or source.endswith('.c')) and not source.startswith('$') and source not in ignore_list:
                     source_filename = source.replace('/', '\\')
                     object_filename = source.replace('/', '_')[:-4] + ".obj"
                     lib_sources[current_lib].append((source_filename, object_filename))
