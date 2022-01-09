@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2020 The Eleccoin Core developers
+# Copyright (c) 2020-2022 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,7 +9,7 @@ import argparse
 from shutil import copyfile
 
 SOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
-DEFAULT_PLATFORM_TOOLSET = R'v141'
+DEFAULT_PLATFORM_TOOLSET = R'v142'
 
 libs = [
     'libeleccoin_cli',
