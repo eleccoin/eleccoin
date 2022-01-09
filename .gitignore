@@ -100,12 +100,12 @@ background.tiff*
 
 # Qt Creator
 Makefile.am.user
-src/ecc.config
-src/ecc.creator
-src/ecc.creator.user
-src/ecc.files
-src/ecc.includes
-src/ecc.c*
+src/ecc*.config
+src/ecc*.creator
+src/ecc*.creator.user
+src/ecc*.files
+src/ecc*.includes
+src/ecc*.c*
 
 # Unit-tests
 Makefile.test
