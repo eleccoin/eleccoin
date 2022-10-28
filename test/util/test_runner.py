@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # Copyright 2014 BitPay Inc.
-# Copyright 2020-2021 The Eleccoin Core developers
+# Copyright 2020-2022 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 """Test framework for eleccoin utils.
@@ -10,7 +10,6 @@ Runs automatically during `make check`.
 Can also be run manually."""
 
 import argparse
-import binascii
 import configparser
 import difflib
 import json
@@ -94,7 +93,7 @@ def bctest(testDir, testObj, buildenv):
         try:
             outputData = open(os.path.join(testDir, outputFn), encoding="utf8").read()
         except:
-            logging.error("Output file " + outputFn + " can not be opened")
+            logging.error("Output file " + outputFn + " cannot be opened")
             raise
         if not outputData:
             logging.error("Output data missing for " + outputFn)
@@ -167,7 +166,7 @@ def parse_output(a, fmt):
     if fmt == 'json':  # json: compare parsed data
         return json.loads(a)
     elif fmt == 'hex':  # hex: parse and compare binary data
-        return binascii.a2b_hex(a.strip())
+        return bytes.fromhex(a.strip())
     else:
         raise NotImplementedError("Don't know how to compare %s" % fmt)
 
