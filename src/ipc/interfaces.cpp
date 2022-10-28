@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Eleccoin Core developers
+// Copyright (c) 2021-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -60,6 +60,7 @@ public:
     {
         m_protocol->addCleanup(type, iface, std::move(cleanup));
     }
+    Context& context() override { return m_protocol->context(); }
     const char* m_exe_name;
     const char* m_process_argv0;
     interfaces::Init& m_init;
