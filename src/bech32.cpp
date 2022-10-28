@@ -1,11 +1,14 @@
-// Copyright (c) 2017, 2021 Pieter Wuille
+// Copyright (c) 2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <bech32.h>
 #include <util/vector.h>
 
+#include <array>
 #include <assert.h>
+#include <numeric>
+#include <optional>
 
 namespace bech32
 {
@@ -29,6 +32,90 @@ const int8_t CHARSET_REV[128] = {
     -1, 29, -1, 24, 13, 25,  9,  8, 23, -1, 18, 22, 31, 27, 19, -1,
      1,  0,  3, 16, 11, 28, 12, 14,  6,  4,  2, -1, -1, -1, -1, -1
 };
+
+/** We work with the finite field GF(1024) defined as a degree 2 extension of the base field GF(32)
+ * The defining polynomial of the extension is x^2 + 9x + 23.
+ * Let (e) be a root of this defining polynomial. Then (e) is a primitive element of GF(1024),
+ * that is, a generator of the field. Every non-zero element of the field can then be represented
+ * as (e)^k for some power k.
+ * The array GF1024_EXP contains all these powers of (e) - GF1024_EXP[k] = (e)^k in GF(1024).
+ * Conversely, GF1024_LOG contains the discrete logarithms of these powers, so
+ * GF1024_LOG[GF1024_EXP[k]] == k.
+ * The following function generates the two tables GF1024_EXP and GF1024_LOG as constexprs. */
+constexpr std::pair<std::array<int16_t, 1023>, std::array<int16_t, 1024>> GenerateGFTables()
+{
+    // Build table for GF(32).
+    // We use these tables to perform arithmetic in GF(32) below, when constructing the
+    // tables for GF(1024).
+    std::array<int8_t, 31> GF32_EXP{};
+    std::array<int8_t, 32> GF32_LOG{};
+
+    // fmod encodes the defining polynomial of GF(32) over GF(2), x^5 + x^3 + 1.
+    // Because coefficients in GF(2) are binary digits, the coefficients are packed as 101001.
+    const int fmod = 41;
+
+    // Elements of GF(32) are encoded as vectors of length 5 over GF(2), that is,
+    // 5 binary digits. Each element (b_4, b_3, b_2, b_1, b_0) encodes a polynomial
+    // b_4*x^4 + b_3*x^3 + b_2*x^2 + b_1*x^1 + b_0 (modulo fmod).
+    // For example, 00001 = 1 is the multiplicative identity.
+    GF32_EXP[0] = 1;
+    GF32_LOG[0] = -1;
+    GF32_LOG[1] = 0;
+    int v = 1;
+    for (int i = 1; i < 31; ++i) {
+        // Multiplication by x is the same as shifting left by 1, as
+        // every coefficient of the polynomial is moved up one place.
+        v = v << 1;
+        // If the polynomial now has an x^5 term, we subtract fmod from it
+        // to remain working modulo fmod. Subtraction is the same as XOR in characteristic
+        // 2 fields.
+        if (v & 32) v ^= fmod;
+        GF32_EXP[i] = v;
+        GF32_LOG[v] = i;
+    }
+
+    // Build table for GF(1024)
+    std::array<int16_t, 1023> GF1024_EXP{};
+    std::array<int16_t, 1024> GF1024_LOG{};
+
+    GF1024_EXP[0] = 1;
+    GF1024_LOG[0] = -1;
+    GF1024_LOG[1] = 0;
+
+    // Each element v of GF(1024) is encoded as a 10 bit integer in the following way:
+    // v = v1 || v0 where v0, v1 are 5-bit integers (elements of GF(32)).
+    // The element (e) is encoded as 1 || 0, to represent 1*(e) + 0. Every other element
+    // a*(e) + b is represented as a || b (a and b are both GF(32) elements). Given (v),
+    // we compute (e)*(v) by multiplying in the following way:
+    //
+    // v0' = 23*v1
+    // v1' = 9*v1 + v0
+    // e*v = v1' || v0'
+    //
+    // Where 23, 9 are GF(32) elements encoded as described above. Multiplication in GF(32)
+    // is done using the log/exp tables:
+    // e^x * e^y = e^(x + y) so a * b = EXP[ LOG[a] + LOG [b] ]
+    // for non-zero a and b.
+
+    v = 1;
+    for (int i = 1; i < 1023; ++i) {
+        int v0 = v & 31;
+        int v1 = v >> 5;
+
+        int v0n = v1 ? GF32_EXP.at((GF32_LOG.at(v1) + GF32_LOG.at(23)) % 31) : 0;
+        int v1n = (v1 ? GF32_EXP.at((GF32_LOG.at(v1) + GF32_LOG.at(9)) % 31) : 0) ^ v0;
+
+        v = v1n << 5 | v0n;
+        GF1024_EXP[i] = v;
+        GF1024_LOG[v] = i;
+    }
+
+    return std::make_pair(GF1024_EXP, GF1024_LOG);
+}
+
+constexpr auto tables = GenerateGFTables();
+constexpr const std::array<int16_t, 1023>& GF1024_EXP = tables.first;
+constexpr const std::array<int16_t, 1024>& GF1024_LOG = tables.second;
 
 /* Determine the final constant to use for the specified encoding. */
 uint32_t EncodingConstant(Encoding encoding) {
@@ -66,6 +153,26 @@ uint32_t PolyMod(const data& v)
     // the above example, `c` initially corresponds to 1 mod g(x), and after processing 2 inputs of
     // v, it corresponds to x^2 + v0*x + v1 mod g(x). As 1 mod g(x) = 1, that is the starting value
     // for `c`.
+
+    // The following Sage code constructs the generator used:
+    //
+    // B = GF(2) # Binary field
+    // BP.<b> = B[] # Polynomials over the binary field
+    // F_mod = b**5 + b**3 + 1
+    // F.<f> = GF(32, modulus=F_mod, repr='int') # GF(32) definition
+    // FP.<x> = F[] # Polynomials over GF(32)
+    // E_mod = x**2 + F.fetch_int(9)*x + F.fetch_int(23)
+    // E.<e> = F.extension(E_mod) # GF(1024) extension field definition
+    // for p in divisors(E.order() - 1): # Verify e has order 1023.
+    //    assert((e**p == 1) == (p % 1023 == 0))
+    // G = lcm([(e**i).minpoly() for i in range(997,1000)])
+    // print(G) # Print out the generator
+    //
+    // It demonstrates that g(x) is the least common multiple of the minimal polynomials
+    // of 3 consecutive powers (997,998,999) of a primitive element (e) of GF(1024).
+    // That guarantees it is, in fact, the generator of a primitive BCH code with cycle
+    // length 1023 and distance 4. See https://en.wikipedia.org/wiki/BCH_code for more details.
+
     uint32_t c = 1;
     for (const auto v_i : v) {
         // We want to update `c` to correspond to a polynomial with one extra term. If the initial
