@@ -123,7 +123,6 @@ ELECCOIN_CORE_H = \
   bech32.h \
   blockencodings.h \
   blockfilter.h \
-  bloom.h \
   chain.h \
   chainparams.h \
   chainparamsbase.h \
@@ -131,6 +130,7 @@ ELECCOIN_CORE_H = \
   checkqueue.h \
   clientversion.h \
   coins.h \
+  common/bloom.h \
   compat.h \
   compat/assumptions.h \
   compat/byteswap.h \
@@ -593,9 +593,9 @@ libeleccoin_common_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeleccoin_common_a_SOURCES = \
   base58.cpp \
   bech32.cpp \
-  bloom.cpp \
   chainparams.cpp \
   coins.cpp \
+  common/bloom.cpp \
   compressor.cpp \
   core_read.cpp \
   core_write.cpp \
