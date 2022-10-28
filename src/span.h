@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -30,7 +30,11 @@
 
 /** A Span is an object that can refer to a contiguous sequence of objects.
  *
- * It implements a subset of C++20's std::span.
+ * This file implements a subset of C++20's std::span.  It can be considered
+ * temporary compatibility code until C++20 and is designed to be a
+ * self-contained abstraction without depending on other project files. For this
+ * reason, Clang lifetimebound is defined here instead of including
+ * <attributes.h>, which also defines it.
  *
  * Things to be aware of when writing code that deals with Spans:
  *
@@ -60,7 +64,7 @@
  *   types that expose a data() and size() member function), functions that
  *   accept a Span as input parameter can be called with any compatible
  *   range-like object. For example, this works:
-*
+ *
  *       void Foo(Span<const int> arg);
  *
  *       Foo(std::vector<int>{1, 2, 3}); // Works
@@ -180,6 +184,7 @@ public:
         return m_data[m_size - 1];
     }
     constexpr std::size_t size() const noexcept { return m_size; }
+    constexpr std::size_t size_bytes() const noexcept { return sizeof(C) * m_size; }
     constexpr bool empty() const noexcept { return size() == 0; }
     CONSTEXPR_IF_NOT_DEBUG C& operator[](std::size_t pos) const noexcept
     {
