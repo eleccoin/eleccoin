@@ -899,9 +899,11 @@ EXTRA_DIST += $(libeleccoin_ipc_mpgen_input)
 if BUILD_MULTIPROCESS
 LIBELECCOIN_IPC=libeleccoin_ipc.a
 libeleccoin_ipc_a_SOURCES = \
+  ipc/capnp/context.h \
   ipc/capnp/init-types.h \
   ipc/capnp/protocol.cpp \
   ipc/capnp/protocol.h \
+  ipc/context.h \
   ipc/exception.h \
   ipc/interfaces.cpp \
   ipc/process.cpp \
