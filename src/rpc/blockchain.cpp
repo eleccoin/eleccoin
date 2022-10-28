@@ -4,7 +4,7 @@
 
 #include <rpc/blockchain.h>
 
-#include <amount.h>
+#include <consensus/amount.h>
 #include <blockfilter.h>
 #include <chain.h>
 #include <chainparams.h>

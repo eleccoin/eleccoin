@@ -5,7 +5,7 @@
 #ifndef ELECCOIN_QT_TRANSACTIONFILTERPROXY_H
 #define ELECCOIN_QT_TRANSACTIONFILTERPROXY_H
 
-#include <amount.h>
+#include <consensus/amount.h>
 
 #include <QDateTime>
 #include <QSortFilterProxyModel>

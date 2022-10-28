@@ -5,7 +5,7 @@
 #ifndef ELECCOIN_TEST_FUZZ_UTIL_H
 #define ELECCOIN_TEST_FUZZ_UTIL_H
 
-#include <amount.h>
+#include <consensus/amount.h>
 #include <arith_uint256.h>
 #include <attributes.h>
 #include <chainparamsbase.h>

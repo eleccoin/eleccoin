@@ -5,7 +5,7 @@
 #ifndef ELECCOIN_QT_ELECCOINAMOUNTFIELD_H
 #define ELECCOIN_QT_ELECCOINAMOUNTFIELD_H
 
-#include <amount.h>
+#include <consensus/amount.h>
 
 #include <QWidget>
 

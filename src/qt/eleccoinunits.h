@@ -5,7 +5,7 @@
 #ifndef ELECCOIN_QT_ELECCOINUNITS_H
 #define ELECCOIN_QT_ELECCOINUNITS_H
 
-#include <amount.h>
+#include <consensus/amount.h>
 
 #include <QAbstractListModel>
 #include <QString>

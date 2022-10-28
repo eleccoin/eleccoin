@@ -5,7 +5,7 @@
 #ifndef ELECCOIN_WALLET_COINSELECTION_H
 #define ELECCOIN_WALLET_COINSELECTION_H
 
-#include <amount.h>
+#include <consensus/amount.h>
 #include <policy/feerate.h>
 #include <primitives/transaction.h>
 #include <random.h>

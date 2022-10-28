@@ -5,7 +5,7 @@
 #ifndef ELECCOIN_RPC_BLOCKCHAIN_H
 #define ELECCOIN_RPC_BLOCKCHAIN_H
 
-#include <amount.h>
+#include <consensus/amount.h>
 #include <core_io.h>
 #include <streams.h>
 #include <sync.h>

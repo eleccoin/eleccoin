@@ -9,7 +9,7 @@
 #include <init.h>
 
 #include <addrman.h>
-#include <amount.h>
+#include <consensus/amount.h>
 #include <banman.h>
 #include <blockfilter.h>
 #include <chain.h>

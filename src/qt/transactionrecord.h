@@ -5,7 +5,7 @@
 #ifndef ELECCOIN_QT_TRANSACTIONRECORD_H
 #define ELECCOIN_QT_TRANSACTIONRECORD_H
 
-#include <amount.h>
+#include <consensus/amount.h>
 #include <uint256.h>
 
 #include <QList>

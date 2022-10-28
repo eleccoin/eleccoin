@@ -4,7 +4,7 @@
 
 #include <miner.h>
 
-#include <amount.h>
+#include <consensus/amount.h>
 #include <chain.h>
 #include <chainparams.h>
 #include <coins.h>

@@ -5,7 +5,7 @@
 #ifndef ELECCOIN_WALLET_WALLETDB_H
 #define ELECCOIN_WALLET_WALLETDB_H
 
-#include <amount.h>
+#include <consensus/amount.h>
 #include <script/sign.h>
 #include <wallet/db.h>
 #include <wallet/walletutil.h>

@@ -1,16 +1,17 @@
-// Copyright (c) 2020 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
-#ifndef ELECCOIN_AMOUNT_H
-#define ELECCOIN_AMOUNT_H
+#ifndef ELECCOIN_CONSENSUS_AMOUNT_H
+#define ELECCOIN_CONSENSUS_AMOUNT_H
 
-#include <stdint.h>
+#include <cstdint>
 
 /** Amount in electrons (Can be negative) */
 typedef int64_t CAmount;
 
-static const CAmount COIN = 100000000;
+/** The amount of electrons in one ECC. */
+static constexpr CAmount COIN = 100000000;
 
 /** No amount larger than this (in electron) is valid.
  *
@@ -21,7 +22,7 @@ static const CAmount COIN = 100000000;
  * critical; in unusual circumstances like a(nother) overflow bug that allowed
  * for the creation of coins out of thin air modification could lead to a fork.
  * */
-static const CAmount MAX_MONEY = 22000000 * COIN;
+static constexpr CAmount MAX_MONEY = 22000000 * COIN;
 inline bool MoneyRange(const CAmount& nValue) { return (nValue >= 0 && nValue <= MAX_MONEY); }
 
-#endif //  ELECCOIN_AMOUNT_H
+#endif // ELECCOIN_CONSENSUS_AMOUNT_H

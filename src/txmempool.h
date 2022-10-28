@@ -13,7 +13,7 @@
 #include <utility>
 #include <vector>
 
-#include <amount.h>
+#include <consensus/amount.h>
 #include <coins.h>
 #include <indirectmap.h>
 #include <policy/feerate.h>

@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,10 +9,10 @@
 #include <config/eleccoin-config.h>
 #endif
 
-#include <amount.h>
 #include <arith_uint256.h>
 #include <attributes.h>
 #include <chain.h>
+#include <consensus/amount.h>
 #include <coins.h>
 #include <consensus/validation.h>
 #include <crypto/common.h> // for ReadLE64

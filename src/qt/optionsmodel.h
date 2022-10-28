@@ -5,7 +5,7 @@
 #ifndef ELECCOIN_QT_OPTIONSMODEL_H
 #define ELECCOIN_QT_OPTIONSMODEL_H
 
-#include <amount.h>
+#include <consensus/amount.h>
 #include <cstdint>
 #include <qt/guiconstants.h>
 
