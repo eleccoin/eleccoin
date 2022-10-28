@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Eleccoin Core developers
+// Copyright (c) 2021-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,6 +10,7 @@
 #include <util/time.h>
 
 #include <chrono>
+#include <memory>
 #include <string>
 
 /**
@@ -95,6 +96,14 @@ public:
      * wrapper can be unit tested if this method is overridden by a mock Sock implementation.
      */
     [[nodiscard]] virtual int Connect(const sockaddr* addr, socklen_t addr_len) const;
+
+    /**
+     * accept(2) wrapper. Equivalent to `std::make_unique<Sock>(accept(this->Get(), addr, addr_len))`.
+     * Code that uses this wrapper can be unit tested if this method is overridden by a mock Sock
+     * implementation.
+     * The returned unique_ptr is empty if `accept()` failed in which case errno will be set.
+     */
+    [[nodiscard]] virtual std::unique_ptr<Sock> Accept(sockaddr* addr, socklen_t* addr_len) const;
 
     /**
      * getsockopt(2) wrapper. Equivalent to

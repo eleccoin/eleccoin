@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -68,7 +68,13 @@ void DirectoryCommit(const fs::path &dirname);
 bool TruncateFile(FILE *file, unsigned int length);
 int RaiseFileDescriptorLimit(int nMinFD);
 void AllocateFileRange(FILE *file, unsigned int offset, unsigned int length);
+
+/**
+ * Rename src to dest.
+ * @return true if the rename was successful.
+ */
 [[nodiscard]] bool RenameOver(fs::path src, fs::path dest);
+
 bool LockDirectory(const fs::path& directory, const std::string lockfile_name, bool probe_only=false);
 void UnlockDirectory(const fs::path& directory, const std::string& lockfile_name);
 bool DirIsWritable(const fs::path& directory);
@@ -157,6 +163,10 @@ struct SectionInfo
 class ArgsManager
 {
 public:
+    /**
+     * Flags controlling how config and command line arguments are validated and
+     * interpreted.
+     */
     enum Flags : uint32_t {
         // Boolean options can accept negation syntax -noOPTION or -noOPTION=1
         ALLOW_BOOL = 0x01,
@@ -204,6 +214,7 @@ protected:
      */
     bool UseDefaultSection(const std::string& arg) const EXCLUSIVE_LOCKS_REQUIRED(cs_args);
 
+ public:
     /**
      * Get setting value.
      *
@@ -218,7 +229,6 @@ protected:
      */
     std::vector<util::SettingsValue> GetSettingsList(const std::string& arg) const;
 
-public:
     ArgsManager();
     ~ArgsManager();
 
@@ -256,6 +266,16 @@ public:
      * Get the command and command args (returns std::nullopt if no command provided)
      */
     std::optional<const Command> GetCommand() const;
+
+    /**
+     * Get a normalized path from a specified pathlike argument
+     *
+     * It is guaranteed that the returned path has no trailing slashes.
+     *
+     * @param pathlike_arg Pathlike argument to get a path from (e.g., "-datadir", "-blocksdir" or "-walletdir")
+     * @return Normalized path which is get from a specified pathlike argument
+     */
+    fs::path GetPathArg(std::string pathlike_arg) const;
 
     /**
      * Get blocks directory path
