@@ -626,7 +626,7 @@ libeleccoin_common_a_SOURCES = \
 
 # util: shared between all executables.
 # This library *must* be included to make sure that the glibc
-# backward-compatibility objects and their sanity checks are linked.
+# sanity checks are linked.
 libeleccoin_util_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
 libeleccoin_util_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 libeleccoin_util_a_SOURCES = \
@@ -666,6 +666,7 @@ libeleccoin_util_a_SOURCES = \
   util/spanparsing.cpp \
   util/strencodings.cpp \
   util/string.cpp \
+  util/syscall_sandbox.cpp \
   util/time.cpp \
   util/tokenpipe.cpp \
   $(ELECCOIN_CORE_H)
