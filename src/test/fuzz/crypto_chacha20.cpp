@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,7 +19,7 @@ FUZZ_TARGET(crypto_chacha20)
         const std::vector<unsigned char> key = ConsumeFixedLengthByteVector(fuzzed_data_provider, fuzzed_data_provider.ConsumeIntegralInRange<size_t>(16, 32));
         chacha20 = ChaCha20{key.data(), key.size()};
     }
-    while (fuzzed_data_provider.ConsumeBool()) {
+    LIMITED_WHILE(fuzzed_data_provider.ConsumeBool(), 10000) {
         CallOneOf(
             fuzzed_data_provider,
             [&] {

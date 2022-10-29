@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -22,7 +22,7 @@ FUZZ_TARGET(netbase_dns_lookup)
 
     auto fuzzed_dns_lookup_function = [&](const std::string&, bool) {
         std::vector<CNetAddr> resolved_addresses;
-        while (fuzzed_data_provider.ConsumeBool()) {
+        LIMITED_WHILE(fuzzed_data_provider.ConsumeBool(), 10000) {
             resolved_addresses.push_back(ConsumeNetAddr(fuzzed_data_provider));
         }
         return resolved_addresses;
@@ -64,7 +64,7 @@ FUZZ_TARGET(netbase_dns_lookup)
     }
     {
         CSubNet resolved_subnet;
-        if (LookupSubNet(name, resolved_subnet, fuzzed_dns_lookup_function)) {
+        if (LookupSubNet(name, resolved_subnet)) {
             assert(resolved_subnet.IsValid());
         }
     }

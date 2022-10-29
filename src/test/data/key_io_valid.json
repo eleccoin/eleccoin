@@ -228,7 +228,7 @@
     [
         "tb1pxqf7d825wjtcftj7uep8w24jq3tz8vudfaqj20rns8ahqya56gcs92eqtu",
         "51203013e69d54749784ae5ee642772ab2045623b38d4f41253c7381fb7013b4d231",
-        {signet
+        {
             "chain": "signet",
             "isPrivkey": false,
             "tryCaseFlip": true

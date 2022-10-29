@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,6 +10,13 @@
 #include <cstdint>
 #include <functional>
 #include <string_view>
+
+/**
+ * Can be used to limit a theoretically unbounded loop. This caps the runtime
+ * to avoid timeouts or OOMs.
+ */
+#define LIMITED_WHILE(condition, limit) \
+    for (unsigned _count{limit}; (condition) && _count; --_count)
 
 using FuzzBufferType = Span<const uint8_t>;
 
