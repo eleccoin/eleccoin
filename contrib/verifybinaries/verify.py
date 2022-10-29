@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-# Copyright (c) 2021 The Eleccoin Core developers
+# Copyright (c) 2020-2022 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
-"""Script for verifying Bitoin Core release binaries
+"""Script for verifying Eleccoin Core release binaries
 
 This script attempts to download the signature file SHA256SUMS.asc from
 eleccoincore.org and eleccoin.org and compares them.

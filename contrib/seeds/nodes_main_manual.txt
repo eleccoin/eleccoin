@@ -1,13 +1,7 @@
-168.138.211.71:9833
-158.101.143.170:9833
-
-78.141.203.23:9833
-199.247.17.129:9833
-139.162.197.165:9833
-172.105.222.93:9833
 
 # manually added 2021-03 for minimal torv3 bootstrap support
 
 # manually added 2021-08 for minimal i2p bootstrap support
 
 # manually added 2022-01 for minimal cjdns bootstrap support
+
