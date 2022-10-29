@@ -13,13 +13,15 @@ packages/*
 libeleccoin_cli/libeleccoin_cli.vcxproj
 libeleccoin_common/libeleccoin_common.vcxproj
 libeleccoin_crypto/libeleccoin_crypto.vcxproj
-libeleccoin_server/libeleccoin_server.vcxproj
+libeleccoin_node/libeleccoin_node.vcxproj
 libeleccoin_util/libeleccoin_util.vcxproj
 libeleccoin_wallet_tool/libeleccoin_wallet_tool.vcxproj
 libeleccoin_wallet/libeleccoin_wallet.vcxproj
 libeleccoin_zmq/libeleccoin_zmq.vcxproj
 bench_eleccoin/bench_eleccoin.vcxproj
 libtest_util/libtest_util.vcxproj
+
+/eleccoin_config.h
 
 */Win32
 libeleccoin_qt/QtGeneratedFiles/*

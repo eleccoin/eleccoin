@@ -9,13 +9,13 @@ import argparse
 from shutil import copyfile
 
 SOURCE_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src'))
-DEFAULT_PLATFORM_TOOLSET = R'v143'
+DEFAULT_PLATFORM_TOOLSET = R'v142'
 
 libs = [
     'libeleccoin_cli',
     'libeleccoin_common',
     'libeleccoin_crypto',
-    'libeleccoin_server',
+    'libeleccoin_node',
     'libeleccoin_util',
     'libeleccoin_wallet_tool',
     'libeleccoin_wallet',
@@ -36,7 +36,7 @@ def parse_makefile(makefile):
         for line in file.read().splitlines():
             if current_lib:
                 source = line.split()[0]
-                if (source.endswith('.cpp') or source.endswith('.c')) and not source.startswith('$') and source not in ignore_list:
+                if source.endswith('.cpp') and not source.startswith('$') and source not in ignore_list:
                     source_filename = source.replace('/', '\\')
                     object_filename = source.replace('/', '_')[:-4] + ".obj"
                     lib_sources[current_lib].append((source_filename, object_filename))
@@ -56,6 +56,41 @@ def set_common_properties(toolset):
         s = re.sub('<PlatformToolset>.*?</PlatformToolset>', '<PlatformToolset>'+toolset+'</PlatformToolset>', s)
     with open(os.path.join(SOURCE_DIR, '../build_msvc/common.init.vcxproj'), 'w', encoding='utf-8',newline='\n') as wfile:
         wfile.write(s)
+
+def parse_config_into_ecc_config():
+    def find_between( s, first, last ):
+        try:
+            start = s.index( first ) + len( first )
+            end = s.index( last, start )
+            return s[start:end]
+        except ValueError:
+            return ""
+
+    config_info = []
+    with open(os.path.join(SOURCE_DIR,'../configure.ac'), encoding="utf8") as f:
+        for line in f:
+            if line.startswith("define"):
+                config_info.append(find_between(line, "(_", ")"))
+
+    config_info = [c for c in config_info if not c.startswith("COPYRIGHT_HOLDERS")]
+
+    config_dict = dict(item.split(", ") for item in config_info)
+    config_dict["PACKAGE_VERSION"] = f"\"{config_dict['CLIENT_VERSION_MAJOR']}.{config_dict['CLIENT_VERSION_MINOR']}.{config_dict['CLIENT_VERSION_BUILD']}\""
+    version = config_dict["PACKAGE_VERSION"].strip('"')
+    config_dict["PACKAGE_STRING"] = f"\"Eleccoin Core {version}\""
+
+    with open(os.path.join(SOURCE_DIR,'../build_msvc/eleccoin_config.h.in'), "r", encoding="utf8") as template_file:
+        template = template_file.readlines()
+
+    for index, line in enumerate(template):
+        header = ""
+        if line.startswith("#define"):
+            header = line.split(" ")[1]
+        if header in config_dict:
+            template[index] = line.replace("$", f"{config_dict[header]}")
+
+    with open(os.path.join(SOURCE_DIR,'../build_msvc/eleccoin_config.h'), "w", encoding="utf8") as ecc_config:
+        ecc_config.writelines(template)
 
 def main():
     parser = argparse.ArgumentParser(description='Eleccoin-core msbuild configuration initialiser.')
@@ -79,6 +114,7 @@ def main():
             with open(vcxproj_filename, 'w', encoding='utf-8') as vcxproj_file:
                 vcxproj_file.write(vcxproj_in_file.read().replace(
                     '@SOURCE_FILES@\n', content))
+    parse_config_into_ecc_config()
     copyfile(os.path.join(SOURCE_DIR,'../build_msvc/eleccoin_config.h'), os.path.join(SOURCE_DIR, 'config/eleccoin-config.h'))
     copyfile(os.path.join(SOURCE_DIR,'../build_msvc/libsecp256k1_config.h'), os.path.join(SOURCE_DIR, 'secp256k1/src/libsecp256k1-config.h'))
 
