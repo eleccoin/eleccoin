@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 The Eleccoin Core developers
+# Copyright (c) 2020-2022 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -19,7 +19,7 @@ libtest_fuzz_a_SOURCES = \
   test/fuzz/util.cpp \
   $(TEST_FUZZ_H)
 
-LIBTEST_FUZZ += $(LIBELECCOIN_SERVER)
+LIBTEST_FUZZ += $(LIBELECCOIN_NODE)
 LIBTEST_FUZZ += $(LIBELECCOIN_COMMON)
 LIBTEST_FUZZ += $(LIBELECCOIN_UTIL)
 LIBTEST_FUZZ += $(LIBELECCOIN_CRYPTO_BASE)
