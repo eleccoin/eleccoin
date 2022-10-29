@@ -26,6 +26,9 @@ SHA256_SUMS = {
     #
     "06336b331c132f5c4851f3ee11f2d917c0f9708add31f64f052e8d16abc41e99":  "eleccoin-1.3.0-win64.zip",
     "bf75cd250568957ad62a2eefbf526fc8eed9a4625763edeb10f45a70120e3864":  "eleccoin-1.3.0-x86_64-linux-gnu.tar.gz",
+    #
+    "b522beebd024797cbb5ca680bb5f9ed39c4b05a84bfb734fdb2a8e910e37b11b":  "eleccoin-4.0-win64.zip",
+    "c36d4a723d7ceda1c0124dd38b2366512a1a91cef54e9297dcfc1ec457ca24c7":  "eleccoin-4.0-x86_64-linux-gnu.tar.gz",
 }
 
 @contextlib.contextmanager

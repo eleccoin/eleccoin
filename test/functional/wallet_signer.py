@@ -75,7 +75,7 @@ class WalletSignerTest(EleccoinTestFramework):
         assert_equal(hww.getwalletinfo()["keypoolsize"], 30)
 
         address1 = hww.getnewaddress(address_type="bech32")
-        assert_equal(address1, "bcrt1qm90ugl4d48jv8n6e5t9ln6t9zlpm5th68x4f8g")
+        assert_equal(address1, "ecrt1qm90ugl4d48jv8n6e5t9ln6t9zlpm5th68x4f8g")
         address_info = hww.getaddressinfo(address1)
         assert_equal(address_info['solvable'], True)
         assert_equal(address_info['ismine'], True)
