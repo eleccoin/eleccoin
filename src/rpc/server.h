@@ -5,7 +5,6 @@
 #ifndef ELECCOIN_RPC_SERVER_H
 #define ELECCOIN_RPC_SERVER_H
 
-#include <consensus/amount.h>
 #include <rpc/request.h>
 #include <rpc/util.h>
 
