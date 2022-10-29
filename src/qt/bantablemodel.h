@@ -1,10 +1,11 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ELECCOIN_QT_BANTABLEMODEL_H
 #define ELECCOIN_QT_BANTABLEMODEL_H
 
+#include <addrdb.h>
 #include <net.h>
 
 #include <memory>

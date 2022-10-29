@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -97,7 +97,9 @@ void SendCoinsEntry::clear()
     ui->payTo->clear();
     ui->addAsLabel->clear();
     ui->payAmount->clear();
-    ui->checkboxSubtractFeeFromAmount->setCheckState(Qt::Unchecked);
+    if (model && model->getOptionsModel()) {
+        ui->checkboxSubtractFeeFromAmount->setChecked(model->getOptionsModel()->getSubFeeFromAmount());
+    }
     ui->messageTextLabel->clear();
     ui->messageTextLabel->hide();
     ui->messageLabel->hide();
