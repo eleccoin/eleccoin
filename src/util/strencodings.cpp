@@ -211,17 +211,6 @@ std::string EncodeBase32(Span<const unsigned char> input, bool pad)
     return str;
 }
 
-std::string EncodeBase32(const unsigned char* pch, size_t len)
-{
-    static const char *pbase32 = "abcdefghijklmnopqrstuvwxyz234567";
-
-    std::string str;
-    str.reserve(((len + 4) / 5) * 8);
-    ConvertBits<8, 5, true>([&](int v) { str += pbase32[v]; }, pch, pch + len);
-    while (str.size() % 8) str += '=';
-    return str;
-}
-
 std::string EncodeBase32(const std::string& str, bool pad)
 {
     return EncodeBase32(MakeUCharSpan(str), pad);
@@ -283,17 +272,6 @@ std::string DecodeBase32(const std::string& str, bool* pf_invalid)
     }
     std::vector<unsigned char> vchRet = DecodeBase32(str.c_str(), pf_invalid);
     return std::string((const char*)vchRet.data(), vchRet.size());
-}
-
-[[nodiscard]] static bool ParsePrechecks(const std::string& str)
-{
-    if (str.empty()) // No empty string allowed
-        return false;
-    if (str.size() >= 1 && (IsSpace(str[0]) || IsSpace(str[str.size()-1]))) // No padding allowed
-        return false;
-    if (!ValidAsCString(str)) // No embedded NUL characters allowed
-        return false;
-    return true;
 }
 
 namespace {

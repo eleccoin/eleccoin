@@ -1,12 +1,15 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #include <util/moneystr.h>
 
+#include <consensus/amount.h>
 #include <tinyformat.h>
 #include <util/strencodings.h>
 #include <util/string.h>
+
+#include <optional>
 
 std::string FormatMoney(const CAmount n)
 {
@@ -34,14 +37,14 @@ std::string FormatMoney(const CAmount n)
 }
 
 
-bool ParseMoney(const std::string& money_string, CAmount& nRet)
+std::optional<CAmount> ParseMoney(const std::string& money_string)
 {
     if (!ValidAsCString(money_string)) {
-        return false;
+        return std::nullopt;
     }
     const std::string str = TrimString(money_string);
     if (str.empty()) {
-        return false;
+        return std::nullopt;
     }
 
     std::string strWhole;
@@ -61,21 +64,24 @@ bool ParseMoney(const std::string& money_string, CAmount& nRet)
             break;
         }
         if (IsSpace(*p))
-            return false;
+            return std::nullopt;
         if (!IsDigit(*p))
-            return false;
+            return std::nullopt;
         strWhole.insert(strWhole.end(), *p);
     }
     if (*p) {
-        return false;
+        return std::nullopt;
     }
     if (strWhole.size() > 10) // guard against 63 bit overflow
-        return false;
+        return std::nullopt;
     if (nUnits < 0 || nUnits > COIN)
-        return false;
-    int64_t nWhole = atoi64(strWhole);
-    CAmount nValue = nWhole*COIN + nUnits;
+        return std::nullopt;
+    int64_t nWhole = LocaleIndependentAtoi<int64_t>(strWhole);
+    CAmount value = nWhole * COIN + nUnits;
 
-    nRet = nValue;
-    return true;
+    if (!MoneyRange(value)) {
+        return std::nullopt;
+    }
+
+    return value;
 }
