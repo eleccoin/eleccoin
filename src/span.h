@@ -232,14 +232,6 @@ template <typename T> Span(T&&) -> Span<std::enable_if_t<!std::is_lvalue_referen
 // For (lvalue) references, supporting mutable output.
 template <typename T> Span(T&) -> Span<std::remove_pointer_t<decltype(std::declval<T&>().data())>>;
 
-// MakeSpan helps constructing a Span of the right type automatically.
-/** MakeSpan for arrays: */
-template <typename A, int N> Span<A> constexpr MakeSpan(A (&a)[N]) { return Span<A>(a, N); }
-/** MakeSpan for temporaries / rvalue references, only supporting const output. */
-template <typename V> constexpr auto MakeSpan(V&& v SPAN_ATTR_LIFETIMEBOUND) -> typename std::enable_if<!std::is_lvalue_reference<V>::value, Span<const typename std::remove_pointer<decltype(v.data())>::type>>::type { return std::forward<V>(v); }
-/** MakeSpan for (lvalue) references, supporting mutable output. */
-template <typename V> constexpr auto MakeSpan(V& v SPAN_ATTR_LIFETIMEBOUND) -> Span<typename std::remove_pointer<decltype(v.data())>::type> { return v; }
-
 /** Pop the last element off a span, and return a reference to that element. */
 template <typename T>
 T& SpanPopBack(Span<T>& span)

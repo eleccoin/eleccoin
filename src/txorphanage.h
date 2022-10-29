@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -46,6 +46,13 @@ public:
     /** Add any orphans that list a particular tx as a parent into a peer's work set
      * (ie orphans that may have found their final missing parent, and so should be reconsidered for the mempool) */
     void AddChildrenToWorkSet(const CTransaction& tx, std::set<uint256>& orphan_work_set) const EXCLUSIVE_LOCKS_REQUIRED(g_cs_orphans);
+
+    /** Return how many entries exist in the orphange */
+    size_t Size() LOCKS_EXCLUDED(::g_cs_orphans)
+    {
+        LOCK(::g_cs_orphans);
+        return m_orphans.size();
+    }
 
 protected:
     struct OrphanTx {

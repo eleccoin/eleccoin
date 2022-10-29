@@ -1,4 +1,4 @@
-// Copyright (c) 2014-2018 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -74,5 +74,10 @@ public:
 int64_t GetTimeOffset();
 int64_t GetAdjustedTime();
 void AddTimeData(const CNetAddr& ip, int64_t nTime);
+
+/**
+ * Reset the internal state of GetTimeOffset(), GetAdjustedTime() and AddTimeData().
+ */
+void TestOnlyResetTimeData();
 
 #endif // ELECCOIN_TIMEDATA_H
