@@ -28,7 +28,7 @@ enum class FeeEstimateMode {
 class CFeeRate
 {
 private:
-    /** Fee rate in sat/kvB (electrons per 1000 virtualbytes) */
+    /** Fee rate in ele/kvB (electrons per 1000 virtualbytes) */
     CAmount nElectronsPerK;
 
 public:
@@ -51,7 +51,7 @@ public:
     /**
      * Return the fee in electrons for the given vsize in vbytes.
      * If the calculated fee would have fractional electrons, then the
-     * returned fee will always be rounded up to the nearest satoshi.
+     * returned fee will always be rounded up to the nearest electron.
      */
     CAmount GetFee(uint32_t num_bytes) const;
 

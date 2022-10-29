@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -30,6 +30,7 @@
 
 struct bilingual_str;
 
+namespace wallet {
 static const unsigned int DEFAULT_WALLET_DBLOGSIZE = 100;
 static const bool DEFAULT_WALLET_PRIVDB = true;
 
@@ -62,7 +63,7 @@ public:
 
     bool IsMock() const { return fMockDb; }
     bool IsInitialized() const { return fDbEnvInit; }
-    fs::path Directory() const { return strPath; }
+    fs::path Directory() const { return fs::PathFromString(strPath); }
 
     bool Open(bilingual_str& error);
     void Close();
@@ -112,7 +113,7 @@ public:
      */
     bool Rewrite(const char* pszSkip=nullptr) override;
 
-    /** Indicate the a new database user has began using the database. */
+    /** Indicate that a new database user has begun using the database. */
     void AddRef() override;
     /** Indicate that database user has stopped using the database and that it could be flushed or closed. */
     void RemoveRef() override;
@@ -140,7 +141,7 @@ public:
     bool Verify(bilingual_str& error);
 
     /** Return path to main database filename */
-    std::string Filename() override { return (env->Directory() / strFile).string(); }
+    std::string Filename() override { return fs::PathToString(env->Directory() / strFile); }
 
     std::string Format() override { return "bdb"; }
     /**
@@ -228,5 +229,6 @@ bool BerkeleyDatabaseSanityCheck();
 
 //! Return object giving access to Berkeley database at specified path.
 std::unique_ptr<BerkeleyDatabase> MakeBerkeleyDatabase(const fs::path& path, const DatabaseOptions& options, DatabaseStatus& status, bilingual_str& error);
+} // namespace wallet
 
 #endif // ELECCOIN_WALLET_BDB_H

@@ -474,7 +474,7 @@ class RawTransactionsTest(EleccoinTestFramework):
 
         self.sync_all()
         inputs = [{ "txid" : txId, "vout" : vout['n'] }]
-        # Fee 10,000 electrons, (1 - (10000 sat * 0.00000001 ECC/sat)) = 0.9999
+        # Fee 10,000 electrons, (1 - (10000 ele * 0.00000001 ECC/sat)) = 0.9999
         outputs = { self.nodes[0].getnewaddress() : Decimal("0.99990000") }
         rawTx = self.nodes[2].createrawtransaction(inputs, outputs)
         rawTxSigned = self.nodes[2].signrawtransactionwithwallet(rawTx)
@@ -498,7 +498,7 @@ class RawTransactionsTest(EleccoinTestFramework):
 
         self.sync_all()
         inputs = [{ "txid" : txId, "vout" : vout['n'] }]
-        # Fee 2,000,000 electrons, (1 - (2000000 sat * 0.00000001 ECC/sat)) = 0.98
+        # Fee 2,000,000 electrons, (1 - (2000000 ele * 0.00000001 ECC/sat)) = 0.98
         outputs = { self.nodes[0].getnewaddress() : Decimal("0.98000000") }
         rawTx = self.nodes[2].createrawtransaction(inputs, outputs)
         rawTxSigned = self.nodes[2].signrawtransactionwithwallet(rawTx)

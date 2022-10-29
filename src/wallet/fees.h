@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -7,10 +7,12 @@
 
 #include <consensus/amount.h>
 
-class CCoinControl;
 class CFeeRate;
-class CWallet;
 struct FeeCalculation;
+
+namespace wallet {
+class CCoinControl;
+class CWallet;
 
 /**
  * Return the minimum required absolute fee for this size
@@ -40,5 +42,6 @@ CFeeRate GetMinimumFeeRate(const CWallet& wallet, const CCoinControl& coin_contr
  * Return the maximum feerate for discarding change.
  */
 CFeeRate GetDiscardRate(const CWallet& wallet);
+} // namespace wallet
 
 #endif // ELECCOIN_WALLET_FEES_H

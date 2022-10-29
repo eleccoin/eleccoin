@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,6 +10,8 @@
 #include <sqlite3.h>
 
 struct bilingual_str;
+
+namespace wallet {
 class SQLiteDatabase;
 
 /** RAII class that provides access to a WalletDatabase */
@@ -116,5 +118,6 @@ public:
 std::unique_ptr<SQLiteDatabase> MakeSQLiteDatabase(const fs::path& path, const DatabaseOptions& options, DatabaseStatus& status, bilingual_str& error);
 
 std::string SQLiteDatabaseVersion();
+} // namespace wallet
 
 #endif // ELECCOIN_WALLET_SQLITE_H

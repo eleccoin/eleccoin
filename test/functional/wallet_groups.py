@@ -135,7 +135,7 @@ class WalletGroupTest(EleccoinTestFramework):
         assert_equal(2, len(tx5["vout"]))
 
         # Test wallet option maxapsfee with node 4, which sets maxapsfee
-        # 1 sat higher, crossing the threshold from non-grouped to grouped.
+        # 1 ele higher, crossing the threshold from non-grouped to grouped.
         self.log.info("Test wallet option maxapsfee threshold from non-grouped to grouped")
         addr_aps3 = self.nodes[4].getnewaddress()
         [self.nodes[0].sendtoaddress(addr_aps3, 1.0) for _ in range(5)]

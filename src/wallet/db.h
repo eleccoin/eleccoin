@@ -1,4 +1,4 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -17,6 +17,7 @@
 
 struct bilingual_str;
 
+namespace wallet {
 void SplitWalletPath(const fs::path& wallet_path, fs::path& env_directory, std::string& database_filename);
 
 /** RAII class that provides access to a WalletDatabase */
@@ -219,6 +220,7 @@ enum class DatabaseStatus {
     FAILED_LOAD,
     FAILED_VERIFY,
     FAILED_ENCRYPT,
+    FAILED_INVALID_BACKUP_FILE,
 };
 
 /** Recursively list database paths in directory. */
@@ -230,5 +232,6 @@ fs::path BDBDataFile(const fs::path& path);
 fs::path SQLiteDataFile(const fs::path& path);
 bool IsBDBFile(const fs::path& path);
 bool IsSQLiteFile(const fs::path& path);
+} // namespace wallet
 
 #endif // ELECCOIN_WALLET_DB_H

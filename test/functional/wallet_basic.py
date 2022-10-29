@@ -235,12 +235,12 @@ class WalletTest(EleccoinTestFramework):
         node_0_bal = self.check_fee_amount(self.nodes[0].getbalance(), node_0_bal + Decimal('10'), fee_per_byte, self.get_vsize(self.nodes[2].gettransaction(txid)['hex']))
 
         self.log.info("Test sendmany with fee_rate param (explicit fee rate in ele/vB)")
-        fee_rate_sat_vb = 2
-        fee_rate_ecc_kvb = fee_rate_sat_vb * 1e3 / 1e8
+        fee_rate_ele_vb = 2
+        fee_rate_ecc_kvb = fee_rate_ele_vb * 1e3 / 1e8
         explicit_fee_rate_ecc_kvb = Decimal(fee_rate_ecc_kvb) / 1000
 
         # Test passing fee_rate as a string
-        txid = self.nodes[2].sendmany(amounts={address: 10}, fee_rate=str(fee_rate_sat_vb))
+        txid = self.nodes[2].sendmany(amounts={address: 10}, fee_rate=str(fee_rate_ele_vb))
         self.nodes[2].generate(1)
         self.sync_all(self.nodes[0:3])
         balance = self.nodes[2].getbalance()
@@ -251,7 +251,7 @@ class WalletTest(EleccoinTestFramework):
 
         # Test passing fee_rate as an integer
         amount = Decimal("0.0001")
-        txid = self.nodes[2].sendmany(amounts={address: amount}, fee_rate=fee_rate_sat_vb)
+        txid = self.nodes[2].sendmany(amounts={address: amount}, fee_rate=fee_rate_ele_vb)
         self.nodes[2].generate(1)
         self.sync_all(self.nodes[0:3])
         balance = self.nodes[2].getbalance()
@@ -435,10 +435,10 @@ class WalletTest(EleccoinTestFramework):
             assert prebalance > 2
             address = self.nodes[1].getnewaddress()
             amount = 3
-            fee_rate_sat_vb = 2
-            fee_rate_ecc_kvb = fee_rate_sat_vb * 1e3 / 1e8
+            fee_rate_ele_vb = 2
+            fee_rate_ecc_kvb = fee_rate_ele_vb * 1e3 / 1e8
             # Test passing fee_rate as an integer
-            txid = self.nodes[2].sendtoaddress(address=address, amount=amount, fee_rate=fee_rate_sat_vb)
+            txid = self.nodes[2].sendtoaddress(address=address, amount=amount, fee_rate=fee_rate_ele_vb)
             tx_size = self.get_vsize(self.nodes[2].gettransaction(txid)['hex'])
             self.nodes[0].generate(1)
             self.sync_all(self.nodes[0:3])
@@ -448,10 +448,10 @@ class WalletTest(EleccoinTestFramework):
 
             prebalance = self.nodes[2].getbalance()
             amount = Decimal("0.001")
-            fee_rate_sat_vb = 1.23
-            fee_rate_ecc_kvb = fee_rate_sat_vb * 1e3 / 1e8
+            fee_rate_ele_vb = 1.23
+            fee_rate_ecc_kvb = fee_rate_ele_vb * 1e3 / 1e8
             # Test passing fee_rate as a string
-            txid = self.nodes[2].sendtoaddress(address=address, amount=amount, fee_rate=str(fee_rate_sat_vb))
+            txid = self.nodes[2].sendtoaddress(address=address, amount=amount, fee_rate=str(fee_rate_ele_vb))
             tx_size = self.get_vsize(self.nodes[2].gettransaction(txid)['hex'])
             self.nodes[0].generate(1)
             self.sync_all(self.nodes[0:3])

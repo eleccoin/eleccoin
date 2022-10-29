@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -10,6 +10,7 @@
 #include <wallet/wallet.h>
 #include <wallet/walletdb.h>
 
+namespace wallet {
 /* End of headers, beginning of key/value data */
 static const char *HEADER_END = "HEADER=END";
 /* End of key/value data */
@@ -44,7 +45,7 @@ bool RecoverDatabaseFile(const fs::path& file_path, bilingual_str& error, std::v
     // Call Salvage with fAggressive=true to
     // get as much data as possible.
     // Rewrite salvaged data to fresh wallet file
-    // Set -rescan so any missing transactions will be
+    // Rescan so any missing transactions will be
     // found.
     int64_t now = GetTime();
     std::string newFilename = strprintf("%s.%d.bak", filename, now);
@@ -132,7 +133,7 @@ bool RecoverDatabaseFile(const fs::path& file_path, bilingual_str& error, std::v
     }
 
     DbTxn* ptxn = env->TxnBegin();
-    CWallet dummyWallet(nullptr, "", CreateDummyWalletDatabase());
+    CWallet dummyWallet(nullptr, "", gArgs, CreateDummyWalletDatabase());
     for (KeyValPair& row : salvagedData)
     {
         /* Filter for only private key type KV pairs to be added to the salvaged wallet */
@@ -164,3 +165,4 @@ bool RecoverDatabaseFile(const fs::path& file_path, bilingual_str& error, std::v
 
     return fSuccess;
 }
+} // namespace wallet
