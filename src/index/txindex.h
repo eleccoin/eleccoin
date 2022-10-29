@@ -1,13 +1,11 @@
-// Copyright (c) 2020-2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #ifndef ELECCOIN_INDEX_TXINDEX_H
 #define ELECCOIN_INDEX_TXINDEX_H
 
-#include <chain.h>
 #include <index/base.h>
-#include <txdb.h>
 
 /**
  * TxIndex is used to look up transactions included in the blockchain by hash.
@@ -23,9 +21,6 @@ private:
     const std::unique_ptr<DB> m_db;
 
 protected:
-    /// Override base class init to migrate from old database.
-    bool Init() override;
-
     bool WriteBlock(const CBlock& block, const CBlockIndex* pindex) override;
 
     BaseIndex::DB& GetDB() const override;
