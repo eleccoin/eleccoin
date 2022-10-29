@@ -6,29 +6,18 @@
 print-%: FORCE
 	@echo '$*'='$($*)'
 
-DIST_SUBDIRS = secp256k1 univalue
+DIST_SUBDIRS = secp256k1
 
-AM_LDFLAGS = $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS) $(GPROF_LDFLAGS) $(SANITIZER_LDFLAGS)
-AM_CXXFLAGS = $(DEBUG_CXXFLAGS) $(HARDENED_CXXFLAGS) $(WARN_CXXFLAGS) $(NOWARN_CXXFLAGS) $(ERROR_CXXFLAGS) $(GPROF_CXXFLAGS) $(SANITIZER_CXXFLAGS)
+AM_LDFLAGS = $(LIBTOOL_LDFLAGS) $(HARDENED_LDFLAGS) $(GPROF_LDFLAGS) $(SANITIZER_LDFLAGS) $(LTO_LDFLAGS)
+AM_CXXFLAGS = $(DEBUG_CXXFLAGS) $(HARDENED_CXXFLAGS) $(WARN_CXXFLAGS) $(NOWARN_CXXFLAGS) $(ERROR_CXXFLAGS) $(GPROF_CXXFLAGS) $(SANITIZER_CXXFLAGS) $(LTO_CXXFLAGS)
 AM_CPPFLAGS = $(DEBUG_CPPFLAGS) $(HARDENED_CPPFLAGS)
 AM_LIBTOOLFLAGS = --preserve-dup-deps
 PTHREAD_FLAGS = $(PTHREAD_CFLAGS) $(PTHREAD_LIBS)
 EXTRA_LIBRARIES =
 
-if EMBEDDED_UNIVALUE
-LIBUNIVALUE = univalue/libunivalue.la
+ELECCOIN_INCLUDES=-I$(builddir) -I$(srcdir)/$(MINISKETCH_INCLUDE_DIR_INT) -I$(srcdir)/secp256k1/include -I$(srcdir)/$(UNIVALUE_INCLUDE_DIR_INT) $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS)
 
-$(LIBUNIVALUE): $(wildcard univalue/lib/*) $(wildcard univalue/include/*)
-	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C $(@D) $(@F)
-else
-LIBUNIVALUE = $(UNIVALUE_LIBS)
-endif
-
-ELECCOIN_INCLUDES=-I$(builddir) -I$(srcdir)/secp256k1/include $(BDB_CPPFLAGS) $(BOOST_CPPFLAGS) $(LEVELDB_CPPFLAGS)
-
-ELECCOIN_INCLUDES += $(UNIVALUE_CFLAGS)
-
-LIBELECCOIN_SERVER=libeleccoin_server.a
+LIBELECCOIN_NODE=libeleccoin_node.a
 LIBELECCOIN_COMMON=libeleccoin_common.a
 LIBELECCOIN_CONSENSUS=libeleccoin_consensus.a
 LIBELECCOIN_CLI=libeleccoin_cli.a
@@ -57,9 +46,13 @@ if ENABLE_AVX2
 LIBELECCOIN_CRYPTO_AVX2 = crypto/libeleccoin_crypto_avx2.a
 LIBELECCOIN_CRYPTO += $(LIBELECCOIN_CRYPTO_AVX2)
 endif
-if ENABLE_SHANI
-LIBELECCOIN_CRYPTO_SHANI = crypto/libeleccoin_crypto_shani.a
-LIBELECCOIN_CRYPTO += $(LIBELECCOIN_CRYPTO_SHANI)
+if ENABLE_X86_SHANI
+LIBELECCOIN_CRYPTO_X86_SHANI = crypto/libeleccoin_crypto_x86_shani.a
+LIBELECCOIN_CRYPTO += $(LIBELECCOIN_CRYPTO_X86_SHANI)
+endif
+if ENABLE_ARM_SHANI
+LIBELECCOIN_CRYPTO_ARM_SHANI = crypto/libeleccoin_crypto_arm_shani.a
+LIBELECCOIN_CRYPTO += $(LIBELECCOIN_CRYPTO_ARM_SHANI)
 endif
 
 $(LIBSECP256K1): $(wildcard secp256k1/src/*.h) $(wildcard secp256k1/src/*.c) $(wildcard secp256k1/include/*)
@@ -72,7 +65,7 @@ EXTRA_LIBRARIES += \
   $(LIBELECCOIN_UTIL) \
   $(LIBELECCOIN_COMMON) \
   $(LIBELECCOIN_CONSENSUS) \
-  $(LIBELECCOIN_SERVER) \
+  $(LIBELECCOIN_NODE) \
   $(LIBELECCOIN_CLI) \
   $(LIBELECCOIN_IPC) \
   $(LIBELECCOIN_WALLET) \
@@ -80,6 +73,7 @@ EXTRA_LIBRARIES += \
   $(LIBELECCOIN_ZMQ)
 
 lib_LTLIBRARIES = $(LIBELECCOINCONSENSUS)
+noinst_LTLIBRARIES =
 
 bin_PROGRAMS =
 noinst_PROGRAMS =
@@ -354,9 +348,9 @@ ipc/capnp/libeleccoin_ipc_a-ipc.$(OBJEXT): $(libeleccoin_ipc_mpgen_input:=.h)
 # Contains code accessing mempool and chain state that is meant to be separated
 # from wallet and gui code (see node/README.md). Shared code should go in
 # libeleccoin_common or libeleccoin_util libraries, instead.
-libeleccoin_server_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(NATPMP_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
-libeleccoin_server_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-libeleccoin_server_a_SOURCES = \
+libeleccoin_node_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(NATPMP_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
+libeleccoin_node_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+libeleccoin_node_a_SOURCES = \
   addrdb.cpp \
   addrman.cpp \
   banman.cpp \
@@ -419,10 +413,10 @@ libeleccoin_server_a_SOURCES = \
   $(ELECCOIN_CORE_H)
 
 if ENABLE_WALLET
-libeleccoin_server_a_SOURCES += wallet/init.cpp
+libeleccoin_node_a_SOURCES += wallet/init.cpp
 endif
 if !ENABLE_WALLET
-libeleccoin_server_a_SOURCES += dummywallet.cpp
+libeleccoin_node_a_SOURCES += dummywallet.cpp
 endif
 
 if ENABLE_ZMQ
@@ -560,11 +554,17 @@ crypto_libeleccoin_crypto_avx2_a_CXXFLAGS += $(AVX2_CXXFLAGS)
 crypto_libeleccoin_crypto_avx2_a_CPPFLAGS += -DENABLE_AVX2
 crypto_libeleccoin_crypto_avx2_a_SOURCES = crypto/sha256_avx2.cpp
 
-crypto_libeleccoin_crypto_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-crypto_libeleccoin_crypto_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
-crypto_libeleccoin_crypto_shani_a_CXXFLAGS += $(SHANI_CXXFLAGS)
-crypto_libeleccoin_crypto_shani_a_CPPFLAGS += -DENABLE_SHANI
-crypto_libeleccoin_crypto_shani_a_SOURCES = crypto/sha256_shani.cpp
+crypto_libeleccoin_crypto_x86_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libeleccoin_crypto_x86_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libeleccoin_crypto_x86_shani_a_CXXFLAGS += $(X86_SHANI_CXXFLAGS)
+crypto_libeleccoin_crypto_x86_shani_a_CPPFLAGS += -DENABLE_X86_SHANI
+crypto_libeleccoin_crypto_x86_shani_a_SOURCES = crypto/sha256_x86_shani.cpp
+
+crypto_libeleccoin_crypto_arm_shani_a_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+crypto_libeleccoin_crypto_arm_shani_a_CPPFLAGS = $(AM_CPPFLAGS)
+crypto_libeleccoin_crypto_arm_shani_a_CXXFLAGS += $(ARM_SHANI_CXXFLAGS)
+crypto_libeleccoin_crypto_arm_shani_a_CPPFLAGS += -DENABLE_ARM_SHANI
+crypto_libeleccoin_crypto_arm_shani_a_SOURCES = crypto/sha256_arm_shani.cpp
 
 # consensus: shared between all executables that validate any consensus rules.
 libeleccoin_consensus_a_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
@@ -727,19 +727,19 @@ eleccoin_bin_ldadd = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-eleccoin_bin_ldadd += $(BOOST_LIBS) $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(SQLITE_LIBS)
+eleccoin_bin_ldadd += $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS) $(SQLITE_LIBS)
 
 eleccoind_SOURCES = $(eleccoin_daemon_sources) init/eleccoind.cpp
 eleccoind_CPPFLAGS = $(eleccoin_bin_cppflags)
 eleccoind_CXXFLAGS = $(eleccoin_bin_cxxflags)
 eleccoind_LDFLAGS = $(eleccoin_bin_ldflags)
-eleccoind_LDADD = $(LIBELECCOIN_SERVER) $(eleccoin_bin_ldadd)
+eleccoind_LDADD = $(LIBELECCOIN_NODE) $(eleccoin_bin_ldadd)
 
 eleccoin_node_SOURCES = $(eleccoin_daemon_sources) init/eleccoin-node.cpp
 eleccoin_node_CPPFLAGS = $(eleccoin_bin_cppflags)
 eleccoin_node_CXXFLAGS = $(eleccoin_bin_cxxflags)
 eleccoin_node_LDFLAGS = $(eleccoin_bin_ldflags)
-eleccoin_node_LDADD = $(LIBELECCOIN_SERVER) $(eleccoin_bin_ldadd) $(LIBELECCOIN_IPC) $(LIBMULTIPROCESS_LIBS)
+eleccoin_node_LDADD = $(LIBELECCOIN_NODE) $(eleccoin_bin_ldadd) $(LIBELECCOIN_IPC) $(LIBMULTIPROCESS_LIBS)
 
 # eleccoin-cli binary #
 eleccoin_cli_SOURCES = eleccoin-cli.cpp
@@ -757,7 +757,7 @@ eleccoin_cli_LDADD = \
   $(LIBELECCOIN_UTIL) \
   $(LIBELECCOIN_CRYPTO)
 
-eleccoin_cli_LDADD += $(BOOST_LIBS) $(EVENT_LIBS)
+eleccoin_cli_LDADD += $(EVENT_LIBS)
 #
 
 # eleccoin-tx binary #
@@ -777,16 +777,25 @@ eleccoin_tx_LDADD = \
   $(LIBELECCOIN_CONSENSUS) \
   $(LIBELECCOIN_CRYPTO) \
   $(LIBSECP256K1)
-
-eleccoin_tx_LDADD += $(BOOST_LIBS)
 #
 
 # eleccoin-wallet binary #
 eleccoin_wallet_SOURCES = eleccoin-wallet.cpp
+eleccoin_wallet_SOURCES += init/eleccoin-wallet.cpp
 eleccoin_wallet_CPPFLAGS = $(eleccoin_bin_cppflags)
 eleccoin_wallet_CXXFLAGS = $(eleccoin_bin_cxxflags)
 eleccoin_wallet_LDFLAGS = $(eleccoin_bin_ldflags)
-eleccoin_wallet_LDADD = $(LIBELECCOIN_WALLET_TOOL) $(eleccoin_bin_ldadd)
+eleccoin_wallet_LDADD = \
+  $(LIBELECCOIN_WALLET_TOOL) \
+  $(LIBELECCOIN_WALLET) \
+  $(LIBELECCOIN_COMMON) \
+  $(LIBELECCOIN_UTIL) \
+  $(LIBUNIVALUE) \
+  $(LIBELECCOIN_CONSENSUS) \
+  $(LIBELECCOIN_CRYPTO) \
+  $(LIBSECP256K1) \
+  $(BDB_LIBS) \
+  $(SQLITE_LIBS)
 
 if TARGET_WINDOWS
 eleccoin_wallet_SOURCES += eleccoin-wallet-res.rc
@@ -810,18 +819,12 @@ eleccoin_util_LDADD = \
   $(LIBELECCOIN_CONSENSUS) \
   $(LIBELECCOIN_CRYPTO) \
   $(LIBSECP256K1)
-
-eleccoin_util_LDADD += $(BOOST_LIBS)
 #
 
 # eleccoinconsensus library #
 if BUILD_ELECCOIN_LIBS
 include_HEADERS = script/eleccoinconsensus.h
 libeleccoinconsensus_la_SOURCES = support/cleanse.cpp $(crypto_libeleccoin_crypto_base_a_SOURCES) $(libeleccoin_consensus_a_SOURCES)
-
-if GLIBC_BACK_COMPAT
-  libeleccoinconsensus_la_SOURCES += compat/glibc_compat.cpp
-endif
 
 libeleccoinconsensus_la_LDFLAGS = $(AM_LDFLAGS) -no-undefined $(RELDFLAGS)
 libeleccoinconsensus_la_LIBADD = $(LIBSECP256K1)
@@ -871,7 +874,6 @@ $(top_srcdir)/$(subdir)/config/eleccoin-config.h.in:  $(am__configure_deps)
 
 clean-local:
 	-$(MAKE) -C secp256k1 clean
-	-$(MAKE) -C univalue clean
 	-rm -f leveldb/*/*.gcda leveldb/*/*.gcno leveldb/helpers/memenv/*.gcda leveldb/helpers/memenv/*.gcno
 	-rm -f config.h
 	-rm -rf test/__pycache__
@@ -882,20 +884,8 @@ clean-local:
 	$(AM_V_GEN) $(WINDRES) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(CPPFLAGS) -DWINDRES_PREPROC -i $< -o $@
 
 check-symbols: $(bin_PROGRAMS)
-if TARGET_DARWIN
-	@echo "Checking macOS dynamic libraries..."
+	@echo "Running symbol and dynamic library checks..."
 	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py $(bin_PROGRAMS)
-endif
-
-if TARGET_WINDOWS
-	@echo "Checking Windows dynamic libraries..."
-	$(AM_V_at) $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py $(bin_PROGRAMS)
-endif
-
-if TARGET_LINUX
-	@echo "Checking glibc back compat..."
-	$(AM_V_at) CPPFILT='$(CPPFILT)' $(PYTHON) $(top_srcdir)/contrib/devtools/symbol-check.py $(bin_PROGRAMS)
-endif
 
 check-security: $(bin_PROGRAMS)
 if HARDEN
@@ -938,10 +928,10 @@ nodist_libeleccoin_ipc_a_SOURCES = $(libeleccoin_ipc_mpgen_output)
 CLEANFILES += $(libeleccoin_ipc_mpgen_output)
 endif
 
-if EMBEDDED_LEVELDB
+include Makefile.minisketch.include
+
 include Makefile.crc32c.include
 include Makefile.leveldb.include
-endif
 
 include Makefile.test_util.include
 include Makefile.test_fuzz.include
@@ -961,3 +951,5 @@ endif
 if ENABLE_QT_TESTS
 include Makefile.qttest.include
 endif
+
+include Makefile.univalue.include

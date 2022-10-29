@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 The Eleccoin Core developers
+# Copyright (c) 2020-2022 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -8,9 +8,10 @@ LIBMEMENV_INT  = leveldb/libmemenv.a
 EXTRA_LIBRARIES += $(LIBLEVELDB_INT)
 EXTRA_LIBRARIES += $(LIBMEMENV_INT)
 
-LIBLEVELDB += $(LIBLEVELDB_INT) $(LIBCRC32C)
-LIBMEMENV += $(LIBMEMENV_INT)
+LIBLEVELDB = $(LIBLEVELDB_INT) $(LIBCRC32C)
+LIBMEMENV = $(LIBMEMENV_INT)
 
+LEVELDB_CPPFLAGS =
 LEVELDB_CPPFLAGS += -I$(srcdir)/leveldb/include
 LEVELDB_CPPFLAGS += -I$(srcdir)/leveldb/helpers/memenv
 
