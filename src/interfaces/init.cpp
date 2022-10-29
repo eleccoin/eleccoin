@@ -1,4 +1,4 @@
-// Copyright (c) 2021 The Eleccoin Core developers
+// Copyright (c) 2020-2022 The Eleccoin Core developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -11,7 +11,7 @@
 namespace interfaces {
 std::unique_ptr<Node> Init::makeNode() { return {}; }
 std::unique_ptr<Chain> Init::makeChain() { return {}; }
-std::unique_ptr<WalletClient> Init::makeWalletClient(Chain& chain) { return {}; }
+std::unique_ptr<WalletLoader> Init::makeWalletLoader(Chain& chain) { return {}; }
 std::unique_ptr<Echo> Init::makeEcho() { return {}; }
 Ipc* Init::ipc() { return nullptr; }
 } // namespace interfaces
