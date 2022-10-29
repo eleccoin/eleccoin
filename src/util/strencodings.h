@@ -24,7 +24,6 @@
 #define END(a)              ((char*)&((&(a))[1]))
 #define UBEGIN(a)           ((unsigned char*)&(a))
 #define UEND(a)             ((unsigned char*)&((&(a))[1]))
-#define ARRAYLEN(array)     (sizeof(array)/sizeof((array)[0]))
 
 /** Used by SanitizeString() */
 enum SafeChars
@@ -133,8 +132,9 @@ T LocaleIndependentAtoi(const std::string& str)
     return result;
 }
 
-int64_t atoi64(const std::string& str);
-int atoi(const std::string& str);
+std::string i64tostr(int64_t n);
+std::string itostr(int n);
+int64_t atoi64(const char* psz);
 
 /**
  * Tests if the given character is a decimal digit.
@@ -223,12 +223,21 @@ std::optional<T> ToIntegral(const std::string& str)
  */
 [[nodiscard]] bool ParseUInt64(const std::string& str, uint64_t *out);
 
-/**
- * Convert string to double with strict parse error feedback.
- * @returns true if the entire string could be parsed as valid double,
- *   false if not the entire string could be parsed or when overflow or underflow occurred.
- */
-[[nodiscard]] bool ParseDouble(const std::string& str, double *out);
+template<typename T>
+std::string HexStr(const T itbegin, const T itend)
+{
+    std::string rv;
+    static const char hexmap[16] = { '0', '1', '2', '3', '4', '5', '6', '7',
+                                     '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    rv.reserve(std::distance(itbegin, itend) * 2);
+    for(T it = itbegin; it < itend; ++it)
+    {
+        unsigned char val = (unsigned char)(*it);
+        rv.push_back(hexmap[val>>4]);
+        rv.push_back(hexmap[val&15]);
+    }
+    return rv;
+}
 
 /**
  * Convert a span of bytes to a lower-case hexadecimal string.

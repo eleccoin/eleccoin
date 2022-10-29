@@ -138,6 +138,17 @@ std::string EncodeBase64(Span<const unsigned char> input)
     return str;
 }
 
+std::string EncodeBase64(const unsigned char* pch, size_t len)
+{
+    static const char *pbase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+
+    std::string str;
+    str.reserve(((len + 2) / 3) * 4);
+    ConvertBits<8, 6, true>([&](int v) { str += pbase64[v]; }, pch, pch + len);
+    while (str.size() % 4) str += '=';
+    return str;
+}
+
 std::vector<unsigned char> DecodeBase64(const char* p, bool* pf_invalid)
 {
     static const int8_t decode64_table[256]{
@@ -208,6 +219,17 @@ std::string EncodeBase32(Span<const unsigned char> input, bool pad)
             str += '=';
         }
     }
+    return str;
+}
+
+std::string EncodeBase32(const unsigned char* pch, size_t len)
+{
+    static const char *pbase32 = "abcdefghijklmnopqrstuvwxyz234567";
+
+    std::string str;
+    str.reserve(((len + 4) / 5) * 8);
+    ConvertBits<8, 5, true>([&](int v) { str += pbase32[v]; }, pch, pch + len);
+    while (str.size() % 8) str += '=';
     return str;
 }
 
@@ -325,21 +347,6 @@ bool ParseUInt64(const std::string& str, uint64_t* out)
     return ParseIntegral<uint64_t>(str, out);
 }
 
-
-bool ParseDouble(const std::string& str, double *out)
-{
-    if (!ParsePrechecks(str))
-        return false;
-    if (str.size() >= 2 && str[0] == '0' && str[1] == 'x') // No hexadecimal floats allowed
-        return false;
-    std::istringstream text(str);
-    text.imbue(std::locale::classic());
-    double result;
-    text >> result;
-    if(out) *out = result;
-    return text.eof() && !text.fail();
-}
-
 std::string FormatParagraph(const std::string& in, size_t width, size_t indent)
 {
     assert(width >= indent);
@@ -399,20 +406,6 @@ int64_t atoi64(const char* psz)
 #else
     return strtoll(psz, nullptr, 10);
 #endif
-}
-
-int64_t atoi64(const std::string& str)
-{
-#ifdef _MSC_VER
-    return _atoi64(str.c_str());
-#else
-    return strtoll(str.c_str(), nullptr, 10);
-#endif
-}
-
-int atoi(const std::string& str)
-{
-    return atoi(str.c_str());
 }
 
 /** Upper bound for mantissa.
