@@ -5,7 +5,6 @@
 #include <interfaces/chain.h>
 #include <interfaces/echo.h>
 #include <interfaces/init.h>
-#include <interfaces/ipc.h>
 #include <interfaces/node.h>
 #include <interfaces/wallet.h>
 #include <node/context.h>
@@ -15,14 +14,10 @@
 
 namespace init {
 namespace {
-const char* EXE_NAME = "eleccoin-node";
-
-class EleccoinNodeInit : public interfaces::Init
+class EleccoinQtInit : public interfaces::Init
 {
 public:
-    EleccoinNodeInit(node::NodeContext& node, const char* arg0)
-        : m_node(node),
-          m_ipc(interfaces::MakeIpc(EXE_NAME, arg0, *this))
+    EleccoinQtInit()
     {
         m_node.args = &gArgs;
         m_node.init = this;
@@ -34,23 +29,14 @@ public:
         return MakeWalletLoader(chain, *Assert(m_node.args));
     }
     std::unique_ptr<interfaces::Echo> makeEcho() override { return interfaces::MakeEcho(); }
-    interfaces::Ipc* ipc() override { return m_ipc.get(); }
-    node::NodeContext& m_node;
-    std::unique_ptr<interfaces::Ipc> m_ipc;
+    node::NodeContext m_node;
 };
 } // namespace
 } // namespace init
 
 namespace interfaces {
-std::unique_ptr<Init> MakeNodeInit(node::NodeContext& node, int argc, char* argv[], int& exit_status)
+std::unique_ptr<Init> MakeGuiInit(int argc, char* argv[])
 {
-    auto init = std::make_unique<init::EleccoinNodeInit>(node, argc > 0 ? argv[0] : "");
-    // Check if eleccoin-node is being invoked as an IPC server. If so, then
-    // bypass normal execution and just respond to requests over the IPC
-    // channel and return null.
-    if (init->m_ipc->startSpawnedProcess(argc, argv, exit_status)) {
-        return nullptr;
-    }
-    return init;
+    return std::make_unique<init::EleccoinQtInit>();
 }
 } // namespace interfaces
