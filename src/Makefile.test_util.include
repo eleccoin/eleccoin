@@ -1,4 +1,4 @@
-# Copyright (c) 2020-2021 The Eleccoin Core developers
+# Copyright (c) 2020-2022 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -9,6 +9,7 @@ EXTRA_LIBRARIES += \
 
 TEST_UTIL_H = \
     test/util/blockfilter.h \
+    test/util/chainstate.h \
     test/util/logging.h \
     test/util/mining.h \
     test/util/net.h \
@@ -34,7 +35,7 @@ libtest_util_a_SOURCES = \
   test/util/wallet.cpp \
   $(TEST_UTIL_H)
 
-LIBTEST_UTIL += $(LIBELECCOIN_SERVER)
+LIBTEST_UTIL += $(LIBELECCOIN_NODE)
 LIBTEST_UTIL += $(LIBELECCOIN_COMMON)
 LIBTEST_UTIL += $(LIBELECCOIN_UTIL)
 LIBTEST_UTIL += $(LIBELECCOIN_CRYPTO_BASE)
