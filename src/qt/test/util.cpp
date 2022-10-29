@@ -1,3 +1,9 @@
+// Copyright (c) 2020-2022 The Eleccoin Core developers
+// Distributed under the MIT software license, see the accompanying
+// file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+#include <chrono>
+
 #include <QApplication>
 #include <QMessageBox>
 #include <QPushButton>
@@ -5,7 +11,7 @@
 #include <QTimer>
 #include <QWidget>
 
-void ConfirmMessage(QString* text, int msec)
+void ConfirmMessage(QString* text, std::chrono::milliseconds msec)
 {
     QTimer::singleShot(msec, [text]() {
         for (QWidget* widget : QApplication::topLevelWidgets()) {
