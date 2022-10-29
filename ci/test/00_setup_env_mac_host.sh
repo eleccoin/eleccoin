@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 #
-# Copyright (c) 2020-2021 The Eleccoin Core developers
+# Copyright (c) 2020-2022 The Eleccoin Core developers
 # Distributed under the MIT software license, see the accompanying
 # file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 export LC_ALL=C.UTF-8
 
-export HOST=x86_64-apple-darwin18
+export HOST=x86_64-apple-darwin
 export PIP_PACKAGES="zmq lief"
 export GOAL="install"
 export ELECCOIN_CONFIG="--with-gui --enable-reduce-exports"
