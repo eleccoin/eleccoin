@@ -181,11 +181,13 @@ FUZZ_WALLET_SRC = \
 endif # USE_SQLITE
 
 ELECCOIN_TEST_SUITE += \
+  wallet/test/util.cpp \
+  wallet/test/util.h \
   wallet/test/wallet_test_fixture.cpp \
   wallet/test/wallet_test_fixture.h \
   wallet/test/init_test_fixture.cpp \
   wallet/test/init_test_fixture.h
-endif
+endif # ENABLE_WALLET
 
 test_test_eleccoin_SOURCES = $(ELECCOIN_TEST_SUITE) $(ELECCOIN_TESTS) $(JSON_TEST_FILES) $(RAW_TEST_FILES)
 test_test_eleccoin_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES) $(TESTDEFS) $(EVENT_CFLAGS)
@@ -194,8 +196,8 @@ if ENABLE_WALLET
 test_test_eleccoin_LDADD += $(LIBELECCOIN_WALLET)
 endif
 
-test_test_eleccoin_LDADD += $(LIBELECCOIN_SERVER) $(LIBELECCOIN_CLI) $(LIBELECCOIN_COMMON) $(LIBELECCOIN_UTIL) $(LIBELECCOIN_CONSENSUS) $(LIBELECCOIN_CRYPTO) $(LIBUNIVALUE) \
-  $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) $(BOOST_LIBS) $(BOOST_UNIT_TEST_FRAMEWORK_LIB) $(LIBSECP256K1) $(EVENT_LIBS) $(EVENT_PTHREADS_LIBS)
+test_test_eleccoin_LDADD += $(LIBELECCOIN_NODE) $(LIBELECCOIN_CLI) $(LIBELECCOIN_COMMON) $(LIBELECCOIN_UTIL) $(LIBELECCOIN_CONSENSUS) $(LIBELECCOIN_CRYPTO) $(LIBUNIVALUE) \
+  $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) $(LIBSECP256K1) $(EVENT_LIBS) $(EVENT_PTHREADS_LIBS) $(MINISKETCH_LIBS)
 test_test_eleccoin_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 
 test_test_eleccoin_LDADD += $(BDB_LIBS) $(MINIUPNPC_LIBS) $(NATPMP_LIBS) $(SQLITE_LIBS)
@@ -206,16 +208,14 @@ test_test_eleccoin_LDADD += $(LIBELECCOIN_ZMQ) $(ZMQ_LIBS)
 FUZZ_SUITE_LD_COMMON += $(LIBELECCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
-FUZZ_SUITE_LDFLAGS_COMMON = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS)
-
 if ENABLE_FUZZ_BINARY
 test_fuzz_fuzz_CPPFLAGS = $(AM_CPPFLAGS) $(ELECCOIN_INCLUDES)
 test_fuzz_fuzz_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
 test_fuzz_fuzz_LDADD = $(FUZZ_SUITE_LD_COMMON)
-test_fuzz_fuzz_LDFLAGS = $(FUZZ_SUITE_LDFLAGS_COMMON)
+test_fuzz_fuzz_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS) $(PTHREAD_FLAGS) $(RUNTIME_LDFLAGS)
 test_fuzz_fuzz_SOURCES = \
+ $(FUZZ_WALLET_SRC) \
  test/fuzz/addition_overflow.cpp \
- test/fuzz/addrdb.cpp \
  test/fuzz/addrman.cpp \
  test/fuzz/asmap.cpp \
  test/fuzz/asmap_direct.cpp \
@@ -238,10 +238,10 @@ test_fuzz_fuzz_SOURCES = \
  test/fuzz/crypto_chacha20.cpp \
  test/fuzz/crypto_chacha20_poly1305_aead.cpp \
  test/fuzz/crypto_common.cpp \
+ test/fuzz/crypto_diff_fuzz_chacha20.cpp \
  test/fuzz/crypto_hkdf_hmac_sha256_l32.cpp \
  test/fuzz/crypto_poly1305.cpp \
  test/fuzz/cuckoocache.cpp \
- test/fuzz/data_stream.cpp \
  test/fuzz/decode_tx.cpp \
  test/fuzz/descriptor_parse.cpp \
  test/fuzz/deserialize.cpp \
@@ -262,6 +262,7 @@ test_fuzz_fuzz_SOURCES = \
  test/fuzz/locale.cpp \
  test/fuzz/merkleblock.cpp \
  test/fuzz/message.cpp \
+ test/fuzz/minisketch.cpp \
  test/fuzz/muhash.cpp \
  test/fuzz/multiplication_overflow.cpp \
  test/fuzz/net.cpp \
@@ -293,6 +294,7 @@ test_fuzz_fuzz_SOURCES = \
  test/fuzz/script_eleccoin_consensus.cpp \
  test/fuzz/script_descriptor_cache.cpp \
  test/fuzz/script_flags.cpp \
+ test/fuzz/script_format.cpp \
  test/fuzz/script_interpreter.cpp \
  test/fuzz/script_ops.cpp \
  test/fuzz/script_sigcache.cpp \
@@ -346,8 +348,8 @@ eleccoin_test_clean : FORCE
 
 check-local: $(ELECCOIN_TESTS:.cpp=.cpp.test)
 if BUILD_ELECCOIN_TX
-	@echo "Running test/util/eleccoin-util-test.py..."
-	$(PYTHON) $(top_builddir)/test/util/eleccoin-util-test.py
+	@echo "Running test/util/test_runner.py..."
+	$(PYTHON) $(top_builddir)/test/util/test_runner.py
 endif
 	@echo "Running test/util/rpcauth-test.py..."
 	$(PYTHON) $(top_builddir)/test/util/rpcauth-test.py
@@ -359,6 +361,27 @@ if ENABLE_BENCH
 endif
 endif
 	$(AM_V_at)$(MAKE) $(AM_MAKEFLAGS) -C secp256k1 check
+
+if !ENABLE_FUZZ
+UNIVALUE_TESTS = univalue/test/object univalue/test/unitester univalue/test/no_nul
+noinst_PROGRAMS += $(UNIVALUE_TESTS)
+TESTS += $(UNIVALUE_TESTS)
+
+univalue_test_unitester_SOURCES = $(UNIVALUE_TEST_UNITESTER_INT)
+univalue_test_unitester_LDADD = $(LIBUNIVALUE)
+univalue_test_unitester_CPPFLAGS = -I$(srcdir)/$(UNIVALUE_INCLUDE_DIR_INT) -DJSON_TEST_SRC=\"$(srcdir)/$(UNIVALUE_TEST_DATA_DIR_INT)\"
+univalue_test_unitester_LDFLAGS = -static $(LIBTOOL_APP_LDFLAGS)
+
+univalue_test_no_nul_SOURCES = $(UNIVALUE_TEST_NO_NUL_INT)
+univalue_test_no_nul_LDADD = $(LIBUNIVALUE)
+univalue_test_no_nul_CPPFLAGS = -I$(srcdir)/$(UNIVALUE_INCLUDE_DIR_INT)
+univalue_test_no_nul_LDFLAGS = -static $(LIBTOOL_APP_LDFLAGS)
+
+univalue_test_object_SOURCES = $(UNIVALUE_TEST_OBJECT_INT)
+univalue_test_object_LDADD = $(LIBUNIVALUE)
+univalue_test_object_CPPFLAGS = -I$(srcdir)/$(UNIVALUE_INCLUDE_DIR_INT)
+univalue_test_object_LDFLAGS = -static $(LIBTOOL_APP_LDFLAGS)
+endif
 
 %.cpp.test: %.cpp
 	@echo Running tests: `cat $< | grep -E "(BOOST_FIXTURE_TEST_SUITE\\(|BOOST_AUTO_TEST_SUITE\\()" | cut -d '(' -f 2 | cut -d ',' -f 1 | cut -d ')' -f 1` from $<
