@@ -8,4 +8,3 @@ security updates: https://eleccoin.org
 ## Reporting a Vulnerability
 
 To report security issues send an email to service@eleccoin.org (not for support).
-
