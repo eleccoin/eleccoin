@@ -23,12 +23,13 @@ enum class FeeEstimateMode {
 };
 
 /**
- * Fee rate in electrons per kilobyte: CAmount / kB
+ * Fee rate in electrons per kilovirtualbyte: CAmount / kvB
  */
 class CFeeRate
 {
 private:
-    CAmount nElectronsPerK; // unit is electrons-per-1,000-bytes
+    /** Fee rate in sat/kvB (electrons per 1000 virtualbytes) */
+    CAmount nElectronsPerK;
 
 public:
     /** Fee rate of 0 electrons per kB */
@@ -38,23 +39,24 @@ public:
         // We've previously had bugs creep in from silent double->int conversion...
         static_assert(std::is_integral<I>::value, "CFeeRate should be used without floats");
     }
-    /** Constructor for a fee rate in electrons per kvB (ele/kvB). The size in bytes must not exceed (2^63 - 1).
+
+    /**
+     * Construct a fee rate from a fee in electrons and a vsize in vB.
      *
-     *  Passing an nBytes value of COIN (1e8) returns a fee rate in electrons per vB (ele/vB),
-     *  e.g. (nFeePaid * 1e8 / 1e3) == (nFeePaid / 1e5),
-     *  where 1e5 is the ratio to convert from ECC/kvB to ele/vB.
-     *
-     *  @param[in] nFeePaid  CAmount fee rate to construct with
-     *  @param[in] nBytes    size_t bytes (units) to construct with
-     *  @returns   fee rate
+     * param@[in]   nFeePaid    The fee paid by a transaction, in electrons
+     * param@[in]   num_bytes   The vsize of a transaction, in vbytes
      */
     CFeeRate(const CAmount& nFeePaid, uint32_t num_bytes);
+
     /**
-     * Return the fee in electrons for the given size in bytes.
+     * Return the fee in electrons for the given vsize in vbytes.
+     * If the calculated fee would have fractional electrons, then the
+     * returned fee will always be rounded up to the nearest satoshi.
      */
     CAmount GetFee(uint32_t num_bytes) const;
+
     /**
-     * Return the fee in electrons for a size of 1000 bytes
+     * Return the fee in electrons for a vsize of 1000 vbytes
      */
     CAmount GetFeePerK() const { return GetFee(1000); }
     friend bool operator<(const CFeeRate& a, const CFeeRate& b) { return a.nElectronsPerK < b.nElectronsPerK; }
@@ -69,4 +71,4 @@ public:
     SERIALIZE_METHODS(CFeeRate, obj) { READWRITE(obj.nElectronsPerK); }
 };
 
-#endif //  ELECCOIN_POLICY_FEERATE_H
+#endif // ELECCOIN_POLICY_FEERATE_H
