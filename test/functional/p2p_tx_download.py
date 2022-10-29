@@ -23,7 +23,7 @@ from test_framework.test_framework import EleccoinTestFramework
 from test_framework.util import (
     assert_equal,
 )
-from test_framework.address import ADDRESS_BCRT1_UNSPENDABLE
+from test_framework.address import ADDRESS_ECRT1_UNSPENDABLE
 
 import time
 
@@ -93,7 +93,7 @@ class TxDownloadTest(EleccoinTestFramework):
                 "txid": self.nodes[0].getblock(self.nodes[0].getblockhash(1))['tx'][0],
                 "vout": 0
             }],
-            outputs={ADDRESS_BCRT1_UNSPENDABLE: 50 - 0.00025},
+            outputs={ADDRESS_ECRT1_UNSPENDABLE: 50 - 0.00025},
         )
         tx = self.nodes[0].signrawtransactionwithkey(
             hexstring=tx,

@@ -5,7 +5,7 @@
 """Test the invalidateblock RPC."""
 
 from test_framework.test_framework import EleccoinTestFramework
-from test_framework.address import ADDRESS_BCRT1_UNSPENDABLE_DESCRIPTOR
+from test_framework.address import ADDRESS_ECRT1_UNSPENDABLE_DESCRIPTOR
 from test_framework.util import (
     assert_equal,
 )
@@ -60,7 +60,7 @@ class InvalidateTest(EleccoinTestFramework):
         self.wait_until(lambda: self.nodes[1].getblockcount() == 4, timeout=5)
 
         self.log.info("Verify that we reconsider all ancestors as well")
-        blocks = self.nodes[1].generatetodescriptor(10, ADDRESS_BCRT1_UNSPENDABLE_DESCRIPTOR)
+        blocks = self.nodes[1].generatetodescriptor(10, ADDRESS_ECRT1_UNSPENDABLE_DESCRIPTOR)
         assert_equal(self.nodes[1].getbestblockhash(), blocks[-1])
         # Invalidate the two blocks at the tip
         self.nodes[1].invalidateblock(blocks[-1])
@@ -72,7 +72,7 @@ class InvalidateTest(EleccoinTestFramework):
         assert_equal(self.nodes[1].getbestblockhash(), blocks[-1])
 
         self.log.info("Verify that we reconsider all descendants")
-        blocks = self.nodes[1].generatetodescriptor(10, ADDRESS_BCRT1_UNSPENDABLE_DESCRIPTOR)
+        blocks = self.nodes[1].generatetodescriptor(10, ADDRESS_ECRT1_UNSPENDABLE_DESCRIPTOR)
         assert_equal(self.nodes[1].getbestblockhash(), blocks[-1])
         # Invalidate the two blocks at the tip
         self.nodes[1].invalidateblock(blocks[-2])

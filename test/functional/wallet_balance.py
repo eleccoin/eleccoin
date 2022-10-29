@@ -6,7 +6,7 @@
 from decimal import Decimal
 import struct
 
-from test_framework.address import ADDRESS_BCRT1_UNSPENDABLE as ADDRESS_WATCHONLY
+from test_framework.address import ADDRESS_ECRT1_UNSPENDABLE as ADDRESS_WATCHONLY
 from test_framework.blocktools import COINBASE_MATURITY
 from test_framework.test_framework import EleccoinTestFramework
 from test_framework.util import (

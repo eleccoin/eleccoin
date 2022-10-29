@@ -7,7 +7,7 @@
 from decimal import Decimal
 from enum import Enum
 from typing import Optional
-from test_framework.address import ADDRESS_BCRT1_P2WSH_OP_TRUE
+from test_framework.address import ADDRESS_ECRT1_P2WSH_OP_TRUE
 from test_framework.key import ECKey
 from test_framework.messages import (
     COIN,
@@ -72,7 +72,7 @@ class MiniWallet:
             pub_key = self._priv_key.get_pubkey()
             self._scriptPubKey = bytes(CScript([pub_key.get_bytes(), OP_CHECKSIG]))
         elif mode == MiniWalletMode.ADDRESS_OP_TRUE:
-            self._address = ADDRESS_BCRT1_P2WSH_OP_TRUE
+            self._address = ADDRESS_ECRT1_P2WSH_OP_TRUE
             self._scriptPubKey = hex_str_to_bytes(self._test_node.validateaddress(self._address)['scriptPubKey'])
 
     def scan_blocks(self, *, start=1, num):
