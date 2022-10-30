@@ -128,8 +128,8 @@ static RPCHelpMan getpeerinfo()
                     {RPCResult::Type::NUM, "version", "The peer version, such as 70001"},
                     {RPCResult::Type::STR, "subver", "The string version"},
                     {RPCResult::Type::BOOL, "inbound", "Inbound (true) or Outbound (false)"},
-                    {RPCResult::Type::BOOL, "bip152_hb_to", "Whether we selected peer as (compact blocks) high-bandwidth peer"},
-                    {RPCResult::Type::BOOL, "bip152_hb_from", "Whether peer selected us as (compact blocks) high-bandwidth peer"},
+                    {RPCResult::Type::BOOL, "eip152_hb_to", "Whether we selected peer as (compact blocks) high-bandwidth peer"},
+                    {RPCResult::Type::BOOL, "eip152_hb_from", "Whether peer selected us as (compact blocks) high-bandwidth peer"},
                     {RPCResult::Type::NUM, "startingheight", /*optional=*/true, "The starting height (block) of the peer"},
                     {RPCResult::Type::NUM, "synced_headers", /*optional=*/true, "The last header we have in common with this peer"},
                     {RPCResult::Type::NUM, "synced_blocks", /*optional=*/true, "The last block we have in common with this peer"},
@@ -221,8 +221,8 @@ static RPCHelpMan getpeerinfo()
         // their ver message.
         obj.pushKV("subver", stats.cleanSubVer);
         obj.pushKV("inbound", stats.fInbound);
-        obj.pushKV("bip152_hb_to", stats.m_bip152_highbandwidth_to);
-        obj.pushKV("bip152_hb_from", stats.m_bip152_highbandwidth_from);
+        obj.pushKV("eip152_hb_to", stats.m_eip152_highbandwidth_to);
+        obj.pushKV("eip152_hb_from", stats.m_eip152_highbandwidth_from);
         if (fStateStats) {
             obj.pushKV("startingheight", statestats.m_starting_height);
             obj.pushKV("synced_headers", statestats.nSyncHeight);

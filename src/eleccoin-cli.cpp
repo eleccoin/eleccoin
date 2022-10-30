@@ -501,10 +501,9 @@ public:
                 const std::string age{conn_time == 0 ? "" : ToString((m_time_now - conn_time) / 60)};
                 const std::string sub_version{peer["subver"].get_str()};
                 const bool is_addr_relay_enabled{peer["addr_relay_enabled"].isNull() ? false : peer["addr_relay_enabled"].get_bool()};
-                const bool is_bip152_hb_from{peer["bip152_hb_from"].get_bool()};
-                const bool is_bip152_hb_to{peer["bip152_hb_to"].get_bool()};
-                m_peers.push_back({addr, sub_version, conn_type, network, age, min_ping, ping, addr_processed, addr_rate_limited, last_blck, last_recv, last_send, last_trxn, peer_id, mapped_as, version, is_addr_relay_enabled, is_bip152_hb_from, is_bip152_hb_to, is_block_relay, is_outbound});
-                m_max_addr_length = std::max(addr.length() + 1, m_max_addr_length);
+                const bool is_eip152_hb_from{peer["eip152_hb_from"].get_bool()};
+                const bool is_eip152_hb_to{peer["eip152_hb_to"].get_bool()};
+                m_peers.push_back({addr, sub_version, conn_type, network, age, min_ping, ping, addr_processed, addr_rate_limited, last_blck, last_recv, last_send, last_trxn, peer_id, mapped_as, version, is_addr_relay_enabled, is_eip152_hb_from, is_eip152_hb_to, is_block_relay, is_outbound});                m_max_addr_length = std::max(addr.length() + 1, m_max_addr_length);
                 m_max_addr_processed_length = std::max(ToString(addr_processed).length(), m_max_addr_processed_length);
                 m_max_addr_rate_limited_length = std::max(ToString(addr_rate_limited).length(), m_max_addr_rate_limited_length);
                 m_max_age_length = std::max(age.length(), m_max_age_length);

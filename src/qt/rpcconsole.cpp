@@ -1170,8 +1170,8 @@ void RPCConsole::updateDetailWidget()
     ui->peerServices->setText(GUIUtil::formatServicesStr(stats->nodeStats.nServices));
     ui->peerRelayTxes->setText(stats->nodeStats.fRelayTxes ? ts.yes : ts.no);
     QString bip152_hb_settings;
-    if (stats->nodeStats.m_bip152_highbandwidth_to) bip152_hb_settings = ts.to;
-    if (stats->nodeStats.m_bip152_highbandwidth_from) bip152_hb_settings += (bip152_hb_settings.isEmpty() ? ts.from : QLatin1Char('/') + ts.from);
+    if (stats->nodeStats.m_eip152_highbandwidth_to) bip152_hb_settings = ts.to;
+    if (stats->nodeStats.m_eip152_highbandwidth_from) bip152_hb_settings += (bip152_hb_settings.isEmpty() ? ts.from : QLatin1Char('/') + ts.from);
     if (bip152_hb_settings.isEmpty()) bip152_hb_settings = ts.no;
     ui->peerHighBandwidth->setText(bip152_hb_settings);
     const auto time_now{GetTime<std::chrono::seconds>()};

@@ -101,7 +101,7 @@ INFO: seed corpus: files: 991 min: 1b max: 1858b total: 288291b rss: 150Mb
 
 ## Run without sanitizers for increased throughput
 
-Fuzzing on a harness compiled with `--with-sanitizers=address,fuzzer,undefined` is good for finding bugs. However, the very slow execution even under libFuzzer will limit the ability to find new coverage. A good approach is to perform occasional long runs without the additional bug-detectors (configure `--with-sanitizers=fuzzer`) and then merge new inputs into a corpus as described in the qa-assets repo (https://github.com/eleccoin-core/qa-assets/blob/main/.github/PULL_REQUEST_TEMPLATE.md).  Patience is useful; even with improved throughput, libFuzzer may need days and 10s of millions of executions to reach deep/hard targets.
+Fuzzing on a harness compiled with `--with-sanitizers=address,fuzzer,undefined` is good for finding bugs. However, the very slow execution even under libFuzzer will limit the ability to find new coverage. A good approach is to perform occasional long runs without the additional bug-detectors (configure `--with-sanitizers=fuzzer`) and then merge new inputs into a corpus as described in the qa-assets repo (https://github.com/eleccoin/qa-assets/blob/main/.github/PULL_REQUEST_TEMPLATE.md).  Patience is useful; even with improved throughput, libFuzzer may need days and 10s of millions of executions to reach deep/hard targets.
 
 ## Reproduce a fuzzer crash reported by the CI
 
@@ -117,9 +117,9 @@ Fuzzing on a harness compiled with `--with-sanitizers=address,fuzzer,undefined` 
 
 ## Submit improved coverage
 
-If you find coverage increasing inputs when fuzzing you are highly encouraged to submit them for inclusion in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin-core/qa-assets) repo.
+If you find coverage increasing inputs when fuzzing you are highly encouraged to submit them for inclusion in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin/qa-assets) repo.
 
-Every single pull request submitted against the Eleccoin Core repo is automatically tested against all inputs in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin-core/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make Eleccoin Core more robust.
+Every single pull request submitted against the Eleccoin Core repo is automatically tested against all inputs in the [`eleccoin-core/qa-assets`](https://github.com/eleccoin/qa-assets) repo. Contributing new coverage increasing inputs is an easy way to help make Eleccoin Core more robust.
 
 ## macOS hints for libFuzzer
 
@@ -323,7 +323,7 @@ be decoded in the same way.
 Fuzzing with Eclipser will likely be much more effective if using an existing corpus:
 
 ```sh
-$ git clone https://github.com/eleccoin-core/qa-assets
+$ git clone https://github.com/eleccoin/qa-assets
 $ FUZZ=bech32 dotnet Eclipser/build/Eclipser.dll fuzz -p src/test/fuzz/fuzz -t 36000 -i qa-assets/fuzz_seed_corpus/bech32 outputs --src stdin
 ```
 

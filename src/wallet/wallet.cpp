@@ -1308,7 +1308,7 @@ void CWallet::transactionRemovedFromMempool(const CTransactionRef& tx, MemPoolRe
         // when improving this code in the future. The wallet's heuristics for
         // distinguishing between conflicted and unconfirmed transactions are
         // imperfect, and could be improved in general, see
-        // https://github.com/eleccoin-core/eleccoin-devwiki/wiki/Wallet-Transaction-Conflict-Tracking
+        // https://github.com/eleccoin/eleccoin-devwiki/wiki/Wallet-Transaction-Conflict-Tracking
         SyncTransaction(tx, TxStateInactive{});
     }
 }
