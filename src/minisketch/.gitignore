@@ -31,5 +31,5 @@ configure
 libtool
 stamp-h1
 
-#test*
+test
 bench
