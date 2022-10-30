@@ -6,21 +6,21 @@ Release Process
 ### Before every release candidate
 
 * Update translations see [translation_process.md](https://github.com/eleccoin/eleccoin/blob/master/doc/translation_process.md#synchronising-translations).
-* Update manpages, see [gen-manpages.sh](https://github.com/eleccoin/eleccoin/blob/master/contrib/devtools/README.md#gen-manpagessh).
 * Update release candidate version in `configure.ac` (`CLIENT_VERSION_RC`).
+* Update manpages (after rebuilding the binaries), see [gen-manpages.py](https://github.com/eleccoin/eleccoin/blob/master/contrib/devtools/README.md#gen-manpagespy).
 
 ### Before every major and minor release
 
 * Update [bips.md](bips.md) to account for changes since the last release (don't forget to bump the version number on the first line).
 * Update version in `configure.ac` (don't forget to set `CLIENT_VERSION_RC` to `0`).
+* Update manpages (see previous section)
 * Write release notes (see "Write the release notes" below).
 
 ### Before every major release
 
 * On both the master branch and the new release branch:
   - update `CLIENT_VERSION_MAJOR` in [`configure.ac`](../configure.ac)
-  - update `CLIENT_VERSION_MAJOR`, `PACKAGE_VERSION`, and `PACKAGE_STRING` in [`build_msvc/eleccoin_config.h`](/build_msvc/eleccoin_config.h)
-* On the new release branch in [`configure.ac`](../configure.ac) and [`build_msvc/eleccoin_config.h`](/build_msvc/eleccoin_config.h) (see [this commit](https://github.com/eleccoin/eleccoin/commit/742f7dd)):
+* On the new release branch in [`configure.ac`](../configure.ac):
   - set `CLIENT_VERSION_MINOR` to `0`
   - set `CLIENT_VERSION_BUILD` to `0`
   - set `CLIENT_VERSION_IS_RELEASE` to `true`
@@ -29,7 +29,7 @@ Release Process
 
 * Update hardcoded [seeds](/contrib/seeds/README.md), see [this pull request](https://github.com/eleccoin/eleccoin/pull/7415) for an example.
 * Update [`src/chainparams.cpp`](/src/chainparams.cpp) m_assumed_blockchain_size and m_assumed_chain_state_size with the current size plus some overhead (see [this](#how-to-calculate-assumed-blockchain-and-chain-state-size) for information on how to calculate them).
-* Update [`src/chainparams.cpp`](/src/chainparams.cpp) chainTxData with statistics about the transaction count and rate. Use the output of the `getchaintxstats` RPC.
+* Update [`src/chainparams.cpp`](/src/chainparams.cpp) chainTxData with statistics about the transaction count and rate. Use the output of the `getchaintxstats` RPC, see
   Reviewers can verify the results by running `getchaintxstats <window_block_count> <window_final_block_hash>` with the `window_block_count` and `window_final_block_hash` from your output.
 * Update `src/chainparams.cpp` nMinimumChainWork and defaultAssumeValid (and the block height comment) with information from the `getblockheader` (and `getblockhash`) RPCs.
   - The selected value must not be orphaned so it may be useful to set the value two blocks back from the tip.
@@ -60,7 +60,7 @@ Release Process
 
 To tag the version (or release candidate) in git, use the `make-tag.py` script from [eleccoin-maintainer-tools](https://github.com/eleccoin/eleccoin-maintainer-tools). From the root of the repository run:
 
-    ../eleccoin-maintainer-tools/make-tag.py v(new version, e.g. 1.3.0)
+    ../eleccoin-maintainer-tools/make-tag.py v(new version, e.g. 5.0)
 
 This will perform a few last-minute consistency checks in the build system files, and if they pass, create a signed tag.
 
@@ -97,8 +97,8 @@ Checkout the Eleccoin Core version you'd like to build:
 ```sh
 pushd ./eleccoin
 SIGNER='(your builder key, ie bluematt, sipa, etc)'
-VERSION='(new version without v-prefix, e.g. 1.3.0)'
-git fetch "v${VERSION}"
+VERSION='(new version without v-prefix, e.g. 5.0)'
+git fetch origin "v${VERSION}"
 git checkout "v${VERSION}"
 popd
 ```
@@ -119,7 +119,7 @@ details.
 ### Build and attest to build outputs:
 
 Follow the relevant Guix README.md sections:
-- [Performing a build](/contrib/guix/README.md#performing-a-build)
+- [Building](/contrib/guix/README.md#building)
 - [Attesting to build outputs](/contrib/guix/README.md#attesting-to-build-outputs)
 
 ### Verify other builders' signatures to your own. (Optional)
@@ -136,7 +136,7 @@ Commit your signature to guix.sigs:
 ```sh
 pushd ./guix.sigs
 git add "${VERSION}/${SIGNER}"/noncodesigned.SHA256SUMS{,.asc}
-git commit -m "Add ${VERSION} unsigned sigs for ${SIGNER}"
+git commit -m "Add attestations by ${SIGNER} for ${VERSION} non-codesigned"
 git push  # Assuming you can push to the guix.sigs tree
 popd
 ```
@@ -192,7 +192,7 @@ Commit your signature for the signed macOS/Windows binaries:
 ```sh
 pushd ./guix.sigs
 git add "${VERSION}/${SIGNER}"/all.SHA256SUMS{,.asc}
-git commit -m "Add ${SIGNER} ${VERSION} signed binaries signatures"
+git commit -m "Add attestations by ${SIGNER} for ${VERSION} codesigned"
 git push  # Assuming you can push to the guix.sigs tree
 popd
 ```
@@ -253,6 +253,10 @@ cat "$VERSION"/*/all.SHA256SUMS.asc > SHA256SUMS.asc
   - eleccoincore.org maintained versions update:
     [table](https://github.com/eleccoin/eleccoincore.org/commits/master/_includes/posts/maintenance-table.md)
 
+  - Delete post-EOL [release branches](https://github.com/eleccoin/eleccoin/branches/all) and create a tag `v${branch_name}-final`.
+
+  - Delete ["Needs backport" labels](https://github.com/eleccoin/eleccoin/labels?q=backport) for non-existing branches.
+
   - eleccoincore.org RPC documentation update
 
       - Install [golang](https://golang.org/doc/install)
@@ -271,26 +275,7 @@ cat "$VERSION"/*/all.SHA256SUMS.asc > SHA256SUMS.asc
 
       - Push the flatpak to flathub, e.g. https://github.com/flathub/org.eleccoincore.eleccoin-qt/pull/2
 
-      - Push the latest version to master (if applicable), e.g. https://github.com/eleccoin/packaging/pull/32
-
-      - Create a new branch for the major release "0.xx" from master (used to build the snap package) and request the
-        track (if applicable), e.g. https://forum.snapcraft.io/t/track-request-for-eleccoin-core-snap/10112/7
-
-      - Notify MarcoFalke so that he can start building the snap package
-
-        - https://code.launchpad.net/~eleccoin-core/eleccoin-core-snap/+git/packaging (Click "Import Now" to fetch the branch)
-        - https://code.launchpad.net/~eleccoin-core/eleccoin-core-snap/+git/packaging/+ref/0.xx (Click "Create snap package")
-        - Name it "eleccoin-core-snap-0.xx"
-        - Leave owner and series as-is
-        - Select architectures that are compiled via guix
-        - Leave "automatically build when branch changes" unticked
-        - Tick "automatically upload to store"
-        - Put "eleccoin-core" in the registered store package name field
-        - Tick the "edge" box
-        - Put "0.xx" in the track field
-        - Click "create snap package"
-        - Click "Request builds" for every new release on this branch (after updating the snapcraft.yml in the branch to reflect the latest guix results)
-        - Promote release on https://snapcraft.io/eleccoin-core/releases if it passes sanity checks
+      - Push the snap, see https://github.com/eleccoin/packaging/blob/master/snap/build.md
 
   - This repo
 
