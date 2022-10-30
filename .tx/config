@@ -1,7 +1,7 @@
 [main]
 host = https://www.transifex.com
 
-[eleccoin.qt-translation-05x]
+[eleccoin.qt-translation-005x]
 file_filter = src/qt/locale/eleccoin_<lang>.xlf
 source_file = src/qt/locale/eleccoin_en.xlf
 source_lang = en
